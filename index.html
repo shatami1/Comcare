@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ComfortCare - Medical Equipment Rental Services</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-middle">
+                <div class="nav-identity">
+                    <div class="nav-brand">
+                        <img src="logo.svg" alt="ComfortCare Logo" class="logo-image">
+                    </div>
+                    <div class="nav-title">Comfort Care</div>
+                </div>
+                <ul class="nav-menu">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="order.html">Order</a></li>
+                <li><a href="pricing.html">Cart</a></li>
+                <li><a href="payment.html">Payments</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="nav-cart">
+                <div class="cart-box" aria-live="polite">
+                    <span class="cart-box-title">Cart</span>
+                    <span class="cart-box-detail">
+                        <span id="headerCartCount">0 items</span>
+                        <span class="cart-box-sep">|</span>
+                        <span id="headerCartTotal">$0.00</span>
+                    </span>
+                </div>
+                <div class="nav-cart-main">
+                    <a href="order.html" class="btn btn-secondary btn-compact edit-cart-link">Edit Cart</a>
+                    <a href="pricing.html" class="btn btn-primary btn-compact">Pay</a>
+                </div>
+                <a id="cartEmailLink" href="mailto:accentgv@gmail.com" class="btn btn-discount btn-mini">Email Cart for Discounts</a>
+            </div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Professional Medical Equipment Rental</h1>
+                <p>Quality care equipment delivered to your home or facility with expert support</p>
+                <div class="hero-buttons">
+                    <a href="services.html" class="btn btn-primary">Browse Equipment</a>
+                    <a href="contact.html" class="btn btn-secondary">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2>Why Choose ComfortCare?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"></div>
+                    <h3>Quality Equipment</h3>
+                    <p>All equipment meets medical standards and is regularly maintained for safety and reliability</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"></div>
+                    <h3>Fast Delivery</h3>
+                    <p>Quick delivery to Atlanta, Georgia area with flexible scheduling that works for you</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"></div>
+                    <h3>Expert Support</h3>
+                    <p>Our team provides setup assistance and ongoing support throughout your rental period</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"></div>
+                    <h3>Affordable Pricing</h3>
+                    <p>Flexible rental plans that fit your budget without compromising on quality</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"></div>
+                    <h3>Easy Booking</h3>
+                    <p>Simple online booking system or call us directly to reserve your equipment</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"></div>
+                    <h3>24/7 Availability</h3>
+                    <p>We're here when you need us with responsive customer service and emergency support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2>How It Works</h2>
+            <p>Four simple steps from selection to delivery.</p>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Browse and Select</h3>
+                    <p>Choose the equipment you need from our catalog.</p>
+                    <div class="step-details">
+                        <ul>
+                            <li>Clear specs and daily rates</li>
+                            <li>Wide equipment variety</li>
+                            <li>Helpful support available</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Confirm Your Order</h3>
+                    <p>Review your cart and confirm your rental details.</p>
+                    <div class="step-details">
+                        <ul>
+                            <li>Flexible rental periods</li>
+                            <li>Transparent pricing</li>
+                            <li>Easy checkout</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Schedule Delivery</h3>
+                    <p>Pick a delivery time that fits your schedule.</p>
+                    <div class="step-details">
+                        <ul>
+                            <li>Fast local delivery</li>
+                            <li>Flexible time windows</li>
+                            <li>Professional handling</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>Setup and Support</h3>
+                    <p>We deliver, set up, and support you throughout the rental.</p>
+                    <div class="step-details">
+                        <ul>
+                            <li>Safe setup guidance</li>
+                            <li>Ongoing support</li>
+                            <li>Easy pickup when done</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Equipment Section -->
+    <section class="featured">
+        <div class="container">
+            <h2>Featured Equipment</h2>
+            <div class="equipment-grid">
+                <div class="equipment-card">
+                    <h3>Hospital Beds</h3>
+                    <p>Adjustable electric beds for enhanced comfort and mobility</p>
+                    <span class="price">From $45/day</span>
+                </div>
+                <div class="equipment-card">
+                    <h3>Mobility Aids</h3>
+                    <p>Wheelchairs, walkers, and canes for independent movement</p>
+                    <span class="price">From $20/day</span>
+                </div>
+                <div class="equipment-card">
+                    <h3>Oxygen Equipment</h3>
+                    <p>Portable and stationary oxygen supplies with delivery</p>
+                    <span class="price">From $30/day</span>
+                </div>
+                <div class="equipment-card">
+                    <h3>Mobility Scooter</h3>
+                    <p>Knee scooters and mobility aids for safe movement</p>
+                    <span class="price">From $15/day</span>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="services.html" class="btn btn-primary">View All Equipment</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Need Medical Equipment Now?</h2>
+            <p>Contact us today to discuss your equipment rental needs</p>
+            <div class="cta-contact">
+                <a href="tel:678-362-2345" class="btn btn-light">Call: 678-362-2345</a>
+                <a href="contact.html" class="btn btn-light">Email Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>ComfortCare</h4>
+                    <p>Professional medical equipment rental services in Atlanta, Georgia</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Phone: <a href="tel:678-362-2345">678-362-2345</a></p>
+                    <p>Email: <a href="mailto:AccentGV@gmail.com">AccentGV@gmail.com</a></p>
+                    <p>Location: Atlanta, Georgia</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ComfortCare. All rights reserved. | Professional Medical Equipment Rental</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
