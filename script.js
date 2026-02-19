@@ -51,7 +51,7 @@ function getCheckoutSessionEndpoint() {
     }
 
     // Use Vercel API for production
-    return 'https://comcare-nine.vercel.app/create-checkout-session';
+    return 'https://comcare-de78.vercel.app/create-checkout-session';
 }
 
 function getCheckoutHealthEndpoint() {
@@ -60,7 +60,7 @@ function getCheckoutHealthEndpoint() {
     }
 
     // Use Vercel API for production
-    return 'https://comcare-nine.vercel.app/checkout-health';
+    return 'https://comcare-de78.vercel.app/checkout-health';
 }
 
 function setCheckoutStatusBadge(message, state) {

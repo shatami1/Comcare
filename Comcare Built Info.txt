@@ -5,6 +5,8 @@ Host,Type,Data
 @,A,185.199.111.153
 
 https://shatami1.github.io/Comcare/index.html
+
+for payments:  https://vercel.com/saeed-hatamis-projects/comcare-de78
 log with saeedinv
 
 https://neocities.org/welcome
