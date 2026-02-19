@@ -1,0 +1,118 @@
+https://neocities.org/welcome
+saeedinv
+$@33dq12NEO
+
+Absolutely — I can turn your notes into a clean, professional **system description** of your full web stack. Since you’re actively viewing your Netlify Domain Management tab, I’ll keep this tight and structured so you can drop it into documentation, onboarding, or technical support conversations without editing.
+
+---
+
+# **Comcare.store — System Architecture Overview**
+
+## **1. Domain & DNS**
+- **Registrar:** Squarespace  
+- **DNS Management:** Squarespace DNS panel  
+- **Current DNS Target:** Netlify (A‑records + CNAME configured)  
+- **Live Domain:** `comcare.store` + `www.comcare.store`
+
+---
+
+## **2. Website Build** Visual Studio Code
+- **Development:** Built with GitHub Copilot / AI-assisted workflow  
+- **Codebase:** Static site (HTML/CSS/JS)  
+- **Repository:** GitHub (private or local — not required for Netlify deploys)  
+- **Framework:** No framework detected in the deployed output (pure static)
+
+---
+
+## **3. Hosting & Deployment**
+- **Hosting Provider:** Netlify  
+- **Project Dashboard:** `https://app.netlify.com`  
+- **Deploy Method:** Manual deploys (drag‑and‑drop or direct upload)  
+- **Primary Site:** `gleeful-vacherin-7b13d4.netlify.app`  
+- **Connected Domain:** `comcare.store`  
+- **SSL:** Auto‑provisioned by Netlify (Let’s Encrypt)
+
+---
+
+## **4. Forms & Email Handling**
+- **Provider:** Formspree  
+- **Active Endpoint:** `https://formspree.io/f/xykdkggg`  
+- **Notes:**  
+  - This is the correct endpoint; `/f/x` is not valid.  
+  - Form submissions route to your configured email via Formspree’s backend.
+
+---
+
+## **5. Payments & Business Systems**
+- **Payments:** Stripe Payment Links embedded in the site  Same password as XEro
+- **Accounting/ERP:**  
+  - You mentioned Xero on your side  
+  - **No Xero scripts, API calls, or embeds appear in the site code**  
+  - This means Xero is used operationally, not integrated into the website
+
+---
+
+# **Optional: Clean Flow Diagram (Text Version)**
+
+```
+[User Browser]
+       |
+       v
+comcare.store (Squarespace DNS)
+       |
+       v
+Netlify Hosting
+       |
+       +--> Static Website (AI/Copilot-built)
+       |
+       +--> Form Submissions --> Formspree --> Your Email
+       |
+       +--> Payments --> Stripe Payment Links
+       |
+       +--> Business Ops (Offline) --> Xero (not connected to site)
+```
+
+---
+
+If you want, I can also produce:
+
+- a **visual flowchart** (Mermaid, draw.io‑style, or ASCII)  
+- a **technical architecture page** for your internal documentation  
+- a **public-facing “How our system works”** page for your website  
+- a **developer handoff document** for future contractors  
+
+Just tell me the format you want and I’ll build it.
+
+Updated Steps to Find Your Square Application ID (2026)
+According to current Square developer documentation and community guidance, the Application ID is now found inside the Developer Dashboard, not inside the main Square Dashboard menus. [community....uareup.com], [docs.joincpr.com]
+Follow these steps:
+
+✔ Step‑by‑Step Navigation
+
+
+Go to the Square Developer Dashboard:
+https://developer.squareup.com
+
+
+Sign in with your Square account.
+
+
+On the left side, click Developer Dashboard or Apps (depends on layout).
+→ This is verified in multiple docs. [docs.joincpr.com]
+
+
+Select your existing application
+(or click “+ New Application” to create one)
+→ Square auto-generates the Application ID when you create an app. [community....uareup.com]
+
+
+In your application panel, click Credentials in the left menu.
+→ The Application ID is listed here under Application ID.
+This is consistent with multiple sources. [documentat...ftware.com]
+
+
+Make sure you are viewing Production credentials (toggle at top):
+→ “Production Settings” must be selected for live payments. [community....uareup.com]
+
+
+Copy your Application ID.

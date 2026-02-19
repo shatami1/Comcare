@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - ComfortCare</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-middle">
+                <div class="nav-identity">
+                    <div class="nav-brand">
+                        <img src="logo.svg" alt="ComfortCare Logo" class="logo-image">
+                    </div>
+                    <div class="nav-title">Comfort Care</div>
+                </div>
+                <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="order.html">Order</a></li>
+                <li><a href="pricing.html">Cart</a></li>
+                <li><a href="payment.html" class="active">Payments</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="nav-cart">
+                <div class="cart-box" aria-live="polite">
+                    <span class="cart-box-title">Cart</span>
+                    <span class="cart-box-detail">
+                        <span id="headerCartCount">0 items</span>
+                        <span class="cart-box-sep">|</span>
+                        <span id="headerCartTotal">$0.00</span>
+                    </span>
+                </div>
+                <div class="nav-cart-main">
+                    <a href="order.html" class="btn btn-secondary btn-compact edit-cart-link">Edit Cart</a>
+                    <a href="pricing.html" class="btn btn-primary btn-compact">Pay</a>
+                </div>
+                <a id="cartEmailLink" href="mailto:accentgv@gmail.com" class="btn btn-discount btn-mini">Email Cart for Discounts</a>
+            </div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Floating Cart Panel -->
+    <div class="floating-cart" id="floatingCart">
+        <div class="floating-cart-header">
+            <h3>Your Cart</h3>
+            <button class="floating-cart-close" id="closeFloatingCart">✕</button>
+        </div>
+        <div class="floating-cart-items" id="floatingCartItems">
+            <!-- Items populated by JavaScript -->
+        </div>
+        <div class="floating-cart-footer">
+            <div class="floating-cart-total">
+                <span>Total:</span>
+                <span id="floatingCartTotal" class="total-amount">$0.00</span>
+            </div>
+            <button class="btn btn-secondary" id="toggleFloatingCart" style="width: 100%; margin-top: 6px;">Hide Cart</button>
+        </div>
+    </div>
+
+    <!-- Toggle Button (appears when cart is hidden on mobile) -->
+    <button class="floating-cart-toggle" id="showFloatingCart" style="display: none;">
+        🛒 Cart
+    </button>
+
+    <!-- Floating Stripe Payment Panel -->
+    <div class="floating-stripe-panel" id="floatingStripePanel" style="display: none;">
+        <div class="floating-stripe-header">
+            <h3>💳 Stripe Checkout</h3>
+            <button class="floating-stripe-close" id="closeStripePanel">✕</button>
+        </div>
+        <div class="floating-stripe-content">
+            <iframe id="stripeIframe" src="" width="100%" height="100%" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Checkout</h1>
+            <p>Review your order and proceed to secure payment</p>
+        </div>
+    </section>
+
+    <!-- Cart Review Section -->
+    <section class="checkout-review">
+        <div class="container">
+            <div class="checkout-grid">
+                <!-- Cart Items -->
+                <div class="checkout-cart">
+                    <h2>Review Your Order</h2>
+                    <div id="checkoutCartItems" class="cart-items">
+                        <!-- Cart items will be populated here -->
+                    </div>
+                    <div class="cart-empty" id="checkoutEmptyCart" style="display: none;">
+                        <p>Your cart is empty.</p>
+                        <a href="order.html" class="btn btn-primary">Browse Equipment</a>
+                    </div>
+                    
+                    <div id="checkoutSummary" class="checkout-summary" style="display: none;">
+                        <div class="summary-row">
+                            <span>Subtotal:</span>
+                            <span id="checkoutSubtotal">$0.00</span>
+                        </div>
+                        <div class="summary-row total-row">
+                            <span>Total:</span>
+                            <span id="checkoutTotal">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="checkout-actions">
+                    <h3>Ready to Checkout?</h3>
+                    <p class="checkout-note">Review your items and proceed to secure payment</p>
+                    
+                    <!-- Stripe Payment -->
+                    <div class="stripe-payment-section" style="margin-top: 20px;">
+                        <h4>💳 Secure Checkout</h4>
+                        <p id="stripeCartNotice" class="form-note" style="display: none;">Add items to your cart to pay</p>
+                        <button id="stripeCheckoutBtn" class="btn btn-primary btn-large" style="display: none;">
+                            💳 Proceed to Payment
+                        </button>
+                    </div>
+                    
+                    <div class="checkout-buttons">
+                        <a href="order.html" class="btn btn-secondary btn-large edit-cart-link">
+                            <span>📝</span> Edit Cart
+                        </a>
+                        
+                        <a id="checkoutEmailLink" href="mailto:accentgv@gmail.com" class="btn btn-discount btn-large">
+                            <span>✉️</span> Email Cart for Discounts
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>ComfortCare</h4>
+                    <p>Professional medical equipment rental services in Atlanta, Georgia</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Phone: <a href="tel:678-362-2345">678-362-2345</a></p>
+                    <p>Email: <a href="mailto:AccentGV@gmail.com">AccentGV@gmail.com</a></p>
+                    <p>Location: Atlanta, Georgia</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ComfortCare. All rights reserved. | Professional Medical Equipment Rental</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

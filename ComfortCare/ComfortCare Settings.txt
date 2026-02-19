@@ -1,0 +1,17 @@
+ComfortCare
+       |
+       v
+comcare.store (Squarespace DNS)
+       |
+       v
+Netlify Hosting
+       |
+       +--> Static Website (AI/Copilot-built)
+       |
+       +--> Form Submissions --> Formspree --> Your Email
+       |
+       +--> Payments --> Stripe Payment Links
+       |
+       +--> Business Ops (Offline) --> Xero (not connected to site)
+
+comcare.neocities.org  gmail hot+NEO

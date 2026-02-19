@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - ComfortCare</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-middle">
+                <div class="nav-identity">
+                    <div class="nav-brand">
+                        <img src="logo.svg" alt="ComfortCare Logo" class="logo-image">
+                    </div>
+                    <div class="nav-title">Comfort Care</div>
+                </div>
+                <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="order.html">Order</a></li>
+                <li><a href="pricing.html" class="active">Cart</a></li>
+                <li><a href="payment.html">Payments</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="nav-cart">
+                <div class="cart-box" aria-live="polite">
+                    <span class="cart-box-title">Cart</span>
+                    <span class="cart-box-detail">
+                        <span id="headerCartCount">0 items</span>
+                        <span class="cart-box-sep">|</span>
+                        <span id="headerCartTotal">$0.00</span>
+                    </span>
+                </div>
+                <div class="nav-cart-main">
+                    <a href="order.html" class="btn btn-secondary btn-compact edit-cart-link">Edit Cart</a>
+                    <a href="pricing.html" class="btn btn-primary btn-compact">Pay</a>
+                </div>
+                <a id="cartEmailLink" href="mailto:accentgv@gmail.com" class="btn btn-discount btn-mini">Email Cart for Discounts</a>
+            </div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Floating Cart Panel (Draggable) -->
+    <div class="floating-cart" id="floatingCart" style="cursor: move;">
+        <div class="floating-cart-header">
+            <h3>Your Cart</h3>
+            <button class="floating-cart-close" id="closeFloatingCart">✕</button>
+        </div>
+        <div class="floating-cart-items" id="floatingCartItems">
+            <!-- Items populated by JavaScript -->
+        </div>
+        <div class="floating-cart-footer">
+            <div class="floating-cart-total">
+                <span>Total:</span>
+                <span id="floatingCartTotal" class="total-amount">$0.00</span>
+            </div>
+            <button class="btn btn-secondary" id="toggleFloatingCart" style="width: 100%; margin-top: 6px;">Hide Cart</button>
+        </div>
+    </div>
+
+    <!-- Toggle Button (appears when cart is hidden on mobile) -->
+    <button class="floating-cart-toggle" id="showFloatingCart" style="display: none;">
+        🛒 Cart
+    </button>
+
+    <!-- Floating Stripe Payment Panel -->
+    <div class="floating-stripe-panel" id="floatingStripePanel" style="display: none;">
+        <div class="floating-stripe-header">
+            <h3>💳 Stripe Checkout</h3>
+            <button class="floating-stripe-close" id="closeStripePanel">✕</button>
+        </div>
+        <div class="floating-stripe-content">
+            <iframe id="stripeIframe" src="" width="100%" height="100%" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Your Cart</h1>
+            <p>Review your selections and request discounts</p>
+        </div>
+    </section>
+
+    <!-- Pricing Hero Image -->
+    <section class="pricing-hero">
+        <div class="container">
+            <img src="images/operator-headset.jpg" alt="Customer support operator with headset" class="pricing-hero-img">
+        </div>
+    </section>
+
+    <!-- Pricing Overview -->
+    <section class="pricing-section">
+        <div class="container">
+            <h2>Cart Summary</h2>
+            <p class="pricing-subtitle">Items selected on the Order page appear here</p>
+            <div class="pricing-actions">
+                <a href="order.html" class="btn btn-primary">Go to Order Page</a>
+                <p id="cartAddMessage" class="form-message" aria-live="polite"></p>
+            </div>
+            <aside class="pricing-cart" aria-label="Cart summary">
+                <h3>Items in your chart</h3>
+                <div id="cartItems" class="cart-items">
+                    <p class="cart-empty">No items added yet.</p>
+                </div>
+                <div class="cart-summary">
+                    <span>Total</span>
+                    <strong id="cartTotal">$0.00</strong>
+                </div>
+                <a href="order.html" class="btn btn-secondary btn-compact edit-cart-link">Edit Cart</a>
+                
+                <!-- Stripe Payment -->
+                <div class="stripe-payment-section" style="margin-top: 20px;">
+                    <h4>💳 Secure Checkout</h4>
+                    <p id="stripeCartNotice" class="form-note" style="display: none;">Add items to your cart to pay</p>
+                    <button id="stripeCheckoutBtn" class="btn btn-primary btn-large" style="display: none;">
+                        💳 Proceed to Payment
+                    </button>
+                </div>
+                
+                <div class="cart-email-box">
+                    <p>Or send your chart to us for our discounts.</p>
+                    <a id="cartEmailLink" class="btn btn-primary btn-compact" href="mailto:accentgv@gmail.com">Email Cart</a>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <!-- Discount Information -->
+    <section class="discounts">
+        <div class="container">
+            <h2>Special Discounts & Offers</h2>
+            <div class="discount-grid">
+                <div class="discount-card">
+                    <h4>Long-Term Rentals</h4>
+                    <p><strong>10% discount</strong> on monthly rentals</p>
+                    <p>Perfect for extended recovery periods or extended facility use</p>
+                </div>
+                <div class="discount-card">
+                    <h4>Multiple Equipment</h4>
+                    <p><strong>15% discount</strong> when renting 3+ items</p>
+                    <p>Great for comprehensive home care setups</p>
+                </div>
+                <div class="discount-card">
+                    <h4>Healthcare Providers</h4>
+                    <p><strong>Special rates</strong> for medical facilities</p>
+                    <p>Contact us for bulk rental pricing and contracts</p>
+                </div>
+                <div class="discount-card">
+                    <h4>Returning Customers</h4>
+                    <p><strong>5% loyalty discount</strong> on repeat rentals</p>
+                    <p>We appreciate your business and partnerships</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Details -->
+    <section class="pricing-details">
+        <div class="container">
+            <h2>What's Included in Our Rental Prices?</h2>
+            <div class="details-content">
+                <div class="details-column">
+                    <h4>Included Services</h4>
+                    <ul class="included-list">
+                        <li>Professional delivery to Atlanta, GA</li>
+                        <li>Expert setup and installation</li>
+                        <li>Usage training & instructions</li>
+                        <li>Pre-delivery equipment cleaning</li>
+                        <li>Basic equipment maintenance</li>
+                        <li>Free pickup at end of rental</li>
+                        <li>24/7 customer support</li>
+                        <li>Equipment replacement if needed</li>
+                    </ul>
+                </div>
+                <div class="details-column">
+                    <h4>Not Included (Optional)</h4>
+                    <ul class="excluded-list">
+                        <li>Advanced insurance coverage</li>
+                        <li>Consumables (supplies, etc.)</li>
+                        <li>Expedited same-day delivery</li>
+                        <li>Equipment modification</li>
+                        <li>Transportation outside service area</li>
+                        <li>Specialized medical supplies</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Methods -->
+    <section class="payment-methods">
+        <div class="container">
+            <h2>Payment & Billing</h2>
+            <div class="payment-grid">
+                <div class="payment-card">
+                    <h4>Payment Methods</h4>
+                    <ul>
+                        <li>Credit Card (Visa, Mastercard, Amex)</li>
+                        <li>Debit Card</li>
+                        <li>ACH Bank Transfer</li>
+                        <li>Insurance Direct Billing</li>
+                    </ul>
+                </div>
+                <div class="payment-card">
+                    <h4>Billing & Invoicing</h4>
+                    <ul>
+                        <li>Flexible payment schedules available</li>
+                        <li>Daily, weekly, or monthly billing</li>
+                        <li>Digital invoices sent via email</li>
+                        <li>Automatic recurring billing accepted</li>
+                    </ul>
+                </div>
+                <div class="payment-card">
+                    <h4>Insurance & Medicare</h4>
+                    <ul>
+                        <li>We bill most insurance providers</li>
+                        <li>Medicare approved equipment</li>
+                        <li>Coverage verification available</li>
+                        <li>Flexible payment for uninsured customers</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Get a Personalized Quote</h2>
+            <p>Contact us for custom pricing on your specific equipment needs</p>
+            <div class="cta-contact">
+                <a href="tel:678-362-2345" class="btn btn-light">Call: 678-362-2345</a>
+                <a href="contact.html" class="btn btn-light">Request Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>ComfortCare</h4>
+                    <p>Professional medical equipment rental services in Atlanta, Georgia</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Phone: <a href="tel:678-362-2345">678-362-2345</a></p>
+                    <p>Email: <a href="mailto:AccentGV@gmail.com">AccentGV@gmail.com</a></p>
+                    <p>Location: Atlanta, Georgia</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ComfortCare. All rights reserved. | Professional Medical Equipment Rental</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
