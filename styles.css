@@ -2283,6 +2283,50 @@ section {
     font-size: 0.95rem;
 }
 
+.checkout-status {
+    margin: -1rem 0 1.2rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 1px solid transparent;
+}
+
+.checkout-status-info {
+    background-color: var(--light-bg);
+    color: var(--primary-blue);
+    border-color: var(--border-color);
+}
+
+.checkout-status-success {
+    background-color: #eaf7ef;
+    color: #1f7a43;
+    border-color: #b9e3c8;
+}
+
+.checkout-status-error {
+    background-color: #fdecec;
+    color: #b4261a;
+    border-color: #f3b3ad;
+}
+
+.checkout-status-row {
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+    margin-bottom: 1.2rem;
+}
+
+.checkout-status-row .checkout-status {
+    flex: 1;
+    margin: -1rem 0 0;
+}
+
+.checkout-status-retry {
+    white-space: nowrap;
+    padding: 0.55rem 0.9rem;
+}
+
 .checkout-buttons {
     display: flex;
     flex-direction: column;

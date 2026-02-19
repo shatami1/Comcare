@@ -12,15 +12,8 @@ function getStoredCart() {
     }
 }
 
-function updateHeaderCart() {
-    const countEl = document.getElementById('headerCartCount');
-    const totalEl = document.getElementById('headerCartTotal');
-    if (!countEl || !totalEl) {
-        return;
-    }
-
-    const cart = getStoredCart();
-    const summary = cart.reduce(
+function getCartSummary(cartItems = getStoredCart()) {
+    return cartItems.reduce(
         (acc, item) => {
             const quantity = Number(item.quantity || 0);
             const unitPrice = Number(item.unitPrice || 0);
@@ -30,9 +23,210 @@ function updateHeaderCart() {
         },
         { count: 0, total: 0 }
     );
+}
+
+function saveCheckoutSnapshot(cartItems = getStoredCart()) {
+    const summary = getCartSummary(cartItems);
+    localStorage.setItem('pricingCartTotal', summary.total.toFixed(2));
+    localStorage.setItem('pricingCartCount', String(summary.count));
+}
+
+function getStoredCheckoutTotal() {
+    const urlTotal = Number(new URLSearchParams(window.location.search).get('total'));
+    if (Number.isFinite(urlTotal) && urlTotal > 0) {
+        return urlTotal;
+    }
+
+    const savedTotal = Number(localStorage.getItem('pricingCartTotal'));
+    if (Number.isFinite(savedTotal) && savedTotal > 0) {
+        return savedTotal;
+    }
+
+    return 0;
+}
+
+function getCheckoutSessionEndpoint() {
+    if (window.location.protocol === 'file:') {
+        return 'http://localhost:3000/create-checkout-session';
+    }
+
+    // Use Vercel API for production
+    return 'https://comcare-nine.vercel.app/create-checkout-session';
+}
+
+function getCheckoutHealthEndpoint() {
+    if (window.location.protocol === 'file:') {
+        return 'http://localhost:3000/checkout-health';
+    }
+
+    // Use Vercel API for production
+    return 'https://comcare-nine.vercel.app/checkout-health';
+}
+
+function setCheckoutStatusBadge(message, state) {
+    const badge = document.getElementById('checkoutStatusBadge');
+    if (!badge) {
+        return;
+    }
+
+    badge.textContent = message;
+    badge.classList.remove('checkout-status-info', 'checkout-status-success', 'checkout-status-error');
+
+    if (state === 'success') {
+        badge.classList.add('checkout-status-success');
+        return;
+    }
+
+    if (state === 'error') {
+        badge.classList.add('checkout-status-error');
+        return;
+    }
+
+    badge.classList.add('checkout-status-info');
+}
+
+function setCheckoutStatusRetryState(isBusy) {
+    const retryBtn = document.getElementById('checkoutStatusRetry');
+    if (!retryBtn) {
+        return;
+    }
+
+    retryBtn.disabled = isBusy;
+    retryBtn.textContent = isBusy ? 'Checking...' : 'Retry';
+}
+
+function bindCheckoutStatusRetry() {
+    const retryBtn = document.getElementById('checkoutStatusRetry');
+    if (!retryBtn || retryBtn.dataset.bound === 'true') {
+        return;
+    }
+
+    retryBtn.dataset.bound = 'true';
+    retryBtn.addEventListener('click', function() {
+        updateCheckoutStatusBadge();
+    });
+}
+
+async function updateCheckoutStatusBadge() {
+    const badge = document.getElementById('checkoutStatusBadge');
+    if (!badge) {
+        return;
+    }
+
+    setCheckoutStatusRetryState(true);
+    setCheckoutStatusBadge('Checking checkout connection...', 'info');
+
+    try {
+        const response = await fetch(getCheckoutHealthEndpoint(), {
+            method: 'GET',
+            headers: {
+                'Cache-Control': 'no-cache'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Checkout server not reachable.');
+        }
+
+        const payload = await response.json();
+        if (payload?.status === 'ok') {
+            setCheckoutStatusBadge('Checkout connected: server and Stripe key are valid.', 'success');
+            setCheckoutStatusRetryState(false);
+            return;
+        }
+
+        const reason = payload?.message || 'Stripe configuration issue.';
+        setCheckoutStatusBadge(`Checkout issue: ${reason}`, 'error');
+        setCheckoutStatusRetryState(false);
+    } catch (error) {
+        setCheckoutStatusBadge('Checkout offline: start the local server to enable payment.', 'error');
+        setCheckoutStatusRetryState(false);
+    }
+}
+
+function buildStripeItemsFromCart(cart) {
+    return cart
+        .map(item => ({
+            name: item.name,
+            model: item.model,
+            rate: item.rateType,
+            price: Number(item.unitPrice),
+            quantity: Number(item.quantity)
+        }))
+        .filter(item => item.name && item.price > 0 && item.quantity > 0);
+}
+
+function bindDynamicStripeCheckout(button) {
+    if (!button || button.dataset.checkoutBound === 'true') {
+        return;
+    }
+
+    button.dataset.checkoutBound = 'true';
+
+    button.addEventListener('click', async function() {
+        const cart = getStoredCart();
+        const stripeItems = buildStripeItemsFromCart(cart);
+
+        if (stripeItems.length === 0) {
+            alert('Your cart is empty. Add items before checkout.');
+            return;
+        }
+
+        const originalText = button.textContent;
+        button.disabled = true;
+        button.textContent = 'Processing...';
+
+        try {
+            const response = await fetch(getCheckoutSessionEndpoint(), {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ items: stripeItems })
+            });
+
+            if (!response.ok) {
+                let serverMessage = 'Checkout server not available.';
+                try {
+                    const errorPayload = await response.json();
+                    if (errorPayload?.error) {
+                        serverMessage = errorPayload.error;
+                    }
+                } catch (parseError) {
+                    // Ignore parse failures and keep default message
+                }
+                throw new Error(serverMessage);
+            }
+
+            const data = await response.json();
+            if (!data?.url) {
+                throw new Error(data?.error || 'No checkout URL returned.');
+            }
+
+            window.location.href = data.url;
+        } catch (error) {
+            console.error('Stripe checkout failed:', error);
+            const message = error?.message || 'Unable to start secure checkout.';
+            alert(`Unable to start secure checkout: ${message}`);
+            button.disabled = false;
+            button.textContent = originalText;
+        }
+    });
+}
+
+function updateHeaderCart() {
+    const countEl = document.getElementById('headerCartCount');
+    const totalEl = document.getElementById('headerCartTotal');
+    if (!countEl || !totalEl) {
+        return;
+    }
+
+    const cart = getStoredCart();
+    const summary = getCartSummary(cart);
 
     countEl.textContent = `${summary.count} ${summary.count === 1 ? 'item' : 'items'}`;
     totalEl.textContent = `$${summary.total.toFixed(2)}`;
+    saveCheckoutSnapshot(cart);
 }
 
 function updateCartEmailLink() {
@@ -480,6 +674,7 @@ function initPricingCart() {
 
     function saveCart(items) {
         localStorage.setItem('pricingCartItems', JSON.stringify(items));
+        saveCheckoutSnapshot(items);
     }
 }
 
@@ -886,17 +1081,24 @@ function initCheckoutPage() {
     const checkoutSummary = document.getElementById('checkoutSummary');
     const checkoutSubtotal = document.getElementById('checkoutSubtotal');
     const checkoutTotal = document.getElementById('checkoutTotal');
-    const proceedToStripe = document.getElementById('proceedToStripe');
+    const proceedToStripe = document.getElementById('proceedToStripe') || document.getElementById('stripeCheckoutBtn');
     const checkoutEmailLink = document.getElementById('checkoutEmailLink');
 
     if (!checkoutCartItems) return;
 
     const cart = getStoredCart();
+    const storedOnlyTotal = getStoredCheckoutTotal();
 
     // Show empty state or cart items
     if (cart.length === 0) {
         checkoutEmptyCart.style.display = 'block';
-        if (checkoutSummary) checkoutSummary.style.display = 'none';
+        if (checkoutSummary && storedOnlyTotal > 0) {
+            if (checkoutSubtotal) checkoutSubtotal.textContent = `$${storedOnlyTotal.toFixed(2)}`;
+            if (checkoutTotal) checkoutTotal.textContent = `$${storedOnlyTotal.toFixed(2)}`;
+            checkoutSummary.style.display = 'block';
+        } else if (checkoutSummary) {
+            checkoutSummary.style.display = 'none';
+        }
         if (proceedToStripe) proceedToStripe.style.display = 'none';
         return;
     }
@@ -947,6 +1149,7 @@ function initCheckoutPage() {
     if (checkoutSubtotal) checkoutSubtotal.textContent = `$${total.toFixed(2)}`;
     if (checkoutTotal) checkoutTotal.textContent = `$${total.toFixed(2)}`;
     if (checkoutSummary) checkoutSummary.style.display = 'block';
+    saveCheckoutSnapshot(cart);
     if (proceedToStripe) proceedToStripe.style.display = 'inline-flex';
 
     // Update email link
@@ -975,56 +1178,8 @@ function initCheckoutPage() {
         checkoutEmailLink.href = `mailto:accentgv@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     }
 
-    // Handle Stripe checkout
     if (proceedToStripe) {
-        proceedToStripe.addEventListener('click', async function() {
-            this.disabled = true;
-            this.textContent = 'Processing...';
-
-            try {
-                // Prepare cart data for Stripe
-                const stripeItems = cart.map(item => ({
-                    name: item.name,
-                    model: item.model,
-                    rate: item.rateType,
-                    price: Number(item.unitPrice),
-                    quantity: Number(item.quantity)
-                }));
-
-                // Try dynamic checkout first (requires server running)
-                const response = await fetch('/create-checkout-session', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ items: stripeItems })
-                });
-
-                // Check if server responded
-                if (!response.ok) {
-                    throw new Error('Server not available');
-                }
-
-                const data = await response.json();
-
-                if (data.error) {
-                    throw new Error(data.error);
-                }
-
-                // Redirect to Stripe checkout
-                if (data.url) {
-                    window.location.href = data.url;
-                } else {
-                    throw new Error('No checkout URL returned');
-                }
-            } catch (error) {
-                console.error('Dynamic checkout unavailable, using static link:', error);
-                
-                // Fallback: Use static Stripe payment link
-                // This works without server running
-                window.location.href = 'https://buy.stripe.com/6oU28t7f16xQdW12QP24001';
-            }
-        });
+        bindDynamicStripeCheckout(proceedToStripe);
     }
 }
 
@@ -1040,29 +1195,7 @@ function initFloatingStripePanel() {
 
     if (!stripePanel || !stripeBtn) return;
 
-    // Open Stripe panel in popup window
-    stripeBtn.addEventListener('click', function() {
-        const stripeUrl = 'https://buy.stripe.com/6oU28t7f16xQdW12QP24001';
-        
-        // Open in popup window (since Stripe blocks iframes)
-        const width = 600;
-        const height = 700;
-        const left = (screen.width - width) / 2;
-        const top = (screen.height - height) / 2;
-        
-        const popup = window.open(
-            stripeUrl,
-            'StripeCheckout',
-            `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes`
-        );
-        
-        if (popup) {
-            popup.focus();
-        } else {
-            // Fallback if popup blocked
-            window.location.href = stripeUrl;
-        }
-    });
+    bindDynamicStripeCheckout(stripeBtn);
 
     // Close Stripe panel
     if (closeBtn) {
@@ -1097,6 +1230,13 @@ function updateStripeButton() {
     const cart = getStoredCart();
     
     if (cart.length === 0) {
+        const storedOnlyTotal = getStoredCheckoutTotal();
+        if (storedOnlyTotal > 0) {
+            stripeBtn.style.display = 'block';
+            stripeBtn.textContent = `💳 Proceed to Payment ($${storedOnlyTotal.toFixed(2)})`;
+            if (stripeNotice) stripeNotice.style.display = 'none';
+            return;
+        }
         stripeBtn.style.display = 'none';
         if (stripeNotice) stripeNotice.style.display = 'block';
         return;
@@ -1108,6 +1248,8 @@ function updateStripeButton() {
         const unitPrice = Number(item.unitPrice || 0);
         total += unitPrice * quantity;
     });
+
+    saveCheckoutSnapshot(cart);
     
     stripeBtn.style.display = 'block';
     stripeBtn.textContent = `💳 Proceed to Payment ($${total.toFixed(2)})`;
@@ -1123,7 +1265,9 @@ function updateStripeButton() {
 // Initialize checkout page on load
 document.addEventListener('DOMContentLoaded', function() {
     if (document.getElementById('checkoutCartItems')) {
+        bindCheckoutStatusRetry();
         initCheckoutPage();
+        updateCheckoutStatusBadge();
     }
     if (document.getElementById('floatingCart')) {
         initFloatingCart();

@@ -1,3 +1,12 @@
+Host,Type,Data
+@,A,185.199.108.153
+@,A,185.199.109.153
+@,A,185.199.110.153
+@,A,185.199.111.153
+
+https://shatami1.github.io/Comcare/index.html
+log with saeedinv
+
 https://neocities.org/welcome
 saeedinv
 $@33dq12NEO
@@ -96,7 +105,7 @@ https://developer.squareup.com
 
 Sign in with your Square account.
 
-
+https://shatami1.github.io/Comcare/index.html
 On the left side, click Developer Dashboard or Apps (depends on layout).
 → This is verified in multiple docs. [docs.joincpr.com]
 
@@ -116,3 +125,47 @@ Make sure you are viewing Production credentials (toggle at top):
 
 
 Copy your Application ID.
+The reason you are seeing the **"Enter valid alias data"** error is that a CNAME record can only point to a **domain** (e.g., `shatami1.github.io`), not a specific folder or webpage (e.g., `/Comcare/index.html`).
+
+To connect your Squarespace domain to your GitHub project, follow these three steps:
+
+### 1. Fix the Record in Squarespace
+
+In the "Edit Record" box from your screenshot, change the settings to the following:
+
+* **Host:** `www`
+* **Type:** `CNAME`
+* **Alias Data:** `shatami1.github.io` (Delete everything after the `.io`)
+* **Click Save.**
+
+---
+
+### 2. Update your GitHub Repository Settings
+
+Since your site is located in the `/Comcare/` folder, you must tell GitHub to link your custom domain to that specific project:
+
+1. Open your GitHub repository for **Comcare**.
+2. Go to **Settings** > **Pages** (in the left-hand sidebar).
+3. Under **Custom domain**, type `www.comcare.store`.
+4. Click **Save**. GitHub will automatically create a `CNAME` file in your repository.
+5. Check the box for **Enforce HTTPS** (this may take a few minutes to become clickable while GitHub verifies the domain).
+
+---
+
+### 3. Handle the Root Domain (Optional but Recommended)
+
+Right now, your domain only works if someone types `www.`. To make sure `comcare.store` (without the www) also works, you should delete the two **A Records** currently pointing to `75.2.60.5` and `99.83.190.102` and replace them with GitHub's IP addresses:
+
+| Host | Type | Data |
+| --- | --- | --- |
+| @ | A | `185.199.108.153` |
+| @ | A | `185.199.109.153` |
+| @ | A | `185.199.110.153` |
+| @ | A | `185.199.111.153` |
+
+> [!NOTE]
+> **Propagation Time:** DNS changes aren't instant. It can take anywhere from **10 minutes to a few hours** for the website to start loading at your new address.
+
+Would you like me to explain how to set up a **URL Redirect** in SquareTo set up a URL Redirect (Forwarding) in Squarespace, you won't use the DNS Records screen you were just in. Instead, you'll use the "URL Mappings" tool. This is often easier because it allows you to point your domain to the exact subfolder on GitHub.Step 1: Access URL MappingsLog into your Squarespace account.Go to Settings > Developer Tools > URL Mappings.Note: If you don't see Developer Tools, look for Settings > Advanced > URL Mappings.Step 2: Enter the Redirect RuleIn the text box, you need to type a specific line of code. It follows this format:[Existing Path] -> [Target URL] [Redirect Type]To forward your entire domain to your GitHub project, enter this:/ -> https://shatami1.github.io/Comcare/index.html 301/: This means anyone hitting your main domain.->: The separator.301: This tells browsers it is a "Permanent Redirect."Step 3: Remove the "Valid Alias" ErrorSince you are now using a redirect, go back to your DNS Settings and:Cancel or Delete the CNAME record that was giving you the "Enter valid alias data" error.Ensure your domain is using the default Squarespace nameservers.Which method should you choose?MethodBest For...DNS (CNAME)If you want your browser address bar to say www.comcare.store while viewing the site.URL RedirectIf you don't mind the address bar changing to shatami1.github.io/... as soon as the page loads.space if you prefer to simply "forward" the traffic instead of using a custom domain setup?
+
+
