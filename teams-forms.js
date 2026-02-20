@@ -2,10 +2,11 @@
 // Update TEAMS_WEBHOOK_URL with your actual Teams webhook
 
 const TEAMS_WEBHOOK_URL = 'https://outlook.webhook.office.com/webhookb2/YOUR_WEBHOOK_URL_HERE';
+const isTeamsConfigured = !TEAMS_WEBHOOK_URL.includes('YOUR_WEBHOOK_URL_HERE');
 
 // Contact Form Handler
 const contactForm = document.getElementById('contactForm');
-if (contactForm) {
+if (contactForm && isTeamsConfigured) {
     contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
@@ -66,7 +67,7 @@ if (contactForm) {
 
 // Booking Form Handler
 const bookingForm = document.getElementById('bookingForm');
-if (bookingForm) {
+if (bookingForm && isTeamsConfigured) {
     bookingForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
