@@ -34,8 +34,7 @@
         min-width: 0;
         padding: 0.7rem 0.5rem;
         font-size: 0.97rem;
-        overflow-y: auto;
-        max-height: 80vh;
+        /* Removed custom scrolling for order-cart */
     }
     .cart-items, .cart-summary, .cart-email-box, .cart-form {
         font-size: 0.97rem;
@@ -66,8 +65,7 @@
 }
 
 .cart-items {
-    max-height: 180px;
-    overflow-y: auto;
+    /* Removed custom scrolling for cart-items */
 }
 
 .order-page {
