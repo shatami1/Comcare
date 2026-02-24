@@ -545,19 +545,31 @@ function initPricingCart() {
         const customer = {
             name: document.getElementById('cartName')?.value.trim(),
             email: document.getElementById('cartEmail')?.value.trim(),
-            phone: document.getElementById('cartPhone')?.value.trim()
+            phone: document.getElementById('cartPhone')?.value.trim(),
+            address: document.getElementById('cartAddress')?.value.trim(),
+            city: document.getElementById('cartCity')?.value.trim(),
+            state: document.getElementById('cartState')?.value.trim(),
+            zip: document.getElementById('cartZip')?.value.trim(),
+            startDate: document.getElementById('cartStartDate')?.value,
+            endDate: document.getElementById('cartEndDate')?.value,
+            notes: document.getElementById('cartNotes')?.value.trim()
         };
 
-        if (!customer.name || !customer.email || !customer.phone) {
-            showCartMessage('Please complete your contact details.', 'error');
+        if (!customer.name || !customer.email || !customer.phone || !customer.address || 
+            !customer.city || !customer.state || !customer.zip || !customer.startDate || !customer.endDate) {
+            showCartMessage('Please complete all required fields.', 'error');
             return;
         }
 
-        showCartMessage('Redirecting to secure checkout...', 'success');
-        const newTab = window.open(stripePaymentLink, '_blank', 'noopener');
-        if (!newTab) {
-            window.location.href = stripePaymentLink;
-        }
+        // Save customer information to localStorage
+        localStorage.setItem('customerInfo', JSON.stringify(customer));
+
+        showCartMessage('Information saved! Redirecting to payment...', 'success');
+        // Redirect to payment page instead
+        setTimeout(() => {
+            window.location.href = 'payment.html';
+        }, 1000);
+
     });
 
     function renderCart() {
@@ -675,6 +687,26 @@ function initPricingCart() {
     function saveCart(items) {
         localStorage.setItem('pricingCartItems', JSON.stringify(items));
         saveCheckoutSnapshot(items);
+    }
+
+    // Load existing customer information if available
+    const savedCustomerInfo = localStorage.getItem('customerInfo');
+    if (savedCustomerInfo) {
+        try {
+            const customerData = JSON.parse(savedCustomerInfo);
+            if (document.getElementById('cartName')) document.getElementById('cartName').value = customerData.name || '';
+            if (document.getElementById('cartEmail')) document.getElementById('cartEmail').value = customerData.email || '';
+            if (document.getElementById('cartPhone')) document.getElementById('cartPhone').value = customerData.phone || '';
+            if (document.getElementById('cartAddress')) document.getElementById('cartAddress').value = customerData.address || '';
+            if (document.getElementById('cartCity')) document.getElementById('cartCity').value = customerData.city || '';
+            if (document.getElementById('cartState')) document.getElementById('cartState').value = customerData.state || '';
+            if (document.getElementById('cartZip')) document.getElementById('cartZip').value = customerData.zip || '';
+            if (document.getElementById('cartStartDate')) document.getElementById('cartStartDate').value = customerData.startDate || '';
+            if (document.getElementById('cartEndDate')) document.getElementById('cartEndDate').value = customerData.endDate || '';
+            if (document.getElementById('cartNotes')) document.getElementById('cartNotes').value = customerData.notes || '';
+        } catch (e) {
+            console.error('Error loading customer info:', e);
+        }
     }
 }
 
@@ -1088,6 +1120,22 @@ function initCheckoutPage() {
 
     const cart = getStoredCart();
     const storedOnlyTotal = getStoredCheckoutTotal();
+
+    // Check if customer information is complete
+    const customerInfo = localStorage.getItem('customerInfo');
+    if (!customerInfo) {
+        // Show message to complete customer information
+        checkoutCartItems.innerHTML = `
+            <div class="cart-item" style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 20px;">
+                <h4 style="color: #856404; margin-bottom: 10px;">⚠️ Customer Information Required</h4>
+                <p style="margin-bottom: 15px;">Please complete your customer information and delivery details before proceeding to payment.</p>
+                <a href="order.html" class="btn btn-primary">Complete Information</a>
+            </div>
+        `;
+        if (proceedToStripe) proceedToStripe.style.display = 'none';
+        if (checkoutSummary) checkoutSummary.style.display = 'none';
+        return;
+    }
 
     // Show empty state or cart items
     if (cart.length === 0) {

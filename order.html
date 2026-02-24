@@ -18,7 +18,7 @@
                     <div class="nav-title">Comfort Care</div>
                 </div>
                 <ul class="nav-menu">
-                <li><a href="index.html">Home</a></li>
+                    <li><a href="https://www.comcare.store">Home</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="order.html" class="active">Order</a></li>
                 <li><a href="pricing.html">Cart</a></li>
@@ -79,16 +79,48 @@
                             <a id="cartEmailLink" class="btn btn-primary btn-compact" href="mailto:accentgv@gmail.com">Email Cart</a>
                         </div>
                         <form id="cartCheckoutForm" class="cart-form">
-                            <label for="cartName">Full Name</label>
+                            <h3 style="margin-bottom: 15px; font-size: 1.1rem;">Customer Information</h3>
+                            
+                            <label for="cartName">Full Name *</label>
                             <input id="cartName" name="name" type="text" required>
 
-                            <label for="cartEmail">Email</label>
+                            <label for="cartEmail">Email *</label>
                             <input id="cartEmail" name="email" type="email" required>
 
-                            <label for="cartPhone">Phone</label>
+                            <label for="cartPhone">Phone *</label>
                             <input id="cartPhone" name="phone" type="tel" required>
 
-                            <button type="submit" class="btn btn-primary btn-large">Checkout</button>
+                            <h3 style="margin: 20px 0 15px 0; font-size: 1.1rem;">Delivery Address</h3>
+                            
+                            <label for="cartAddress">Street Address *</label>
+                            <input id="cartAddress" name="address" type="text" placeholder="123 Main Street" required>
+
+                            <label for="cartCity">City *</label>
+                            <input id="cartCity" name="city" type="text" placeholder="Atlanta" required>
+
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                <div>
+                                    <label for="cartState">State *</label>
+                                    <input id="cartState" name="state" type="text" placeholder="GA" required>
+                                </div>
+                                <div>
+                                    <label for="cartZip">ZIP Code *</label>
+                                    <input id="cartZip" name="zip" type="text" placeholder="30301" required>
+                                </div>
+                            </div>
+
+                            <h3 style="margin: 20px 0 15px 0; font-size: 1.1rem;">Rental Period</h3>
+                            
+                            <label for="cartStartDate">Start Date of Service *</label>
+                            <input id="cartStartDate" name="startDate" type="date" required>
+
+                            <label for="cartEndDate">End Date of Service *</label>
+                            <input id="cartEndDate" name="endDate" type="date" required>
+
+                            <label for="cartNotes">Additional Notes</label>
+                            <textarea id="cartNotes" name="notes" rows="4" placeholder="Special delivery instructions, accessibility requirements, or any other notes..."></textarea>
+
+                            <button type="submit" class="btn btn-primary btn-large" style="margin-top: 10px;">Checkout</button>
                             <p id="cartMessage" class="form-message" aria-live="polite"></p>
                         </form>
                         <p class="form-note">You will be redirected to Stripe to complete payment.</p>
@@ -287,13 +319,13 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr class="pricing-item" data-name="Wheelchair" data-model="Transport (CC-TRN200)" data-daily="20.00" data-weekly="60.00" data-monthly="300.00">
+                            <tr class="pricing-item" data-name="Wheelchair" data-model="Transport (CC-TRN200)" data-daily="14.00" data-weekly="95.00" data-monthly="190.00">
                                 <td><img src="images/Picture14.png" alt="Transport Wheelchair" class="pricing-thumb"></td>
                                 <td>Wheelchair</td>
                                 <td>Transport (CC-TRN200)</td>
-                                <td>$20.00</td>
-                                <td>$60.00</td>
-                                <td>$300.00</td>
+                                <td>$14.00</td>
+                                <td>$95.00</td>
+                                <td>$190.00</td>
                                 <td>Compact, foldable, caregiver brakes</td>
                                 <td class="order-cell">
                                     <div class="order-controls">
@@ -307,13 +339,13 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr class="pricing-item" data-name="Wheelchair" data-model="Power (CC-PWR350)" data-daily="120.00" data-weekly="380.00" data-monthly="800.00">
+                            <tr class="pricing-item" data-name="Wheelchair" data-model="Power (CC-PWR350)" data-daily="13.50" data-weekly="95.00" data-monthly="190.00">
                                 <td><img src="images/Picture15.png" alt="Power Wheelchair" class="pricing-thumb"></td>
                                 <td>Wheelchair</td>
                                 <td>Power (CC-PWR350)</td>
-                                <td>$120.00</td>
-                                <td>$380.00</td>
-                                <td>$800.00</td>
+                                <td>$13.50</td>
+                                <td>$95.00</td>
+                                <td>$190.00</td>
                                 <td>Joystick control, padded seat, long battery life</td>
                                 <td class="order-cell">
                                     <div class="order-controls">
@@ -327,13 +359,13 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr class="pricing-item" data-name="Walker" data-model="Standard (CC-WLK100)" data-daily="10.00" data-weekly="30.00" data-monthly="250.00">
+                            <tr class="pricing-item" data-name="Walker" data-model="Standard (CC-WLK100)" data-daily="10.00" data-weekly="30.00" data-monthly="100.00">
                                 <td><img src="images/Picture17.png" alt="Standard Walker" class="pricing-thumb"></td>
                                 <td>Walker</td>
                                 <td>Standard (CC-WLK100)</td>
                                 <td>$10.00</td>
                                 <td>$30.00</td>
-                                <td>$250.00</td>
+                                <td>$100.00</td>
                                 <td>Lightweight, adjustable height</td>
                                 <td class="order-cell">
                                     <div class="order-controls">
@@ -347,13 +379,13 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr class="pricing-item" data-name="Walker" data-model="Rollator (CC-RLL400)" data-daily="15.00" data-weekly="45.00" data-monthly="230.00">
+                            <tr class="pricing-item" data-name="Walker" data-model="Rollator (CC-RLL400)" data-daily="7.00" data-weekly="48.00" data-monthly="95.00">
                                 <td><img src="images/Picture18.png" alt="Rollator" class="pricing-thumb"></td>
                                 <td>Walker</td>
                                 <td>Rollator (CC-RLL400)</td>
-                                <td>$15.00</td>
-                                <td>$45.00</td>
-                                <td>$230.00</td>
+                                <td>$7.00</td>
+                                <td>$48.00</td>
+                                <td>$95.00</td>
                                 <td>Hand brakes, seat, storage pouch</td>
                                 <td class="order-cell">
                                     <div class="order-controls">
@@ -367,13 +399,13 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr class="pricing-item" data-name="Knee Scooter" data-model="Steerable (CC-KNE300)" data-daily="25.00" data-weekly="75.00" data-monthly="350.00">
+                            <tr class="pricing-item" data-name="Knee Scooter" data-model="Steerable (CC-KNE300)" data-daily="7.00" data-weekly="48.00" data-monthly="143.00">
                                 <td><img src="images/Picture19.png" alt="Knee Scooter" class="pricing-thumb"></td>
                                 <td>Knee Scooter</td>
                                 <td>Steerable (CC-KNE300)</td>
-                                <td>$25.00</td>
-                                <td>$75.00</td>
-                                <td>$350.00</td>
+                                <td>$7.00</td>
+                                <td>$48.00</td>
+                                <td>$143.00</td>
                                 <td>Steerable, padded knee rest, hard brakes</td>
                                 <td class="order-cell">
                                     <div class="order-controls">

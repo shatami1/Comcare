@@ -18,7 +18,7 @@
                     <div class="nav-title">Comfort Care</div>
                 </div>
                 <ul class="nav-menu">
-                <li><a href="index.html">Home</a></li>
+                    <li><a href="https://www.comcare.store">Home</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="order.html">Order</a></li>
                 <li><a href="pricing.html">Cart</a></li>
@@ -100,6 +100,27 @@
         </div>
     </section>
 
+    <!-- Hidden form for sending order confirmation email -->
+    <form id="orderConfirmationForm" action="https://formsubmit.co/accentgv@gmail.com" method="POST" style="display: none;">
+        <input type="hidden" name="_subject" value="New ComfortCare Order - Payment Completed">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_autoresponse" value="Thank you for your order! We will contact you within 2 hours to finalize delivery details.">
+        <input type="text" name="Session_ID" id="emailSessionId">
+        <input type="text" name="Customer_Name" id="emailCustomerName">
+        <input type="email" name="Customer_Email" id="emailCustomerEmail">
+        <input type="tel" name="Customer_Phone" id="emailCustomerPhone">
+        <input type="text" name="Street_Address" id="emailAddress">
+        <input type="text" name="City" id="emailCity">
+        <input type="text" name="State" id="emailState">
+        <input type="text" name="ZIP_Code" id="emailZip">
+        <input type="text" name="Start_Date" id="emailStartDate">
+        <input type="text" name="End_Date" id="emailEndDate">
+        <input type="text" name="Order_Items" id="emailOrderItems">
+        <input type="text" name="Order_Total" id="emailOrderTotal">
+        <input type="text" name="Additional_Notes" id="emailNotes">
+    </form>
+
     <script src="script.js"></script>
 
     <script>
@@ -109,8 +130,44 @@
         
         if (sessionId) {
             console.log('Payment successful! Session ID:', sessionId);
-            // Clear cart after successful payment
+            
+            // Get customer information and cart from localStorage
+            const customerInfo = JSON.parse(localStorage.getItem('customerInfo') || '{}');
+            const cart = JSON.parse(localStorage.getItem('pricingCartItems') || '[]');
+            
+            // Calculate total
+            let total = 0;
+            const orderItemsText = cart.map((item, index) => {
+                const itemTotal = item.unitPrice * item.quantity;
+                total += itemTotal;
+                return `${index + 1}. ${item.name} (${item.model}) - ${item.rateType} - Qty: ${item.quantity} - $${itemTotal.toFixed(2)}`;
+            }).join(' | ');
+            
+            // Send email with order details
+            if (customerInfo.name && orderItemsText) {
+                const form = document.getElementById('orderConfirmationForm');
+                document.getElementById('emailSessionId').value = sessionId;
+                document.getElementById('emailCustomerName').value = customerInfo.name || '';
+                document.getElementById('emailCustomerEmail').value = customerInfo.email || '';
+                document.getElementById('emailCustomerPhone').value = customerInfo.phone || '';
+                document.getElementById('emailAddress').value = customerInfo.address || '';
+                document.getElementById('emailCity').value = customerInfo.city || '';
+                document.getElementById('emailState').value = customerInfo.state || '';
+                document.getElementById('emailZip').value = customerInfo.zip || '';
+                document.getElementById('emailStartDate').value = customerInfo.startDate || '';
+                document.getElementById('emailEndDate').value = customerInfo.endDate || '';
+                document.getElementById('emailOrderItems').value = orderItemsText;
+                document.getElementById('emailOrderTotal').value = `$${total.toFixed(2)}`;
+                document.getElementById('emailNotes').value = customerInfo.notes || 'None';
+                
+                // Submit form automatically
+                form.submit();
+            }
+            
+            // Clear cart and customer info after successful payment
             localStorage.removeItem('pricingCartItems');
+            localStorage.removeItem('customerInfo');
+            
             // Update header to show empty cart
             if (typeof updateHeaderCart === 'function') {
                 updateHeaderCart();
