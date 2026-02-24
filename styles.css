@@ -1,3 +1,13 @@
+@media (max-width: 900px) {
+    .logo-image {
+        width: 60px !important;
+        height: 60px !important;
+    }
+    .nav-title {
+        font-size: 1.5rem !important;
+        padding: 0.2rem 0 !important;
+    }
+}
 /* Hide or roll off header for mobile screens */
 @media (max-width: 900px) {
     .page-header {
@@ -59,8 +69,7 @@
 }
 
 .order-page {
-    min-height: 100vh;
-    overflow-x: hidden;
+    /* Removed min-height and overflow-x to prevent global page scrolling */
 }
 
 .pricing-table-wrapper {
