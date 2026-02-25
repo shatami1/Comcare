@@ -1,3 +1,19 @@
+// Email Cart for Discount
+function generateCartEmailLink() {
+    const cartItems = getStoredCart();
+    if (!cartItems.length) return;
+    let body = 'Discount Request for ComfortCare Cart:%0D%0A%0D%0A';
+    cartItems.forEach(item => {
+        body += `Item: ${item.name || item.equipment || ''}, Model: ${item.model || ''}, Rate: ${item.rate || ''}, Quantity: ${item.quantity || 1}, Price: $${item.unitPrice || item.price || 0}%0D%0A`;
+    });
+    body += `%0D%0ATotal: $${getStoredCheckoutTotal()}%0D%0A`;
+    const subject = 'ComfortCare Cart Discount Request';
+    const mailto = `mailto:accentgv@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+    const link = document.getElementById('cartEmailLink');
+    if (link) link.setAttribute('href', mailto);
+}
+
+document.addEventListener('DOMContentLoaded', generateCartEmailLink);
 // ============================================
 // COMFORTCARE - JAVASCRIPT FUNCTIONALITY
 // Medical Equipment Rental Website
