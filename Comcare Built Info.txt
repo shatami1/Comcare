@@ -154,7 +154,8 @@ Since your site is located in the `/Comcare/` folder, you must tell GitHub to li
 
 ---
 
-### 3. Handle the Root Domain (Optional but Recommended)
+### 3. Handle the Root Domain (Optional but Recommende d) 
+
 
 Right now, your domain only works if someone types `www.`. To make sure `comcare.store` (without the www) also works, you should delete the two **A Records** currently pointing to `75.2.60.5` and `99.83.190.102` and replace them with GitHub's IP addresses:
 

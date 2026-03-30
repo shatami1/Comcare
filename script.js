@@ -1,3 +1,21 @@
+// Show customer info, delivery address, and email section when user selects to pay
+document.addEventListener('DOMContentLoaded', function() {
+    var showEmailBtn = document.getElementById('showEmailBtn');
+    var customerSection = document.getElementById('customerSection');
+    var emailSection = document.getElementById('emailSection');
+    var checkoutBtn = document.getElementById('checkoutBtn');
+    if (showEmailBtn && customerSection && emailSection && checkoutBtn) {
+        showEmailBtn.addEventListener('click', function() {
+            customerSection.style.display = '';
+            emailSection.style.display = '';
+            checkoutBtn.style.display = '';
+            showEmailBtn.style.display = 'none';
+            // Make email required only when visible
+            var emailInput = document.getElementById('cartEmail');
+            if (emailInput) emailInput.required = true;
+        });
+    }
+});
 // Email Cart for Discount
 function generateCartEmailLink() {
     const cartItems = getStoredCart();

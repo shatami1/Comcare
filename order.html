@@ -97,48 +97,43 @@
                             <a id="cartEmailLink" class="btn btn-primary btn-compact" href="mailto:accentgv@gmail.com">Email Cart</a>
                         </div>
                         <form id="cartCheckoutForm" class="cart-form">
-                            <h3 style="margin-bottom: 15px; font-size: 1.1rem;">Customer Information</h3>
-                            
-                            <label for="cartName">Full Name *</label>
-                            <input id="cartName" name="name" type="text" required>
-
-                            <label for="cartEmail">Email *</label>
-                            <input id="cartEmail" name="email" type="email" required>
-
-                            <label for="cartPhone">Phone *</label>
-                            <input id="cartPhone" name="phone" type="tel" required>
-
-                            <h3 style="margin: 20px 0 15px 0; font-size: 1.1rem;">Delivery Address</h3>
-                            
-                            <label for="cartAddress">Street Address *</label>
-                            <input id="cartAddress" name="address" type="text" placeholder="123 Main Street" required>
-
-                            <label for="cartCity">City *</label>
-                            <input id="cartCity" name="city" type="text" placeholder="Atlanta" required>
-
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                                <div>
-                                    <label for="cartState">State *</label>
-                                    <input id="cartState" name="state" type="text" placeholder="GA" required>
+                            <div id="customerSection" style="display:none;">
+                                <h3 style="margin-bottom: 15px; font-size: 1.1rem;">Customer Information</h3>
+                                <label for="cartName">Full Name *</label>
+                                <input id="cartName" name="name" type="text" required>
+                                <div id="emailSection" style="display:none;">
+                                    <label for="cartEmail">Email *</label>
+                                    <input id="cartEmail" name="email" type="email">
                                 </div>
-                                <div>
-                                    <label for="cartZip">ZIP Code *</label>
-                                    <input id="cartZip" name="zip" type="text" placeholder="30301" required>
+                                <label for="cartPhone">Phone *</label>
+                                <input id="cartPhone" name="phone" type="tel" required>
+                                <h3 style="margin: 20px 0 15px 0; font-size: 1.1rem;">Delivery Address</h3>
+                                <label for="cartAddress">Street Address *</label>
+                                <input id="cartAddress" name="address" type="text" placeholder="123 Main Street" required>
+                                <label for="cartCity">City *</label>
+                                <input id="cartCity" name="city" type="text" placeholder="Atlanta" required>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                    <div>
+                                        <label for="cartState">State *</label>
+                                        <input id="cartState" name="state" type="text" placeholder="GA" required>
+                                    </div>
+                                    <div>
+                                        <label for="cartZip">ZIP Code *</label>
+                                        <input id="cartZip" name="zip" type="text" placeholder="30301" required>
+                                    </div>
                                 </div>
+                                <h3 style="margin: 20px 0 15px 0; font-size: 1.1rem;">Rental Period</h3>
+                                <label for="cartStartDate">Start Date of Service *</label>
+                                <input id="cartStartDate" name="startDate" type="date" required>
+                                <label for="cartEndDate">End Date of Service *</label>
+                                <input id="cartEndDate" name="endDate" type="date" required>
+                                <label for="cartNotes">Additional Notes</label>
+                                <textarea id="cartNotes" name="notes" rows="4" placeholder="Special delivery instructions, accessibility requirements, or any other notes..."></textarea>
                             </div>
 
-                            <h3 style="margin: 20px 0 15px 0; font-size: 1.1rem;">Rental Period</h3>
-                            
-                            <label for="cartStartDate">Start Date of Service *</label>
-                            <input id="cartStartDate" name="startDate" type="date" required>
 
-                            <label for="cartEndDate">End Date of Service *</label>
-                            <input id="cartEndDate" name="endDate" type="date" required>
-
-                            <label for="cartNotes">Additional Notes</label>
-                            <textarea id="cartNotes" name="notes" rows="4" placeholder="Special delivery instructions, accessibility requirements, or any other notes..."></textarea>
-
-                            <button type="submit" class="btn btn-primary btn-large" style="margin-top: 10px;">Checkout</button>
+                            <button type="button" id="showEmailBtn" class="btn btn-primary btn-large" style="margin-top: 10px;">Proceed to Pay</button>
+                            <button type="submit" id="checkoutBtn" class="btn btn-primary btn-large" style="margin-top: 10px; display:none;">Checkout</button>
                             <p id="cartMessage" class="form-message" aria-live="polite"></p>
                         </form>
                         <p class="form-note">You will be redirected to Stripe to complete payment.</p>
