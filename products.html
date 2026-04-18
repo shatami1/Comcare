@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Arron Advertising</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+    @media (max-width: 600px) {
+        .logo {
+            height: 80px !important;
+            max-width: 90vw !important;
+        }
+        .nav-menu {
+            flex-direction: column !important;
+            gap: 1rem !important;
+            font-size: 0.84rem !important;
+            align-items: center !important;
+        }
+        .navbar .container {
+            flex-direction: column !important;
+            align-items: center !important;
+        }
+    }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="btn-primary" style="display:block;width:max-content;margin:2rem auto 0.5rem auto;text-align:center;">&larr; Back to Home</a>
+    <nav class="navbar">
+        <div class="container" style="flex-direction:column;align-items:center;">
+            <img src="modern-kitchen.jpg.png" alt="Aaron Advertising Logo" class="logo">
+            <ul class="nav-menu" style="margin-top:1.5rem; font-size:2rem; gap:2.5rem; justify-content:center;">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="cart.html" class="cart-link">Cart</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main class="products-main">
+        <div class="container">
+            <h1>Our Kitchen Appliances</h1>
+            <div class="product-list">
+                <div class="product-card">
+                    <img src="https://spztjkstore.com/cdn/shop/files/5df4dae1240fcc53526322531b5514fc.jpg?v=1741152723&width=360" alt="SPZTJK Juicer Cold-pressed Juicer">
+                    <h2>SPZTJK Juicer Cold-pressed Juicer</h2>
+                    <p>High juice yield, easy to clean, fits whole vegetables and fruits. 350W slow juicer machine.</p>
+                    <span class="price">$102.56 <s>$194.99</s></span>
+                    <input type="number" min="1" value="1" class="qty-input">
+                    <button class="btn-primary" onclick="addToCart('SPZTJK Juicer Cold-pressed Juicer', 102.56, this)">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://spztjkstore.com/cdn/shop/files/2-10.jpg?v=1750234733&width=360" alt="SPZTJK 50oz 10-in-1 Automatic Nut Milk Maker">
+                    <h2>SPZTJK 50oz 10-in-1 Automatic Nut Milk Maker</h2>
+                    <p>12 Blades, LED Display, automatic heating, ice cubes & juice functions, silent operation.</p>
+                    <span class="price">$77.97</span>
+                    <input type="number" min="1" value="1" class="qty-input">
+                    <button class="btn-primary" onclick="addToCart('SPZTJK 50oz 10-in-1 Automatic Nut Milk Maker', 77.97, this)">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://spztjkstore.com/cdn/shop/files/1-4.jpg?v=1750235337&width=360" alt="SPZTJK 1500W Stainless Steel Electric Deep Fryer">
+                    <h2>SPZTJK 1500W Stainless Steel Electric Deep Fryer</h2>
+                    <p>3L Cups with View Window Lid, powerful and easy to use for home frying.</p>
+                    <span class="price">$64.97 <s>$89.67</s></span>
+                    <input type="number" min="1" value="1" class="qty-input">
+                    <button class="btn-primary" onclick="addToCart('SPZTJK 1500W Stainless Steel Electric Deep Fryer', 64.97, this)">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://spztjkstore.com/cdn/shop/files/3_d66b428f-0b27-4ddf-9db0-69243267ae58.jpg?v=1750235914&width=360" alt="Cold Press Juicer, Celiberry Slow Masticating Juicer">
+                    <h2>Cold Press Juicer, Celiberry Slow Masticating Juicer</h2>
+                    <p>5.3" Large feed chute, slow masticating, high juice yield, easy to clean.</p>
+                    <span class="price">$98.78 <s>$116.98</s></span>
+                    <input type="number" min="1" value="1" class="qty-input">
+                    <button class="btn-primary" onclick="addToCart('Cold Press Juicer, Celiberry Slow Masticating Juicer', 98.78, this)">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://spztjkstore.com/cdn/shop/files/1-3_21ac448a-eb71-4877-aea5-63f365dc0d20.jpg?v=1774942506&width=360" alt="SPZTJK 28000RPM Pro Blender">
+                    <h2>SPZTJK 28000RPM Pro Blender</h2>
+                    <p>2 Containers (68oz+800ml), 8 Functions, powerful blender and grinder combo for coffee beans, dried chili, and more.</p>
+                    <span class="price">$77.97 <s>$116.98</s></span>
+                    <input type="number" min="1" value="1" class="qty-input">
+                    <button class="btn-primary" onclick="addToCart('SPZTJK 28000RPM Pro Blender', 77.97, this)">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://spztjkstore.com/cdn/shop/files/d7b6d8275a978f3960e31ff6496eac72.jpg?v=1775625809&width=360" alt="12-Cup Food Processor - 600W - 11 Speeds">
+                    <h2>12-Cup Food Processor - 600W - 11 Speeds</h2>
+                    <p>Large capacity, multiple speeds, perfect for all your food prep needs.</p>
+                    <span class="price">$83.17</span>
+                    <input type="number" min="1" value="1" class="qty-input">
+                    <button class="btn-primary" onclick="addToCart('12-Cup Food Processor - 600W - 11 Speeds', 83.17, this)">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://spztjkstore.com/cdn/shop/files/2_63927e40-03a2-46d6-8f7f-8b8e332d0a5d.jpg?v=1775186305&width=360" alt="SPZTJK Food Processors, 5-Speed Electric Food Chopper">
+                    <h2>SPZTJK Food Processors, 5-Speed Electric Food Chopper</h2>
+                    <p>Vegetable Chopper & Meat Grinder - 2 Bowls (8 Cup Stainless Steel+8 Cup Glass), 300W, 2 Sets of 4 Bi-Level Blades.</p>
+                    <span class="price">$49.37 <s>$90.97</s></span>
+                    <input type="number" min="1" value="1" class="qty-input">
+                    <button class="btn-primary" onclick="addToCart('SPZTJK Food Processors, 5-Speed Electric Food Chopper', 49.37, this)">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://spztjkstore.com/cdn/shop/files/1-1_f007c56d-92ca-4c8e-86c2-3d25f8c39d9d.jpg?v=1776405976&width=360" alt="SPZTJK 2-in-1 Blender">
+                    <h2>SPZTJK 2-in-1 Blender</h2>
+                    <p>Six functions, nine speed settings, 3.0-liter cup and 800ml grinding cup.</p>
+                    <span class="price">$90.97 <s>$116.98</s></span>
+                    <input type="number" min="1" value="1" class="qty-input">
+                    <button class="btn-primary" onclick="addToCart('SPZTJK 2-in-1 Blender', 90.97, this)">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://spztjkstore.com/cdn/shop/files/1-1_00ab6601-1214-469a-8a72-b756623f1e1a.jpg?v=1776407044&width=360" alt="SPZK Slushie Machine">
+                    <h2>SPZK Slushie Machine</h2>
+                    <p>No ice needed, 88oz frozen drink maker, 3 preset programs, LED display, self-cleaning.</p>
+                    <span class="price">$232.67 <s>$285.97</s></span>
+                    <input type="number" min="1" value="1" class="qty-input">
+                    <button class="btn-primary" onclick="addToCart('SPZK Slushie Machine', 232.67, this)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Arron Advertising. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="cart.js"></script>
+</body>
+</html>

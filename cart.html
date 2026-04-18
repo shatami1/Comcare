@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - Arron Advertising</title>
+    <title>Cart - Arron Advertising</title>
     <link rel="stylesheet" href="styles.css">
     <style>
     @media (max-width: 600px) {
@@ -36,12 +36,14 @@
             </ul>
         </div>
     </nav>
-    <main class="contact-main">
+    <main class="cart-main">
         <div class="container">
-            <h1>Contact Arron Advertising</h1>
-            <p>Email: <a href="mailto:info@arronadvertising.com">info@arronadvertising.com</a></p>
-            <p>Phone: <a href="tel:555-ARRON-AD">555-ARRON-AD</a></p>
-            <p>Location: Sandy Springs, USA</p>
+            <h1>Your Cart</h1>
+            <a href="products.html" class="btn-primary" style="display:inline-flex;align-items:center;margin-bottom:1.5rem;"><span style="font-size:1.5rem;margin-right:0.5rem;">&#43;</span> Add another product</a>
+            <div id="cart-items"></div>
+            <div style="text-align:center;margin-top:2rem;">
+                <a href="checkout.html" class="btn-primary" style="font-size:1.2em;padding:0.7em 2em;">Proceed to Checkout</a>
+            </div>
         </div>
     </main>
     <footer class="footer">
@@ -49,5 +51,6 @@
             <p>&copy; 2026 Arron Advertising. All rights reserved.</p>
         </div>
     </footer>
+    <script src="cart.js"></script>
 </body>
 </html>
