@@ -53,7 +53,7 @@ Server will run at: http://localhost:3000
 ### Stripe API Key
 Your Stripe secret key is already configured in `.env` file:
 ```
-STRIPE_SECRET_KEY=sk_live_51SzHz...
+STRIPE_SECRET_KEY=your_sk_live_key_here
 ```
 
 **⚠️ Important:** This is a LIVE key - real charges will be processed!

@@ -2,7 +2,7 @@
 
 ## Prerequisites
 - A Vercel account (free): https://vercel.com/signup
-- Your Stripe secret key: `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`
+- Your Stripe secret key: `your_sk_live_key_here`
 
 ## Deployment Steps
 
@@ -14,7 +14,7 @@
 
 3. **Configure Environment Variables**:
    - Click "Environment Variables"
-   - Add: `STRIPE_SECRET_KEY` = `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`
+   - Add: `STRIPE_SECRET_KEY` = `your_sk_live_key_here`
 
 4. **Deploy**: Click "Deploy"
 
@@ -36,7 +36,7 @@ vercel
 
 # Add environment variable
 vercel env add STRIPE_SECRET_KEY
-# Paste: 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
+# Paste: your_sk_live_key_here
 
 # Redeploy with environment variable
 vercel --prod
