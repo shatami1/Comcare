@@ -69,6 +69,60 @@
     </nav>
 
     <!-- Floating Cart Panel (Draggable) -->
+        <!-- Cart Discount and Customer Info Section (moved from order.html) -->
+                <div id="customerInfoAlert" style="background: #fff8e1; border: 2px solid #ffe082; border-radius: 10px; padding: 24px 24px 18px 24px; margin-bottom: 28px; max-width: 600px; box-shadow: 0 2px 8px #0001;">
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-size: 1.6em; margin-right: 10px; color: #ff9800;">&#9888;</span>
+                        <span style="font-weight: bold; color: #a67c00; font-size: 1.15em;">Customer Information Required</span>
+                    </div>
+                    <div style="color: #444; margin-bottom: 18px;">Please complete your customer information and delivery details before proceeding to payment.</div>
+                    <button id="completeInfoBtn" style="background: #1976d2; color: #fff; border: none; border-radius: 6px; padding: 10px 24px; font-size: 1em; font-weight: 600; cursor: pointer;">Complete Information</button>
+                </div>
+            <h2 style="margin-top: 32px;">Customer Request Information</h2>
+            <p style="margin-bottom: 18px;">Please fill out your information below before proceeding to payment. This helps us process your order and provide the best service.</p>
+        <div class="cart-email-box">
+            <p>Send your chart to us for our discounts.</p>
+            <a id="cartEmailLink" class="btn btn-primary btn-compact" href="mailto:accentgv@gmail.com">Email Cart</a>
+        </div>
+        <form id="cartCheckoutForm" class="cart-form">
+            <div id="customerSection" style="display:none;">
+                <h3 style="margin-bottom: 15px; font-size: 1.1rem;">Customer Information</h3>
+                <label for="cartName">Full Name *</label>
+                <input id="cartName" name="name" type="text" required>
+                <div id="emailSection" style="display:none;">
+                    <label for="cartEmail">Email *</label>
+                    <input id="cartEmail" name="email" type="email">
+                </div>
+                <label for="cartPhone">Phone *</label>
+                <input id="cartPhone" name="phone" type="tel" required>
+                <h3 style="margin: 20px 0 15px 0; font-size: 1.1rem;">Delivery Address</h3>
+                <label for="cartAddress">Street Address *</label>
+                <input id="cartAddress" name="address" type="text" placeholder="123 Main Street" required>
+                <label for="cartCity">City *</label>
+                <input id="cartCity" name="city" type="text" placeholder="Atlanta" required>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <div>
+                        <label for="cartState">State *</label>
+                        <input id="cartState" name="state" type="text" placeholder="GA" required>
+                    </div>
+                    <div>
+                        <label for="cartZip">ZIP Code *</label>
+                        <input id="cartZip" name="zip" type="text" placeholder="30301" required>
+                    </div>
+                </div>
+                <h3 style="margin: 20px 0 15px 0; font-size: 1.1rem;">Rental Period</h3>
+                <label for="cartStartDate">Start Date of Service *</label>
+                <input id="cartStartDate" name="startDate" type="date" required>
+                <label for="cartEndDate">End Date of Service *</label>
+                <input id="cartEndDate" name="endDate" type="date" required>
+                <label for="cartNotes">Additional Notes</label>
+                <textarea id="cartNotes" name="notes" rows="4" placeholder="Special delivery instructions, accessibility requirements, or any other notes..."></textarea>
+            </div>
+            <button type="button" id="showEmailBtn" class="btn btn-primary btn-large" style="margin-top: 10px;">Proceed to Pay</button>
+            <button type="submit" id="checkoutBtn" class="btn btn-primary btn-large" style="margin-top: 10px; display:none;">Checkout</button>
+            <p id="cartMessage" class="form-message" aria-live="polite"></p>
+        </form>
+        <p class="form-note">You will be redirected to Stripe to complete payment.</p>
     <div class="floating-cart" id="floatingCart" style="cursor: move;">
         <div class="floating-cart-header">
             <h3>Your Cart</h3>
@@ -123,7 +177,7 @@
             <h2>Cart Summary</h2>
             <p class="pricing-subtitle">Items selected on the Order page appear here</p>
             <div class="pricing-actions">
-                <a href="order.html" class="btn btn-primary">Go to Order Page</a>
+                <!-- <a href="order.html" class="btn btn-primary">Go to Order Page</a> -->
                 <p id="cartAddMessage" class="form-message" aria-live="polite"></p>
             </div>
             <aside class="pricing-cart" aria-label="Cart summary">

@@ -1,3 +1,62 @@
+// Payment page: Link Complete Information to cart info section
+document.addEventListener('DOMContentLoaded', function() {
+    var completeInfoBtn = document.getElementById('completeInfoBtn');
+    if (completeInfoBtn && window.location.pathname.endsWith('payment.html')) {
+        completeInfoBtn.addEventListener('click', function(e) {
+            // Go to cart page and scroll to customer info section
+            window.location.href = 'pricing.html#customerSection';
+            e.preventDefault();
+        });
+    }
+});
+// Customer Info Alert: Scroll and reveal customer info section
+document.addEventListener('DOMContentLoaded', function() {
+    var completeInfoBtn = document.getElementById('completeInfoBtn');
+    var customerSection = document.getElementById('customerSection');
+    var emailSection = document.getElementById('emailSection');
+    var checkoutBtn = document.getElementById('checkoutBtn');
+    var alertBox = document.getElementById('customerInfoAlert');
+    if (completeInfoBtn && customerSection) {
+        completeInfoBtn.addEventListener('click', function() {
+            customerSection.style.display = '';
+            if (emailSection) emailSection.style.display = '';
+            if (checkoutBtn) checkoutBtn.style.display = '';
+            if (alertBox) alertBox.style.display = 'none';
+            customerSection.scrollIntoView({behavior: 'smooth', block: 'center'});
+        });
+    }
+});
+// Enforce customer info before payment on cart page
+document.addEventListener('DOMContentLoaded', function() {
+    var checkoutBtn = document.getElementById('checkoutBtn');
+    var stripeCheckoutBtn = document.getElementById('stripeCheckoutBtn');
+    var cartForm = document.getElementById('cartCheckoutForm');
+    if (stripeCheckoutBtn && cartForm) {
+        stripeCheckoutBtn.addEventListener('click', function(e) {
+            // Show the form if hidden
+            var customerSection = document.getElementById('customerSection');
+            if (customerSection && customerSection.style.display === 'none') {
+                customerSection.style.display = '';
+                var emailSection = document.getElementById('emailSection');
+                if (emailSection) emailSection.style.display = '';
+                if (checkoutBtn) checkoutBtn.style.display = '';
+                this.style.display = 'none';
+                e.preventDefault();
+                return false;
+            }
+            // Validate form before proceeding
+            if (!cartForm.checkValidity()) {
+                cartForm.reportValidity();
+                e.preventDefault();
+                return false;
+            }
+            // If valid, submit the form (triggers payment logic)
+            cartForm.requestSubmit();
+            e.preventDefault();
+            return false;
+        });
+    }
+});
 // Show customer info, delivery address, and email section when user selects to pay
 document.addEventListener('DOMContentLoaded', function() {
     var showEmailBtn = document.getElementById('showEmailBtn');
