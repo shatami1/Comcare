@@ -78,19 +78,40 @@ document.addEventListener('DOMContentLoaded', function() {
 // Email Cart for Discount
 function generateCartEmailLink() {
     const cartItems = getStoredCart();
-    if (!cartItems.length) return;
     let body = 'Discount Request for ComfortCare Cart:%0D%0A%0D%0A';
-    cartItems.forEach(item => {
-        body += `Item: ${item.name || item.equipment || ''}, Model: ${item.model || ''}, Rate: ${item.rate || ''}, Quantity: ${item.quantity || 1}, Price: $${item.unitPrice || item.price || 0}%0D%0A`;
-    });
-    body += `%0D%0ATotal: $${getStoredCheckoutTotal()}%0D%0A`;
+    if (!cartItems.length) {
+        body += 'No items in cart.';
+    } else {
+        cartItems.forEach(item => {
+            body += `Item: ${item.name || item.equipment || ''}, Model: ${item.model || ''}, Rate: ${item.rateType || item.rate || ''}, Quantity: ${item.quantity || 1}, Price: $${item.unitPrice || item.price || 0}%0D%0A`;
+        });
+        body += `%0D%0ATotal: $${getStoredCheckoutTotal()}%0D%0A`;
+    }
     const subject = 'ComfortCare Cart Discount Request';
     const mailto = `mailto:accentgv@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
-    const link = document.getElementById('cartEmailLink');
-    if (link) link.setAttribute('href', mailto);
+    const links = document.querySelectorAll('#cartEmailLink');
+    links.forEach(link => link.setAttribute('href', mailto));
 }
 
 document.addEventListener('DOMContentLoaded', generateCartEmailLink);
+window.addEventListener('storage', generateCartEmailLink);
+// Update email link after cart changes
+function patchCartEmailLinkUpdates() {
+    [
+        'add-to-cart',
+        'cart-remove',
+        'floating-cart-remove',
+        'cartCheckoutForm',
+        'checkoutBtn',
+        'showEmailBtn'
+    ].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.addEventListener('click', () => setTimeout(generateCartEmailLink, 100));
+        }
+    });
+}
+document.addEventListener('DOMContentLoaded', patchCartEmailLinkUpdates);
 // ============================================
 // COMFORTCARE - JAVASCRIPT FUNCTIONALITY
 // Medical Equipment Rental Website
