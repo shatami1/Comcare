@@ -7,16 +7,17 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="pricing-page">
+    <!-- Page Header (matches services.html) -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Your Cart</h1>
+            <p>Review your selections and request discounts</p>
+        </div>
+    </section>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
             <div class="nav-middle">
-                <div class="nav-identity">
-                    <div class="nav-brand">
-                        <img src="logo.svg" alt="ComfortCare Logo" class="logo-image">
-                    </div>
-                    <div class="nav-title">Comfort Care</div>
-                </div>
                 <ul class="nav-menu">
                     <li><a href="index.html" id="navHome">Home</a></li>
                 <li><a href="services.html" id="navServices">Services</a></li>
@@ -32,10 +33,7 @@
                                 const link = document.getElementById(id);
                                 if (link) {
                                     let href = link.getAttribute('href');
-                                    if (href.indexOf('?') === -1) {
-                                        href += '?agent=' + encodeURIComponent(agentParam);
-                                    } else {
-                                        href += '&agent=' + encodeURIComponent(agentParam);
+                                        <!-- nav-identity removed for cart page header consistency -->
                                     }
                                     link.setAttribute('href', href);
                                 }
@@ -45,20 +43,7 @@
                 </ul>
             </div>
             <div class="nav-cart">
-                <div class="cart-box" aria-live="polite">
-                    <span class="cart-box-title">Cart</span>
-                    <span class="cart-box-detail">
-                        <span id="headerCartCount">0 items</span>
-                        <span class="cart-box-sep">|</span>
-                        <span id="headerCartTotal">$0.00</span>
-                    </span>
-                </div>
-                <div class="nav-cart-main">
-                    <a href="order.html" class="btn btn-secondary btn-compact edit-cart-link">Edit Cart</a>
-                    <a href="pricing.html" class="btn btn-primary btn-compact">Pay</a>
-                    <a href="mailto:accentgv@gmail.com" class="btn btn-discount btn-mini" style="margin-top:8px;display:block;">Email Cart for Discounts</a>
-                </div>
-                <a id="cartEmailLink" href="mailto:accentgv@gmail.com" class="btn btn-discount btn-mini">Email Cart for Discounts</a>
+                <!-- Cart box with Edit Cart, Pay, and Email Cart for Discounts removed as requested -->
             </div>
             <button class="hamburger" id="hamburger">
                 <span></span>
@@ -78,12 +63,7 @@
                     <div style="color: #444; margin-bottom: 18px;">Please complete your customer information and delivery details before proceeding to payment.</div>
                     <button id="completeInfoBtn" style="background: #1976d2; color: #fff; border: none; border-radius: 6px; padding: 10px 24px; font-size: 1em; font-weight: 600; cursor: pointer;">Complete Information</button>
                 </div>
-            <h2 style="margin-top: 32px;">Customer Request Information</h2>
-            <p style="margin-bottom: 18px;">Please fill out your information below before proceeding to payment. This helps us process your order and provide the best service.</p>
-        <div class="cart-email-box">
-            <p>Send your chart to us for our discounts.</p>
-            <a id="cartEmailLink" class="btn btn-primary btn-compact" href="mailto:accentgv@gmail.com">Email Cart</a>
-        </div>
+        <!-- cart-email-box removed, now in nav-cart -->
         <form id="cartCheckoutForm" class="cart-form">
             <div id="customerSection" style="display:none;">
                 <h3 style="margin-bottom: 15px; font-size: 1.1rem;">Customer Information</h3>
@@ -156,13 +136,6 @@
         </div>
     </div>
 
-    <!-- Page Header -->
-    <section class="page-header">
-        <div class="container">
-            <h1>Your Cart</h1>
-            <p>Review your selections and request discounts</p>
-        </div>
-    </section>
 
     <!-- Pricing Hero Image -->
     <section class="pricing-hero">
