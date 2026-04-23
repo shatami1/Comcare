@@ -997,7 +997,6 @@ function calculateRentalPrice() {
         'hospital-bed': 45,
         'wheelchair': 20,
         'walker': 10,
-        'oxygen': 40,
         'monitor': 15,
         'bathroom': 20,
         'mobility': 15
