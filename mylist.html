@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance - Medicare & Insurance Enrollment Checklist</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f7f9fa; }
+        .container { max-width: 900px; margin: 40px auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px #0001; padding: 32px; }
+        h1 { color: #2a4d69; }
+        h2 { color: #4b86b4; margin-top: 2em; }
+        .section { margin-bottom: 2em; }
+        .checklist-group { margin: 1em 0 2em 0; }
+        .checklist-item { display: flex; align-items: flex-start; margin-bottom: 0.5em; }
+        .checklist-item input[type="checkbox"] { margin-right: 1em; margin-top: 0.2em; }
+        .desc { color: #555; font-size: 0.98em; margin-bottom: 0.5em; }
+        .sublist { margin-left: 2em; }
+        .timeline, .important { font-style: italic; color: #b23c3c; margin-top: 0.5em; }
+        .why { color: #2a4d69; font-size: 0.97em; margin-top: 0.5em; }
+        .save-btn { background: #4b86b4; color: #fff; border: none; padding: 10px 24px; border-radius: 5px; font-size: 1em; cursor: pointer; margin-top: 1.5em; }
+        .save-btn:active { background: #2a4d69; }
+        .saved-msg { color: #388e3c; margin-left: 1em; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Medicare & Insurance Enrollment Checklist</h1>
+        <form id="insurance-form">
+            <!-- 1. Complete CMS 855S Application -->
+            <div class="section">
+                <h2>1. Complete CMS 855S Application (Medicare DME Enrollment)</h2>
+                <div class="desc">CMS‑855S is the official Medicare enrollment application for DMEPOS suppliers. Without this approval, most commercial insurers will not contract with you.</div>
+                <div class="checklist-group">
+                    <div class="checklist-item"><input type="checkbox" name="accreditation-certificate">Your accreditation certificate (ACHC, HQAA, or Joint Commission)</div>
+                    <div class="checklist-item"><input type="checkbox" name="surety-bond">Your $50,000 surety bond</div>
+                    <div class="checklist-item"><input type="checkbox" name="business-license">Your business license</div>
+                    <div class="checklist-item"><input type="checkbox" name="facility-inspection">Your facility inspection readiness</div>
+                    <div class="checklist-item"><input type="checkbox" name="policies-procedures">Your policies & procedures</div>
+                    <div class="checklist-item"><input type="checkbox" name="inventory-cleaning-logs">Your inventory and equipment cleaning logs</div>
+                    <div class="checklist-item"><input type="checkbox" name="posted-hours-signage">Your posted hours and signage</div>
+                    <div class="checklist-item"><input type="checkbox" name="npi">Your NPI</div>
+                    <div class="checklist-item"><input type="checkbox" name="liability-insurance">Your liability insurance</div>
+                </div>
+                <div class="desc">What you must submit:</div>
+                <div class="sublist">
+                    <div class="checklist-item"><input type="checkbox" name="cms-855s-form">CMS 855S form (online via PECOS or paper)</div>
+                    <div class="checklist-item"><input type="checkbox" name="copy-accreditation">Copy of accreditation certificate</div>
+                    <div class="checklist-item"><input type="checkbox" name="copy-surety-bond">Copy of surety bond</div>
+                    <div class="checklist-item"><input type="checkbox" name="copy-liability-insurance">Copy of liability insurance</div>
+                    <div class="checklist-item"><input type="checkbox" name="copy-business-license">Copy of business license</div>
+                    <div class="checklist-item"><input type="checkbox" name="floor-plan">Floor plan of facility (optional but helpful)</div>
+                    <div class="checklist-item"><input type="checkbox" name="photos-facility">Photos of facility (clean/dirty zones, office, signage)</div>
+                    <div class="checklist-item"><input type="checkbox" name="ownership-docs">Ownership documents (Articles of Organization, EIN letter)</div>
+                </div>
+                <div class="timeline">Timeline: 45–90 days after submission, depending on contractor workload.</div>
+                <div class="why">Why it matters: Medicare approval is the gateway to Medicaid and commercial insurance contracts.</div>
+                <textarea class="notes-field" name="notes-1" placeholder="Notes for this section..." style="width:100%;min-height:60px;margin-top:1em;"></textarea>
+            </div>
+
+            <!-- 2. Register with PECOS -->
+            <div class="section">
+                <h2>2. Register with PECOS (Provider Enrollment, Chain, and Ownership System)</h2>
+                <div class="desc">PECOS is Medicare’s online portal for submitting and managing your 855S application.</div>
+                <div class="checklist-group">
+                    <div class="checklist-item"><input type="checkbox" name="pecos-account">Create an account linked to your NPI</div>
+                    <div class="checklist-item"><input type="checkbox" name="pecos-855s">Start a new 855S application</div>
+                    <div class="checklist-item"><input type="checkbox" name="pecos-upload">Upload all required documents</div>
+                    <div class="checklist-item"><input type="checkbox" name="pecos-fee">Pay the Medicare application fee</div>
+                    <div class="checklist-item"><input type="checkbox" name="pecos-track">Track your application status</div>
+                </div>
+                <div class="important">Important: PECOS requires your NPI to be active before you can begin.</div>
+                <textarea class="notes-field" name="notes-2" placeholder="Notes for this section..." style="width:100%;min-height:60px;margin-top:1em;"></textarea>
+            </div>
+
+            <!-- 3. Obtain NPI Number -->
+            <div class="section">
+                <h2>3. Obtain NPI Number (National Provider Identifier)</h2>
+                <div class="desc">A unique 10‑digit ID number required for all healthcare suppliers.</div>
+                <div class="checklist-group">
+                    <div class="checklist-item"><input type="checkbox" name="npi-apply">Apply through NPPES (National Plan & Provider Enumeration System)</div>
+                    <div class="checklist-item"><input type="checkbox" name="npi-legal-name">Legal business name</div>
+                    <div class="checklist-item"><input type="checkbox" name="npi-ein">EIN</div>
+                    <div class="checklist-item"><input type="checkbox" name="npi-address">Business address</div>
+                    <div class="checklist-item"><input type="checkbox" name="npi-taxonomy">Taxonomy code for DME supplier (332B00000X)</div>
+                </div>
+                <div class="why">Why it matters: Your NPI is used on Medicare 855S, Medicaid applications, commercial insurance contracts, claims and billing, provider directories.</div>
+                <textarea class="notes-field" name="notes-3" placeholder="Notes for this section..." style="width:100%;min-height:60px;margin-top:1em;"></textarea>
+            </div>
+
+            <!-- 4. Apply for Insurance Network Participation -->
+            <div class="section">
+                <h2>4. Apply for Insurance Network Participation (Commercial Payers)</h2>
+                <div class="desc">Once Medicare approves you, you can apply to private insurers.</div>
+                <div class="checklist-group">
+                    <div class="checklist-item"><input type="checkbox" name="ins-medicare-approval">Medicare approval letter</div>
+                    <div class="checklist-item"><input type="checkbox" name="ins-accreditation">Accreditation certificate</div>
+                    <div class="checklist-item"><input type="checkbox" name="ins-liability">Liability insurance</div>
+                    <div class="checklist-item"><input type="checkbox" name="ins-surety-bond">Surety bond</div>
+                    <div class="checklist-item"><input type="checkbox" name="ins-w9">W‑9</div>
+                    <div class="checklist-item"><input type="checkbox" name="ins-npi">NPI confirmation</div>
+                    <div class="checklist-item"><input type="checkbox" name="ins-caqh">CAQH profile (must be complete and attested)</div>
+                    <div class="checklist-item"><input type="checkbox" name="ins-business-license">Business license</div>
+                    <div class="checklist-item"><input type="checkbox" name="ins-product-list">Product list (what DME you provide)</div>
+                    <div class="checklist-item"><input type="checkbox" name="ins-service-area">Service area map</div>
+                    <div class="checklist-item"><input type="checkbox" name="ins-delivery-policy">Delivery policy</div>
+                    <div class="checklist-item"><input type="checkbox" name="ins-return-policy">Return/repair policy</div>
+                </div>
+                <div class="timeline">Typical timeline: 60–120 days depending on the payer.</div>
+                <div class="important">Important: Some insurers will not contract with new DME companies until you have 6–12 months of operational history. Medicare approval helps, but commercial payers still evaluate risk.</div>
+                <textarea class="notes-field" name="notes-4" placeholder="Notes for this section..." style="width:100%;min-height:60px;margin-top:1em;"></textarea>
+            </div>
+
+            <!-- 5. Prepare Required Supporting Documents -->
+            <div class="section">
+                <h2>5. Prepare Required Supporting Documents</h2>
+                <div class="desc">This is where most DME startups fail — missing documents. Here’s the complete list of what Comcare must have ready:</div>
+                <div class="sublist">
+                    <div class="checklist-item"><input type="checkbox" name="doc-articles-org">Articles of Organization</div>
+                    <div class="checklist-item"><input type="checkbox" name="doc-ein-letter">EIN letter</div>
+                    <div class="checklist-item"><input type="checkbox" name="doc-business-license">Business license</div>
+                    <div class="checklist-item"><input type="checkbox" name="doc-lease">Lease agreement (WareSpace)</div>
+                    <div class="checklist-item"><input type="checkbox" name="doc-liability-ins">Liability insurance certificate</div>
+                    <div class="checklist-item"><input type="checkbox" name="doc-surety-bond">Surety bond certificate</div>
+                </div>
+                <div class="desc">Accreditation Documents</div>
+                <div class="sublist">
+                    <div class="checklist-item"><input type="checkbox" name="doc-accreditation-cert">Accreditation certificate</div>
+                    <div class="checklist-item"><input type="checkbox" name="doc-policies">Policies & Procedures manual</div>
+                    <div class="checklist-item"><input type="checkbox" name="doc-infection-control">Infection control plan</div>
+                    <div class="checklist-item"><input type="checkbox" name="doc-emergency-plan">Emergency preparedness plan</div>
+                    <div class="checklist-item"><input type="checkbox" name="doc-hipaa">HIPAA compliance documents</div>
+                    <div class="checklist-item"><input type="checkbox" name="doc-quality-program">Quality improvement program</div>
+                    <div class="checklist-item"><input type="checkbox" name="doc-org-chart">Organizational chart</div>
+                </div>
+                <div class="desc">Operational Documents</div>
+                <div class="sublist">
+                    <div class="checklist-item"><input type="checkbox" name="doc-cleaning-logs">Equipment cleaning logs</div>
+                    <div class="checklist-item"><input type="checkbox" name="doc-maintenance-logs">Maintenance logs</div>
+                    <div class="checklist-item"><input type="checkbox" name="doc-delivery-logs">Delivery logs</div>
+                    <div class="checklist-item"><input type="checkbox" name="doc-complaint-logs">Complaint logs</div>
+                    <div class="checklist-item"><input type="checkbox" name="doc-recall-logs">Recall logs</div>
+                    <div class="checklist-item"><input type="checkbox" name="doc-patient-rights">Patient rights & responsibilities</div>
+                    <div class="checklist-item"><input type="checkbox" name="doc-proof-delivery">Proof of delivery form</div>
+                    <div class="checklist-item"><input type="checkbox" name="doc-welcome-packet">Welcome packet</div>
+                    <div class="checklist-item"><input type="checkbox" name="doc-after-hours">After‑hours contact procedure</div>
+                </div>
+                <div class="desc">Facility Documentation</div>
+                <div class="sublist">
+                    <div class="checklist-item"><input type="checkbox" name="doc-photos-office">Photos of office</div>
+                    <div class="checklist-item"><input type="checkbox" name="doc-photos-warehouse">Photos of warehouse clean/dirty zones</div>
+                    <div class="checklist-item"><input type="checkbox" name="doc-photos-signage">Photos of signage and posted hours</div>
+                    <div class="checklist-item"><input type="checkbox" name="doc-floor-plan">Floor plan (optional but helpful)</div>
+                </div>
+                <div class="desc">Insurance Enrollment Documents</div>
+                <div class="sublist">
+                    <div class="checklist-item"><input type="checkbox" name="doc-npi-confirm">NPI confirmation</div>
+                    <div class="checklist-item"><input type="checkbox" name="doc-caqh">CAQH profile</div>
+                    <div class="checklist-item"><input type="checkbox" name="doc-w9">W‑9</div>
+                    <div class="checklist-item"><input type="checkbox" name="doc-medicare-approval">Medicare approval letter (once received)</div>
+                </div>
+            </div>
+            <textarea class="notes-field" name="notes-5" placeholder="Notes for this section..." style="width:100%;min-height:60px;margin-top:1em;"></textarea>
+            <button type="button" class="save-btn" onclick="saveChecklist()">Save My Progress</button>
+            <span class="saved-msg" id="saved-msg" style="display:none;">Progress saved!</span>
+        </form>
+    </div>
+    <script>
+        // Save checklist state to localStorage
+        function saveChecklist() {
+            const form = document.getElementById('insurance-form');
+            const data = {};
+            Array.from(form.elements).forEach(el => {
+                if (el.type === 'checkbox' && el.name) {
+                    data[el.name] = el.checked;
+                } else if (el.tagName === 'TEXTAREA' && el.name) {
+                    data[el.name] = el.value;
+                }
+            });
+            localStorage.setItem('insurance-checklist', JSON.stringify(data));
+            document.getElementById('saved-msg').style.display = 'inline';
+            setTimeout(() => {
+                document.getElementById('saved-msg').style.display = 'none';
+            }, 2000);
+        }
+        // Load checklist state from localStorage
+        function loadChecklist() {
+            const data = JSON.parse(localStorage.getItem('insurance-checklist') || '{}');
+            const form = document.getElementById('insurance-form');
+            Array.from(form.elements).forEach(el => {
+                if (el.type === 'checkbox' && el.name && data.hasOwnProperty(el.name)) {
+                    el.checked = data[el.name];
+                } else if (el.tagName === 'TEXTAREA' && el.name && data.hasOwnProperty(el.name)) {
+                    el.value = data[el.name];
+                }
+            });
+        }
+        window.onload = loadChecklist;
+    </script>
+</body>
+</html>
