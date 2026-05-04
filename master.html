@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master - ComfortCare DME Accreditation & Operations Master Plan</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f7f9fa; }
+        .container { max-width: 900px; margin: 40px auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px #0001; padding: 32px; }
+        h1 { color: #2a4d69; }
+        h2 { color: #4b86b4; margin-top: 2em; }
+        .section { margin-bottom: 2em; }
+        .checklist-group { margin: 1em 0 2em 0; }
+        .checklist-item { display: flex; align-items: flex-start; margin-bottom: 0.5em; }
+        .checklist-item input[type="checkbox"] { margin-right: 1em; margin-top: 0.2em; }
+        .desc { color: #555; font-size: 0.98em; margin-bottom: 0.5em; }
+        .sublist { margin-left: 2em; }
+        .save-btn { background: #4b86b4; color: #fff; border: none; padding: 10px 24px; border-radius: 5px; font-size: 1em; cursor: pointer; margin-top: 1.5em; }
+        .save-btn:active { background: #2a4d69; }
+        .saved-msg { color: #388e3c; margin-left: 1em; font-weight: bold; }
+        .notes-field { width: 100%; min-height: 60px; margin-top: 1em; }
+        .section-title { display: flex; align-items: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ComfortCare DME Accreditation & Operations Master Plan</h1>
+        <form id="master-form">
+            <!-- 1. Company Overview -->
+            <div class="section">
+                <div class="section-title"><h2>1. Company Overview</h2></div>
+                <div class="desc">ComfortCare Home Medical provides durable medical equipment (DME) including hospital beds, lift chairs, wheelchairs, walkers, bathroom safety equipment, and respiratory support devices. The business operates from a WareSpace Atlanta flex‑warehouse unit, which serves as the administrative office, equipment storage, cleaning area, and logistics hub.<br><br>ComfortCare uses Curri as its on‑demand delivery fleet for fast, reliable, and trackable equipment delivery.</div>
+                <textarea class="notes-field" name="notes-1" placeholder="Notes for this section..."></textarea>
+            </div>
+            <!-- 2. Physical Facility Setup -->
+            <div class="section">
+                <div class="section-title"><h2>2. Physical Facility Setup (WareSpace Atlanta)</h2></div>
+                <div class="desc"><b>Office Area (Accreditation‑Compliant)</b></div>
+                <div class="checklist-group">
+                    <div class="checklist-item"><input type="checkbox" name="desk">Desk, chair, computer, printer</div>
+                    <div class="checklist-item"><input type="checkbox" name="locked-cabinet">Locked file cabinet (HIPAA compliant)</div>
+                    <div class="checklist-item"><input type="checkbox" name="posted-hours">Posted business hours</div>
+                    <div class="checklist-item"><input type="checkbox" name="supplier-standards">Medicare Supplier Standards posted</div>
+                    <div class="checklist-item"><input type="checkbox" name="fire-extinguisher">Fire extinguisher (tagged within 12 months)</div>
+                    <div class="checklist-item"><input type="checkbox" name="first-aid">First‑aid kit</div>
+                    <div class="checklist-item"><input type="checkbox" name="phone-line">Phone line (VoIP acceptable)</div>
+                    <div class="checklist-item"><input type="checkbox" name="clean-appearance">Clean, professional appearance</div>
+                </div>
+                <div class="desc"><b>Warehouse Area</b></div>
+                <div class="checklist-group">
+                    <div class="checklist-item"><input type="checkbox" name="shelving">Shelving for equipment</div>
+                    <div class="checklist-item"><input type="checkbox" name="zones">CLEAN / DIRTY / REPAIR zones</div>
+                    <div class="checklist-item"><input type="checkbox" name="disinfection-station">Disinfection station (wipes, gloves, disinfectant)</div>
+                    <div class="checklist-item"><input type="checkbox" name="maintenance-logs">Maintenance logs</div>
+                    <div class="checklist-item"><input type="checkbox" name="delivery-staging">Delivery staging area</div>
+                    <div class="checklist-item"><input type="checkbox" name="clear-walkways">Clear walkways</div>
+                    <div class="checklist-item"><input type="checkbox" name="rollup-door">Roll‑up door for Curri pickups</div>
+                </div>
+                <div class="desc"><b>Exterior Requirements</b></div>
+                <div class="checklist-group">
+                    <div class="checklist-item"><input type="checkbox" name="business-sign">Business sign with company name</div>
+                    <div class="checklist-item"><input type="checkbox" name="unit-number">Unit number visible</div>
+                    <div class="checklist-item"><input type="checkbox" name="hours-door">Hours posted on door</div>
+                </div>
+                <textarea class="notes-field" name="notes-2" placeholder="Notes for this section..."></textarea>
+            </div>
+            <!-- 3. Accreditation Requirements -->
+            <div class="section">
+                <div class="section-title"><h2>3. Accreditation Requirements (ACHC / HQAA / Medicare)</h2></div>
+                <div class="desc"><b>Required Documents</b></div>
+                <div class="checklist-group">
+                    <div class="checklist-item"><input type="checkbox" name="business-license">Business license</div>
+                    <div class="checklist-item"><input type="checkbox" name="ein">EIN</div>
+                    <div class="checklist-item"><input type="checkbox" name="articles-org">Articles of Organization</div>
+                    <div class="checklist-item"><input type="checkbox" name="liability-ins">Liability insurance</div>
+                    <div class="checklist-item"><input type="checkbox" name="surety-bond">$50,000 Medicare surety bond</div>
+                    <div class="checklist-item"><input type="checkbox" name="lease">Lease agreement</div>
+                    <div class="checklist-item"><input type="checkbox" name="policies">Policies & procedures manual</div>
+                    <div class="checklist-item"><input type="checkbox" name="emergency-plan">Emergency preparedness plan</div>
+                    <div class="checklist-item"><input type="checkbox" name="hipaa">HIPAA compliance documents</div>
+                    <div class="checklist-item"><input type="checkbox" name="infection-control">Infection control plan</div>
+                    <div class="checklist-item"><input type="checkbox" name="cleaning-logs">Equipment cleaning & maintenance logs</div>
+                    <div class="checklist-item"><input type="checkbox" name="delivery-logs">Delivery logs</div>
+                    <div class="checklist-item"><input type="checkbox" name="complaint-logs">Complaint logs</div>
+                    <div class="checklist-item"><input type="checkbox" name="recall-logs">Recall tracking logs</div>
+                </div>
+                <textarea class="notes-field" name="notes-3" placeholder="Notes for this section..."></textarea>
+            </div>
+            <!-- 4. Insurance & Surety Bond -->
+            <div class="section">
+                <div class="section-title"><h2>4. Insurance & Surety Bond</h2></div>
+                <div class="desc"><b>Liability Insurance</b><br>Cost: $700–$1,100/year<br>Includes: general liability, professional liability, product liability, property coverage</div>
+                <div class="desc"><b>Medicare Surety Bond</b><br>Required amount: $50,000<br>Cost: $300–$400/year<br>Required for CMS 855S enrollment</div>
+                <textarea class="notes-field" name="notes-4" placeholder="Notes for this section..."></textarea>
+            </div>
+            <!-- 5. Equipment Inventory & Standards -->
+            <div class="section">
+                <div class="section-title"><h2>5. Equipment Inventory & Standards</h2></div>
+                <div class="desc"><b>Core Equipment</b></div>
+                <div class="checklist-group">
+                    <div class="checklist-item"><input type="checkbox" name="hospital-beds">Hospital beds</div>
+                    <div class="checklist-item"><input type="checkbox" name="lift-chairs">Lift chairs</div>
+                    <div class="checklist-item"><input type="checkbox" name="wheelchairs">Wheelchairs</div>
+                    <div class="checklist-item"><input type="checkbox" name="transport-chairs">Transport chairs</div>
+                    <div class="checklist-item"><input type="checkbox" name="walkers">Walkers & rollators</div>
+                    <div class="checklist-item"><input type="checkbox" name="commodes">Commodes</div>
+                    <div class="checklist-item"><input type="checkbox" name="shower-chairs">Shower chairs</div>
+                    <div class="checklist-item"><input type="checkbox" name="oxygen">Oxygen concentrators (optional)</div>
+                </div>
+                <div class="desc"><b>Required Supplies</b></div>
+                <div class="checklist-group">
+                    <div class="checklist-item"><input type="checkbox" name="ppe">PPE</div>
+                    <div class="checklist-item"><input type="checkbox" name="disinfectant">Disinfectant</div>
+                    <div class="checklist-item"><input type="checkbox" name="tools">Tools for minor repairs</div>
+                    <div class="checklist-item"><input type="checkbox" name="spare-parts">Spare parts</div>
+                    <div class="checklist-item"><input type="checkbox" name="mattress-covers">Mattress covers</div>
+                    <div class="checklist-item"><input type="checkbox" name="manuals">Instruction manuals</div>
+                </div>
+                <textarea class="notes-field" name="notes-5" placeholder="Notes for this section..."></textarea>
+            </div>
+            <!-- 6. Cleaning & Maintenance Protocol -->
+            <div class="section">
+                <div class="section-title"><h2>6. Cleaning & Maintenance Protocol</h2></div>
+                <div class="desc"><b>Cleaning Steps</b></div>
+                <div class="checklist-group">
+                    <div class="checklist-item"><input type="checkbox" name="inspect">Inspect equipment</div>
+                    <div class="checklist-item"><input type="checkbox" name="remove-debris">Remove debris</div>
+                    <div class="checklist-item"><input type="checkbox" name="disinfect">Disinfect all surfaces</div>
+                    <div class="checklist-item"><input type="checkbox" name="dry">Dry completely</div>
+                    <div class="checklist-item"><input type="checkbox" name="log-cleaning">Log cleaning in maintenance log</div>
+                    <div class="checklist-item"><input type="checkbox" name="move-clean">Move to CLEAN zone</div>
+                </div>
+                <div class="desc"><b>Maintenance Log Includes</b></div>
+                <div class="checklist-group">
+                    <div class="checklist-item"><input type="checkbox" name="serial-number">Serial number</div>
+                    <div class="checklist-item"><input type="checkbox" name="date-cleaned">Date cleaned</div>
+                    <div class="checklist-item"><input type="checkbox" name="tech-initials">Technician initials</div>
+                    <div class="checklist-item"><input type="checkbox" name="repairs">Repairs completed</div>
+                    <div class="checklist-item"><input type="checkbox" name="condition">Condition status</div>
+                </div>
+                <textarea class="notes-field" name="notes-6" placeholder="Notes for this section..."></textarea>
+            </div>
+            <!-- 7. Delivery Operations -->
+            <div class="section">
+                <div class="section-title"><h2>7. Delivery Operations (Curri Integration)</h2></div>
+                <div class="desc"><b>Workflow</b></div>
+                <div class="checklist-group">
+                    <div class="checklist-item"><input type="checkbox" name="order-received">Order received via comcare.store</div>
+                    <div class="checklist-item"><input type="checkbox" name="equipment-pulled">Equipment pulled from warehouse</div>
+                    <div class="checklist-item"><input type="checkbox" name="cleaned-logged">Cleaned, logged, staged</div>
+                    <div class="checklist-item"><input type="checkbox" name="curri-requested">Curri delivery requested</div>
+                    <div class="checklist-item"><input type="checkbox" name="driver-arrives">Driver arrives at roll‑up door</div>
+                    <div class="checklist-item"><input type="checkbox" name="equipment-loaded">Equipment loaded</div>
+                    <div class="checklist-item"><input type="checkbox" name="delivery-completed">Delivery completed with photo proof</div>
+                    <div class="checklist-item"><input type="checkbox" name="docs-stored">Documentation stored in office</div>
+                    <div class="checklist-item"><input type="checkbox" name="billing-triggered">Billing triggered</div>
+                </div>
+                <div class="desc"><b>Vehicle Matching</b></div>
+                <div class="checklist-group">
+                    <div class="checklist-item"><input type="checkbox" name="car-suv">Car/SUV → walkers, commodes</div>
+                    <div class="checklist-item"><input type="checkbox" name="cargo-van">Cargo van → wheelchairs</div>
+                    <div class="checklist-item"><input type="checkbox" name="sprinter">Sprinter → hospital beds (disassembled)</div>
+                    <div class="checklist-item"><input type="checkbox" name="box-truck">Box truck → lift chairs, assembled beds</div>
+                </div>
+                <textarea class="notes-field" name="notes-7" placeholder="Notes for this section..."></textarea>
+            </div>
+            <!-- 8. Patient Documentation Packet -->
+            <div class="section">
+                <div class="section-title"><h2>8. Patient Documentation Packet</h2></div>
+                <div class="checklist-group">
+                    <div class="checklist-item"><input type="checkbox" name="welcome-letter">Welcome letter</div>
+                    <div class="checklist-item"><input type="checkbox" name="patient-rights">Patient rights & responsibilities</div>
+                    <div class="checklist-item"><input type="checkbox" name="hipaa-notice">HIPAA privacy notice</div>
+                    <div class="checklist-item"><input type="checkbox" name="complaint-process">Complaint process</div>
+                    <div class="checklist-item"><input type="checkbox" name="after-hours">After‑hours contact</div>
+                    <div class="checklist-item"><input type="checkbox" name="equipment-instructions">Equipment instructions</div>
+                    <div class="checklist-item"><input type="checkbox" name="proof-delivery">Proof of delivery form</div>
+                </div>
+                <textarea class="notes-field" name="notes-8" placeholder="Notes for this section..."></textarea>
+            </div>
+            <!-- 9. Emergency Preparedness Plan -->
+            <div class="section">
+                <div class="section-title"><h2>9. Emergency Preparedness Plan</h2></div>
+                <div class="checklist-group">
+                    <div class="checklist-item"><input type="checkbox" name="fire-response">Fire response</div>
+                    <div class="checklist-item"><input type="checkbox" name="power-outage">Power outage protocol</div>
+                    <div class="checklist-item"><input type="checkbox" name="recall-procedure">Equipment recall procedure</div>
+                    <div class="checklist-item"><input type="checkbox" name="patient-notification">Patient notification process</div>
+                    <div class="checklist-item"><input type="checkbox" name="backup-comm">Backup communication plan</div>
+                </div>
+                <textarea class="notes-field" name="notes-9" placeholder="Notes for this section..."></textarea>
+            </div>
+            <!-- 10. Final Accreditation Readiness Checklist -->
+            <div class="section">
+                <div class="section-title"><h2>10. Final Accreditation Readiness Checklist</h2></div>
+                <div class="checklist-group">
+                    <div class="checklist-item"><input type="checkbox" name="office-setup">Office fully set up</div>
+                    <div class="checklist-item"><input type="checkbox" name="warehouse-organized">Warehouse organized</div>
+                    <div class="checklist-item"><input type="checkbox" name="logs-ready">Logs printed and ready</div>
+                    <div class="checklist-item"><input type="checkbox" name="policies-binder">Policies & procedures binder complete</div>
+                    <div class="checklist-item"><input type="checkbox" name="insurance-active">Insurance active</div>
+                    <div class="checklist-item"><input type="checkbox" name="bond-active">Surety bond active</div>
+                    <div class="checklist-item"><input type="checkbox" name="license-posted">Business license posted</div>
+                    <div class="checklist-item"><input type="checkbox" name="signage-installed">Signage installed</div>
+                    <div class="checklist-item"><input type="checkbox" name="hours-posted">Hours posted</div>
+                    <div class="checklist-item"><input type="checkbox" name="delivery-workflow">Delivery workflow documented</div>
+                    <div class="checklist-item"><input type="checkbox" name="staff-training">Staff training completed</div>
+                </div>
+                <textarea class="notes-field" name="notes-10" placeholder="Notes for this section..."></textarea>
+            </div>
+            <button type="button" class="save-btn" onclick="saveChecklist()">Save My Progress</button>
+            <span class="saved-msg" id="saved-msg" style="display:none;">Progress saved!</span>
+        </form>
+    </div>
+    <script>
+        // Save checklist state to localStorage
+        function saveChecklist() {
+            const form = document.getElementById('master-form');
+            const data = {};
+            Array.from(form.elements).forEach(el => {
+                if (el.type === 'checkbox' && el.name) {
+                    data[el.name] = el.checked;
+                } else if (el.tagName === 'TEXTAREA' && el.name) {
+                    data[el.name] = el.value;
+                }
+            });
+            localStorage.setItem('master-checklist', JSON.stringify(data));
+            document.getElementById('saved-msg').style.display = 'inline';
+            setTimeout(() => {
+                document.getElementById('saved-msg').style.display = 'none';
+            }, 2000);
+        }
+        // Load checklist state from localStorage
+        function loadChecklist() {
+            const data = JSON.parse(localStorage.getItem('master-checklist') || '{}');
+            const form = document.getElementById('master-form');
+            Array.from(form.elements).forEach(el => {
+                if (el.type === 'checkbox' && el.name && data.hasOwnProperty(el.name)) {
+                    el.checked = data[el.name];
+                } else if (el.tagName === 'TEXTAREA' && el.name && data.hasOwnProperty(el.name)) {
+                    el.value = data[el.name];
+                }
+            });
+        }
+        window.onload = loadChecklist;
+    </script>
+</body>
+</html>
