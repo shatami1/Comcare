@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Future Products | ComfortCare</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        body { font-family: Arial, sans-serif; background: #f7f9fa; margin: 0; }
+        .container { max-width: 900px; margin: 40px auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px #0001; padding: 32px; }
+        h1 { color: #2a4d69; text-align: center; }
+        .slider { position: relative; width: 100%; max-width: 600px; height: 400px; margin: 32px auto; overflow: hidden; border-radius: 10px; box-shadow: 0 2px 8px #0002; }
+        .slides { display: flex; transition: transform 0.5s ease; }
+        .slide-img { width: 600px; height: 400px; min-width: 100%; flex-shrink: 0; object-fit: contain; background: #eee; }
+        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: #2a4d69cc; color: #fff; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 1.5em; cursor: pointer; z-index: 2; }
+        .slider-btn.left { left: 10px; }
+        .slider-btn.right { right: 10px; }
+        .slider-dots { text-align: center; margin-top: 12px; }
+        .slider-dot { display: inline-block; width: 12px; height: 12px; margin: 0 4px; background: #bbb; border-radius: 50%; cursor: pointer; }
+        .slider-dot.active { background: #2a4d69; }
+        .future-products { margin-top: 2em; }
+        .future-products h2 { color: #4b86b4; }
+        .future-products ul { font-size: 1.1em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../order.html" style="display:inline-block;margin:16px 0 0 0;padding:8px 18px;background:#2a4d69;color:#fff;border-radius:8px;text-decoration:none;font-size:1.1em;">&larr; Return to Order Page</a>
+        <h1>Future Products</h1>
+        <div class="slider" id="slider">
+            <button class="slider-btn left" onclick="moveSlide(-1)">&#8592;</button>
+            <div class="slides" id="slides">
+                <img src="noname_1.jpg" class="slide-img" alt="Future Product 1">
+                <img src="noname_2.jpg" class="slide-img" alt="Future Product 2">
+                <img src="noname_3.jpg" class="slide-img" alt="Future Product 3">
+                <img src="noname_4.jpg" class="slide-img" alt="Future Product 4">
+                <img src="noname_5.jpg" class="slide-img" alt="Future Product 5">
+                <img src="noname_6.jpg" class="slide-img" alt="Future Product 6">
+                <img src="noname_7.jpg" class="slide-img" alt="Future Product 7">
+                <img src="noname_8.jpg" class="slide-img" alt="Future Product 8">
+            </div>
+            <button class="slider-btn right" onclick="moveSlide(1)">&#8594;</button>
+            <div class="slider-dots" id="slider-dots"></div>
+        </div>
+        <div class="future-products">
+            <h2>Coming Soon</h2>
+            <ul>
+                <li>Innovative Home Medical Devices</li>
+                <li>Smart Health Monitoring Solutions</li>
+                <li>Advanced Mobility Aids</li>
+                <li>Personalized Patient Care Equipment</li>
+                <li>And more...</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        const slides = document.getElementById('slides');
+        const totalSlides = slides.children.length;
+        let currentSlide = 0;
+        const dotsContainer = document.getElementById('slider-dots');
+        function updateSlider() {
+            slides.style.transform = `translateX(-${currentSlide * 600}px)`;
+            Array.from(dotsContainer.children).forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === currentSlide);
+            });
+        }
+        function moveSlide(dir) {
+            currentSlide += dir;
+            if (currentSlide < 0) currentSlide = totalSlides - 1;
+            if (currentSlide >= totalSlides) currentSlide = 0;
+            updateSlider();
+        }
+        // Create dots
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('span');
+            dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+            dot.onclick = () => { currentSlide = i; updateSlider(); };
+            dotsContainer.appendChild(dot);
+        }
+        updateSlider();
+    </script>
+</body>
+</html>
