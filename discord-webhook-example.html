@@ -2,6 +2,15 @@
 <script>
 document.getElementById('contactForm').addEventListener('submit', async function(e) {
     e.preventDefault();
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9G5EVYE5Y"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-D9G5EVYE5Y');
+        </script>
     
     const formData = {
         name: document.getElementById('name').value,
