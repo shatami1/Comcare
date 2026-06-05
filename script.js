@@ -994,6 +994,7 @@ function calculateRentalPrice() {
     if (!equipmentSelect || !rentalDaysInput) return;
     
     const equipmentPrices = {
+        'hospital-bed': 45,
         'wheelchair': 20,
         'walker': 10,
         'rollator': 18,
