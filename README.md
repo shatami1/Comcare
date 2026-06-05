@@ -1,6 +1,6 @@
-# ComfortCare - Medical Equipment Rental Website
+# ComfortCare - Mobility Equipment Rental Website
 
-A complete, professional multi-page website for ComfortCare, a medical equipment rental service in Atlanta, Georgia.
+A complete, professional multi-page website for ComfortCare, a mobility equipment rental service in Atlanta and Norcross, Georgia.
 
 ## 📋 Project Overview
 
@@ -34,7 +34,7 @@ ComfortCare/
 - **Secondary Blue**: #0052a3
 - **Accent Green**: #10b981
 - **Light Green**: #d1fae5
-- **Professional Medical Theme**
+- **Professional Mobility Support Theme**
 
 ### Key Sections
 1. **Navigation Bar**: Sticky header with mobile hamburger menu
@@ -55,12 +55,9 @@ ComfortCare/
 - Footer with business info
 
 ### 2. Services (services.html)
-- 4 equipment categories:
-  - Mobility & Accessibility
-  - Bedroom & Bathroom
-  - Health Monitoring
-  - Specialized Equipment
-- 12+ individual equipment types with descriptions
+- Mobility-focused equipment categories
+- Wheelchairs, walkers, rollators, knee scooters, canes, and related support options
+- Community partnership information and mobility rental guidance
 - Pricing tags
 - Booking CTA
 
@@ -78,12 +75,11 @@ ComfortCare/
 - Call-to-action
 
 ### 4. Pricing (pricing.html)
-- 6 equipment categories with rates
+- Mobility rental categories with rates
 - Daily/Weekly/Monthly pricing breakdown
 - Discount information (10-15% discounts)
 - What's included vs. optional services
-- Payment methods (Credit Card, ACH, Insurance)
-- Insurance & Medicare information
+- Payment methods and reimbursement documentation support
 
 ### 5. Contact (contact.html)
 - **Working Contact Form** with:
@@ -134,32 +130,24 @@ Forms save data to browser localStorage:
 
 **Note**: Data is stored locally in client's browser. For production, integrate with backend service (Firebase, Node.js, etc.)
 
-## 🚀 How to Deploy to Netlify
+## 🚀 How to Deploy to GitHub Pages
 
-### Option 1: Drag & Drop (Easiest)
-1. Go to [netlify.com](https://netlify.com)
-2. Sign up for a free account
-3. Drag and drop the ComfortCare folder into Netlify
-4. Your site is live!
-
-### Option 2: GitHub Integration (Recommended)
+### Option 1: GitHub Pages (Recommended)
 1. Push files to GitHub repository
-2. Sign in to Netlify with GitHub
-3. Click "New site from Git"
-4. Select your GitHub repository
-5. Click Deploy
-6. Custom domain setup in Site Settings
+2. Open the repository settings on GitHub
+3. Enable GitHub Pages for the main branch (root folder)
+4. Add the custom domain in GitHub Pages settings if needed
+5. Wait for the Pages deployment to finish
 
-### Option 3: Command Line (with Netlify CLI)
+### Option 2: Command Line Deployment
 ```bash
-# Install Netlify CLI
-npm install -g netlify-cli
-
 # Navigate to project folder
 cd ComfortCare
 
-# Deploy
-netlify deploy --prod
+# Commit and push updates
+git add .
+git commit -m "Update site"
+git push
 ```
 
 ### Deployment Checklist
@@ -178,8 +166,8 @@ netlify deploy --prod
 Replace these with your actual information:
 ```
 Phone: 678-362-2345
-Email: AccentGV@gmail.com
-Location: Atlanta, Georgia
+Email: admin@comcare.store
+Location: Norcross, Georgia
 ```
 
 ### Add Your Logo
@@ -240,18 +228,18 @@ All images and text scale appropriately on each device.
 - **Firebase**: Real-time database, easy setup
 - **FormSubmit.co**: Free form submissions to email
 - **Node.js/Express**: Custom backend
-- **Netlify Functions**: Serverless functions
+- **Hosted checkout API**: Serverless or Node-based checkout endpoint
 - **EmailJS**: Direct email from browser
 
 ### Example: Using FormSubmit.co (Free)
-1. Add `action="https://formsubmit.co/AccentGV@gmail.com"` to form
+1. Add `action="https://formsubmit.co/admin@comcare.store"` to form
 2. Change form method to `POST`
 3. Add hidden input: `<input type="hidden" name="_captcha" value="false">`
 
-### Example: Using Netlify Forms
-1. Add `netlify` attribute to form: `<form netlify>`
-2. Deploy to Netlify
-3. Form submissions appear in Netlify admin panel
+### Example: Using FormSubmit
+1. Add the FormSubmit action to the form
+2. Deploy the site to GitHub Pages
+3. Form submissions will route to admin@comcare.store
 
 ## 🔍 Browser Support
 
@@ -280,11 +268,11 @@ All images and text scale appropriately on each device.
 ### Recommended: Add Meta Tags
 Add to each page's `<head>`:
 ```html
-<meta name="description" content="Professional medical equipment rental services in Atlanta, Georgia">
-<meta name="keywords" content="medical equipment rental, wheelchairs, hospital beds, Atlanta">
+<meta name="description" content="Mobility equipment rentals and sales in Norcross and Atlanta, Georgia">
+<meta name="keywords" content="mobility equipment rental, wheelchairs, walkers, rollators, Atlanta">
 <meta name="author" content="ComfortCare">
-<meta property="og:title" content="ComfortCare - Medical Equipment Rental">
-<meta property="og:description" content="Quality medical equipment rental in Atlanta">
+<meta property="og:title" content="ComfortCare - Mobility Equipment Rentals">
+<meta property="og:description" content="Quality mobility equipment rentals in Norcross and Atlanta">
 ```
 
 ## 🛠️ Maintenance
@@ -312,16 +300,16 @@ To receive form submissions by email:
 
 ### Option 1: FormSubmit.co (Recommended for Beginners)
 ```html
-<form action="https://formsubmit.co/AccentGV@gmail.com" method="POST">
+<form action="https://formsubmit.co/admin@comcare.store" method="POST">
     <!-- form fields -->
     <input type="hidden" name="_captcha" value="false">
 </form>
 ```
 
-### Option 2: Netlify Forms (Best for Netlify Hosting)
+### Option 2: Custom backend or serverless form endpoint
 ```html
-<form name="contact" method="POST" netlify>
-    <!-- form fields -->
+<form name="contact" method="POST" action="https://formsubmit.co/admin@comcare.store">
+  <!-- form fields -->
 </form>
 ```
 
@@ -334,7 +322,7 @@ emailjs.send("SERVICE_ID", "TEMPLATE_ID", formData);
 ## 🎓 Learning Resources
 
 - **HTML/CSS**: [MDN Web Docs](https://developer.mozilla.org)
-- **Netlify Docs**: [Netlify Documentation](https://docs.netlify.com)
+- **GitHub Pages Docs**: [GitHub Pages Documentation](https://docs.github.com/pages)
 - **Web Design**: [CSS-Tricks](https://css-tricks.com)
 - **Responsive Design**: [Web.dev](https://web.dev)
 
@@ -364,7 +352,7 @@ Consider adding:
 ## ⚠️ Important Notes
 
 1. **Forms are client-side only**: Forms store data locally. Set up backend/email service for production use.
-2. **No email sending**: Contact forms don't send emails by default. Integrate with FormSubmit, Netlify Forms, or custom backend.
+2. **No email sending**: Contact forms don't send emails by default. Integrate with FormSubmit or a custom backend.
 3. **Placeholder Logo**: Create or upload your actual logo
 4. **Update Contact Info**: Replace all business information with your actual details
 5. **Test on Mobile**: Always test on actual mobile devices before going live
@@ -373,15 +361,15 @@ Consider adding:
 
 1. **Customize** with your business information
 2. **Add logo** and any custom branding
-3. **Set up form submissions** (FormSubmit.co or Netlify Forms)
-4. **Deploy to Netlify** following deployment instructions
+3. **Set up form submissions** (FormSubmit.co or custom backend)
+4. **Deploy to GitHub Pages** following deployment instructions
 5. **Test thoroughly** on all devices
 6. **Monitor analytics** with Google Analytics (optional)
 
 ## 🎉 You're Ready!
 
-Your professional medical equipment rental website is ready to deploy. Follow the customization guide, set up form submissions, and deploy to Netlify in minutes!
+Your professional mobility equipment rental website is ready to deploy. Follow the customization guide, set up form submissions, and publish to GitHub Pages.
 
 ---
 
-**ComfortCare Website** | Built with HTML, CSS & JavaScript | Perfect for Equipment Rental Business
+**ComfortCare Website** | Built with HTML, CSS & JavaScript | Designed for mobility equipment rentals and sales

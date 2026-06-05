@@ -13,7 +13,7 @@ https://neocities.org/welcome
 saeedinv
 $@33dq12NEO
 
-Absolutely — I can turn your notes into a clean, professional **system description** of your full web stack. Since you’re actively viewing your Netlify Domain Management tab, I’ll keep this tight and structured so you can drop it into documentation, onboarding, or technical support conversations without editing.
+Absolutely — I can turn your notes into a clean, professional **system description** of your full web stack. This version reflects your current GitHub Pages setup so you can use it for documentation, onboarding, or support conversations.
 
 ---
 
@@ -22,7 +22,7 @@ Absolutely — I can turn your notes into a clean, professional **system descrip
 ## **1. Domain & DNS**
 - **Registrar:** Squarespace  
 - **DNS Management:** Squarespace DNS panel  
-- **Current DNS Target:** Netlify (A‑records + CNAME configured)  
+- **Current DNS Target:** GitHub Pages (A-records configured)  
 - **Live Domain:** `comcare.store` + `www.comcare.store`
 
 ---
@@ -30,18 +30,18 @@ Absolutely — I can turn your notes into a clean, professional **system descrip
 ## **2. Website Build** Visual Studio Code
 - **Development:** Built with GitHub Copilot / AI-assisted workflow  
 - **Codebase:** Static site (HTML/CSS/JS)  
-- **Repository:** GitHub (private or local — not required for Netlify deploys)  
+- **Repository:** GitHub  
 - **Framework:** No framework detected in the deployed output (pure static)
 
 ---
 
 ## **3. Hosting & Deployment**
-- **Hosting Provider:** Netlify  
-- **Project Dashboard:** `https://app.netlify.com`  
-- **Deploy Method:** Manual deploys (drag‑and‑drop or direct upload)  
-- **Primary Site:** `gleeful-vacherin-7b13d4.netlify.app`  
+- **Hosting Provider:** GitHub Pages  
+- **Project Dashboard:** GitHub repository settings > Pages  
+- **Deploy Method:** Pushes to the published branch  
+- **Primary Site:** `https://shatami1.github.io/Comcare/index.html`  
 - **Connected Domain:** `comcare.store`  
-- **SSL:** Auto‑provisioned by Netlify (Let’s Encrypt)
+- **SSL:** Provided through GitHub Pages for the published site
 
 ---
 
@@ -55,11 +55,8 @@ Absolutely — I can turn your notes into a clean, professional **system descrip
 ---
 
 ## **5. Payments & Business Systems**
-- **Payments:** Stripe Payment Links embedded in the site  Same password as XEro
-- **Accounting/ERP:**  
-  - You mentioned Xero on your side  
-  - **No Xero scripts, API calls, or embeds appear in the site code**  
-  - This means Xero is used operationally, not integrated into the website
+- **Payments:** Stripe Payment Links embedded in the site
+- **Accounting/ERP:** Handled separately from the website
 
 ---
 
@@ -72,7 +69,7 @@ Absolutely — I can turn your notes into a clean, professional **system descrip
 comcare.store (Squarespace DNS)
        |
        v
-Netlify Hosting
+GitHub Pages Hosting
        |
        +--> Static Website (AI/Copilot-built)
        |
@@ -80,7 +77,7 @@ Netlify Hosting
        |
        +--> Payments --> Stripe Payment Links
        |
-       +--> Business Ops (Offline) --> Xero (not connected to site)
+       +--> Internal business ops handled separately
 ```
 
 ---

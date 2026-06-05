@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: process.env.EMAIL_USER || 'AccentGV@gmail.com',
+        user: process.env.EMAIL_USER || 'admin@comcare.store',
         pass: process.env.EMAIL_PASS || 'your-app-password-here'
     }
 });
@@ -34,8 +34,8 @@ app.post('/api/contact', async (req, res) => {
 
         // Send email
         const mailOptions = {
-            from: process.env.EMAIL_USER || 'AccentGV@gmail.com',
-            to: process.env.EMAIL_USER || 'AccentGV@gmail.com',
+            from: process.env.EMAIL_USER || 'admin@comcare.store',
+            to: process.env.EMAIL_USER || 'admin@comcare.store',
             subject: `New Contact Form Submission: ${subject}`,
             html: `
                 <h3>New Contact Message</h3>
@@ -77,8 +77,8 @@ app.post('/api/booking', async (req, res) => {
 
         // Send email
         const mailOptions = {
-            from: process.env.EMAIL_USER || 'AccentGV@gmail.com',
-            to: process.env.EMAIL_USER || 'AccentGV@gmail.com',
+            from: process.env.EMAIL_USER || 'admin@comcare.store',
+            to: process.env.EMAIL_USER || 'admin@comcare.store',
             subject: `New Booking Request: ${equipmentType}`,
             html: `
                 <h3>New Booking Request</h3>

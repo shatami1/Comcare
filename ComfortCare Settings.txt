@@ -4,7 +4,7 @@ ComfortCare
 comcare.store (Squarespace DNS)
        |
        v
-Netlify Hosting
+GitHub Pages Hosting
        |
        +--> Static Website (AI/Copilot-built)
        |
@@ -12,6 +12,6 @@ Netlify Hosting
        |
        +--> Payments --> Stripe Payment Links
        |
-       +--> Business Ops (Offline) --> Xero (not connected to site)
+       +--> Internal business ops handled separately
 
 comcare.neocities.org  gmail hot+NEO

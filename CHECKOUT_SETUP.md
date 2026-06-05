@@ -92,9 +92,9 @@ For testing, get a test key from Stripe Dashboard:
 ## 🌐 Deployment Notes
 
 ### For Hosting
-When deploying to a host (Netlify, Vercel, etc.):
+When deploying the static site on GitHub Pages and the checkout API on a compatible host:
 1. The server.js must run (can't be static-only)
-2. Host must support Node.js (Netlify Functions, Vercel, Heroku, Railway)
+2. The checkout API host must support Node.js (Vercel, Railway, Render, etc.)
 3. Set `STRIPE_SECRET_KEY` in host's environment variables
 4. Update success/cancel URLs in server.js if needed
 

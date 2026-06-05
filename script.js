@@ -88,7 +88,7 @@ function generateCartEmailLink() {
         body += `%0D%0ATotal: $${getStoredCheckoutTotal()}%0D%0A`;
     }
     const subject = 'ComfortCare Cart Discount Request';
-    const mailto = `mailto:accentgv@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+    const mailto = `mailto:admin@comcare.store?subject=${encodeURIComponent(subject)}&body=${body}`;
     const links = document.querySelectorAll('#cartEmailLink');
     links.forEach(link => link.setAttribute('href', mailto));
 }
@@ -114,7 +114,7 @@ function patchCartEmailLinkUpdates() {
 document.addEventListener('DOMContentLoaded', patchCartEmailLinkUpdates);
 // ============================================
 // COMFORTCARE - JAVASCRIPT FUNCTIONALITY
-// Medical Equipment Rental Website
+// Mobility Equipment Rental Website
 // ============================================
 
 function getStoredCart() {
@@ -164,7 +164,7 @@ function getCheckoutSessionEndpoint() {
         return 'http://localhost:3000/create-checkout-session';
     }
 
-    // Use Vercel API for production
+    // Use hosted checkout API for production
     return 'https://comcare-de78.vercel.app/create-checkout-session';
 }
 
@@ -173,7 +173,7 @@ function getCheckoutHealthEndpoint() {
         return 'http://localhost:3000/checkout-health';
     }
 
-    // Use Vercel API for production
+    // Use hosted checkout API for production
     return 'https://comcare-de78.vercel.app/checkout-health';
 }
 
@@ -351,7 +351,7 @@ function updateCartEmailLink() {
 
     const cart = getStoredCart();
     if (cart.length === 0) {
-        link.href = 'mailto:accentgv@gmail.com?subject=ComfortCare%20Discount%20Request&body=My%20cart%20is%20currently%20empty.';
+        link.href = 'mailto:admin@comcare.store?subject=ComfortCare%20Discount%20Request&body=My%20cart%20is%20currently%20empty.';
         return;
     }
 
@@ -378,7 +378,7 @@ function updateCartEmailLink() {
         'Email:'
     ].join('\n');
 
-    link.href = `mailto:accentgv@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    link.href = `mailto:admin@comcare.store?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 // Mobile Navigation Toggle
@@ -994,11 +994,12 @@ function calculateRentalPrice() {
     if (!equipmentSelect || !rentalDaysInput) return;
     
     const equipmentPrices = {
-        'hospital-bed': 45,
         'wheelchair': 20,
         'walker': 10,
-        'monitor': 15,
-        'bathroom': 20,
+        'rollator': 18,
+        'knee-scooter': 18,
+        'cane': 8,
+        'transport-chair': 20,
         'mobility': 15
     };
     
@@ -1336,7 +1337,7 @@ function initCheckoutPage() {
             'Email:'
         ].join('\n');
 
-        checkoutEmailLink.href = `mailto:accentgv@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        checkoutEmailLink.href = `mailto:admin@comcare.store?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     }
 
     if (proceedToStripe) {

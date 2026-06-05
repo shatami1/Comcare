@@ -2,7 +2,7 @@
 
 ## ✅ What You Have
 
-A complete, professional 5-page medical equipment rental website including:
+A complete, professional 5-page mobility equipment rental website including:
 
 - ✅ **Home Page** - Hero section with features
 - ✅ **Services Page** - Complete equipment catalog
@@ -16,14 +16,14 @@ A complete, professional 5-page medical equipment rental website including:
 
 ## 🚀 Deploy in 3 Steps
 
-### Step 1: Go to Netlify.com
-Visit https://netlify.com and create a free account.
+### Step 1: Push to GitHub
+Push the ComfortCare folder to your GitHub repository.
 
-### Step 2: Drag & Drop
-Drag the entire ComfortCare folder onto Netlify's drop zone.
+### Step 2: Enable GitHub Pages
+Open the repository settings and enable GitHub Pages for the main branch.
 
 ### Step 3: Done!
-Your site is live with a free URL like: `https://comfortcare-abc123.netlify.app`
+Your site is live with a GitHub Pages URL and can use `comcare.store` as the custom domain.
 
 **Total Time: 2 minutes**
 
@@ -34,7 +34,7 @@ Your site is live with a free URL like: `https://comfortcare-abc123.netlify.app`
 **1. Update Business Information**
 Search & replace in all HTML files:
 - `678-362-2345` → Your phone number
-- `AccentGV@gmail.com` → Your email
+- `admin@comcare.store` → Your email
 - `Atlanta, Georgia` → Your location
 
 **2. Update Logo**
@@ -67,16 +67,16 @@ Your forms currently save data locally. To receive emails:
 1. Search for `<form class="contact-form"` in contact.html
 2. Change it to:
 ```html
-<form class="contact-form" action="https://formsubmit.co/AccentGV@gmail.com" method="POST">
+<form class="contact-form" action="https://formsubmit.co/admin@comcare.store" method="POST">
 ```
 3. Do the same for booking form in how-it-works.html
-4. Deploy to Netlify
+4. Push the update so GitHub Pages redeploys
 
-### Option B: Netlify Forms (Recommended)
-After you deploy to Netlify:
-1. Add `netlify` to both forms: `<form netlify>`
-2. Go to your Netlify dashboard
-3. Forms > See submissions in admin
+### Option B: Hosted form endpoint
+After you deploy to GitHub Pages:
+1. Keep the FormSubmit action or use your own form endpoint
+2. Test a submission
+3. Confirm messages arrive at admin@comcare.store
 
 ## 📱 Before Going Live: Checklist
 
@@ -91,8 +91,8 @@ After you deploy to Netlify:
 ## 🎯 Custom Domain (Optional)
 
 1. Buy a domain (GoDaddy, Namecheap, Google Domains)
-2. In Netlify: Domain Settings > Connect Domain
-3. Follow Netlify's nameserver instructions
+2. In GitHub Pages settings: add your custom domain
+3. Point your DNS records to GitHub Pages
 4. Takes 24-48 hours to activate
 
 ## 📊 Track Visitors (Optional)
@@ -105,10 +105,10 @@ Add Google Analytics in every page:
 ## 🔧 Need to Edit Later?
 
 ### Option 1: Online Editor
-Edit directly in VS Code, then re-deploy to Netlify
+Edit directly in VS Code, then push changes to GitHub Pages
 
-### Option 2: Netlify CMS
-For non-technical team members, set up Netlify CMS for content editing
+### Option 2: Git-based content workflow
+For non-technical team members, use GitHub edits or a lightweight CMS that publishes to GitHub
 
 ## 💬 FAQ
 
@@ -129,7 +129,7 @@ A: Create blog.html, style it with existing CSS, link from nav menu.
 
 ## 🎓 Resources
 
-- **Netlify Docs**: https://docs.netlify.com
+- **GitHub Pages Docs**: https://docs.github.com/pages
 - **HTML Guide**: https://developer.mozilla.org/en-US/docs/Web/HTML
 - **CSS Guide**: https://developer.mozilla.org/en-US/docs/Web/CSS
 - **Form Submission**: https://formsubmit.co
@@ -137,7 +137,7 @@ A: Create blog.html, style it with existing CSS, link from nav menu.
 ## 🎉 Ready to Launch?
 
 1. Customize your info (5 min)
-2. Deploy to Netlify (2 min)
+2. Publish with GitHub Pages (2 min)
 3. Set up form emails (5 min)
 4. Test everything (10 min)
 
@@ -148,7 +148,7 @@ A: Create blog.html, style it with existing CSS, link from nav menu.
 All files are well-commented and follow standard web practices. If you need help:
 1. Check the full README.md for detailed documentation
 2. Refer to browser console (F12) for any errors
-3. Check Netlify docs for deployment issues
+3. Check GitHub Pages docs for deployment issues
 
 ---
 
