@@ -1,241 +1,365 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comfort Care Property Manager Flyer</title>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Comfort Care LinkedIn Flyer</title>
     <style>
-        :root {
-            --primary: #0066cc;
-            --primary-dark: #0052a3;
-            --accent: #10b981;
-            --text: #1f2937;
-            --muted: #6b7280;
-            --bg: #f5f9ff;
-            --card: #ffffff;
-            --border: #dbe7f8;
-        }
+      :root {
+        --ink: #10201d;
+        --muted: #52645f;
+        --paper: #f6f8f4;
+        --white: #ffffff;
+        --teal: #0f766e;
+        --teal-dark: #073f3b;
+        --sage: #dcebe4;
+        --line: rgba(16, 32, 29, 0.14);
+        --gold: #d6a95f;
+      }
 
-        * {
-            box-sizing: border-box;
-        }
+      * {
+        box-sizing: border-box;
+      }
 
-        body {
-            margin: 0;
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            color: var(--text);
-            background: linear-gradient(180deg, #eef5ff 0%, #ffffff 100%);
-            line-height: 1.45;
-        }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: #dfe7e2;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--ink);
+      }
 
-        .flyer {
-            max-width: 980px;
-            margin: 28px auto;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        }
+      .post {
+        position: relative;
+        width: 1200px;
+        height: 1200px;
+        overflow: hidden;
+        background: var(--paper);
+      }
 
-        .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 65%, #0c7ea6 100%);
-            color: #ffffff;
-            padding: 34px 34px 26px;
-        }
+      .top {
+        display: grid;
+        grid-template-columns: 1.02fr 0.98fr;
+        min-height: 640px;
+      }
 
-        .brand {
-            font-size: 0.95rem;
-            font-weight: 700;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            opacity: 0.95;
-        }
+      .copy {
+        padding: 70px 58px 40px 72px;
+      }
 
-        h1 {
-            margin: 10px 0 10px;
-            font-size: 2rem;
-            line-height: 1.2;
-        }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 42px;
+      }
 
-        .hero p {
-            margin: 0;
-            max-width: 780px;
-            font-size: 1.03rem;
-            opacity: 0.98;
-        }
+      .brand img {
+        width: 62px;
+        height: 62px;
+        object-fit: contain;
+      }
 
-        .content {
-            padding: 28px 34px 22px;
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 22px;
-        }
+      .brand span {
+        display: block;
+        font-size: 25px;
+        font-weight: 850;
+      }
 
-        .panel {
-            background: #f9fcff;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 18px 18px 14px;
-        }
+      .brand small {
+        display: block;
+        margin-top: 1px;
+        color: var(--muted);
+        font-size: 15px;
+        font-weight: 750;
+      }
 
-        h2 {
-            margin: 0 0 10px;
-            font-size: 1.2rem;
-            color: var(--primary-dark);
-        }
+      .eyebrow {
+        display: inline-flex;
+        min-height: 38px;
+        align-items: center;
+        padding: 0 16px;
+        border: 1px solid rgba(15, 118, 110, 0.28);
+        border-radius: 8px;
+        background: var(--sage);
+        color: var(--teal-dark);
+        font-size: 17px;
+        font-weight: 850;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
 
-        p {
-            margin: 0 0 10px;
-            color: var(--muted);
-        }
+      h1 {
+        margin: 28px 0 0;
+        max-width: 590px;
+        font-size: 74px;
+        line-height: 0.94;
+        letter-spacing: 0;
+      }
 
-        ul {
-            margin: 0;
-            padding-left: 18px;
-        }
+      .subhead {
+        margin: 28px 0 0;
+        max-width: 548px;
+        color: var(--muted);
+        font-size: 28px;
+        line-height: 1.24;
+        font-weight: 650;
+      }
 
-        li {
-            margin-bottom: 8px;
-            color: #334155;
-        }
+      .photo {
+        position: relative;
+        min-height: 640px;
+        overflow: hidden;
+      }
 
-        .equipment-list li {
-            margin-bottom: 7px;
-            font-weight: 600;
-            color: #1e293b;
-        }
+      .photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
 
-        .pill-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 10px;
-        }
+      .photo::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(7, 63, 59, 0.18);
+      }
 
-        .pill {
-            background: #e8f2ff;
-            color: var(--primary-dark);
-            border: 1px solid #c7ddfb;
-            border-radius: 999px;
-            padding: 6px 11px;
-            font-size: 0.87rem;
-            font-weight: 600;
-        }
+      .badge {
+        position: absolute;
+        right: 42px;
+        bottom: 42px;
+        z-index: 2;
+        width: 230px;
+        padding: 20px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.94);
+        box-shadow: 0 22px 44px rgba(6, 31, 29, 0.18);
+      }
 
-        .cta {
-            margin: 6px 34px 30px;
-            background: #effaf5;
-            border: 1px solid #c7efde;
-            border-radius: 12px;
-            padding: 18px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 14px;
-            align-items: center;
-            justify-content: space-between;
-        }
+      .badge strong {
+        display: block;
+        color: var(--teal-dark);
+        font-size: 44px;
+        line-height: 1;
+      }
 
-        .cta strong {
-            color: #0f5132;
-        }
+      .badge span {
+        display: block;
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 18px;
+        font-weight: 750;
+        line-height: 1.18;
+      }
 
-        .contact {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            font-weight: 600;
-            color: #0f5132;
-        }
+      .middle {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 16px;
+        padding: 28px 72px 20px;
+      }
 
-        .footer-note {
-            margin: 0 34px 28px;
-            font-size: 0.9rem;
-            color: #64748b;
-        }
+      .proof {
+        min-height: 150px;
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--white);
+      }
 
-        @media (max-width: 900px) {
-            .content {
-                grid-template-columns: 1fr;
-            }
+      .proof strong {
+        display: block;
+        font-size: 25px;
+        line-height: 1.05;
+      }
 
-            h1 {
-                font-size: 1.65rem;
-            }
-        }
+      .proof span {
+        display: block;
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: 18px;
+        line-height: 1.28;
+        font-weight: 650;
+      }
 
-        @media print {
-            body {
-                background: #ffffff;
-            }
+      .equipment {
+        display: grid;
+        grid-template-columns: 1.02fr 0.98fr;
+        gap: 22px;
+        padding: 0 72px 22px;
+      }
 
-            .flyer {
-                margin: 0;
-                box-shadow: none;
-                border: none;
-                border-radius: 0;
-                max-width: 100%;
-            }
+      .equipment-panel {
+        display: grid;
+        grid-template-columns: 140px 1fr;
+        gap: 18px;
+        align-items: center;
+        min-height: 170px;
+        padding: 20px 22px;
+        border-radius: 8px;
+        background: var(--teal-dark);
+        color: white;
+      }
 
-            .hero,
-            .content,
-            .cta,
-            .footer-note {
-                break-inside: avoid;
-            }
-        }
+      .equipment-panel img {
+        width: 138px;
+        height: 120px;
+        object-fit: contain;
+        padding: 8px;
+        border-radius: 8px;
+        background: white;
+      }
+
+      .equipment-panel h2 {
+        margin: 0;
+        font-size: 31px;
+        line-height: 1.05;
+        letter-spacing: 0;
+      }
+
+      .equipment-panel p {
+        margin: 10px 0 0;
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 19px;
+        line-height: 1.22;
+      }
+
+      .list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .list span {
+        min-height: 56px;
+        display: flex;
+        align-items: center;
+        padding: 0 16px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--white);
+        font-size: 20px;
+        font-weight: 820;
+      }
+
+      .cta {
+        position: absolute;
+        left: 72px;
+        right: 72px;
+        bottom: 48px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 24px;
+        align-items: center;
+        padding: 24px 28px;
+        border-radius: 8px;
+        background: var(--teal);
+        color: white;
+      }
+
+      .cta strong {
+        display: block;
+        font-size: 29px;
+        line-height: 1.1;
+      }
+
+      .cta span {
+        display: block;
+        margin-top: 7px;
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 18px;
+        font-weight: 650;
+      }
+
+      .contact {
+        text-align: right;
+        font-weight: 850;
+        font-size: 22px;
+        line-height: 1.35;
+        white-space: nowrap;
+      }
+
+      .legal {
+        position: absolute;
+        left: 72px;
+        bottom: 18px;
+        color: rgba(16, 32, 29, 0.64);
+        font-size: 13px;
+        font-weight: 650;
+      }
     </style>
-</head>
-<body>
-    <main class="flyer">
-        <section class="hero">
-            <div class="brand">Comfort Care | Norcross, GA</div>
-            <h1>Rehab-Ready Apartment Units for Property Managers</h1>
-            <p>Stand out in your market with safe recovery-ready units for residents after surgery or injury while supporting aging-in-place living.</p>
-        </section>
-
-        <section class="content">
-            <article class="panel">
-                <h2>Why This Service Matters</h2>
-                <p>More apartment communities are looking for ways to differentiate. One of the fastest-growing resident needs is short-term recovery support at home.</p>
-                <p>Comfort Care partners with management teams to create low-cost, mobility-ready units that help improve occupancy and retention.</p>
-                <ul>
-                    <li>No capital investment required</li>
-                    <li>Turnkey setup and equipment coordination</li>
-                    <li>Designed for multifamily and senior-friendly housing</li>
-                </ul>
-                <div class="pill-row">
-                    <span class="pill">Boost Occupancy</span>
-                    <span class="pill">Increase Retention</span>
-                    <span class="pill">Resident Support</span>
-                    <span class="pill">Operationally Simple</span>
-                </div>
-            </article>
-
-            <article class="panel">
-                <h2>We Can Outfit 5 to 10 Units Per Property</h2>
-                <ul class="equipment-list">
-                    <li>Wheelchair</li>
-                    <li>Walker or Rollator</li>
-                    <li>Knee Scooter</li>
-                    <li>Cane</li>
-                    <li>Mobility Devices Matched to Resident Needs</li>
-                </ul>
-            </article>
-        </section>
-
-        <section class="cta">
+  </head>
+  <body>
+    <main class="post" aria-label="Comfort Care LinkedIn flyer for property managers">
+      <section class="top">
+        <div class="copy">
+          <div class="brand">
+            <img src="logo.svg" alt="">
             <div>
-                <strong>If you manage multifamily or senior-friendly housing, let us help you launch rehab-ready units quickly.</strong>
+              <span>Comfort Care</span>
+              <small>Mobility rentals | Norcross, GA</small>
             </div>
-            <div class="contact">
-                <div>Phone: 678-362-2345</div>
-                <div>Web: comcare.store</div>
-            </div>
-        </section>
+          </div>
+          <div class="eyebrow">For property managers</div>
+          <h1>Make units rehab-ready faster.</h1>
+          <p class="subhead">Help residents return home after surgery or injury with mobility equipment coordination built for multifamily communities.</p>
+        </div>
+        <div class="photo">
+          <img src="noname_8.jpg" alt="Accessible bathroom setup with wheelchair">
+          <div class="badge">
+            <strong>5-10</strong>
+            <span>units per property can be outfitted for resident recovery needs</span>
+          </div>
+        </div>
+      </section>
 
-        <p class="footer-note">Comfort Care provides mobility equipment rental services for communities across the Atlanta area.</p>
-        <p class="footer-note">Comfort Care is a trade name of MOON LIGHTING INC.</p>
+      <section class="middle" aria-label="Benefits">
+        <div class="proof">
+          <strong>No capital investment</strong>
+          <span>Rental-based support for short-term resident needs.</span>
+        </div>
+        <div class="proof">
+          <strong>Turnkey setup</strong>
+          <span>Equipment coordination, delivery, and support.</span>
+        </div>
+        <div class="proof">
+          <strong>Resident retention</strong>
+          <span>A practical amenity for aging-in-place communities.</span>
+        </div>
+      </section>
+
+      <section class="equipment" aria-label="Equipment covered">
+        <div class="equipment-panel">
+          <img src="images/Picture14.png" alt="Wheelchair">
+          <div>
+            <h2>Mobility equipment matched to the unit.</h2>
+            <p>Wheelchairs, rollators, walkers, knee scooters, canes, and related support items.</p>
+          </div>
+        </div>
+        <div class="list">
+          <span>Wheelchairs</span>
+          <span>Rollators</span>
+          <span>Knee scooters</span>
+          <span>Canes</span>
+        </div>
+      </section>
+
+      <section class="cta" aria-label="Contact Comfort Care">
+        <div>
+          <strong>Launch rehab-ready apartment units with Comfort Care.</strong>
+          <span>Serving property teams and residents across the Atlanta area.</span>
+        </div>
+        <div class="contact">
+          <div>678-362-2345</div>
+          <div>comcare.store</div>
+        </div>
+      </section>
+
+      <div class="legal">Comfort Care is a trade name of MOON LIGHTING INC.</div>
     </main>
-</body>
+  </body>
 </html>

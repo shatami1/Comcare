@@ -699,14 +699,14 @@ section {
 }
 
 .pricing-table td:first-child {
-    width: 296px;
-    min-width: 296px;
+    width: 148px;
+    min-width: 148px;
     text-align: center;
 }
 
 .pricing-thumb {
-    width: 264px;
-    height: 200px;
+    width: 132px;
+    height: 100px;
     object-fit: contain;
     padding: 6px;
     border-radius: 8px;
@@ -886,7 +886,7 @@ section {
 
 .cart-form textarea {
     resize: vertical;
-    min-height: 200px;
+    min-height: 100px;
 }
 
 .cart-empty {
@@ -2665,7 +2665,7 @@ section {
 
     .logo-image {
         width: 100px;
-        height: 200px;
+        height: 100px;
     }
 
     .logo-placeholder {
@@ -2940,9 +2940,9 @@ section {
     }
 
     .pricing-thumb {
-        width: min(100%, 360px);
-        height: 260px;
-        max-width: 360px;
+        width: min(100%, 180px);
+        height: 130px;
+        max-width: 180px;
         max-height: none;
         object-fit: contain;
         padding: 8px;
@@ -3124,9 +3124,9 @@ section {
     }
 
     .pricing-thumb {
-        width: min(100%, 340px);
-        height: 244px;
-        max-width: 340px;
+        width: min(100%, 170px);
+        height: 122px;
+        max-width: 170px;
         max-height: none;
     }
 

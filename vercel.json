@@ -1,7 +1,17 @@
 {
   "version": 2,
+  "cleanUrls": true,
+  "trailingSlash": false,
   "rewrites": [
     { "source": "/create-checkout-session", "destination": "/api/create-checkout-session" },
     { "source": "/checkout-health", "destination": "/api/checkout-health" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" }
+      ]
+    }
   ]
 }

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comfort Care Property Manager Flyer</title>
+    <style>
+        :root {
+            --primary: #0066cc;
+            --primary-dark: #0052a3;
+            --accent: #10b981;
+            --text: #1f2937;
+            --muted: #6b7280;
+            --bg: #f5f9ff;
+            --card: #ffffff;
+            --border: #dbe7f8;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            background: linear-gradient(180deg, #eef5ff 0%, #ffffff 100%);
+            line-height: 1.45;
+        }
+
+        .flyer {
+            max-width: 980px;
+            margin: 28px auto;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 65%, #0c7ea6 100%);
+            color: #ffffff;
+            padding: 34px 34px 26px;
+        }
+
+        .brand {
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            opacity: 0.95;
+        }
+
+        h1 {
+            margin: 10px 0 10px;
+            font-size: 2rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            margin: 0;
+            max-width: 780px;
+            font-size: 1.03rem;
+            opacity: 0.98;
+        }
+
+        .content {
+            padding: 28px 34px 22px;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 22px;
+        }
+
+        .panel {
+            background: #f9fcff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px 18px 14px;
+        }
+
+        h2 {
+            margin: 0 0 10px;
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+        }
+
+        p {
+            margin: 0 0 10px;
+            color: var(--muted);
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: #334155;
+        }
+
+        .equipment-list li {
+            margin-bottom: 7px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .pill {
+            background: #e8f2ff;
+            color: var(--primary-dark);
+            border: 1px solid #c7ddfb;
+            border-radius: 999px;
+            padding: 6px 11px;
+            font-size: 0.87rem;
+            font-weight: 600;
+        }
+
+        .cta {
+            margin: 6px 34px 30px;
+            background: #effaf5;
+            border: 1px solid #c7efde;
+            border-radius: 12px;
+            padding: 18px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .cta strong {
+            color: #0f5132;
+        }
+
+        .contact {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            font-weight: 600;
+            color: #0f5132;
+        }
+
+        .footer-note {
+            margin: 0 34px 28px;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        @media (max-width: 900px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 1.65rem;
+            }
+        }
+
+        @media print {
+            body {
+                background: #ffffff;
+            }
+
+            .flyer {
+                margin: 0;
+                box-shadow: none;
+                border: none;
+                border-radius: 0;
+                max-width: 100%;
+            }
+
+            .hero,
+            .content,
+            .cta,
+            .footer-note {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="flyer">
+        <section class="hero">
+            <div class="brand">Comfort Care | Norcross, GA</div>
+            <h1>Rehab-Ready Apartment Units for Property Managers</h1>
+            <p>Stand out in your market with safe recovery-ready units for residents after surgery or injury while supporting aging-in-place living.</p>
+        </section>
+
+        <section class="content">
+            <article class="panel">
+                <h2>Why This Service Matters</h2>
+                <p>More apartment communities are looking for ways to differentiate. One of the fastest-growing resident needs is short-term recovery support at home.</p>
+                <p>Comfort Care partners with management teams to create low-cost, mobility-ready units that help improve occupancy and retention.</p>
+                <ul>
+                    <li>No capital investment required</li>
+                    <li>Turnkey setup and equipment coordination</li>
+                    <li>Designed for multifamily and senior-friendly housing</li>
+                </ul>
+                <div class="pill-row">
+                    <span class="pill">Boost Occupancy</span>
+                    <span class="pill">Increase Retention</span>
+                    <span class="pill">Resident Support</span>
+                    <span class="pill">Operationally Simple</span>
+                </div>
+            </article>
+
+            <article class="panel">
+                <h2>We Can Outfit 5 to 10 Units Per Property</h2>
+                <ul class="equipment-list">
+                    <li>Wheelchair</li>
+                    <li>Walker or Rollator</li>
+                    <li>Knee Scooter</li>
+                    <li>Cane</li>
+                    <li>Mobility Devices Matched to Resident Needs</li>
+                </ul>
+            </article>
+        </section>
+
+        <section class="cta">
+            <div>
+                <strong>If you manage multifamily or senior-friendly housing, let us help you launch rehab-ready units quickly.</strong>
+            </div>
+            <div class="contact">
+                <div>Phone: 678-362-2345</div>
+                <div>Web: comcare.store</div>
+            </div>
+        </section>
+
+        <p class="footer-note">Comfort Care provides mobility equipment rental services for communities across the Atlanta area.</p>
+        <p class="footer-note">Comfort Care is a trade name of MOON LIGHTING INC.</p>
+    </main>
+</body>
+</html>
