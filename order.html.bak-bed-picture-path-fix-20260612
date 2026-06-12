@@ -132,7 +132,7 @@
                                 <td colspan="8">HOSPITAL BEDS</td>
                             </tr>
                             <tr class="pricing-item" data-name="Semi-Electric Hospital Bed" data-model="Standard" data-daily="13.75" data-weekly="103.13" data-monthly="375.00">
-                                <td><img src="images/BedPictureSemi.jpg" alt="Semi-Electric Hospital Bed" class="pricing-thumb"></td>
+                                <td><img src="images/bed-picture-semi.jpg" alt="Semi-Electric Hospital Bed" class="pricing-thumb"></td>
                                 <td>Semi-Electric Hospital Bed</td>
                                 <td>Standard</td>
                                 <td>N/A</td>
@@ -152,7 +152,7 @@
                                 </td>
                             </tr>
                             <tr class="pricing-item" data-name="Full Electric Hospital Bed" data-model="Premium" data-daily="17.42" data-weekly="130.63" data-monthly="475.00">
-                                <td><img src="images/BedPictureFull.jpg" alt="Full Electric Hospital Bed" class="pricing-thumb"></td>
+                                <td><img src="images/bed-picture-full.jpg" alt="Full Electric Hospital Bed" class="pricing-thumb"></td>
                                 <td>Full Electric Hospital Bed</td>
                                 <td>Premium</td>
                                 <td>N/A</td>
