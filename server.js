@@ -1,4 +1,4 @@
-const http = require('http');
+const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const { URLSearchParams } = require('url');
@@ -31,6 +31,7 @@ function loadDotEnv() {
 
 loadDotEnv();
 
+const app = express();
 const stripeKey = process.env.STRIPE_SECRET_KEY;
 const port = Number(process.env.PORT || 3000);
 
@@ -38,20 +39,18 @@ if (!stripeKey) {
     console.warn('STRIPE_SECRET_KEY is not set in environment or .env.');
 }
 
-const MIME_TYPES = {
-    '.html': 'text/html; charset=utf-8',
-    '.css': 'text/css; charset=utf-8',
-    '.js': 'application/javascript; charset=utf-8',
-    '.json': 'application/json; charset=utf-8',
-    '.svg': 'image/svg+xml',
-    '.png': 'image/png',
-    '.jpg': 'image/jpeg',
-    '.jpeg': 'image/jpeg',
-    '.gif': 'image/gif',
-    '.webp': 'image/webp',
-    '.ico': 'image/x-icon',
-    '.txt': 'text/plain; charset=utf-8'
-};
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    if (req.method === 'OPTIONS') {
+        return res.status(204).end();
+    }
+    return next();
+});
+
+app.use(express.json({ limit: '1mb' }));
+app.use(express.urlencoded({ extended: true, limit: '1mb' }));
 
 function sanitizeStripeErrorMessage(rawMessage) {
     const message = String(rawMessage || '').trim();
@@ -76,45 +75,6 @@ function sanitizeStripeErrorMessage(rawMessage) {
     }
 
     return message;
-}
-
-function sendJson(res, statusCode, payload) {
-    const body = JSON.stringify(payload);
-    res.writeHead(statusCode, {
-        'Content-Type': 'application/json; charset=utf-8',
-        'Content-Length': Buffer.byteLength(body),
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET,POST,OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-    });
-    res.end(body);
-}
-
-function collectRequestBody(req) {
-    return new Promise((resolve, reject) => {
-        let data = '';
-        req.on('data', (chunk) => {
-            data += chunk;
-            if (data.length > 1024 * 1024) {
-                reject(new Error('Request body too large.'));
-                req.destroy();
-            }
-        });
-        req.on('end', () => resolve(data));
-        req.on('error', reject);
-    });
-}
-
-function getSafeFilePath(urlPathname) {
-    const normalizedPath = decodeURIComponent(urlPathname.split('?')[0] || '/');
-    const relativePath = normalizedPath === '/' ? '/payment.html' : normalizedPath;
-    const resolved = path.normalize(path.join(process.cwd(), relativePath));
-
-    if (!resolved.startsWith(process.cwd())) {
-        return null;
-    }
-
-    return resolved;
 }
 
 async function createCheckoutSession(items, requestOrigin) {
@@ -215,64 +175,38 @@ async function getCheckoutHealthStatus() {
     }
 }
 
-const server = http.createServer(async (req, res) => {
+app.post('/create-checkout-session', async (req, res) => {
     try {
-        if (req.method === 'OPTIONS') {
-            res.writeHead(204, {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET,POST,OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-            });
-            res.end();
-            return;
-        }
-
-        if (req.method === 'POST' && req.url === '/create-checkout-session') {
-            const body = await collectRequestBody(req);
-            const parsed = body ? JSON.parse(body) : {};
-            const result = await createCheckoutSession(parsed.items, req.headers.origin);
-            sendJson(res, 200, result);
-            return;
-        }
-
-        if (req.method === 'GET' && (req.url === '/checkout-health' || req.url.startsWith('/checkout-health?'))) {
-            const status = await getCheckoutHealthStatus();
-            sendJson(res, status.status === 'ok' ? 200 : 503, status);
-            return;
-        }
-
-        const filePath = getSafeFilePath(req.url || '/');
-        if (!filePath) {
-            sendJson(res, 403, { error: 'Forbidden path.' });
-            return;
-        }
-
-        if (!fs.existsSync(filePath)) {
-            sendJson(res, 404, { error: 'Not found.' });
-            return;
-        }
-
-        const stat = fs.statSync(filePath);
-        if (stat.isDirectory()) {
-            sendJson(res, 404, { error: 'Not found.' });
-            return;
-        }
-
-        const ext = path.extname(filePath).toLowerCase();
-        const contentType = MIME_TYPES[ext] || 'application/octet-stream';
-        const content = fs.readFileSync(filePath);
-
-        res.writeHead(200, {
-            'Content-Type': contentType,
-            'Content-Length': content.length
-        });
-        res.end(content);
+        const result = await createCheckoutSession(req.body?.items, req.headers.origin);
+        return res.status(200).json(result);
     } catch (error) {
-        console.error('Server error:', error);
-        sendJson(res, 500, { error: error.message || 'Server error.' });
+        console.error('Checkout error:', error);
+        return res.status(500).json({ error: error.message || 'Server error.' });
     }
 });
 
-server.listen(port, () => {
-    console.log(`Checkout server running on http://localhost:${port}`);
+app.get('/checkout-health', async (req, res) => {
+    const status = await getCheckoutHealthStatus();
+    return res.status(status.status === 'ok' ? 200 : 503).json(status);
 });
+
+// Preserve the previous server behavior where the root URL loads payment.html.
+app.get('/', (req, res) => {
+    return res.sendFile(path.join(process.cwd(), 'payment.html'));
+});
+
+app.use(express.static(process.cwd(), {
+    extensions: ['html']
+}));
+
+app.use((req, res) => {
+    return res.status(404).json({ error: 'Not found.' });
+});
+
+if (require.main === module) {
+    app.listen(port, () => {
+        console.log(`Checkout server running on http://localhost:${port}`);
+    });
+}
+
+module.exports = app;
