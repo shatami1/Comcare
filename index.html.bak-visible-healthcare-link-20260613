@@ -75,13 +75,12 @@
                 <li><a href="pricing.html" id="navCart">Cart</a></li>
                 <li><a href="payment.html" id="navPayment">Payments</a></li>
                 <li><a href="insurance-form.html" id="navInsurance">Insurance</a></li>
-                <li><a href="atlanta-sandy-springs-healthcare-resources.html" id="navResources">Resources</a></li>
                 <li><a href="contact.html" id="navContact">Contact</a></li>
                         <script>
                         // Preserve agent parameter in navigation links
                         const agentParam = new URLSearchParams(window.location.search).get('agent');
                         if (agentParam) {
-                            ["navHome","navServices","navOrder","navCart","navPayment","navInsurance","navResources","navContact"].forEach(function(id) {
+                            ["navHome","navServices","navOrder","navCart","navPayment","navContact"].forEach(function(id) {
                                 const link = document.getElementById(id);
                                 if (link) {
                                     let href = link.getAttribute('href');
@@ -129,7 +128,6 @@
                 <div class="hero-buttons">
                     <a href="services.html" class="btn btn-primary">Browse Equipment</a>
                     <a href="tel:678-362-2345" class="btn btn-secondary">Call 678-362-2345</a>
-                    <a href="atlanta-sandy-springs-healthcare-resources.html" class="btn btn-secondary">Healthcare Resources</a>
                 </div>
             </div>
         </div>
