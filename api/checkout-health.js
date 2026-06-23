@@ -1,47 +1,30 @@
-// Vercel Serverless Function for Health Check
-function sanitizeStripeErrorMessage(message) {
-    if (!message) {
-        return 'An unknown error occurred.';
-    }
+// Vercel Serverless Function for Square Checkout Health Check
+const SQUARE_API_VERSION = '2026-05-20';
 
-    if (message.includes('Expired API Key')) {
-        return 'Stripe API key is expired. Update your environment variable and redeploy.';
-    }
-
-    if (message.includes('does not have the required permissions')) {
-        return 'Restricted API key detected. Use a full secret key (sk_live_... or sk_test_...) instead of restricted key (rk_...).';
-    }
-
-    if (message.toLowerCase().includes('invalid api key') || message.toLowerCase().includes('no such token')) {
-        return 'Invalid Stripe API key. Check your STRIPE_SECRET_KEY environment variable.';
-    }
-
-    return message;
+function sanitizeSquareErrorMessage(payload, fallback = 'Square checkout validation failed.') {
+    const error = Array.isArray(payload?.errors) && payload.errors.length ? payload.errors[0] : null;
+    const detail = error?.detail || error?.code || payload?.message;
+    return detail ? `Square checkout issue: ${detail}` : fallback;
 }
 
 async function getCheckoutHealthStatus() {
-    const stripeKey = process.env.STRIPE_SECRET_KEY;
+    const accessToken = process.env.SQUARE_ACCESS_TOKEN;
+    const locationId = process.env.SQUARE_LOCATION_ID;
 
-    if (!stripeKey) {
+    if (!accessToken || !locationId) {
         return {
             status: 'error',
-            message: 'STRIPE_SECRET_KEY environment variable is not set.'
-        };
-    }
-
-    if (stripeKey.startsWith('rk_')) {
-        return {
-            status: 'error',
-            message: 'Restricted API key detected. Use a full secret key (sk_live_... or sk_test_...) instead of restricted key (rk_...).'
+            message: 'Missing SQUARE_ACCESS_TOKEN or SQUARE_LOCATION_ID environment variable.'
         };
     }
 
     try {
-        const response = await fetch('https://api.stripe.com/v1/account', {
+        const response = await fetch(`https://connect.squareup.com/v2/locations/${encodeURIComponent(locationId)}`, {
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${stripeKey}`,
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Square-Version': SQUARE_API_VERSION,
+                'Authorization': `Bearer ${accessToken}`,
+                'Content-Type': 'application/json'
             }
         });
 
@@ -49,24 +32,23 @@ async function getCheckoutHealthStatus() {
         if (!response.ok) {
             return {
                 status: 'error',
-                message: sanitizeStripeErrorMessage(data?.error?.message || 'Stripe key validation failed.')
+                message: sanitizeSquareErrorMessage(data)
             };
         }
 
         return {
             status: 'ok',
-            message: 'Server connected and Stripe key is valid.'
+            message: 'Square checkout connected.'
         };
     } catch (error) {
         return {
             status: 'error',
-            message: 'Unable to validate Stripe connection.'
+            message: 'Unable to validate Square connection.'
         };
     }
 }
 
 module.exports = async (req, res) => {
-    // Enable CORS
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');

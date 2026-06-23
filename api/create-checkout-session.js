@@ -1,96 +1,125 @@
-// Vercel Serverless Function for Checkout Session Creation
-const { URLSearchParams } = require('url');
+// Vercel Serverless Function for Square Checkout Payment Link Creation
+const crypto = require('crypto');
 
-function sanitizeStripeErrorMessage(message) {
-    if (!message) {
-        return 'An unknown error occurred.';
+const SQUARE_API_VERSION = '2026-05-20';
+const SQUARE_CHECKOUT_URL = 'https://connect.squareup.com/v2/online-checkout/payment-links';
+
+function getBaseUrl(req, origin) {
+    const candidate = origin || req?.headers?.origin || req?.headers?.referer || 'https://comcare.store';
+    try {
+        const url = new URL(candidate);
+        return `${url.protocol}//${url.host}`;
+    } catch (error) {
+        return 'https://comcare.store';
     }
-
-    if (message.includes('Expired API Key')) {
-        return 'Stripe API key is expired. Update your environment variable and redeploy.';
-    }
-
-    if (message.includes('does not have the required permissions')) {
-        return 'Restricted API key detected. Use a full secret key (sk_live_... or sk_test_...) instead of restricted key (rk_...).';
-    }
-
-    if (message.toLowerCase().includes('invalid api key') || message.toLowerCase().includes('no such token')) {
-        return 'Invalid Stripe API key. Check your STRIPE_SECRET_KEY environment variable.';
-    }
-
-    if (message.includes('No such customer') || message.includes('No such payment_method')) {
-        return 'Payment setup error. Please try again.';
-    }
-
-    return message;
 }
 
-async function createCheckoutSession(items, origin) {
-    const stripeKey = process.env.STRIPE_SECRET_KEY;
+function sanitizeSquareErrorMessage(payload, fallback = 'Unable to create Square checkout link.') {
+    const error = Array.isArray(payload?.errors) && payload.errors.length ? payload.errors[0] : null;
+    const detail = error?.detail || error?.code || payload?.message;
+    if (!detail) {
+        return fallback;
+    }
+    return `Square checkout issue: ${detail}`;
+}
 
-    if (!stripeKey) {
+function getSquareConfig() {
+    return {
+        accessToken: process.env.SQUARE_ACCESS_TOKEN,
+        locationId: process.env.SQUARE_LOCATION_ID,
+        applicationId: process.env.SQUARE_APPLICATION_ID
+    };
+}
+
+function buildSquareLineItems(items) {
+    return (Array.isArray(items) ? items : [])
+        .map((item) => {
+            const quantity = Math.max(1, Number(item?.quantity || 1));
+            const unitAmount = Math.round(Number(item?.price || 0) * 100);
+            const name = String(item?.name || 'Mobility equipment rental').slice(0, 512);
+            const variation = [item?.model, item?.rate]
+                .filter(Boolean)
+                .join(' - ')
+                .slice(0, 255);
+
+            return {
+                name,
+                quantity: String(quantity),
+                base_price_money: {
+                    amount: unitAmount,
+                    currency: 'USD'
+                },
+                note: variation || undefined
+            };
+        })
+        .filter((item) => item.name && item.base_price_money.amount > 0 && Number(item.quantity) > 0);
+}
+
+async function createCheckoutSession(items, req) {
+    const { accessToken, locationId } = getSquareConfig();
+
+    if (!accessToken || !locationId) {
         return {
-            error: 'Server configuration error. Missing Stripe key.'
+            error: 'Server configuration error. Missing Square access token or location ID.'
         };
     }
 
-    if (!Array.isArray(items) || items.length === 0) {
+    const lineItems = buildSquareLineItems(items);
+    if (lineItems.length === 0) {
         return {
-            error: 'No items in cart.'
+            error: 'No valid items in cart.'
         };
     }
+
+    const baseUrl = getBaseUrl(req);
+    const body = {
+        idempotency_key: crypto.randomUUID(),
+        description: 'Comcare mobility equipment rental checkout',
+        order: {
+            location_id: locationId,
+            line_items: lineItems,
+            source: {
+                name: 'comcare.store'
+            }
+        },
+        checkout_options: {
+            redirect_url: `${baseUrl}/thank-you.html`,
+            ask_for_shipping_address: true,
+            merchant_support_email: 'admin@comcare.store'
+        },
+        payment_note: 'MOON LIGHTING INC. DBA Comfort Care rental order'
+    };
 
     try {
-        const params = new URLSearchParams();
-        params.append('mode', 'payment');
-        params.append('success_url', `${origin || 'https://comcare-nine.vercel.app'}/thank-you.html`);
-        params.append('cancel_url', `${origin || 'https://comcare-nine.vercel.app'}/payment.html`);
-
-        items.forEach((item, idx) => {
-            const priceInCents = Math.round(parseFloat(item.price || 0) * 100);
-            const quantity = parseInt(item.quantity || 1, 10);
-            const name = item.name || 'Item';
-            const description = [item.model, item.rate]
-                .filter(Boolean)
-                .join(' - ') || 'Medical Equipment Rental';
-
-            params.append(`line_items[${idx}][price_data][currency]`, 'usd');
-            params.append(`line_items[${idx}][price_data][product_data][name]`, name);
-            params.append(`line_items[${idx}][price_data][product_data][description]`, description);
-            params.append(`line_items[${idx}][price_data][unit_amount]`, priceInCents.toString());
-            params.append(`line_items[${idx}][quantity]`, quantity.toString());
-        });
-
-        const response = await fetch('https://api.stripe.com/v1/checkout/sessions', {
+        const response = await fetch(SQUARE_CHECKOUT_URL, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${stripeKey}`,
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Square-Version': SQUARE_API_VERSION,
+                'Authorization': `Bearer ${accessToken}`,
+                'Content-Type': 'application/json'
             },
-            body: params.toString()
+            body: JSON.stringify(body)
         });
 
         const data = await response.json();
-
         if (!response.ok) {
             return {
-                error: sanitizeStripeErrorMessage(data?.error?.message || 'Failed to create checkout session.')
+                error: sanitizeSquareErrorMessage(data)
             };
         }
 
         return {
-            sessionId: data.id,
-            url: data.url
+            sessionId: data?.payment_link?.id,
+            url: data?.payment_link?.url || data?.payment_link?.long_url
         };
     } catch (error) {
         return {
-            error: sanitizeStripeErrorMessage(error.message || 'Network error creating checkout session.')
+            error: error.message || 'Network error creating Square checkout link.'
         };
     }
 }
 
 module.exports = async (req, res) => {
-    // Enable CORS
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
@@ -106,10 +135,9 @@ module.exports = async (req, res) => {
     }
 
     try {
-        const { items } = req.body;
-        const origin = req.headers.origin || req.headers.referer;
-        const result = await createCheckoutSession(items, origin);
-        
+        const { items } = req.body || {};
+        const result = await createCheckoutSession(items, req);
+
         if (result.error) {
             res.status(400).json(result);
         } else {
