@@ -1,7 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const { URLSearchParams } = require('url');
+const crypto = require('crypto');
 
 function loadDotEnv() {
     const envPath = path.join(process.cwd(), '.env');
@@ -32,11 +32,13 @@ function loadDotEnv() {
 loadDotEnv();
 
 const app = express();
-const stripeKey = process.env.STRIPE_SECRET_KEY;
+const squareAccessToken = process.env.SQUARE_ACCESS_TOKEN;
+const squareLocationId = process.env.SQUARE_LOCATION_ID;
+const squareApiVersion = '2026-05-20';
 const port = Number(process.env.PORT || 3000);
 
-if (!stripeKey) {
-    console.warn('STRIPE_SECRET_KEY is not set in environment or .env.');
+if (!squareAccessToken || !squareLocationId) {
+    console.warn('SQUARE_ACCESS_TOKEN or SQUARE_LOCATION_ID is not set in environment or .env.');
 }
 
 app.use((req, res, next) => {
@@ -52,106 +54,114 @@ app.use((req, res, next) => {
 app.use(express.json({ limit: '1mb' }));
 app.use(express.urlencoded({ extended: true, limit: '1mb' }));
 
-function sanitizeStripeErrorMessage(rawMessage) {
-    const message = String(rawMessage || '').trim();
-    if (!message) {
-        return 'Unable to connect to Stripe. Check your server configuration.';
-    }
-
-    if (message.includes('does not have the required permissions')) {
-        return 'Restricted API key detected. Use a full secret key (sk_live_... or sk_test_...) instead of restricted key (rk_...).';
-    }
-
-    if (message.includes('Expired API Key provided')) {
-        return 'Stripe API key is expired. Update STRIPE_SECRET_KEY in .env and restart the server.';
-    }
-
-    if (message.includes('Invalid API Key provided')) {
-        return 'Stripe API key is invalid. Update STRIPE_SECRET_KEY in .env and restart the server.';
-    }
-
-    if (message.includes('No API key provided')) {
-        return 'Stripe API key is missing. Set STRIPE_SECRET_KEY in .env and restart the server.';
-    }
-
-    return message;
+function sanitizeSquareErrorMessage(payload, fallback = 'Square checkout validation failed.') {
+    const error = Array.isArray(payload?.errors) && payload.errors.length ? payload.errors[0] : null;
+    const detail = error?.detail || error?.code || payload?.message;
+    return detail ? `Square checkout issue: ${detail}` : fallback;
 }
 
-async function createCheckoutSession(items, requestOrigin) {
-    if (!stripeKey) {
-        throw new Error('Missing STRIPE_SECRET_KEY.');
-    }
+function buildSquareLineItems(items) {
+    return (Array.isArray(items) ? items : [])
+        .map((item) => {
+            const quantity = Math.max(1, Number(item?.quantity || 1));
+            const unitAmount = Math.round(Number(item?.price || 0) * 100);
+            const name = String(item?.name || 'Mobility equipment rental').slice(0, 512);
+            const note = [item?.model, item?.rate]
+                .filter(Boolean)
+                .join(' - ')
+                .slice(0, 255);
 
-    const validItems = (Array.isArray(items) ? items : []).filter((item) => {
-        const price = Number(item?.price || 0);
-        const quantity = Number(item?.quantity || 0);
-        return item?.name && price > 0 && quantity > 0;
-    });
+            return {
+                name,
+                quantity: String(quantity),
+                base_price_money: {
+                    amount: unitAmount,
+                    currency: 'USD'
+                },
+                note: note || undefined
+            };
+        })
+        .filter((item) => item.name && item.base_price_money.amount > 0 && Number(item.quantity) > 0);
+}
 
-    if (validItems.length === 0) {
-        throw new Error('Cart is empty.');
-    }
-
-    const baseUrl = requestOrigin && requestOrigin !== 'null'
+function getBaseUrl(requestOrigin) {
+    const candidate = requestOrigin && requestOrigin !== 'null'
         ? requestOrigin
         : `http://localhost:${port}`;
 
-    const form = new URLSearchParams();
-    form.append('mode', 'payment');
-    form.append('success_url', `${baseUrl}/thank-you.html?session_id={CHECKOUT_SESSION_ID}`);
-    form.append('cancel_url', `${baseUrl}/payment.html`);
-    form.append('billing_address_collection', 'required');
-    form.append('phone_number_collection[enabled]', 'true');
+    try {
+        const url = new URL(candidate);
+        return `${url.protocol}//${url.host}`;
+    } catch (error) {
+        return `http://localhost:${port}`;
+    }
+}
 
-    validItems.forEach((item, index) => {
-        const unitAmount = Math.round(Number(item.price) * 100);
-        const quantity = Number(item.quantity);
-        const description = `${item.model || ''} - ${item.rate || 'Daily'}`.trim();
+async function createCheckoutSession(items, requestOrigin) {
+    if (!squareAccessToken || !squareLocationId) {
+        throw new Error('Missing SQUARE_ACCESS_TOKEN or SQUARE_LOCATION_ID.');
+    }
 
-        form.append(`line_items[${index}][price_data][currency]`, 'usd');
-        form.append(`line_items[${index}][price_data][product_data][name]`, String(item.name));
-        if (description && description !== '-') {
-            form.append(`line_items[${index}][price_data][product_data][description]`, description);
-        }
-        form.append(`line_items[${index}][price_data][unit_amount]`, String(unitAmount));
-        form.append(`line_items[${index}][quantity]`, String(quantity));
-    });
+    const lineItems = buildSquareLineItems(items);
+    if (lineItems.length === 0) {
+        throw new Error('Cart is empty.');
+    }
 
-    const response = await fetch('https://api.stripe.com/v1/checkout/sessions', {
+    const baseUrl = getBaseUrl(requestOrigin);
+    const body = {
+        idempotency_key: crypto.randomUUID(),
+        description: 'Comcare mobility equipment rental checkout',
+        order: {
+            location_id: squareLocationId,
+            line_items: lineItems,
+            source: {
+                name: 'comcare.store'
+            }
+        },
+        checkout_options: {
+            redirect_url: `${baseUrl}/thank-you.html`,
+            ask_for_shipping_address: true,
+            merchant_support_email: 'admin@comcare.store'
+        },
+        payment_note: 'MOON LIGHTING INC. DBA Comfort Care rental order'
+    };
+
+    const response = await fetch('https://connect.squareup.com/v2/online-checkout/payment-links', {
         method: 'POST',
         headers: {
-            Authorization: `Bearer ${stripeKey}`,
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Square-Version': squareApiVersion,
+            Authorization: `Bearer ${squareAccessToken}`,
+            'Content-Type': 'application/json'
         },
-        body: form.toString()
+        body: JSON.stringify(body)
     });
 
     const data = await response.json();
-
     if (!response.ok) {
-        const details = sanitizeStripeErrorMessage(data?.error?.message || 'Unable to create checkout session.');
-        throw new Error(details);
+        throw new Error(sanitizeSquareErrorMessage(data, 'Unable to create Square checkout link.'));
     }
 
     return {
-        sessionId: data.id,
-        url: data.url
+        sessionId: data?.payment_link?.id,
+        url: data?.payment_link?.url || data?.payment_link?.long_url
     };
 }
 
 async function getCheckoutHealthStatus() {
-    if (!stripeKey) {
+    if (!squareAccessToken || !squareLocationId) {
         return {
             status: 'error',
-            message: 'Missing STRIPE_SECRET_KEY.'
+            message: 'Missing SQUARE_ACCESS_TOKEN or SQUARE_LOCATION_ID.'
         };
     }
 
     try {
-        const response = await fetch('https://api.stripe.com/v1/account', {
+        const response = await fetch(`https://connect.squareup.com/v2/locations/${encodeURIComponent(squareLocationId)}`, {
             method: 'GET',
             headers: {
-                Authorization: `Bearer ${stripeKey}`
+                'Square-Version': squareApiVersion,
+                Authorization: `Bearer ${squareAccessToken}`,
+                'Content-Type': 'application/json'
             }
         });
 
@@ -159,22 +169,21 @@ async function getCheckoutHealthStatus() {
         if (!response.ok) {
             return {
                 status: 'error',
-                message: sanitizeStripeErrorMessage(data?.error?.message || 'Stripe key validation failed.')
+                message: sanitizeSquareErrorMessage(data)
             };
         }
 
         return {
             status: 'ok',
-            message: 'Server connected and Stripe key is valid.'
+            message: 'Square checkout connected.'
         };
     } catch (error) {
         return {
             status: 'error',
-            message: 'Unable to validate Stripe connection.'
+            message: 'Unable to validate Square connection.'
         };
     }
 }
-
 app.post('/create-checkout-session', async (req, res) => {
     try {
         const result = await createCheckoutSession(req.body?.items, req.headers.origin);

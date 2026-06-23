@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Email Cart for Discount
 function generateCartEmailLink() {
     const cartItems = getStoredCart();
-    let body = 'Discount Request for ComfortCare Cart:%0D%0A%0D%0A';
+    let body = 'Discount Request for MOON LIGHTING INC. DBA Comfort Care Cart:%0D%0A%0D%0A';
     if (!cartItems.length) {
         body += 'No items in cart.';
     } else {
@@ -87,7 +87,7 @@ function generateCartEmailLink() {
         });
         body += `%0D%0ATotal: $${getStoredCheckoutTotal()}%0D%0A`;
     }
-    const subject = 'ComfortCare Cart Discount Request';
+    const subject = 'MOON LIGHTING INC. DBA Comfort Care Cart Discount Request';
     const mailto = `mailto:admin@comcare.store?subject=${encodeURIComponent(subject)}&body=${body}`;
     const links = document.querySelectorAll('#cartEmailLink');
     links.forEach(link => link.setAttribute('href', mailto));
@@ -244,12 +244,12 @@ async function updateCheckoutStatusBadge() {
 
         const payload = await response.json();
         if (payload?.status === 'ok') {
-            setCheckoutStatusBadge('Checkout connected: server and Stripe key are valid.', 'success');
+            setCheckoutStatusBadge('Checkout connected: Square is ready.', 'success');
             setCheckoutStatusRetryState(false);
             return;
         }
 
-        const reason = payload?.message || 'Stripe configuration issue.';
+        const reason = payload?.message || 'Square configuration issue.';
         setCheckoutStatusBadge(`Checkout issue: ${reason}`, 'error');
         setCheckoutStatusRetryState(false);
     } catch (error) {
@@ -319,9 +319,14 @@ function bindDynamicStripeCheckout(button) {
 
             window.location.href = data.url;
         } catch (error) {
-            console.error('Stripe checkout failed:', error);
+            console.error('Square checkout failed:', error);
             const message = error?.message || 'Unable to start secure checkout.';
-            alert(`Unable to start secure checkout: ${message}`);
+            const liveChargeBlocked = message.toLowerCase().includes('square checkout is not active') || message.toLowerCase().includes('cannot currently make live charges');
+            if (liveChargeBlocked) {
+                alert('Payment is not ready yet. Please email admin@comcare.store or call 678-362-2345 to complete this order while Square checkout is being configured.');
+            } else {
+                alert(`Unable to start secure checkout: ${message}`);
+            }
             button.disabled = false;
             button.textContent = originalText;
         }
@@ -351,7 +356,7 @@ function updateCartEmailLink() {
 
     const cart = getStoredCart();
     if (cart.length === 0) {
-        link.href = 'mailto:admin@comcare.store?subject=ComfortCare%20Discount%20Request&body=My%20cart%20is%20currently%20empty.';
+        link.href = 'mailto:admin@comcare.store?subject=MOON%20LIGHTING%20INC.%20DBA%20Comfort%20Care%20Discount%20Request&body=My%20cart%20is%20currently%20empty.';
         return;
     }
 
@@ -364,9 +369,9 @@ function updateCartEmailLink() {
         return `${index + 1}. ${item.name} ${item.model} | ${item.rateType} | Qty ${quantity} | $${itemTotal.toFixed(2)}`;
     });
 
-    const subject = 'ComfortCare Discount Request';
+    const subject = 'MOON LIGHTING INC. DBA Comfort Care Discount Request';
     const body = [
-        'Hello ComfortCare,',
+        'Hello MOON LIGHTING INC. DBA Comfort Care,',
         '',
         'Please review my cart for available discounts:',
         ...lines,
@@ -632,7 +637,7 @@ function initPricingCart() {
 
             saveCart(cart);
             renderCart();
-            // Update Stripe button if present
+            // Update Square button if present
             if (typeof updateStripeButton === 'function') {
                 updateStripeButton();
             }
@@ -744,7 +749,7 @@ function initPricingCart() {
                 cart.splice(index, 1);
                 saveCart(cart);
                 renderCart();
-                // Update Stripe button if present
+                // Update Square button if present
                 if (typeof updateStripeButton === 'function') {
                     updateStripeButton();
                 }
@@ -1076,7 +1081,7 @@ function initFloatingCart() {
                 localStorage.setItem('pricingCartItems', JSON.stringify(cart));
                 updateFloatingCart();
                 updateHeaderCart();
-                // Update Stripe button if present
+                // Update Square button if present
                 if (typeof updateStripeButton === 'function') {
                     updateStripeButton();
                 }
@@ -1301,7 +1306,7 @@ function initCheckoutPage() {
             localStorage.setItem('pricingCartItems', JSON.stringify(cart));
             initCheckoutPage(); // Re-render
             updateHeaderCart();
-            // Update Stripe button if present
+            // Update Square button if present
             if (typeof updateStripeButton === 'function') {
                 updateStripeButton();
             }
@@ -1324,9 +1329,9 @@ function initCheckoutPage() {
             return `${index + 1}. ${item.name} ${item.model} | ${item.rateType} | Qty ${quantity} | $${itemTotal.toFixed(2)}`;
         });
 
-        const subject = 'ComfortCare Discount Request';
+        const subject = 'MOON LIGHTING INC. DBA Comfort Care Discount Request';
         const body = [
-            'Hello ComfortCare,',
+            'Hello MOON LIGHTING INC. DBA Comfort Care,',
             '',
             'Please review my cart for available discounts:',
             ...lines,
@@ -1438,7 +1443,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (document.getElementById('floatingStripePanel')) {
         initFloatingStripePanel();
     }
-    // Update Stripe button based on cart
+    // Update Square button based on cart
     if (document.getElementById('stripeCheckoutBtn')) {
         updateStripeButton();
         // Update when cart changes
