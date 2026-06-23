@@ -55,7 +55,7 @@ Based on the current workspace notes, the existing stack is:
 - Comfort Care should appear everywhere the customer interacts with the business.
 - MOON LIGHTING INC should appear in legal, payment, invoicing, tax, and policy contexts where the legal entity must be disclosed.
 - Public-facing pages should use a consistent footer or policy reference such as:
-  - "Comfort Care is a trade name of MOON LIGHTING INC."
+  - "Comfort Care operates as a DBA/trade name of MOON LIGHTING INC."
 
 ### Product Scope Control
 - Website messaging, product catalog, and forms should be narrowed to mobility equipment only.

@@ -253,7 +253,7 @@ async function updateCheckoutStatusBadge() {
         setCheckoutStatusBadge(`Checkout issue: ${reason}`, 'error');
         setCheckoutStatusRetryState(false);
     } catch (error) {
-        setCheckoutStatusBadge('Checkout offline: start the local server to enable payment.', 'error');
+        setCheckoutStatusBadge('Checkout status is temporarily unavailable. You can still try Square checkout, or email admin@comcare.store for help.', 'info');
         setCheckoutStatusRetryState(false);
     }
 }

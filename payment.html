@@ -219,6 +219,15 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+        <script id="square-checkout-status-fallback">
+      window.setTimeout(function () {
+        var badge = document.getElementById('checkoutStatusBadge');
+        if (badge && badge.textContent.indexOf('local server') !== -1) {
+          badge.textContent = 'Checkout status is temporarily unavailable. You can still try Square checkout, or email admin@comcare.store for help.';
+          badge.classList.remove('checkout-status-error');
+          badge.classList.add('checkout-status-info');
+        }
+      }, 800);
+    </script>    <script src="script.js?v=square-checkout-20260623-2"></script>
 </body>
 </html>
