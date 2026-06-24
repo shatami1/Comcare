@@ -1,0 +1,149 @@
+// Vercel Serverless Function for Square Checkout Payment Link Creation
+const crypto = require('crypto');
+
+const SQUARE_API_VERSION = '2026-05-20';
+const SQUARE_CHECKOUT_URL = 'https://connect.squareup.com/v2/online-checkout/payment-links';
+
+function getBaseUrl(req, origin) {
+    const candidate = origin || req?.headers?.origin || req?.headers?.referer || 'https://comcare.store';
+    try {
+        const url = new URL(candidate);
+        return `${url.protocol}//${url.host}`;
+    } catch (error) {
+        return 'https://comcare.store';
+    }
+}
+
+function sanitizeSquareErrorMessage(payload, fallback = 'Unable to create Square checkout link.') {
+    const error = Array.isArray(payload?.errors) && payload.errors.length ? payload.errors[0] : null;
+    const detail = error?.detail || error?.code || payload?.message;
+    if (!detail) {
+        return fallback;
+    }
+    return `Square checkout issue: ${detail}`;
+}
+
+function getSquareConfig() {
+    return {
+        accessToken: process.env.SQUARE_ACCESS_TOKEN,
+        locationId: process.env.SQUARE_LOCATION_ID,
+        applicationId: process.env.SQUARE_APPLICATION_ID
+    };
+}
+
+function buildSquareLineItems(items) {
+    return (Array.isArray(items) ? items : [])
+        .map((item) => {
+            const quantity = Math.max(1, Number(item?.quantity || 1));
+            const unitAmount = Math.round(Number(item?.price || 0) * 100);
+            const name = String(item?.name || 'Mobility equipment rental').slice(0, 512);
+            const variation = [item?.model, item?.rate]
+                .filter(Boolean)
+                .join(' - ')
+                .slice(0, 255);
+
+            return {
+                name,
+                quantity: String(quantity),
+                base_price_money: {
+                    amount: unitAmount,
+                    currency: 'USD'
+                },
+                note: variation || undefined
+            };
+        })
+        .filter((item) => item.name && item.base_price_money.amount > 0 && Number(item.quantity) > 0);
+}
+
+async function createCheckoutSession(items, req) {
+    const { accessToken, locationId } = getSquareConfig();
+
+    if (!accessToken || !locationId) {
+        return {
+            error: 'Server configuration error. Missing Square access token or location ID.'
+        };
+    }
+
+    const lineItems = buildSquareLineItems(items);
+    if (lineItems.length === 0) {
+        return {
+            error: 'No valid items in cart.'
+        };
+    }
+
+    const baseUrl = getBaseUrl(req);
+    const body = {
+        idempotency_key: crypto.randomUUID(),
+        description: 'Comcare mobility equipment rental checkout',
+        order: {
+            location_id: locationId,
+            line_items: lineItems,
+            source: {
+                name: 'comcare.store'
+            }
+        },
+        checkout_options: {
+            redirect_url: `${baseUrl}/thank-you.html`,
+            ask_for_shipping_address: true,
+            merchant_support_email: 'admin@comcare.store'
+        },
+        payment_note: 'MOON LIGHTING INC. DBA Comfort Care rental order'
+    };
+
+    try {
+        const response = await fetch(SQUARE_CHECKOUT_URL, {
+            method: 'POST',
+            headers: {
+                'Square-Version': SQUARE_API_VERSION,
+                'Authorization': `Bearer ${accessToken}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        });
+
+        const data = await response.json();
+        if (!response.ok) {
+            return {
+                error: sanitizeSquareErrorMessage(data)
+            };
+        }
+
+        return {
+            sessionId: data?.payment_link?.id,
+            url: data?.payment_link?.url || data?.payment_link?.long_url
+        };
+    } catch (error) {
+        return {
+            error: error.message || 'Network error creating Square checkout link.'
+        };
+    }
+}
+
+module.exports = async (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+    if (req.method === 'OPTIONS') {
+        res.status(204).end();
+        return;
+    }
+
+    if (req.method !== 'POST') {
+        res.status(405).json({ error: 'Method not allowed' });
+        return;
+    }
+
+    try {
+        const { items } = req.body || {};
+        const result = await createCheckoutSession(items, req);
+
+        if (result.error) {
+            res.status(400).json(result);
+        } else {
+            res.status(200).json(result);
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};

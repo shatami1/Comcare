@@ -33,12 +33,14 @@
                 <li><a href="pricing.html" id="navCart">Cart</a></li>
                 <li><a href="payment.html" id="navPayment">Payments</a></li>
                 <li><a href="insurance-form.html" id="navInsurance">Insurance</a></li>
+                <li><a href="recovery-professionals.html" id="navRecovery">Recovery Network</a></li>
+<li><a href="rehab-tech-intake.html" id="navRehabTechs">Rehab Techs</a></li>
                 <li><a href="contact.html" class="active" id="navContact">Contact</a></li>
                         <script>
                         // Preserve agent parameter in navigation links
                         const agentParam = new URLSearchParams(window.location.search).get('agent');
                         if (agentParam) {
-                            ["navHome","navServices","navOrder","navCart","navPayment","navContact"].forEach(function(id) {
+                            ["navHome","navServices","navOrder","navCart","navPayment","navRecovery","navRehabTechs","navContact"].forEach(function(id) {
                                 const link = document.getElementById(id);
                                 if (link) {
                                     let href = link.getAttribute('href');
@@ -331,7 +333,11 @@
                     <ul>
                         <li><a href="services.html">Services</a></li>
                         <li><a href="pricing.html">Pricing</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+<li><a href="rehab-tech-intake.html">Rehab Techs</a></li>
+                        <li><a href="recovery-professionals.html">Recovery Network</a></li>
+                        <li><a href="join-professionals.html">Join Network</a></li>
+                        <li><a href="partners.html">Partners</a></li>
+                <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
             </div>

@@ -76,12 +76,14 @@
                 <li><a href="payment.html" id="navPayment">Payments</a></li>
                 <li><a href="insurance-form.html" id="navInsurance">Insurance</a></li>
                 <li><a href="atlanta-sandy-springs-healthcare-resources.html" id="navResources">Resources</a></li>
+                <li><a href="recovery-professionals.html" id="navRecovery">Recovery Network</a></li>
+                <li><a href="rehab-tech-intake.html" id="navRehabTechs">Rehab Techs</a></li>
                 <li><a href="contact.html" id="navContact">Contact</a></li>
                         <script>
                         // Preserve agent parameter in navigation links
                         const agentParam = new URLSearchParams(window.location.search).get('agent');
                         if (agentParam) {
-                            ["navHome","navServices","navOrder","navCart","navPayment","navInsurance","navResources","navContact"].forEach(function(id) {
+                            ["navHome","navServices","navOrder","navCart","navPayment","navInsurance","navResources","navRecovery","navRehabTechs","navContact"].forEach(function(id) {
                                 const link = document.getElementById(id);
                                 if (link) {
                                     let href = link.getAttribute('href');
@@ -280,6 +282,24 @@
             </div>
         </div>
     </section>
+    <!-- Recovery Support Network Section -->
+    <section class="services recovery-network-home">
+        <div class="container">
+            <h2>Recovery Support Network</h2>
+            <p>Need more than equipment?</p>
+            <p>Connect with trusted Atlanta recovery professionals who can help after surgery, injury, or rehabilitation.</p>
+            <div class="service-grid">
+                <div class="service-item"><h3>Rehab Technicians</h3><p>Find local support for mobility routines, equipment setup, and recovery coordination.</p></div>
+                <div class="service-item"><h3>PT &amp; OT Assistants</h3><p>Connect with recovery professionals who support therapy plans and home independence.</p></div>
+                <div class="service-item"><h3>Home Recovery Support</h3><p>Locate home health aides, caregivers, and recovery coaches serving Atlanta-area patients.</p></div>
+                <div class="service-item"><h3>Caregiver Resources</h3><p>Build a stronger recovery plan with local partner categories and support options.</p></div>
+            </div>
+            <div style="text-align:center;margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+                <a href="recovery-professionals.html" class="btn btn-primary">Find Recovery Support</a>
+                <a href="join-professionals.html" class="btn btn-secondary">Join Our Network</a>
+            </div>
+        </div>
+    </section>
 
     <!-- CTA Section -->
     <section class="cta">
@@ -313,7 +333,11 @@
                         <li><a href="services.html">Services</a></li>
                         <li><a href="pricing.html">Pricing</a></li>
                         <li><a href="atlanta-sandy-springs-healthcare-resources.html">Healthcare Resources</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="rehab-tech-intake.html">Rehab Techs</a></li>
+                        <li><a href="recovery-professionals.html">Recovery Network</a></li>
+                        <li><a href="join-professionals.html">Join Network</a></li>
+                        <li><a href="partners.html">Partners</a></li>
+                <li><a href="contact.html">Contact</a></li>
                         <li><a href="sitemap.xml">Sitemap</a></li>
                     </ul>
                 </div>

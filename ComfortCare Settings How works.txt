@@ -1,0 +1,30 @@
+ComfortCare
+       |
+       v
+comcare.store (Squarespace DNS)
+       |
+       v
+GitHub Pages Hosting
+local C:\Users\ushsa\Downloads\Comcare-seo-atlanta-growth-plan\Comcare-seo-atlanta-growth-plan
+       |
+       +-->Coding Website (AI/Copilot-built Codex)
+
+upload https://github.com/shatami1/Comcare
+       |
+       +--> Form Submissions --> Formspree --> Your Email
+       |
+       +--> Payments -->https://vercel.com/saeed-hatamis-projects
+SQUARE_LOCATION_ID= L6PJ4THRD8GFE
+
+Production Application ID= sq0idp-pK99rZb0b6rfPlOZN9fbBg
+
+
+Production Access token= EAAAlxFoaJonzWL8SGfymPJztRqx8QPN4LhM1C_tQwbIwCVUfi5o4BYpK9TSk5g9
+
+https://comcare-de78.vercel.app/checkout-health
+
+{"status":"ok","message":"Square checkout connected."}
+       |
+       +-->
+
+

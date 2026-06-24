@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recovery Network Admin - Comfort Care</title>
+    <meta name="robots" content="noindex,nofollow">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .admin-shell { max-width: 1180px; margin: 0 auto; padding: 32px 20px; }
+        .admin-card, .admin-record { background:#fff; border:1px solid var(--border-color); border-radius:10px; padding:20px; box-shadow:var(--shadow-sm); }
+        .admin-toolbar { display:flex; flex-wrap:wrap; gap:12px; align-items:end; margin-bottom:18px; }
+        .admin-toolbar input, .admin-toolbar select { padding:.75rem; border:2px solid var(--border-color); border-radius:6px; min-width:210px; }
+        .admin-list { display:grid; gap:14px; }
+        .admin-record h2 { margin:0 0 6px; color:var(--primary-blue); }
+        .admin-meta { display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap:8px 16px; margin:12px 0; }
+        .admin-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
+        .status-pill { display:inline-block; border-radius:999px; padding:4px 10px; background:#eef7ff; border:1px solid #cde6fb; font-weight:700; }
+        .danger-btn { background:#b42318; color:#fff; border:none; }
+        .admin-message { margin:14px 0; font-weight:700; color:var(--primary-blue); }
+        @media (max-width:850px){ .admin-meta { grid-template-columns:1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar"><div class="container"><div class="nav-middle"><div class="nav-identity"><div class="nav-brand"><img src="logo.svg" alt="Comfort Care Logo" class="logo-image"></div><div class="nav-title">Comfort Care</div></div><ul class="nav-menu"><li><a href="index.html">Home</a></li><li><a href="recovery-professionals.html">Recovery Network</a></li><li><a href="join-professionals.html">Join Network</a></li></ul></div></div></nav>
+    <main class="admin-shell">
+        <section class="admin-card">
+            <h1>Recovery Network Admin</h1>
+            <p>Approve real professionals, reject incomplete listings, or delete fake accounts from the live database.</p>
+            <div class="admin-toolbar">
+                <label>Admin Token<br><input id="adminToken" type="password" placeholder="RECOVERY_ADMIN_TOKEN"></label>
+                <label>Status<br><select id="statusFilter"><option value="">All</option><option>pending</option><option>approved</option><option>rejected</option></select></label>
+                <label>Search<br><input id="searchBox" placeholder="name, email, specialty, area"></label>
+                <button class="btn btn-primary" id="loadBtn" type="button">Load Records</button>
+                <button class="btn btn-secondary" id="forgetBtn" type="button">Forget Token</button>
+            </div>
+            <div id="message" class="admin-message"></div>
+        </section>
+        <section id="records" class="admin-list" style="margin-top:18px;"></section>
+    </main>
+    <script>
+      (function () {
+        var tokenInput = document.getElementById('adminToken');
+        var statusFilter = document.getElementById('statusFilter');
+        var searchBox = document.getElementById('searchBox');
+        var message = document.getElementById('message');
+        var recordsEl = document.getElementById('records');
+        var records = [];
+        tokenInput.value = localStorage.getItem('comcareRecoveryAdminToken') || '';
+        function token() { return tokenInput.value.trim(); }
+        function esc(value) { return String(value || '').replace(/[&<>"']/g, function (m) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; }); }
+        function setMessage(text) { message.textContent = text || ''; }
+        function headers() { return { 'Content-Type':'application/json', 'Authorization':'Bearer ' + token() }; }
+        function filtered() {
+          var status = statusFilter.value;
+          var q = searchBox.value.trim().toLowerCase();
+          return records.filter(function (item) {
+            var text = [item.name,item.email,item.phone,item.specialty,item.service_area,item.bio,item.status].join(' ').toLowerCase();
+            return (!status || item.status === status) && (!q || text.indexOf(q) !== -1);
+          });
+        }
+        function render() {
+          var list = filtered();
+          if (!list.length) { recordsEl.innerHTML = '<div class="admin-card"><h2>No records found</h2><p>Load records or change filters.</p></div>'; return; }
+          recordsEl.innerHTML = list.map(function (item) {
+            return '<article class="admin-record"><h2>' + esc(item.name) + '</h2><p><span class="status-pill">' + esc(item.status) + '</span> ' + (item.featured ? '<span class="status-pill">Featured</span> ' : '') + (item.verified ? '<span class="status-pill">Verified</span>' : '') + '</p><div class="admin-meta"><span><strong>Specialty:</strong> ' + esc(item.specialty) + '</span><span><strong>Email:</strong> ' + esc(item.email) + '</span><span><strong>Phone:</strong> ' + esc(item.phone) + '</span><span><strong>Experience:</strong> ' + esc(item.years_experience) + '</span><span><strong>Area:</strong> ' + esc(item.service_area) + '</span><span><strong>Created:</strong> ' + esc((item.created_at || '').slice(0,10)) + '</span></div><p>' + esc(item.bio) + '</p><p><strong>Certifications:</strong> ' + esc(item.certifications) + '</p><div class="admin-actions"><button class="btn btn-primary btn-compact" data-action="approved" data-id="' + item.id + '">Approve</button><button class="btn btn-secondary btn-compact" data-action="rejected" data-id="' + item.id + '">Reject</button><button class="btn btn-secondary btn-compact" data-action="feature" data-id="' + item.id + '">' + (item.featured ? 'Unfeature' : 'Feature') + '</button><button class="btn btn-secondary btn-compact" data-action="verify" data-id="' + item.id + '">' + (item.verified ? 'Unverify' : 'Verify') + '</button><button class="btn btn-secondary btn-compact danger-btn" data-action="delete" data-id="' + item.id + '">Delete Fake</button></div></article>';
+          }).join('');
+        }
+        function load() {
+          if (!token()) { setMessage('Enter RECOVERY_ADMIN_TOKEN first.'); return; }
+          localStorage.setItem('comcareRecoveryAdminToken', token());
+          setMessage('Loading database records...');
+          fetch('/api/recovery-professionals', { headers: headers() }).then(function (response) { return response.json().then(function (data) { return { ok: response.ok, data: data }; }); }).then(function (result) {
+            if (!result.ok || result.data.status !== 'ok') throw new Error(result.data.message || 'Could not load records.');
+            records = result.data.professionals || [];
+            setMessage('Loaded ' + records.length + ' records.');
+            render();
+          }).catch(function (error) { setMessage(error.message || 'Could not load records.'); });
+        }
+        function patch(id, body) {
+          body.id = id;
+          return fetch('/api/recovery-professionals', { method:'PATCH', headers:headers(), body:JSON.stringify(body) }).then(function (response) { return response.json().then(function (data) { if (!response.ok) throw new Error(data.message || 'Update failed.'); return data; }); });
+        }
+        function remove(id) {
+          return fetch('/api/recovery-professionals?id=' + encodeURIComponent(id), { method:'DELETE', headers:headers() }).then(function (response) { return response.json().then(function (data) { if (!response.ok) throw new Error(data.message || 'Delete failed.'); return data; }); });
+        }
+        recordsEl.addEventListener('click', function (event) {
+          var id = event.target.dataset.id;
+          var action = event.target.dataset.action;
+          if (!id || !action) return;
+          var item = records.find(function (row) { return row.id === id; });
+          if (!item) return;
+          var work;
+          if (action === 'delete') { if (!confirm('Delete this fake account permanently?')) return; work = remove(id); }
+          if (action === 'approved' || action === 'rejected') work = patch(id, { status: action });
+          if (action === 'feature') work = patch(id, { featured: !item.featured });
+          if (action === 'verify') work = patch(id, { verified: !item.verified });
+          setMessage('Saving change...');
+          work.then(load).catch(function (error) { setMessage(error.message || 'Action failed.'); });
+        });
+        document.getElementById('loadBtn').addEventListener('click', load);
+        document.getElementById('forgetBtn').addEventListener('click', function () { localStorage.removeItem('comcareRecoveryAdminToken'); tokenInput.value = ''; setMessage('Admin token removed from this browser.'); });
+        statusFilter.addEventListener('change', render);
+        searchBox.addEventListener('input', render);
+      }());
+    </script>
+</body>
+</html>
