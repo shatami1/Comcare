@@ -27,8 +27,8 @@
                     <div class="nav-title">Comfort Care</div>
                 </div>
                 <ul class="nav-menu">
-                <li><a href="home.html" id="navHome">Home</a></li>
-                <li><a href="index.html" id="navSpecial">Special Offer</a></li>
+                <li><a href="index.html" id="navHome">Home</a></li>
+                <li><a href="hospital-bed-special-offer.html" id="navSpecial">Special Offer</a></li>
                 <li><a href="services.html" class="active" id="navServices">Services</a></li>
                 <li><a href="order.html" id="navOrder">Order</a></li>
                 <li><a href="pricing.html" id="navCart">Cart</a></li>
@@ -102,12 +102,13 @@
                         <ul class="service-list">
                             <li>Semi-electric beds</li>
                             <li>Full electric beds</li>
+                            <li>Bariatric bed options</li>
                             <li>Mattress and overbed table add-ons</li>
                         </ul>
                         <span class="price-tag">$45-$100/day</span>
                         <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;">
-                            <a href="index.html" class="btn btn-primary btn-compact">View Offer</a>
-                            <a href="index.html#choose-bed-offer" class="btn btn-secondary btn-compact">Choose Bed</a>
+                            <a href="hospital-bed-special-offer.html" class="btn btn-primary btn-compact">View Offer</a>
+                            <a href="order.html#hospital-beds" class="btn btn-secondary btn-compact">Order Now</a>
                         </div>
                     </div>
                 </div>
@@ -281,7 +282,7 @@
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="services.html">Services</a></li>
-                        <li><a href="index.html">Hospital Bed Special Offer</a></li>
+                        <li><a href="hospital-bed-special-offer.html">Hospital Bed Special Offer</a></li>
                         <li><a href="pricing.html">Pricing</a></li>
                         <li><a href="atlanta-sandy-springs-healthcare-resources.html">Healthcare Resources</a></li>
                         <li><a href="rehab-tech-intake.html">Rehab Techs</a></li>

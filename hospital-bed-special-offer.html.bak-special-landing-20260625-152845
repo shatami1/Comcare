@@ -12,13 +12,13 @@
         </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>First Week Free Hospital Bed Rental Atlanta | Comfort Care</title>
+    <title>First Week Free Hospital Bed Rental Atlanta | Comfort Care Special Offer</title>
     <meta name="description" content="Limited time Comfort Care hospital bed rental offer for Atlanta-area new customers. Ask about first week free on semi-electric, full-electric, and bed plus mattress rentals.">
     <meta name="keywords" content="first week free hospital bed rental Atlanta, hospital bed rental Atlanta, electric hospital bed rental, semi electric hospital bed rental, Comfort Care special offer">
-    <link rel="canonical" href="https://comcare.store/">
+    <link rel="canonical" href="https://comcare.store/hospital-bed-special-offer">
     <meta property="og:title" content="First Week Free Hospital Bed Rental | Comfort Care">
     <meta property="og:description" content="New customers can ask about first week free hospital bed rental for local Atlanta-area delivery.">
-    <meta property="og:url" content="https://comcare.store/">
+    <meta property="og:url" content="https://comcare.store/hospital-bed-special-offer">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://comcare.store/images/BedPictureFull.jpg">
     <link rel="stylesheet" href="styles.css">
@@ -28,7 +28,7 @@
       "@type": "Offer",
       "name": "First Week Free Hospital Bed Rental",
       "description": "Limited time hospital bed rental promotion for new Comfort Care customers in the Atlanta metro delivery area.",
-      "url": "https://comcare.store/",
+      "url": "https://comcare.store/hospital-bed-special-offer",
       "availability": "https://schema.org/LimitedAvailability",
       "eligibleCustomerType": "New customers",
       "seller": {
@@ -98,8 +98,8 @@
                     <div class="nav-title">Comfort Care</div>
                 </div>
                 <ul class="nav-menu">
-                <li><a href="home.html" id="navHome">Home</a></li>
-                <li><a href="index.html" class="active" id="navSpecial">Special Offer</a></li>
+                <li><a href="index.html" id="navHome">Home</a></li>
+                <li><a href="hospital-bed-special-offer.html" class="active" id="navSpecial">Special Offer</a></li>
                 <li><a href="services.html" id="navServices">Services</a></li>
                 <li><a href="order.html" id="navOrder">Order</a></li>
                 <li><a href="pricing.html" id="navCart">Cart</a></li>
@@ -163,7 +163,6 @@
                     <div class="offer-actions">
                         <a href="tel:678-362-2345" class="btn btn-light">Call or Text 678-362-2345</a>
                         <a href="#choose-bed-offer" class="btn btn-light">Choose a Bed</a>
-                        <a href="home.html" class="btn btn-light">See Other Deals</a>
                     </div>
                 </div>
                 <div class="offer-page-highlight" aria-label="First week free offer details">
@@ -310,7 +309,6 @@
             <div class="cta-contact">
                 <a href="tel:678-362-2345" class="btn btn-light">Call: 678-362-2345</a>
                 <a href="#choose-bed-offer" class="btn btn-light">Choose a Bed</a>
-                <a href="home.html" class="btn btn-light">Other Rental Deals</a>
             </div>
         </div>
     </section>
@@ -332,9 +330,8 @@
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="home.html">Home / Other Deals</a></li>
                         <li><a href="services.html">Services</a></li>
-                        <li><a href="index.html">Hospital Bed Special Offer</a></li>
+                        <li><a href="hospital-bed-special-offer.html">Hospital Bed Special Offer</a></li>
                         <li><a href="#choose-bed-offer">Choose Hospital Bed</a></li>
                         <li><a href="pricing.html">Pricing</a></li>
                         <li><a href="atlanta-sandy-springs-healthcare-resources.html">Healthcare Resources</a></li>

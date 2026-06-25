@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9G5EVYE5Y"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-D9G5EVYE5Y');
+        </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobility Equipment Rentals in Atlanta, GA | First Week Free Hospital Bed Offer</title>
+    <meta name="description" content="Rent hospital beds, wheelchairs, walkers, rollators, knee scooters, canes, and recovery equipment in Atlanta. New customers can ask about first week free hospital bed rental.">
+    <meta name="keywords" content="mobility equipment rentals Atlanta, wheelchair rental Atlanta, knee scooter rental Atlanta, walker rental Atlanta, rollator rental Atlanta, medical equipment rental Atlanta">
+    <link rel="canonical" href="https://comcare.store/index.html">
+    <meta property="og:title" content="Mobility Equipment Rentals in Atlanta, GA | Comfort Care DBA MOON LIGHTING INC.">
+    <meta property="og:description" content="Wheelchairs, walkers, rollators, knee scooters, and canes delivered with responsive Atlanta-area support.">
+    <meta property="og:url" content="https://comcare.store/index.html">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="styles.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MedicalBusiness",
+      "name": "MOON LIGHTING INC. DBA Comfort Care",
+      "url": "https://comcare.store/",
+      "telephone": "+1-678-362-2345",
+      "email": "admin@comcare.store",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Norcross",
+        "addressRegion": "GA",
+        "addressCountry": "US"
+      },
+      "areaServed": [
+        "Atlanta, GA",
+        "Norcross, GA",
+        "Sandy Springs, GA",
+        "Alpharetta, GA",
+        "Roswell, GA",
+        "Marietta, GA",
+        "Dunwoody, GA",
+        "Johns Creek, GA",
+        "Decatur, GA",
+        "Smyrna, GA",
+        "Buckhead, Atlanta, GA",
+        "Brookhaven, GA"
+      ],
+      "makesOffer": [
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Wheelchair rental in Atlanta"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Knee scooter rental in Atlanta"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Walker and rollator rental in Atlanta"}}
+      ]
+    }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-middle">
+                <div class="nav-identity">
+                    <div class="nav-brand">
+                        <img src="logo.svg" alt="Comfort Care mobility equipment rental logo" class="logo-image">
+                    </div>
+                    <div class="nav-title">Comfort Care</div>
+                </div>
+                <ul class="nav-menu">
+                <li><a href="index.html" class="active" id="navHome">Home</a></li>
+                <li><a href="hospital-bed-special-offer.html" id="navSpecial">Special Offer</a></li>
+                <li><a href="services.html" id="navServices">Services</a></li>
+                <li><a href="order.html" id="navOrder">Order</a></li>
+                <li><a href="pricing.html" id="navCart">Cart</a></li>
+                <li><a href="payment.html" id="navPayment">Payments</a></li>
+                <li><a href="insurance-form.html" id="navInsurance">Insurance</a></li>
+                <li><a href="atlanta-sandy-springs-healthcare-resources.html" id="navResources">Resources</a></li>
+                <li><a href="recovery-professionals.html" id="navRecovery">Recovery Network</a></li>
+                <li><a href="rehab-tech-intake.html" id="navRehabTechs">Rehab Techs</a></li>
+                <li><a href="contact.html" id="navContact">Contact</a></li>
+                        <script>
+                        // Preserve agent parameter in navigation links
+                        const agentParam = new URLSearchParams(window.location.search).get('agent');
+                        if (agentParam) {
+                            ["navHome","navSpecial","navServices","navOrder","navCart","navPayment","navInsurance","navResources","navRecovery","navRehabTechs","navContact"].forEach(function(id) {
+                                const link = document.getElementById(id);
+                                if (link) {
+                                    let href = link.getAttribute('href');
+                                    if (href.indexOf('?') === -1) {
+                                        href += '?agent=' + encodeURIComponent(agentParam);
+                                    } else {
+                                        href += '&agent=' + encodeURIComponent(agentParam);
+                                    }
+                                    link.setAttribute('href', href);
+                                }
+                            });
+                        }
+                        </script>
+                </ul>
+            </div>
+            <div class="nav-cart">
+                <div class="cart-box" aria-live="polite">
+                    <span class="cart-box-title">Cart</span>
+                    <span class="cart-box-detail">
+                        <span id="headerCartCount">0 items</span>
+                        <span class="cart-box-sep">|</span>
+                        <span id="headerCartTotal">$0.00</span>
+                    </span>
+                </div>
+                <div class="nav-cart-main">
+                    <a href="order.html" class="btn btn-secondary btn-compact edit-cart-link">Edit Cart</a>
+                    <a href="pricing.html" class="btn btn-primary btn-compact">Pay</a>
+                    <a href="mailto:admin@comcare.store" class="btn btn-discount btn-mini" style="margin-top:8px;display:block;">Email Cart for Discounts</a>
+                </div>
+            </div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Mobility Equipment Rentals in Atlanta, GA</h1>
+                <p>Wheelchairs, walkers, rollators, knee scooters, canes, and recovery equipment delivered with responsive local support across Atlanta and nearby Georgia communities.</p>
+                <div class="hero-buttons">
+                    <a href="services.html" class="btn btn-primary">Browse Equipment</a>
+                    <a href="tel:678-362-2345" class="btn btn-secondary">Call 678-362-2345</a>
+                    <a href="atlanta-sandy-springs-healthcare-resources.html" class="btn btn-secondary">Healthcare Resources</a>
+                </div>
+                <div class="hero-special-offer" aria-label="Limited time hospital bed rental offer">
+                    <div class="offer-kicker">Limited Time Offer</div>
+                    <h2>First Week Free Hospital Bed Rental</h2>
+                    <p>New customers can choose a semi-electric, full-electric, or bed plus mattress bundle and get the first week rental charge free. Local delivery and setup are added at checkout.</p>
+                    <div class="offer-actions">
+                        <a href="hospital-bed-special-offer.html" class="btn btn-light">View Special Offer</a>
+                        <a href="hospital-bed-special-offer.html#choose-bed-offer" class="btn btn-light">Choose a Bed</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offer Section -->
+    <section class="special-offer-section">
+        <div class="container">
+            <div class="special-offer-layout">
+                <div class="special-offer-copy">
+                    <span class="offer-pill">New customer hospital bed deal</span>
+                    <h2>Get the first week free on a hospital bed rental</h2>
+                    <p>Comfort Care is offering a first-week-free hospital bed rental promotion for new customers in the Atlanta metro delivery area. Use it for short-term recovery support, temporary home care needs, or a longer rental that starts with a lower first-week cost.</p>
+                    <ul class="offer-checklist">
+                        <li>Semi-electric beds from $103 per week after the free first week</li>
+                        <li>Full electric beds from $131 per week after the free first week</li>
+                        <li>Bed plus mattress bundle from $186 per week after the free first week</li>
+                        <li>Checkout adds $99 delivery and $149 setup</li>
+                    </ul>
+                    <div class="offer-actions">
+                        <a href="hospital-bed-special-offer.html" class="btn btn-primary">See Offer Details</a>
+                        <a href="tel:678-362-2345" class="btn btn-secondary">Call or Text</a>
+                    </div>
+                </div>
+                <div class="special-offer-media">
+                    <img src="images/BedPictureFull.jpg" alt="Full electric hospital bed rental available from Comfort Care">
+                    <div class="offer-card-note">
+                        <strong>Mention the offer when you call or email.</strong>
+                        <span>Valid for new customers and local Atlanta-area deliveries. One per household.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2>Why Choose Comfort Care?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"></div>
+                    <h3>Atlanta-Area Delivery</h3>
+                    <p>Delivery is available in Atlanta, Norcross, Sandy Springs, Alpharetta, Roswell, Dunwoody, Marietta, and nearby communities.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"></div>
+                    <h3>Flexible Rental Terms</h3>
+                    <p>Daily, weekly, and monthly options help match your rental to a surgery recovery, travel visit, or temporary mobility need.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"></div>
+                    <h3>Responsive Local Support</h3>
+                    <p>Our team helps you choose the right wheelchair, walker, knee scooter, rollator, cane, or recovery equipment for your situation.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"></div>
+                    <h3>Cleaned Equipment</h3>
+                    <p>Mobility equipment is cleaned, checked, and prepared for safe day-to-day use before each rental.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"></div>
+                    <h3>Simple Online Booking</h3>
+                    <p>Start online, review the cart, and call or email if you need help choosing the right mobility aid.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"></div>
+                    <h3>Transparent Pricing</h3>
+                    <p>Browse equipment, compare rental ranges, and ask about bundle discounts for longer recovery periods.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEO Service Links -->
+    <section class="services">
+        <div class="container">
+            <h2>Popular Atlanta Mobility Rentals</h2>
+            <p>Choose a dedicated rental page for details, FAQs, and booking support.</p>
+            <div class="service-grid">
+                <div class="service-item">
+                    <h3><a href="wheelchair-rental-atlanta.html">Wheelchair Rental Atlanta</a></h3>
+                    <p>Manual, transport, and power wheelchair rental options for recovery, appointments, events, and daily mobility support.</p>
+                </div>
+                <div class="service-item">
+                    <h3><a href="knee-scooter-rental-atlanta.html">Knee Scooter Rental Atlanta</a></h3>
+                    <p>A comfortable alternative to crutches for many foot, ankle, and lower-leg recovery situations.</p>
+                </div>
+                <div class="service-item">
+                    <h3><a href="walker-rental-atlanta.html">Walker Rental Atlanta</a></h3>
+                    <p>Standard and rolling walker options for balance, support, and short-term recovery needs.</p>
+                </div>
+                <div class="service-item">
+                    <h3><a href="rollator-rental-atlanta.html">Rollator Rental Atlanta</a></h3>
+                    <p>Rollators with seats and hand brakes for users who need stability while staying active.</p>
+                </div>
+                <div class="service-item">
+                    <h3><a href="cane-rental-atlanta.html">Cane Rental Atlanta</a></h3>
+                    <p>Adjustable cane rentals for light support, travel, and temporary mobility assistance.</p>
+                </div>
+                <div class="service-item">
+                    <h3><a href="medical-equipment-rental-atlanta.html">Medical Equipment Rental Atlanta</a></h3>
+                    <p>Mobility and recovery support equipment for short-term and extended rental periods.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Area Section -->
+    <section class="featured">
+        <div class="container">
+            <h2>Atlanta Service Areas</h2>
+            <p>Comfort Care supports mobility equipment rentals in Atlanta and nearby communities.</p>
+            <div class="equipment-grid">
+                <div class="equipment-card"><h3><a href="wheelchair-rental-sandy-springs-ga.html">Sandy Springs</a></h3><p>Wheelchair, walker, rollator, knee scooter, and cane rental support.</p></div>
+                <div class="equipment-card"><h3><a href="wheelchair-rental-alpharetta-ga.html">Alpharetta</a></h3><p>Flexible mobility equipment rentals for home recovery and temporary needs.</p></div>
+                <div class="equipment-card"><h3><a href="wheelchair-rental-roswell-ga.html">Roswell</a></h3><p>Local delivery coordination and support for mobility rental customers.</p></div>
+                <div class="equipment-card"><h3><a href="wheelchair-rental-marietta-ga.html">Marietta</a></h3><p>Rental support for families, caregivers, and recovery planning.</p></div>
+                <div class="equipment-card"><h3><a href="wheelchair-rental-dunwoody-ga.html">Dunwoody</a></h3><p>Short-term mobility aid rentals with responsive local assistance.</p></div>
+                <div class="equipment-card"><h3><a href="wheelchair-rental-brookhaven-ga.html">Brookhaven</a></h3><p>Wheelchair and mobility equipment rental support near Atlanta.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2>How It Works</h2>
+            <p>Four simple steps from selection to rental completion.</p>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Browse and Select</h3>
+                    <p>Choose the mobility equipment you need from our catalog.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Confirm Your Order</h3>
+                    <p>Review your cart and confirm your rental details.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Schedule Service</h3>
+                    <p>Arrange pickup or delivery when available. Delivery fees may apply.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>Get Support</h3>
+                    <p>We support you throughout the rental period.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Equipment Section -->
+    <section class="featured">
+        <div class="container">
+            <h2>Featured Equipment</h2>
+            <div class="equipment-grid">
+                <div class="equipment-card">
+                    <h3>Hospital Beds</h3>
+                    <p>Adjustable electric bed options for recovery, comfort, and in-home support</p>
+                    <span class="price">From $45/day</span>
+                </div>
+                <div class="equipment-card">
+                    <h3>Mobility Aids</h3>
+                    <p>Wheelchairs, walkers, and canes for independent movement</p>
+                    <span class="price">From $10/day</span>
+                </div>
+                <div class="equipment-card">
+                    <h3>Knee Scooters</h3>
+                    <p>Knee scooters, rollators, and support aids for steady recovery and movement</p>
+                    <span class="price">From $15/day</span>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="services.html" class="btn btn-primary">View All Equipment</a>
+            </div>
+        </div>
+    </section>
+    <!-- Recovery Support Network Section -->
+    <section class="services recovery-network-home">
+        <div class="container">
+            <h2>Recovery Support Network</h2>
+            <p>Need more than equipment?</p>
+            <p>Connect with trusted Atlanta recovery professionals who can help after surgery, injury, or rehabilitation.</p>
+            <div class="service-grid">
+                <div class="service-item"><h3>Rehab Technicians</h3><p>Find local support for mobility routines, equipment setup, and recovery coordination.</p></div>
+                <div class="service-item"><h3>PT &amp; OT Assistants</h3><p>Connect with recovery professionals who support therapy plans and home independence.</p></div>
+                <div class="service-item"><h3>Home Recovery Support</h3><p>Locate home health aides, caregivers, and recovery coaches serving Atlanta-area patients.</p></div>
+                <div class="service-item"><h3>Caregiver Resources</h3><p>Build a stronger recovery plan with local partner categories and support options.</p></div>
+            </div>
+            <div style="text-align:center;margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+                <a href="recovery-professionals.html" class="btn btn-primary">Find Recovery Support</a>
+                <a href="join-professionals.html" class="btn btn-secondary">Join Our Network</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Need Mobility Equipment Now?</h2>
+            <p>Contact us today to discuss the right rental for your mobility needs in the Atlanta area.</p>
+            <div class="cta-contact">
+                <a href="tel:678-362-2345" class="btn btn-light">Call: 678-362-2345</a>
+                <a href="contact.html" class="btn btn-light">Request Help</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Comfort Care</h4>
+                    <p>Mobility equipment rental services for Atlanta, Norcross, and surrounding Georgia communities.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Phone: <a href="tel:678-362-2345">678-362-2345</a></p>
+                    <p>Email: <a href="mailto:admin@comcare.store">admin@comcare.store</a></p>
+                    <p>Location: Norcross, Georgia</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="hospital-bed-special-offer.html">Hospital Bed Special Offer</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="atlanta-sandy-springs-healthcare-resources.html">Healthcare Resources</a></li>
+                        <li><a href="rehab-tech-intake.html">Rehab Techs</a></li>
+                        <li><a href="recovery-professionals.html">Recovery Network</a></li>
+                        <li><a href="join-professionals.html">Join Network</a></li>
+                        <li><a href="partners.html">Partners</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                        <li><a href="sitemap.xml">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Comfort Care. All rights reserved. | Mobility equipment rentals</p>
+                <p>Comfort Care operates as a DBA/trade name of MOON LIGHTING INC.</p>
+                <p>Business license, bank account, and payment records should use MOON LIGHTING INC. Checks should be payable to MOON LIGHTING INC.; a check copy will be provided when available.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

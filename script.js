@@ -117,6 +117,32 @@ document.addEventListener('DOMContentLoaded', patchCartEmailLinkUpdates);
 // Mobility Equipment Rental Website
 // ============================================
 
+function showCheckoutReturnNotice() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('checkout') !== 'success') {
+        return;
+    }
+
+    localStorage.removeItem('pricingCartItems');
+    localStorage.removeItem('comfortCareSelectedOffer');
+    localStorage.removeItem('checkoutSnapshotTotal');
+
+    const heroContainer = document.querySelector('.hero .container') || document.querySelector('main') || document.body;
+    const notice = document.createElement('div');
+    notice.className = 'checkout-return-banner';
+    notice.innerHTML = `
+        <strong>Payment received.</strong>
+        <span>Square will send a receipt to the email used at checkout. Comfort Care will contact you to confirm delivery and setup.</span>
+    `;
+    heroContainer.prepend(notice);
+
+    if (typeof updateHeaderCart === 'function') {
+        updateHeaderCart();
+    }
+}
+
+document.addEventListener('DOMContentLoaded', showCheckoutReturnNotice);
+
 function getStoredCart() {
     try {
         const stored = JSON.parse(localStorage.getItem('pricingCartItems'));
@@ -137,6 +163,70 @@ function getCartSummary(cartItems = getStoredCart()) {
         },
         { count: 0, total: 0 }
     );
+}
+
+const FIRST_WEEK_BED_DELIVERY_FEE = 99;
+const FIRST_WEEK_BED_SETUP_FEE = 149;
+
+function createFirstWeekBedOfferCart(bedName, bedModel, afterWeekPrice) {
+    return [
+        {
+            name: bedName,
+            model: bedModel,
+            rateType: 'Weekly rate - first week free',
+            unitPrice: 0,
+            quantity: 1,
+            offerCode: 'FIRST_WEEK_FREE_HOSPITAL_BED',
+            afterWeekPrice: Number(afterWeekPrice || 0)
+        },
+        {
+            name: 'Local Delivery',
+            model: 'Hospital bed special offer',
+            rateType: 'One-time fee',
+            unitPrice: FIRST_WEEK_BED_DELIVERY_FEE,
+            quantity: 1,
+            offerCode: 'FIRST_WEEK_FREE_HOSPITAL_BED'
+        },
+        {
+            name: 'Setup',
+            model: 'Hospital bed special offer',
+            rateType: 'One-time fee',
+            unitPrice: FIRST_WEEK_BED_SETUP_FEE,
+            quantity: 1,
+            offerCode: 'FIRST_WEEK_FREE_HOSPITAL_BED'
+        }
+    ];
+}
+
+function initHospitalBedOfferChooser() {
+    const buttons = document.querySelectorAll('.offer-bed-select');
+    if (!buttons.length) {
+        return;
+    }
+
+    buttons.forEach(button => {
+        button.addEventListener('click', function() {
+            const bedName = this.dataset.bedName || 'Hospital Bed';
+            const bedModel = this.dataset.bedModel || 'Standard';
+            const afterWeekPrice = this.dataset.afterWeekPrice || '0';
+            const cart = createFirstWeekBedOfferCart(bedName, bedModel, afterWeekPrice);
+
+            localStorage.setItem('pricingCartItems', JSON.stringify(cart));
+            saveCheckoutSnapshot(cart);
+            localStorage.setItem('comfortCareSelectedOffer', JSON.stringify({
+                code: 'FIRST_WEEK_FREE_HOSPITAL_BED',
+                bedName,
+                bedModel,
+                afterWeekPrice,
+                deliveryFee: FIRST_WEEK_BED_DELIVERY_FEE,
+                setupFee: FIRST_WEEK_BED_SETUP_FEE
+            }));
+
+            updateHeaderCart();
+            updateCartEmailLink();
+            window.location.href = 'payment.html';
+        });
+    });
 }
 
 function saveCheckoutSnapshot(cartItems = getStoredCart()) {
@@ -160,20 +250,14 @@ function getStoredCheckoutTotal() {
 }
 
 function getCheckoutSessionEndpoint() {
-    if (window.location.protocol === 'file:') {
-        return 'http://localhost:3000/create-checkout-session';
-    }
-
-    // Use hosted checkout API for production
+    // Use the hosted checkout API for both production and local file previews.
+    // The static file preview does not run a local API server.
     return 'https://comcare-de78.vercel.app/create-checkout-session';
 }
 
 function getCheckoutHealthEndpoint() {
-    if (window.location.protocol === 'file:') {
-        return 'http://localhost:3000/checkout-health';
-    }
-
-    // Use hosted checkout API for production
+    // Use the hosted checkout API for both production and local file previews.
+    // The static file preview does not run a local API server.
     return 'https://comcare-de78.vercel.app/checkout-health';
 }
 
@@ -322,13 +406,13 @@ function bindDynamicStripeCheckout(button) {
             console.error('Square checkout failed:', error);
             const message = error?.message || 'Unable to start secure checkout.';
             const liveChargeBlocked = message.toLowerCase().includes('square checkout is not active') || message.toLowerCase().includes('cannot currently make live charges');
+            button.disabled = false;
+            button.textContent = originalText;
             if (liveChargeBlocked) {
                 alert('Payment is not ready yet. Please email admin@comcare.store or call 678-362-2345 to complete this order while Square checkout is being configured.');
             } else {
                 alert(`Unable to start secure checkout: ${message}`);
             }
-            button.disabled = false;
-            button.textContent = originalText;
         }
     });
 }
@@ -426,6 +510,7 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCartEmailLink();
 
     initMobileNavCartTabs();
+    initHospitalBedOfferChooser();
 
     window.addEventListener('storage', function(event) {
         if (event.key === 'pricingCartItems') {
@@ -1243,7 +1328,13 @@ function initCheckoutPage() {
 
     // Check if customer information is complete
     const customerInfo = localStorage.getItem('customerInfo');
-    if (!customerInfo) {
+    const isFirstWeekBedOfferCart = cart.some(item => item.offerCode === 'FIRST_WEEK_FREE_HOSPITAL_BED');
+    const hasCustomerInfo = Boolean(customerInfo) || isFirstWeekBedOfferCart;
+    const customerInfoAlert = document.getElementById('customerInfoAlert');
+    if (customerInfoAlert) {
+        customerInfoAlert.style.display = hasCustomerInfo ? 'none' : 'block';
+    }
+    if (false && !customerInfo) {
         // Show message to complete customer information
         checkoutCartItems.innerHTML = `
             <div class="cart-item" style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 20px;">
@@ -1280,6 +1371,9 @@ function initCheckoutPage() {
         const quantity = Number(item.quantity || 0);
         const unitPrice = Number(item.unitPrice || 0);
         const itemTotal = unitPrice * quantity;
+        const isFreeWeekBed = item.offerCode === 'FIRST_WEEK_FREE_HOSPITAL_BED' && unitPrice === 0;
+        const priceLine = isFreeWeekBed ? '$0 weekly rate' : `$${unitPrice.toFixed(2)} × ${quantity}`;
+        const totalLine = isFreeWeekBed ? '$0' : `$${itemTotal.toFixed(2)}`;
         total += itemTotal;
 
         return `
@@ -1287,10 +1381,10 @@ function initCheckoutPage() {
                 <div class="cart-item-details">
                     <h4>${item.name}</h4>
                     <p class="cart-item-meta">${item.model} • ${item.rateType}</p>
-                    <p class="cart-item-price">$${unitPrice.toFixed(2)} × ${quantity}</p>
+                    <p class="cart-item-price">${priceLine}</p>
                 </div>
                 <div class="cart-item-total">
-                    <strong>$${itemTotal.toFixed(2)}</strong>
+                    <strong>${totalLine}</strong>
                     <button class="cart-remove" data-index="${index}">🗑️ Remove</button>
                 </div>
             </div>
@@ -1318,7 +1412,7 @@ function initCheckoutPage() {
     if (checkoutTotal) checkoutTotal.textContent = `$${total.toFixed(2)}`;
     if (checkoutSummary) checkoutSummary.style.display = 'block';
     saveCheckoutSnapshot(cart);
-    if (proceedToStripe) proceedToStripe.style.display = 'inline-flex';
+    if (proceedToStripe) proceedToStripe.style.display = hasCustomerInfo ? 'inline-flex' : 'none';
 
     // Update email link
     if (checkoutEmailLink) {
@@ -1396,6 +1490,17 @@ function updateStripeButton() {
     if (!stripeBtn) return;
     
     const cart = getStoredCart();
+    const checkoutPageNeedsInfo = Boolean(document.getElementById('checkoutCartItems'))
+        && !localStorage.getItem('customerInfo')
+        && !cart.some(item => item.offerCode === 'FIRST_WEEK_FREE_HOSPITAL_BED');
+    if (checkoutPageNeedsInfo) {
+        stripeBtn.style.display = 'none';
+        if (stripeNotice) {
+            stripeNotice.style.display = 'block';
+            stripeNotice.textContent = 'Complete customer information before payment.';
+        }
+        return;
+    }
     
     if (cart.length === 0) {
         const storedOnlyTotal = getStoredCheckoutTotal();
