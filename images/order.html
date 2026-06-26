@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9G5EVYE5Y"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-D9G5EVYE5Y');
+        </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order - Comfort Care</title>
+    <link rel="stylesheet" href="styles.css?v=image-sizing-20260611-double">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-middle">
+                <div class="nav-identity">
+                    <div class="nav-brand">
+                        <img src="logo.svg" alt="Comfort Care Logo" class="logo-image">
+                    </div>
+                    <div class="nav-title">Comfort Care</div>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="home.html" id="navHome">Home</a></li>
+                <li><a href="services.html" id="navServices">Services</a></li>
+                <li><a href="order.html" class="active" id="navOrder">Order</a></li>
+                <li><a href="pricing.html" id="navCart">Cart</a></li>
+                <li><a href="payment.html" id="navPayment">Payments</a></li>
+                <li><a href="insurance-form.html" id="navInsurance">Insurance</a></li>
+                <li><a href="recovery-professionals.html" id="navRecovery">Recovery Network</a></li>
+<li><a href="rehab-tech-intake.html" id="navRehabTechs">Rehab Techs</a></li>
+                <li><a href="contact.html" id="navContact">Contact</a></li>
+                        <script>
+                        // Preserve agent parameter in navigation links
+                        const agentParam = new URLSearchParams(window.location.search).get('agent');
+                        if (agentParam) {
+                            ["navHome","navServices","navOrder","navCart","navPayment","navRecovery","navRehabTechs","navContact"].forEach(function(id) {
+                                const link = document.getElementById(id);
+                                if (link) {
+                                    let href = link.getAttribute('href');
+                                    if (href.indexOf('?') === -1) {
+                                        href += '?agent=' + encodeURIComponent(agentParam);
+                                    } else {
+                                        href += '&agent=' + encodeURIComponent(agentParam);
+                                    }
+                                    link.setAttribute('href', href);
+                                }
+                            });
+                        }
+                        </script>
+                </ul>
+            </div>
+            <div class="nav-cart">
+                <div class="cart-box" aria-live="polite">
+                    <span class="cart-box-title">Cart</span>
+                    <span class="cart-box-detail">
+                        <span id="headerCartCount">0 items</span>
+                        <span class="cart-box-sep">|</span>
+                        <span id="headerCartTotal">$0.00</span>
+                    </span>
+                </div>
+                <div class="nav-cart-main">
+                    <a href="order.html" class="btn btn-secondary btn-compact edit-cart-link">Edit Cart</a>
+                    <a href="pricing.html" class="btn btn-primary btn-compact">Pay</a>
+                    <a href="mailto:admin@comcare.store?cc=accentGV%40gmail.com" class="btn btn-discount btn-mini" style="margin-top:8px;display:block;">Email Cart for Discounts</a>
+                </div>
+            </div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Complete Your Order</h1>
+            <p>Review your cart and proceed to secure checkout</p>
+        </div>
+    </section>
+
+    <!-- Order Cart -->
+    <section class="order-page">
+        <div class="container">
+            <div class="order-layout">
+                <div class="order-intro" style="display: flex; align-items: center; justify-content: space-between;">
+                    <div>
+                        <h2 style="margin-bottom: 8px;">Add items to your cart</h2>
+                        <a href="pricing.html" class="btn btn-light">Back to Pricing</a>
+                    </div>
+                    <div style="margin-left: 32px; text-align: center;">
+                        <a href="Order/future-products.html" title="View Future Products">
+                            <img src="Order/noname_3.jpg" alt="Future Products" style="width:80px;height:80px;border-radius:16px;box-shadow:0 2px 8px #0002;vertical-align:middle;">
+                            <div style="font-size:1.1em;color:#2a4d69;margin-top:8px;">See Future Products</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="order-grid">
+                    <aside class="pricing-cart order-cart" aria-label="Order cart">
+                        <div id="cartItems" class="cart-items">
+                            <p class="cart-empty">No items added yet.</p>
+                        </div>
+                        <div class="cart-summary">
+                            <span>Total</span>
+                            <strong id="cartTotal">$0.00</strong>
+                        </div>
+                    </aside>
+                    <div class="pricing-table-wrapper">
+                    <table class="pricing-table">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Equipment Category</th>
+                                <th>Model</th>
+                                <th>Daily Rate</th>
+                                <th>Weekly Rate</th>
+                                <th>Monthly Rate</th>
+                                <th>Key Features</th>
+                                <th>Order</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- BEDS & ROOM EQUIPMENT -->
+                            <tr class="category-header" id="hospital-beds">
+                                <td colspan="8">HOSPITAL BEDS</td>
+                            </tr>
+                            <tr class="pricing-item" data-name="Semi-Electric Hospital Bed" data-model="Standard" data-daily="14.00" data-weekly="103.00" data-monthly="375.00">
+                                <td><img src="images/BedPictureSemi.jpg" alt="Semi-Electric Hospital Bed" class="pricing-thumb"></td>
+                                <td>Semi-Electric Hospital Bed</td>
+                                <td>Standard</td>
+                                <td>N/A</td>
+                                <td>$103</td>
+                                <td>$375.00</td>
+                                <td>Weekly saves 39%</td>
+                                <td class="order-cell">
+                                    <div class="order-controls">
+                                        <select class="rate-select" aria-label="Rate for Semi-Electric Hospital Bed">
+                                            <option value="daily">Daily</option>
+                                            <option value="weekly">Weekly</option>
+                                            <option value="monthly">Monthly</option>
+                                        </select>
+                                        <input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Semi-Electric Hospital Bed">
+                                        <button type="button" class="btn btn-secondary add-to-cart">Add</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="pricing-item" data-name="Full Electric Hospital Bed" data-model="Premium" data-daily="17.00" data-weekly="131.00" data-monthly="475.00">
+                                <td><img src="images/BedPictureFull.jpg" alt="Full Electric Hospital Bed" class="pricing-thumb"></td>
+                                <td>Full Electric Hospital Bed</td>
+                                <td>Premium</td>
+                                <td>N/A</td>
+                                <td>$131</td>
+                                <td>$475.00</td>
+                                <td>Weekly saves 47%</td>
+                                <td class="order-cell">
+                                    <div class="order-controls">
+                                        <select class="rate-select" aria-label="Rate for Full Electric Hospital Bed">
+                                            <option value="daily">Daily</option>
+                                            <option value="weekly">Weekly</option>
+                                            <option value="monthly">Monthly</option>
+                                        </select>
+                                        <input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Full Electric Hospital Bed">
+                                        <button type="button" class="btn btn-secondary add-to-cart">Add</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="pricing-item" data-name="Hospital Bed + Mattress Bundle" data-model="Bundle" data-daily="25.00" data-weekly="186.00" data-monthly="675.00">
+                                <td><img src="images/Picture1.jpg" alt="Hospital Bed + Mattress Bundle" class="pricing-thumb"></td>
+                                <td>Hospital Bed + Mattress Bundle</td>
+                                <td>Bundle</td>
+                                <td>N/A</td>
+                                <td>$186</td>
+                                <td>$675.00</td>
+                                <td>Bundle saves 15%</td>
+                                <td class="order-cell">
+                                    <div class="order-controls">
+                                        <select class="rate-select" aria-label="Rate for Hospital Bed + Mattress Bundle">
+                                            <option value="daily">Daily</option>
+                                            <option value="weekly">Weekly</option>
+                                            <option value="monthly">Monthly</option>
+                                        </select>
+                                        <input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Hospital Bed + Mattress Bundle">
+                                        <button type="button" class="btn btn-secondary add-to-cart">Add</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="pricing-item" data-name="Mattress" data-model="Alternating Pressure (CC-APM300)" data-daily="25.00" data-weekly="80.00" data-monthly="250.00">
+                                <td><img src="images/Picture2.jpg" alt="Alternating Pressure Mattress" class="pricing-thumb"></td>
+                                <td>Mattress</td>
+                                <td>Alternating Pressure (CC-APM300)</td>
+                                <td>$5.00</td>
+                                <td>$15.00</td>
+                                <td>$45.00</td>
+                                <td>Air cells, quiet pump, adjustable pressure</td>
+                                <td class="order-cell">
+                                    <div class="order-controls">
+                                        <select class="rate-select" aria-label="Rate for Mattress">
+                                            <option value="daily">Daily</option>
+                                            <option value="weekly">Weekly</option>
+                                            <option value="monthly">Monthly</option>
+                                        </select>
+                                        <input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Mattress">
+                                        <button type="button" class="btn btn-secondary add-to-cart">Add</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="pricing-item" data-name="Overbed Table" data-model="Adjustable (CC-OBT100)" data-daily="10.00" data-weekly="30.00" data-monthly="100.00">
+                                <td><img src="images/Picture3.jpg" alt="Overbed Table" class="pricing-thumb"></td>
+                                <td>Overbed Table</td>
+                                <td>Adjustable (CC-OBT100)</td>
+                                <td>$2.50</td>
+                                <td>$7.50</td>
+                                <td>$22.50</td>
+                                <td>Height adjustable, rolling base</td>
+                                <td class="order-cell">
+                                    <div class="order-controls">
+                                        <select class="rate-select" aria-label="Rate for Overbed Table">
+                                            <option value="daily">Daily</option>
+                                            <option value="weekly">Weekly</option>
+                                            <option value="monthly">Monthly</option>
+                                        </select>
+                                        <input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Overbed Table">
+                                        <button type="button" class="btn btn-secondary add-to-cart">Add</button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr class="category-header">
+                                <td colspan="8">MOBILITY EQUIPMENT</td>
+                            </tr>
+                            <tr class="pricing-item" data-name="Wheelchair" data-model="Transport (CC-TRN200)" data-daily="14.00" data-weekly="95.00" data-monthly="190.00">
+                                <td><img src="images/Picture14.png" alt="Transport Wheelchair" class="pricing-thumb"></td>
+                                <td>Wheelchair</td>
+                                <td>Transport (CC-TRN200)</td>
+                                <td>$10.00</td>
+                                <td>$30.00</td>
+                                <td>$90.00</td>
+                                <td>Compact, foldable, caregiver brakes</td>
+                                <td class="order-cell">
+                                    <div class="order-controls">
+                                        <select class="rate-select" aria-label="Rate for Transport Wheelchair">
+                                            <option value="daily">Daily</option>
+                                            <option value="weekly">Weekly</option>
+                                            <option value="monthly">Monthly</option>
+                                        </select>
+                                        <input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Transport Wheelchair">
+                                        <button type="button" class="btn btn-secondary add-to-cart">Add</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="pricing-item" data-name="Wheelchair" data-model="Power (CC-PWR350)" data-daily="13.50" data-weekly="95.00" data-monthly="190.00">
+                                <td><img src="images/Picture15.png" alt="Power Wheelchair" class="pricing-thumb"></td>
+                                <td>Wheelchair</td>
+                                <td>Power (CC-PWR350)</td>
+                                <td>$40.00</td>
+                                <td>$120.00</td>
+                                <td>$360.00</td>
+                                <td>Joystick control, padded seat, long battery life</td>
+                                <td class="order-cell">
+                                    <div class="order-controls">
+                                        <select class="rate-select" aria-label="Rate for Power Wheelchair">
+                                            <option value="daily">Daily</option>
+                                            <option value="weekly">Weekly</option>
+                                            <option value="monthly">Monthly</option>
+                                        </select>
+                                        <input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Power Wheelchair">
+                                        <button type="button" class="btn btn-secondary add-to-cart">Add</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="category-header">
+                                <td colspan="8">WALKERS, ROLLATORS & SCOOTERS</td>
+                            </tr>
+                            <tr class="pricing-item" data-name="Walker" data-model="Standard (CC-WLK100)" data-daily="10.00" data-weekly="30.00" data-monthly="100.00">
+                                <td><img src="images/Picture17.png" alt="Standard Walker" class="pricing-thumb"></td>
+                                <td>Walker</td>
+                                <td>Standard (CC-WLK100)</td>
+                                <td>$2.50</td>
+                                <td>$7.50</td>
+                                <td>$22.50</td>
+                                <td>Lightweight, adjustable height</td>
+                                <td class="order-cell">
+                                    <div class="order-controls">
+                                        <select class="rate-select" aria-label="Rate for Standard Walker">
+                                            <option value="daily">Daily</option>
+                                            <option value="weekly">Weekly</option>
+                                            <option value="monthly">Monthly</option>
+                                        </select>
+                                        <input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Standard Walker">
+                                        <button type="button" class="btn btn-secondary add-to-cart">Add</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="pricing-item" data-name="Walker" data-model="Rollator (CC-RLL400)" data-daily="7.00" data-weekly="48.00" data-monthly="95.00">
+                                <td><img src="images/Picture18.png" alt="Rollator" class="pricing-thumb"></td>
+                                <td>Walker</td>
+                                <td>Rollator (CC-RLL400)</td>
+                                <td>$5.00</td>
+                                <td>$15.00</td>
+                                <td>$45.00</td>
+                                <td>Hand brakes, seat, storage pouch</td>
+                                <td class="order-cell">
+                                    <div class="order-controls">
+                                        <select class="rate-select" aria-label="Rate for Rollator">
+                                            <option value="daily">Daily</option>
+                                            <option value="weekly">Weekly</option>
+                                            <option value="monthly">Monthly</option>
+                                        </select>
+                                        <input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Rollator">
+                                        <button type="button" class="btn btn-secondary add-to-cart">Add</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="pricing-item" data-name="Knee Scooter" data-model="Steerable (CC-KNE300)" data-daily="7.00" data-weekly="48.00" data-monthly="143.00">
+                                <td><img src="images/Picture19.png" alt="Knee Scooter" class="pricing-thumb"></td>
+                                <td>Knee Scooter</td>
+                                <td>Steerable (CC-KNE300)</td>
+                                <td>$15.00</td>
+                                <td>$45.00</td>
+                                <td>$135.00</td>
+                                <td>Steerable, padded knee rest, hard brakes</td>
+                                <td class="order-cell">
+                                    <div class="order-controls">
+                                        <select class="rate-select" aria-label="Rate for Knee Scooter">
+                                            <option value="daily">Daily</option>
+                                            <option value="weekly">Weekly</option>
+                                            <option value="monthly">Monthly</option>
+                                        </select>
+                                        <input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Knee Scooter">
+                                        <button type="button" class="btn btn-secondary add-to-cart">Add</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="pricing-item" data-name="Cane" data-model="Single-Point (CC-CAN100)" data-daily="5.00" data-weekly="15.00" data-monthly="50.00">
+                                <td><img src="images/Picture20.png" alt="Single-Point Cane" class="pricing-thumb"></td>
+                                <td>Cane</td>
+                                <td>Single-Point (CC-CAN100)</td>
+                                <td>$5.00</td>
+                                <td>$15.00</td>
+                                <td>$50.00</td>
+                                <td>Adjustable height, rubber tip</td>
+                                <td class="order-cell">
+                                    <div class="order-controls">
+                                        <select class="rate-select" aria-label="Rate for Single-Point Cane">
+                                            <option value="daily">Daily</option>
+                                            <option value="weekly">Weekly</option>
+                                            <option value="monthly">Monthly</option>
+                                        </select>
+                                        <input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Single-Point Cane">
+                                        <button type="button" class="btn btn-secondary add-to-cart">Add</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="pricing-item" data-name="Cane" data-model="Quad Cane (CC-CAN400)" data-daily="7.00" data-weekly="20.00" data-monthly="70.00">
+                                <td><img src="images/Picture21.png" alt="Quad Cane" class="pricing-thumb"></td>
+                                <td>Cane</td>
+                                <td>Quad Cane (CC-CAN400)</td>
+                                <td>$7.00</td>
+                                <td>$20.00</td>
+                                <td>$70.00</td>
+                                <td>Wide base, adjustable height</td>
+                                <td class="order-cell">
+                                    <div class="order-controls">
+                                        <select class="rate-select" aria-label="Rate for Quad Cane">
+                                            <option value="daily">Daily</option>
+                                            <option value="weekly">Weekly</option>
+                                            <option value="monthly">Monthly</option>
+                                        </select>
+                                        <input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Quad Cane">
+                                        <button type="button" class="btn btn-secondary add-to-cart">Add</button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr class="category-header">
+                                <td colspan="8">MOBILITY ACCESSORIES</td>
+                            </tr>
+                            <tr class="pricing-item" data-name="Wheelchair Accessory Kit" data-model="Daily Support (CC-ACC100)" data-daily="6.00" data-weekly="20.00" data-monthly="55.00">
+                                <td><img src="images/Picture10.png" alt="Wheelchair Accessory Kit" class="pricing-thumb"></td>
+                                <td>Accessory Kit</td>
+                                <td>Daily Support (CC-ACC100)</td>
+                                <td>$6.00</td>
+                                <td>$20.00</td>
+                                <td>$55.00</td>
+                                <td>Storage pouch, cup holder, and basic comfort add-ons</td>
+                                <td class="order-cell">
+                                    <div class="order-controls">
+                                        <select class="rate-select" aria-label="Rate for Wheelchair Accessory Kit">
+                                            <option value="daily">Daily</option>
+                                            <option value="weekly">Weekly</option>
+                                            <option value="monthly">Monthly</option>
+                                        </select>
+                                        <input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Wheelchair Accessory Kit">
+                                        <button type="button" class="btn btn-secondary add-to-cart">Add</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="pricing-item" data-name="Walker Accessory Kit" data-model="Comfort (CC-ACC200)" data-daily="5.00" data-weekly="18.00" data-monthly="50.00">
+                                <td><img src="images/Picture6.png" alt="Walker Accessory Kit" class="pricing-thumb"></td>
+                                <td>Accessory Kit</td>
+                                <td>Comfort (CC-ACC200)</td>
+                                <td>$5.00</td>
+                                <td>$18.00</td>
+                                <td>$50.00</td>
+                                <td>Tray, pouch, and support accessories for walker users</td>
+                                <td class="order-cell">
+                                    <div class="order-controls">
+                                        <select class="rate-select" aria-label="Rate for Walker Accessory Kit">
+                                            <option value="daily">Daily</option>
+                                            <option value="weekly">Weekly</option>
+                                            <option value="monthly">Monthly</option>
+                                        </select>
+                                        <input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Walker Accessory Kit">
+                                        <button type="button" class="btn btn-secondary add-to-cart">Add</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="pricing-item" data-name="Cane Tip Set" data-model="Replacement (CC-ACC300)" data-daily="3.00" data-weekly="10.00" data-monthly="25.00">
+                                <td><img src="images/Picture7.png" alt="Cane Tip Set" class="pricing-thumb"></td>
+                                <td>Cane Accessory</td>
+                                <td>Replacement (CC-ACC300)</td>
+                                <td>$3.00</td>
+                                <td>$10.00</td>
+                                <td>$25.00</td>
+                                <td>Replacement grip tips and support accessories</td>
+                                <td class="order-cell">
+                                    <div class="order-controls">
+                                        <select class="rate-select" aria-label="Rate for Cane Tip Set">
+                                            <option value="daily">Daily</option>
+                                            <option value="weekly">Weekly</option>
+                                            <option value="monthly">Monthly</option>
+                                        </select>
+                                        <input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Cane Tip Set">
+                                        <button type="button" class="btn btn-secondary add-to-cart">Add</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="pricing-item" data-name="Rollator Storage Bag" data-model="Utility (CC-ACC400)" data-daily="4.00" data-weekly="12.00" data-monthly="30.00">
+                                <td><img src="images/Picture11.png" alt="Rollator Storage Bag" class="pricing-thumb"></td>
+                                <td>Rollator Accessory</td>
+                                <td>Utility (CC-ACC400)</td>
+                                <td>$4.00</td>
+                                <td>$12.00</td>
+                                <td>$30.00</td>
+                                <td>Extra storage and convenience for daily mobility use</td>
+                                <td class="order-cell">
+                                    <div class="order-controls">
+                                        <select class="rate-select" aria-label="Rate for Rollator Storage Bag">
+                                            <option value="daily">Daily</option>
+                                            <option value="weekly">Weekly</option>
+                                            <option value="monthly">Monthly</option>
+                                        </select>
+                                        <input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Rollator Storage Bag">
+                                        <button type="button" class="btn btn-secondary add-to-cart">Add</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Comfort Care</h4>
+                    <p>Mobility equipment rental services for Atlanta and Norcross, Georgia</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Phone: <a href="tel:678-362-2345">678-362-2345</a></p>
+                    <p>Email: <a href="mailto:admin@comcare.store?cc=accentGV%40gmail.com">admin@comcare.store</a></p>
+                    <p>Location: Norcross, Georgia</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+<li><a href="rehab-tech-intake.html">Rehab Techs</a></li>
+                        <li><a href="recovery-professionals.html">Recovery Network</a></li>
+                        <li><a href="join-professionals.html">Join Network</a></li>
+                        <li><a href="partners.html">Partners</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Comfort Care. All rights reserved. | Mobility equipment rentals</p>
+                <p>Comfort Care operates as a DBA/trade name of MOON LIGHTING INC.</p>
+                <p>Business license, bank account, and payment records should use MOON LIGHTING INC. Checks should be payable to MOON LIGHTING INC.; a check copy will be provided when available.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+<script src="live-chat.js"></script>
+</body>
+<script src="script.js"></script>
+</html>

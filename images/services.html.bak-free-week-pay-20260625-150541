@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9G5EVYE5Y"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-D9G5EVYE5Y');
+        </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobility Equipment - Comfort Care</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-middle">
+                <div class="nav-identity">
+                    <div class="nav-brand">
+                        <img src="logo.svg" alt="Comfort Care Logo" class="logo-image">
+                    </div>
+                    <div class="nav-title">Comfort Care</div>
+                </div>
+                <ul class="nav-menu">
+                <li><a href="index.html" id="navHome">Home</a></li>
+                <li><a href="hospital-bed-special-offer.html" id="navSpecial">Special Offer</a></li>
+                <li><a href="services.html" class="active" id="navServices">Services</a></li>
+                <li><a href="order.html" id="navOrder">Order</a></li>
+                <li><a href="pricing.html" id="navCart">Cart</a></li>
+                <li><a href="payment.html" id="navPayment">Payments</a></li>
+                <li><a href="insurance-form.html" id="navInsurance">Insurance</a></li>
+                <li><a href="recovery-professionals.html" id="navRecovery">Recovery Network</a></li>
+                <li><a href="rehab-tech-intake.html" id="navRehabTechs">Rehab Techs</a></li>
+                <li><a href="contact.html" id="navContact">Contact</a></li>
+                        <script>
+                        // Preserve agent parameter in navigation links
+                        const agentParam = new URLSearchParams(window.location.search).get('agent');
+                        if (agentParam) {
+                            ["navHome","navSpecial","navServices","navOrder","navCart","navPayment","navRecovery","navRehabTechs","navContact"].forEach(function(id) {
+                                const link = document.getElementById(id);
+                                if (link) {
+                                    let href = link.getAttribute('href');
+                                    if (href.indexOf('?') === -1) {
+                                        href += '?agent=' + encodeURIComponent(agentParam);
+                                    } else {
+                                        href += '&agent=' + encodeURIComponent(agentParam);
+                                    }
+                                    link.setAttribute('href', href);
+                                }
+                            });
+                        }
+                        </script>
+                </ul>
+            </div>
+            <div class="nav-cart">
+                <div class="cart-box" aria-live="polite">
+                    <span class="cart-box-title">Cart</span>
+                    <span class="cart-box-detail">
+                        <span id="headerCartCount">0 items</span>
+                        <span class="cart-box-sep">|</span>
+                        <span id="headerCartTotal">$0.00</span>
+                    </span>
+                </div>
+                <div class="nav-cart-main">
+                    <a href="order.html" class="btn btn-secondary btn-compact edit-cart-link">Edit Cart</a>
+                    <a href="pricing.html" class="btn btn-primary btn-compact">Pay</a>
+                </div>
+                <a id="cartEmailLink" href="mailto:admin@comcare.store?cc=accentGV%40gmail.com" class="btn btn-discount btn-mini">Email Cart for Discounts</a>
+            </div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Mobility Equipment</h1>
+            <p>Wheelchairs, walkers, rollators, knee scooters, canes, and related mobility support options</p>
+        </div>
+    </section>
+
+    <!-- Equipment Categories -->
+    <section class="services">
+        <div class="container">
+            <h2>Equipment Categories</h2>
+            
+            <div class="service-category">
+                <h3>Hospital Beds & Recovery Support</h3>
+                <div class="service-grid">
+                    <div class="service-item">
+                        <h4>Hospital Beds</h4>
+                        <p>Adjustable bed options for recovery, home care, and longer support needs</p>
+                        <ul class="service-list">
+                            <li>Semi-electric beds</li>
+                            <li>Full electric beds</li>
+                            <li>Bariatric bed options</li>
+                            <li>Mattress and overbed table add-ons</li>
+                        </ul>
+                        <span class="price-tag">$45-$100/day</span>
+                        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;">
+                            <a href="hospital-bed-special-offer.html" class="btn btn-primary btn-compact">View Offer</a>
+                            <a href="order.html#hospital-beds" class="btn btn-secondary btn-compact">Order Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobility Equipment -->
+            <div class="service-category">
+                <h3>Wheelchairs & Daily Mobility</h3>
+                <div class="service-grid">
+                    <div class="service-item">
+                        <h4>Wheelchairs</h4>
+                        <p>Manual, transport, and power wheelchairs for short-term recovery or everyday use</p>
+                        <ul class="service-list">
+                            <li>Manual wheelchairs</li>
+                            <li>Power wheelchairs</li>
+                            <li>Transport chairs</li>
+                        </ul>
+                        <span class="price-tag">$20-$75/day</span>
+                        <a href="order.html" class="btn btn-secondary btn-compact" style="margin-top: 10px;">Order Now</a>
+                    </div>
+                    <div class="service-item">
+                        <h4>Walkers & Canes</h4>
+                        <p>Stability aids for safe mobility and independence</p>
+                        <ul class="service-list">
+                            <li>Rolling walkers</li>
+                            <li>Standard walkers</li>
+                            <li>Adjustable canes</li>
+                        </ul>
+                        <span class="price-tag">$10-$25/day</span>
+                        <a href="order.html" class="btn btn-secondary btn-compact" style="margin-top: 10px;">Order Now</a>
+                    </div>
+                    <div class="service-item">
+                        <h4>Rollators & Knee Scooters</h4>
+                        <p>Supportive options for users who need stability with more movement and control</p>
+                        <ul class="service-list">
+                            <li>Rollators with seats</li>
+                            <li>Steerable knee scooters</li>
+                            <li>Transport-friendly folding frames</li>
+                        </ul>
+                        <span class="price-tag">$15-$35/day</span>
+                        <a href="order.html" class="btn btn-secondary btn-compact" style="margin-top: 10px;">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bedroom & Bathroom -->
+            <div class="service-category">
+                <h3>Mobility Support Accessories</h3>
+                <div class="service-grid">
+                    <div class="service-item">
+                        <h4>Transport Chairs</h4>
+                        <p>Compact transport options for appointments, travel, and assisted movement</p>
+                        <ul class="service-list">
+                            <li>Lightweight folding frames</li>
+                            <li>Easy caregiver handling</li>
+                            <li>Compact storage</li>
+                        </ul>
+                        <span class="price-tag">$18-$30/day</span>
+                        <a href="order.html" class="btn btn-secondary btn-compact" style="margin-top: 10px;">Order Now</a>
+                    </div>
+                    <div class="service-item">
+                        <h4>Mobility Accessories</h4>
+                        <p>Helpful add-ons that make transport and movement easier</p>
+                        <ul class="service-list">
+                            <li>Wheelchair cushions</li>
+                            <li>Leg rests and foot supports</li>
+                            <li>Storage pouches and bags</li>
+                            <li>Replacement cane tips</li>
+                        </ul>
+                        <span class="price-tag">$5-$20/day</span>
+                        <a href="order.html" class="btn btn-secondary btn-compact" style="margin-top: 10px;">Order Now</a>
+                    </div>
+                    <div class="service-item">
+                        <h4>Fitting & Setup Guidance</h4>
+                        <p>Help selecting the right mobility option based on height, balance, and daily routine</p>
+                        <ul class="service-list">
+                            <li>Height adjustment guidance</li>
+                            <li>Brake and fold checks</li>
+                            <li>Basic usage walkthrough</li>
+                            <li>Pickup and delivery coordination</li>
+                        </ul>
+                        <span class="price-tag">Included with select rentals</span>
+                        <a href="order.html" class="btn btn-secondary btn-compact" style="margin-top: 10px;">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-category">
+                <h3>Community Mobility Support</h3>
+                <div class="service-grid">
+                    <div class="service-item">
+                        <h4>Mobility Support Packages</h4>
+                        <p>Coordinated mobility rentals for residents, caregivers, and recovery support teams</p>
+                        <ul class="service-list">
+                            <li>Wheelchair and walker combinations</li>
+                            <li>Knee scooter and cane options</li>
+                            <li>Short-term recovery bundles</li>
+                        </ul>
+                        <span class="price-tag">Custom quotes available</span>
+                        <a href="order.html" class="btn btn-secondary btn-compact" style="margin-top: 10px;">Order Now</a>
+                    </div>
+                    <div class="service-item">
+                        <h4>Caregiver-Friendly Options</h4>
+                        <p>Products selected for easy loading, transport, and day-to-day assistance</p>
+                        <ul class="service-list">
+                            <li>Foldable transport chairs</li>
+                            <li>Lightweight walkers</li>
+                            <li>Compact rollators</li>
+                        </ul>
+                        <span class="price-tag">Ask about bundle pricing</span>
+                        <a href="order.html" class="btn btn-secondary btn-compact" style="margin-top: 10px;">Order Now</a>
+                    </div>
+                    <div class="service-item">
+                        <h4>Flexible Rental Terms</h4>
+                        <p>Daily, weekly, and monthly mobility rentals tailored to recovery schedules</p>
+                        <ul class="service-list">
+                            <li>Short-term rentals</li>
+                            <li>Extended recovery pricing</li>
+                            <li>Simple renewal options</li>
+                        </ul>
+                        <span class="price-tag">From $10/day</span>
+                        <a href="order.html" class="btn btn-secondary btn-compact" style="margin-top: 10px;">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Community Partnerships -->
+            <div class="service-category">
+                <h3>Community Partnership Services</h3>
+                <div class="service-grid">
+                    <div class="service-item">
+                        <h4>Rehab-Ready Apartment Units</h4>
+                        <p>We partner with multifamily and senior-friendly communities to equip 5 to 10 units with practical mobility support for short-term recovery stays.</p>
+                        <ul class="service-list">
+                            <li>Wheelchair, walker, and rollator options</li>
+                            <li>Knee scooter and cane support</li>
+                            <li>Low-friction mobility setup for move-in readiness</li>
+                            <li>No capital investment turnkey model</li>
+                        </ul>
+                        <a href="apartment-rehab-units.html" class="btn btn-secondary btn-compact" style="margin-top: 10px;">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking CTA -->
+    <section class="cta-light">
+        <div class="container">
+            <h2>Ready to Rent?</h2>
+            <p>Book your mobility equipment online or call for personalized recommendations</p>
+            <a href="contact.html" class="btn btn-primary">Book Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Comfort Care</h4>
+                    <p>Mobility equipment rental services for Atlanta and Norcross, Georgia</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Phone: <a href="tel:678-362-2345">678-362-2345</a></p>
+                    <p>Email: <a href="mailto:admin@comcare.store?cc=accentGV%40gmail.com">admin@comcare.store</a></p>
+                    <p>Location: Norcross, Georgia</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="hospital-bed-special-offer.html">Hospital Bed Special Offer</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="atlanta-sandy-springs-healthcare-resources.html">Healthcare Resources</a></li>
+                        <li><a href="rehab-tech-intake.html">Rehab Techs</a></li>
+                        <li><a href="recovery-professionals.html">Recovery Network</a></li>
+                        <li><a href="join-professionals.html">Join Network</a></li>
+                        <li><a href="partners.html">Partners</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Comfort Care. All rights reserved. | Mobility equipment rentals</p>
+                <p>Comfort Care operates as a DBA/trade name of MOON LIGHTING INC.</p>
+                <p>Business license, bank account, and payment records should use MOON LIGHTING INC. Checks should be payable to MOON LIGHTING INC.; a check copy will be provided when available.</p>
+            </div>
+        </div>
+    </footer>
+
+        <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9G5EVYE5Y"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-D9G5EVYE5Y');
+        </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlanta &amp; Sandy Springs Healthcare Resources | Comfort Care</title>
+    <meta name="description" content="Helpful Atlanta and Sandy Springs healthcare resource links for families, caregivers, recovery planning, hospital discharge support, and mobility equipment rental from Comfort Care.">
+    <meta name="keywords" content="Atlanta healthcare resources, Sandy Springs healthcare resources, Atlanta hospital discharge equipment, Sandy Springs mobility equipment, Atlanta medical equipment rental">
+    <link rel="canonical" href="https://comcare.store/atlanta-sandy-springs-healthcare-resources.html">
+    <meta property="og:title" content="Atlanta &amp; Sandy Springs Healthcare Resources | Comfort Care">
+    <meta property="og:description" content="Official healthcare, hospital, public health, and home recovery resource links for Atlanta and Sandy Springs families.">
+    <meta property="og:url" content="https://comcare.store/atlanta-sandy-springs-healthcare-resources.html">
+    <meta property="og:type" content="article">
+    <link rel="stylesheet" href="styles.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What should I do in a medical emergency in Atlanta or Sandy Springs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For emergencies, call 911 immediately. This page is an informational resource list and is not medical advice."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can Comfort Care help after a hospital discharge?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Comfort Care can help Atlanta and Sandy Springs families rent mobility and recovery equipment such as wheelchairs, walkers, rollators, knee scooters, and hospital beds, depending on availability."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where can I learn about Medicare durable medical equipment coverage?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Medicare.gov has official information about durable medical equipment coverage. Customers should confirm coverage, documentation, and supplier requirements directly with Medicare or their insurance plan."
+          }
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-middle">
+                <div class="nav-identity">
+                    <div class="nav-brand">
+                        <img src="logo.svg" alt="Comfort Care mobility equipment rental logo" class="logo-image">
+                    </div>
+                    <div class="nav-title">Comfort Care</div>
+                </div>
+                <ul class="nav-menu">
+                <li><a href="index.html" id="navHome">Home</a></li>
+                <li><a href="services.html" id="navServices">Services</a></li>
+                <li><a href="order.html" id="navOrder">Order</a></li>
+                <li><a href="pricing.html" id="navCart">Cart</a></li>
+                <li><a href="payment.html" id="navPayment">Payments</a></li>
+                <li><a href="insurance-form.html" id="navInsurance">Insurance</a></li>
+                <li><a href="contact.html" id="navContact">Contact</a></li>
+                        <script>
+                        const agentParam = new URLSearchParams(window.location.search).get('agent');
+                        if (agentParam) {
+                            ["navHome","navServices","navOrder","navCart","navPayment","navContact"].forEach(function(id) {
+                                const link = document.getElementById(id);
+                                if (link) {
+                                    let href = link.getAttribute('href');
+                                    if (href.indexOf('?') === -1) {
+                                        href += '?agent=' + encodeURIComponent(agentParam);
+                                    } else {
+                                        href += '&agent=' + encodeURIComponent(agentParam);
+                                    }
+                                    link.setAttribute('href', href);
+                                }
+                            });
+                        }
+                        </script>
+                </ul>
+            </div>
+            <div class="nav-cart">
+                <div class="cart-box" aria-live="polite">
+                    <span class="cart-box-title">Cart</span>
+                    <span class="cart-box-detail">
+                        <span id="headerCartCount">0 items</span>
+                        <span class="cart-box-sep">|</span>
+                        <span id="headerCartTotal">$0.00</span>
+                    </span>
+                </div>
+                <div class="nav-cart-main">
+                    <a href="order.html" class="btn btn-secondary btn-compact edit-cart-link">Edit Cart</a>
+                    <a href="pricing.html" class="btn btn-primary btn-compact">Pay</a>
+                    <a href="mailto:admin@comcare.store?cc=accentGV%40gmail.com" class="btn btn-discount btn-mini" style="margin-top:8px;display:block;">Email Cart for Discounts</a>
+                </div>
+            </div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Atlanta &amp; Sandy Springs Healthcare Resources</h1>
+            <p>Official public health, hospital, community support, and home recovery links for families, caregivers, and discharge planning.</p>
+            <a href="tel:678-362-2345" class="btn btn-secondary">Call 678-362-2345</a>
+            <a href="order.html" class="btn btn-primary">Request Equipment</a>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="container">
+            <h2>Start With The Right Resource</h2>
+            <p>If someone is having chest pain, trouble breathing, signs of stroke, severe injury, or another urgent medical emergency, call 911. The links below are for planning, follow-up, public health, and non-emergency support.</p>
+            <div class="service-grid">
+                <div class="service-item">
+                    <h3><a href="https://fultoncountyboh.com/">Fulton County Board of Health</a></h3>
+                    <p>Public health services, locations, immunizations, WIC, vital records, community health, and local health updates.</p>
+                </div>
+                <div class="service-item">
+                    <h3><a href="https://www.211.org/">211 Community Services</a></h3>
+                    <p>Search for local help with food, housing, utility assistance, transportation, health resources, and caregiver support.</p>
+                </div>
+                <div class="service-item">
+                    <h3><a href="https://www.medicare.gov/coverage/durable-medical-equipment-dme-coverage">Medicare DME Coverage</a></h3>
+                    <p>Official Medicare information about durable medical equipment coverage, requirements, and approved equipment categories.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2>Hospital And Patient Resource Links</h2>
+            <p>These official hospital pages can help families confirm addresses, phone numbers, visitor information, directions, medical records, billing, and patient services before or after a visit.</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3><a href="https://www.northside.com/locations/northside-hospital-atlanta">Northside Hospital Atlanta</a></h3>
+                    <p>Hospital campus in Sandy Springs with patient, visitor, parking, and service information.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><a href="https://www.emoryhealthcare.org/locations/hospitals/emory-saint-josephs-hospital">Emory Saint Joseph's Hospital</a></h3>
+                    <p>Atlanta hospital location details, services, patient resources, and contact information.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><a href="https://www.piedmont.org/locations/piedmont-atlanta">Piedmont Atlanta</a></h3>
+                    <p>Hospital location, services, directions, patient information, and visitor resources.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><a href="https://www.gradyhealth.org/locations/grady-memorial-hospital/">Grady Memorial Hospital</a></h3>
+                    <p>Downtown Atlanta hospital information, locations, services, and patient resources.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="container">
+            <h2>Home Recovery And Mobility Equipment Planning</h2>
+            <p>After surgery, injury, hospital discharge, or a temporary mobility change, families often need equipment ready before the patient arrives home. Comfort Care helps Atlanta and Sandy Springs customers compare rental options and timing.</p>
+            <div class="service-grid">
+                <div class="service-item">
+                    <h3><a href="wheelchair-rental-atlanta.html">Wheelchair Rental</a></h3>
+                    <p>Manual, transport, and mobility support options for appointments, recovery, travel, and daily assistance.</p>
+                </div>
+                <div class="service-item">
+                    <h3><a href="walker-rental-atlanta.html">Walkers And Rollators</a></h3>
+                    <p>Balance and stability support for customers who need help moving safely around the home.</p>
+                </div>
+                <div class="service-item">
+                    <h3><a href="knee-scooter-rental-atlanta.html">Knee Scooters</a></h3>
+                    <p>Useful for many foot, ankle, and lower-leg recovery situations when approved by a medical provider.</p>
+                </div>
+                <div class="service-item">
+                    <h3><a href="wheelchair-rental-sandy-springs-ga.html">Sandy Springs Rentals</a></h3>
+                    <p>Mobility equipment rental support for Sandy Springs residents, caregivers, recovery patients, and visiting family members.</p>
+                </div>
+                <div class="service-item">
+                    <h3><a href="medical-equipment-rental-atlanta.html">Medical Equipment Rentals</a></h3>
+                    <p>Browse mobility and recovery equipment options for short-term and extended rental needs.</p>
+                </div>
+                <div class="service-item">
+                    <h3><a href="order.html">Request Equipment</a></h3>
+                    <p>Start an order request for wheelchairs, walkers, rollators, knee scooters, hospital beds, and related equipment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <div class="container">
+            <h2>Helpful Planning Notes</h2>
+            <h3>Ask the care team what equipment is appropriate.</h3>
+            <p>Comfort Care can help with rental availability and product options, but equipment choice should follow guidance from the patient's medical provider, discharge planner, physical therapist, or care team.</p>
+            <h3>Confirm insurance and Medicare details directly.</h3>
+            <p>Coverage, documentation, supplier rules, and reimbursement can vary. Use Medicare.gov or your insurance plan for official coverage guidance.</p>
+            <h3>Measure the home before delivery.</h3>
+            <p>Doorways, hallways, bedroom space, bathroom access, stairs, and elevator access can affect which equipment works best at home.</p>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>Planning Home Recovery In Atlanta Or Sandy Springs?</h2>
+            <p>Call Comfort Care for local mobility equipment rental support and availability.</p>
+            <a href="tel:678-362-2345" class="btn btn-light">Call 678-362-2345</a>
+            <a href="services.html" class="btn btn-light">Browse Services</a>
+            <a href="contact.html" class="btn btn-light">Contact Us</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Comfort Care</h4>
+                    <p>Mobility equipment rental services for Atlanta, Norcross, Sandy Springs, and surrounding Georgia communities.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Phone: <a href="tel:678-362-2345">678-362-2345</a></p>
+                    <p>Email: <a href="mailto:admin@comcare.store?cc=accentGV%40gmail.com">admin@comcare.store</a></p>
+                    <p>Location: Norcross, Georgia</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="atlanta-sandy-springs-healthcare-resources.html">Healthcare Resources</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="sitemap.xml">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Comfort Care. All rights reserved. | Mobility equipment rentals</p>
+                <p>Comfort Care is a trade name of MOON LIGHTING INC.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

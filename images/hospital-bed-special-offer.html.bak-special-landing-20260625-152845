@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9G5EVYE5Y"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-D9G5EVYE5Y');
+        </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Week Free Hospital Bed Rental Atlanta | Comfort Care Special Offer</title>
+    <meta name="description" content="Limited time Comfort Care hospital bed rental offer for Atlanta-area new customers. Ask about first week free on semi-electric, full-electric, and bed plus mattress rentals.">
+    <meta name="keywords" content="first week free hospital bed rental Atlanta, hospital bed rental Atlanta, electric hospital bed rental, semi electric hospital bed rental, Comfort Care special offer">
+    <link rel="canonical" href="https://comcare.store/hospital-bed-special-offer">
+    <meta property="og:title" content="First Week Free Hospital Bed Rental | Comfort Care">
+    <meta property="og:description" content="New customers can ask about first week free hospital bed rental for local Atlanta-area delivery.">
+    <meta property="og:url" content="https://comcare.store/hospital-bed-special-offer">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://comcare.store/images/BedPictureFull.jpg">
+    <link rel="stylesheet" href="styles.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Offer",
+      "name": "First Week Free Hospital Bed Rental",
+      "description": "Limited time hospital bed rental promotion for new Comfort Care customers in the Atlanta metro delivery area.",
+      "url": "https://comcare.store/hospital-bed-special-offer",
+      "availability": "https://schema.org/LimitedAvailability",
+      "eligibleCustomerType": "New customers",
+      "seller": {
+        "@type": "MedicalBusiness",
+        "name": "MOON LIGHTING INC. DBA Comfort Care",
+        "telephone": "+1-678-362-2345",
+        "email": "admin@comcare.store",
+        "url": "https://comcare.store/"
+      },
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Hospital bed rental",
+        "areaServed": "Atlanta, GA"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Who can use the first week free hospital bed rental offer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The offer is intended for new Comfort Care customers using local Atlanta-area delivery. One offer is available per household."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which hospital bed rentals are included?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Semi-electric, full-electric, and bed plus mattress bundle options may be available. Availability depends on inventory and delivery scheduling."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I claim the hospital bed special offer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Call or text 678-362-2345, email admin@comcare.store, or start an online order and mention the first week free hospital bed offer."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are delivery or setup fees included?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The first-week bed rental is free for eligible new customers. Local delivery is $99 and setup is $149 at checkout. Pickup, accessories, and extended rental fees may be separate and should be confirmed with Comfort Care."
+          }
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-middle">
+                <div class="nav-identity">
+                    <div class="nav-brand">
+                        <img src="logo.svg" alt="Comfort Care mobility equipment rental logo" class="logo-image">
+                    </div>
+                    <div class="nav-title">Comfort Care</div>
+                </div>
+                <ul class="nav-menu">
+                <li><a href="index.html" id="navHome">Home</a></li>
+                <li><a href="hospital-bed-special-offer.html" class="active" id="navSpecial">Special Offer</a></li>
+                <li><a href="services.html" id="navServices">Services</a></li>
+                <li><a href="order.html" id="navOrder">Order</a></li>
+                <li><a href="pricing.html" id="navCart">Cart</a></li>
+                <li><a href="payment.html" id="navPayment">Payments</a></li>
+                <li><a href="insurance-form.html" id="navInsurance">Insurance</a></li>
+                <li><a href="atlanta-sandy-springs-healthcare-resources.html" id="navResources">Resources</a></li>
+                <li><a href="recovery-professionals.html" id="navRecovery">Recovery Network</a></li>
+                <li><a href="rehab-tech-intake.html" id="navRehabTechs">Rehab Techs</a></li>
+                <li><a href="contact.html" id="navContact">Contact</a></li>
+                        <script>
+                        // Preserve agent parameter in navigation links
+                        const agentParam = new URLSearchParams(window.location.search).get('agent');
+                        if (agentParam) {
+                            ["navHome","navSpecial","navServices","navOrder","navCart","navPayment","navInsurance","navResources","navRecovery","navRehabTechs","navContact"].forEach(function(id) {
+                                const link = document.getElementById(id);
+                                if (link) {
+                                    let href = link.getAttribute('href');
+                                    if (href.indexOf('?') === -1) {
+                                        href += '?agent=' + encodeURIComponent(agentParam);
+                                    } else {
+                                        href += '&agent=' + encodeURIComponent(agentParam);
+                                    }
+                                    link.setAttribute('href', href);
+                                }
+                            });
+                        }
+                        </script>
+                </ul>
+            </div>
+            <div class="nav-cart">
+                <div class="cart-box" aria-live="polite">
+                    <span class="cart-box-title">Cart</span>
+                    <span class="cart-box-detail">
+                        <span id="headerCartCount">0 items</span>
+                        <span class="cart-box-sep">|</span>
+                        <span id="headerCartTotal">$0.00</span>
+                    </span>
+                </div>
+                <div class="nav-cart-main">
+                    <a href="order.html" class="btn btn-secondary btn-compact edit-cart-link">Edit Cart</a>
+                    <a href="pricing.html" class="btn btn-primary btn-compact">Pay</a>
+                    <a href="mailto:admin@comcare.store?cc=accentGV%40gmail.com" class="btn btn-discount btn-mini" style="margin-top:8px;display:block;">Email Cart for Discounts</a>
+                </div>
+            </div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Offer Hero -->
+    <section class="offer-page-hero">
+        <div class="container">
+            <div class="offer-page-hero-grid">
+                <div class="offer-page-copy">
+                    <span class="offer-pill">Limited time offer</span>
+                    <h1>First Week Free Hospital Bed Rental</h1>
+                    <p>Choose a hospital bed, pay the required delivery and setup fees, and get the first week of bed rental free for eligible new customers.</p>
+                    <div class="offer-actions">
+                        <a href="tel:678-362-2345" class="btn btn-light">Call or Text 678-362-2345</a>
+                        <a href="#choose-bed-offer" class="btn btn-light">Choose a Bed</a>
+                    </div>
+                </div>
+                <div class="offer-page-highlight" aria-label="First week free offer details">
+                    <span>Free</span>
+                    <strong>First Week</strong>
+                    <p>Hospital Bed Rental</p>
+                    <small>New customers. $99 delivery + $149 setup due at checkout.</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Choose Bed -->
+    <section class="special-offer-section">
+        <div class="container">
+            <div class="offer-section-heading" id="choose-bed-offer">
+                <span class="offer-pill">Simple checkout</span>
+                <h2>Choose Your Free First Week Bed</h2>
+                <p>Pick one bed option. The first week rental charge is $0. Checkout adds local delivery and setup.</p>
+            </div>
+            <div class="offer-bed-choice-grid">
+                <article class="offer-bed-choice-card">
+                    <img src="images/BedPictureSemi.jpg" alt="Semi-electric hospital bed rental">
+                    <h3>Semi-Electric Bed</h3>
+                    <p>Standard hospital bed option for home recovery support.</p>
+                    <div class="offer-bed-price">
+                        <span>First week</span>
+                        <strong>Free</strong>
+                        <small>Then $103/week if extended</small>
+                    </div>
+                    <button type="button" class="btn btn-primary offer-bed-select" data-bed-name="Semi-Electric Hospital Bed" data-bed-model="Standard" data-after-week-price="103">Choose Semi-Electric</button>
+                </article>
+                <article class="offer-bed-choice-card">
+                    <img src="images/BedPictureFull.jpg" alt="Full electric hospital bed rental">
+                    <h3>Full Electric Bed</h3>
+                    <p>Premium option with easier electric positioning controls.</p>
+                    <div class="offer-bed-price">
+                        <span>First week</span>
+                        <strong>Free</strong>
+                        <small>Then $131/week if extended</small>
+                    </div>
+                    <button type="button" class="btn btn-primary offer-bed-select" data-bed-name="Full Electric Hospital Bed" data-bed-model="Premium" data-after-week-price="131">Choose Full Electric</button>
+                </article>
+                <article class="offer-bed-choice-card">
+                    <img src="images/BedPictureFull.jpg" alt="Hospital bed and mattress bundle rental">
+                    <h3>Bed + Mattress Bundle</h3>
+                    <p>Hospital bed rental bundled with a mattress option.</p>
+                    <div class="offer-bed-price">
+                        <span>First week</span>
+                        <strong>Free</strong>
+                        <small>Then $186/week if extended</small>
+                    </div>
+                    <button type="button" class="btn btn-primary offer-bed-select" data-bed-name="Hospital Bed + Mattress Bundle" data-bed-model="Bundle" data-after-week-price="186">Choose Bundle</button>
+                </article>
+            </div>
+            <div class="offer-fee-summary" aria-label="Required checkout fees">
+                <div>
+                    <span>Local delivery</span>
+                    <strong>$99</strong>
+                </div>
+                <div>
+                    <span>Setup</span>
+                    <strong>$149</strong>
+                </div>
+                <div>
+                    <span>Due today</span>
+                    <strong>$248</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="features">
+        <div class="container">
+            <h2>After the Free First Week</h2>
+            <p>Only pay additional weekly rental if you keep the bed longer. Prices are rounded for easy choosing.</p>
+            <div class="offer-table-wrap">
+                <table class="offer-pricing-table">
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Weekly</th>
+                            <th>Monthly</th>
+                            <th>Best For</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Semi-Electric Hospital Bed</td>
+                            <td>$103</td>
+                            <td>$375</td>
+                            <td>Standard home recovery support</td>
+                        </tr>
+                        <tr>
+                            <td>Full Electric Hospital Bed</td>
+                            <td>$131</td>
+                            <td>$475</td>
+                            <td>Head, foot, and height adjustment support</td>
+                        </tr>
+                        <tr>
+                            <td>Bed plus Mattress Bundle</td>
+                            <td>$186</td>
+                            <td>$675</td>
+                            <td>Bed rental with mattress add-on</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="offer-disclaimer">The first-week-free promotion applies to eligible first-week rental charges for new customers. Local delivery is $99 and setup is $149 at checkout. Pickup, accessories, taxes, damage, and extended rental charges may be separate.</p>
+        </div>
+    </section>
+
+    <!-- Terms -->
+    <section class="offer-terms-section">
+        <div class="container">
+            <h2>Offer Terms</h2>
+            <div class="offer-terms-grid">
+                <div class="offer-term-card">
+                    <h3>New Customers</h3>
+                    <p>Offer is intended for first-time Comfort Care hospital bed rental customers.</p>
+                </div>
+                <div class="offer-term-card">
+                    <h3>$99 Delivery</h3>
+                    <p>Local Atlanta-area delivery is added to the special-offer checkout.</p>
+                </div>
+                <div class="offer-term-card">
+                    <h3>$149 Setup</h3>
+                    <p>Setup is added to checkout so the bed can be placed and prepared at delivery.</p>
+                </div>
+                <div class="offer-term-card">
+                    <h3>One Per Household</h3>
+                    <p>One first-week-free bed rental offer per household. Extended rental weeks are billed after the free week.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Check Hospital Bed Availability?</h2>
+            <p>Pick a bed above or call Comfort Care for help choosing.</p>
+            <div class="cta-contact">
+                <a href="tel:678-362-2345" class="btn btn-light">Call: 678-362-2345</a>
+                <a href="#choose-bed-offer" class="btn btn-light">Choose a Bed</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Comfort Care</h4>
+                    <p>Mobility equipment rental services for Atlanta, Norcross, and surrounding Georgia communities.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Phone: <a href="tel:678-362-2345">678-362-2345</a></p>
+                    <p>Email: <a href="mailto:admin@comcare.store?cc=accentGV%40gmail.com">admin@comcare.store</a></p>
+                    <p>Location: Norcross, Georgia</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="hospital-bed-special-offer.html">Hospital Bed Special Offer</a></li>
+                        <li><a href="#choose-bed-offer">Choose Hospital Bed</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="atlanta-sandy-springs-healthcare-resources.html">Healthcare Resources</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="sitemap.xml">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Comfort Care. All rights reserved. | Mobility equipment rentals</p>
+                <p>Comfort Care operates as a DBA/trade name of MOON LIGHTING INC.</p>
+                <p>Business license, bank account, and payment records should use MOON LIGHTING INC. Checks should be payable to MOON LIGHTING INC.; a check copy will be provided when available.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
