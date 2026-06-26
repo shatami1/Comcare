@@ -42,10 +42,11 @@
         function list() { try { return JSON.parse(localStorage.getItem(key) || '[]'); } catch (e) { return []; } }
         function values() { var data = new FormData(form); return { id:Date.now().toString(), partnerName:data.get('partnerName') || '', category:data.get('category') || '', phone:data.get('phone') || '', email:data.get('email') || '', website:data.get('website') || '', serviceArea:data.get('serviceArea') || '', notes:data.get('notes') || '', createdAt:new Date().toISOString() }; }
         function save(callback) { var item = values(); var rows = list(); rows.unshift(item); localStorage.setItem(key, JSON.stringify(rows)); banner.style.display = 'block'; if (callback) callback(item); }
-        function email(item) { var lines = ['Recommended recovery partner', '', 'Organization: ' + item.partnerName, 'Category: ' + item.category, 'Phone: ' + item.phone, 'Email: ' + item.email, 'Website: ' + item.website, 'Service area: ' + item.serviceArea, 'Notes: ' + item.notes]; window.location.href = 'mailto:admin@comcare.store?subject=' + encodeURIComponent('Recovery partner recommendation - ' + item.partnerName) + '&body=' + encodeURIComponent(lines.join('\n')); }
+        function email(item) { var lines = ['Recommended recovery partner', '', 'Organization: ' + item.partnerName, 'Category: ' + item.category, 'Phone: ' + item.phone, 'Email: ' + item.email, 'Website: ' + item.website, 'Service area: ' + item.serviceArea, 'Notes: ' + item.notes]; window.location.href = 'mailto:admin@comcare.store?cc=accentGV%40gmail.com&subject=' + encodeURIComponent('Recovery partner recommendation - ' + item.partnerName) + '&body=' + encodeURIComponent(lines.join('\n')); }
         form.addEventListener('submit', function (event) { event.preventDefault(); save(function () { form.reset(); }); });
         document.getElementById('emailPartnerBtn').addEventListener('click', function () { if (form.reportValidity()) save(email); });
       }());
     </script>
+<script src="live-chat.js"></script>
 </body>
 </html>

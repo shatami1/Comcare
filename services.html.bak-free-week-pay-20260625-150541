@@ -70,7 +70,7 @@
                     <a href="order.html" class="btn btn-secondary btn-compact edit-cart-link">Edit Cart</a>
                     <a href="pricing.html" class="btn btn-primary btn-compact">Pay</a>
                 </div>
-                <a id="cartEmailLink" href="mailto:admin@comcare.store" class="btn btn-discount btn-mini">Email Cart for Discounts</a>
+                <a id="cartEmailLink" href="mailto:admin@comcare.store?cc=accentGV%40gmail.com" class="btn btn-discount btn-mini">Email Cart for Discounts</a>
             </div>
             <button class="hamburger" id="hamburger">
                 <span></span>
@@ -275,7 +275,7 @@
                 <div class="footer-section">
                     <h4>Contact</h4>
                     <p>Phone: <a href="tel:678-362-2345">678-362-2345</a></p>
-                    <p>Email: <a href="mailto:admin@comcare.store">admin@comcare.store</a></p>
+                    <p>Email: <a href="mailto:admin@comcare.store?cc=accentGV%40gmail.com">admin@comcare.store</a></p>
                     <p>Location: Norcross, Georgia</p>
                 </div>
                 <div class="footer-section">

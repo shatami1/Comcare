@@ -22,12 +22,30 @@
         .map-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
         .map-grid span { background: #f7fafc; border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; text-align: center; font-weight: 700; }
         .empty-state { background: #fff; border: 1px dashed var(--border-color); border-radius: 10px; padding: 28px; text-align: center; }
-        @media (max-width: 850px) { .network-layout, .profile-card { grid-template-columns: 1fr; } .map-grid { grid-template-columns: 1fr; } }
+        .network-promo { padding: 34px 20px 0; background: #f8fafc; }
+        .network-promo-card { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(280px, 1.05fr); gap: 24px; align-items: center; }
+        .network-promo-copy h2 { color: #12355f; font-size: clamp(1.8rem, 3vw, 2.6rem); line-height: 1.1; margin-bottom: 10px; }
+        .network-promo-copy p { color: var(--light-text); line-height: 1.65; margin-bottom: 18px; }
+        .network-promo-image { display: block; overflow: hidden; border: 1px solid var(--border-color); border-radius: 8px; background: #fff; box-shadow: var(--shadow-lg); }
+        .network-promo-image img { display: block; width: 100%; height: auto; }
+        @media (max-width: 850px) { .network-layout, .profile-card, .network-promo-card { grid-template-columns: 1fr; } .map-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
     <nav class="navbar"><div class="container"><div class="nav-middle"><div class="nav-identity"><div class="nav-brand"><img src="logo.svg" alt="Comfort Care Logo" class="logo-image"></div><div class="nav-title">Comfort Care</div></div><ul class="nav-menu"><li><a href="home.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="order.html">Order</a></li><li><a href="pricing.html">Cart</a></li><li><a href="atlanta-sandy-springs-healthcare-resources.html">Resources</a></li><li><a href="recovery-professionals.html" class="active">Recovery Network</a></li><li><a href="contact.html">Contact</a></li></ul></div></div></nav>
     <section class="page-header"><div class="container"><h1>Recovery Professionals Atlanta</h1><p>Search Atlanta rehab support professionals by ZIP code, specialty, and service area.</p></div></section>
+    <section class="network-promo" aria-label="Join Atlanta recovery support network">
+        <div class="container network-promo-card">
+            <div class="network-promo-copy">
+                <h2>Join Atlanta's Recovery Support Network</h2>
+                <p>Rehab technicians, PTA and OTA assistants, home health aides, caregivers, and recovery coaches can register to be considered for Comfort Care's local recovery ecosystem.</p>
+                <a class="btn btn-primary" href="join-professionals.html">Register as a Professional</a>
+            </div>
+            <a class="network-promo-image" href="join-professionals.html">
+                <img src="network-recovery-support.jpg" alt="Join Atlanta's Recovery Support Network with rehab technicians, assistants, home health aides, caregivers, and recovery coaches">
+            </a>
+        </div>
+    </section>
     <section class="contact-section"><div class="container network-layout">
         <aside class="network-panel">
             <h2>Find Support</h2>
@@ -64,7 +82,7 @@
           var text = [item.name,item.title,item.specialty,item.certifications,item.serviceArea,item.bio].join(' ').toLowerCase();
           return (!zip || text.indexOf(zip) !== -1) && (!specialty || item.specialty === specialty) && (!keyword || text.indexOf(keyword) !== -1);
         }
-        function contactLink(item) { var body = 'I would like recovery support information for the Atlanta area.\n\nProfessional: ' + (item.name || '') + '\nSpecialty: ' + (item.specialty || '') + '\nService area: ' + (item.serviceArea || ''); return 'mailto:admin@comcare.store?subject=' + encodeURIComponent('Recovery professional referral request') + '&body=' + encodeURIComponent(body); }
+        function contactLink(item) { var body = 'I would like recovery support information for the Atlanta area.\n\nProfessional: ' + (item.name || '') + '\nSpecialty: ' + (item.specialty || '') + '\nService area: ' + (item.serviceArea || ''); return 'mailto:admin@comcare.store?cc=accentGV%40gmail.com&subject=' + encodeURIComponent('Recovery professional referral request') + '&body=' + encodeURIComponent(body); }
         function render() {
           var list = all().filter(matches);
           var target = document.getElementById('profileList');
@@ -88,5 +106,6 @@
         loadRemote();
       }());
     </script>
+<script src="live-chat.js"></script>
 </body>
 </html>

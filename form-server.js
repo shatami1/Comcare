@@ -9,6 +9,8 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+const ADMIN_COPY_EMAIL = 'accentGV@gmail.com';
+
 // Email configuration
 const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -36,6 +38,7 @@ app.post('/api/contact', async (req, res) => {
         const mailOptions = {
             from: process.env.EMAIL_USER || 'admin@comcare.store',
             to: process.env.EMAIL_USER || 'admin@comcare.store',
+            cc: ADMIN_COPY_EMAIL,
             subject: `New Contact Form Submission: ${subject}`,
             html: `
                 <h3>New Contact Message</h3>
@@ -79,6 +82,7 @@ app.post('/api/booking', async (req, res) => {
         const mailOptions = {
             from: process.env.EMAIL_USER || 'admin@comcare.store',
             to: process.env.EMAIL_USER || 'admin@comcare.store',
+            cc: ADMIN_COPY_EMAIL,
             subject: `New Booking Request: ${equipmentType}`,
             html: `
                 <h3>New Booking Request</h3>

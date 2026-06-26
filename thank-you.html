@@ -51,7 +51,7 @@
                     <a href="order.html" class="btn btn-secondary btn-compact edit-cart-link">Edit Cart</a>
                     <a href="pricing.html" class="btn btn-primary btn-compact">Pay</a>
                 </div>
-                <a id="cartEmailLink" href="mailto:admin@comcare.store" class="btn btn-discount btn-mini">Email Cart for Discounts</a>
+                <a id="cartEmailLink" href="mailto:admin@comcare.store?cc=accentGV%40gmail.com" class="btn btn-discount btn-mini">Email Cart for Discounts</a>
             </div>
             <button class="hamburger" id="hamburger">
                 <span></span>
@@ -115,6 +115,7 @@
     <!-- Hidden form for sending order confirmation email -->
     <form id="orderConfirmationForm" action="https://formsubmit.co/admin@comcare.store" method="POST" style="display: none;">
         <input type="hidden" name="_subject" value="New Comfort Care Order - Payment Completed">
+        <input type="hidden" name="_cc" value="accentGV@gmail.com">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_autoresponse" value="Thank you for your order! We will contact you within 2 hours to finalize delivery details.">
@@ -196,5 +197,6 @@
             }
         }
     </script>
+<script src="live-chat.js"></script>
 </body>
 </html>

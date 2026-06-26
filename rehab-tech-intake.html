@@ -99,7 +99,7 @@
                 <p>Enter request details while speaking with a rehab tech, then email the summary to Comfort Care for scheduling.</p>
                 <h3>Contact</h3>
                 <p><strong>Phone:</strong> <a href="tel:678-362-2345">678-362-2345</a></p>
-                <p><strong>Email:</strong> <a href="mailto:admin@comcare.store">admin@comcare.store</a></p>
+                <p><strong>Email:</strong> <a href="mailto:admin@comcare.store?cc=accentGV%40gmail.com">admin@comcare.store</a></p>
             </aside>
         </div>
     </section>
@@ -135,11 +135,12 @@
         }
         function email(item) {
           var lines = ['Rehab tech equipment request', '', 'Facility: ' + item.facilityName, 'Tech: ' + item.techName, 'Phone: ' + item.techPhone, 'Email: ' + item.techEmail, 'Patient initials: ' + item.patientInitials, 'Room/unit: ' + item.roomUnit, 'Needed date: ' + item.neededDate, 'Priority: ' + item.priority, 'Fulfillment: ' + item.fulfillment, 'Equipment: ' + item.equipment, 'Size/fit notes: ' + item.sizeNotes, 'Delivery address: ' + item.deliveryAddress, 'Payment/billing: ' + item.paymentPlan, 'Notes: ' + item.notes];
-          window.location.href = 'mailto:admin@comcare.store?subject=' + encodeURIComponent('Rehab tech equipment request - ' + item.facilityName) + '&body=' + encodeURIComponent(lines.join('\n'));
+          window.location.href = 'mailto:admin@comcare.store?cc=accentGV%40gmail.com&subject=' + encodeURIComponent('Rehab tech equipment request - ' + item.facilityName) + '&body=' + encodeURIComponent(lines.join('\n'));
         }
         form.addEventListener('submit', function (event) { event.preventDefault(); save(); form.reset(); document.getElementById('requestDate').valueAsDate = new Date(); });
         document.getElementById('saveEmailBtn').addEventListener('click', function () { if (form.reportValidity()) email(save()); });
       }());
     </script>
+<script src="live-chat.js"></script>
 </body>
 </html>

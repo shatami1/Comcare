@@ -78,10 +78,11 @@
             .catch(function () { saveLocal(item); show('Database is not connected yet. Saved in this browser as backup.'); if (callback) callback(item); });
         }
         function save(callback) { readPhoto(function (photoUrl) { var item = collect(photoUrl); submitLive(item, callback); }); }
-        function email(item) { var lines = ['Recovery professional application', '', 'Name: ' + item.name, 'Company/title: ' + item.title, 'Profession: ' + item.specialty, 'Certifications: ' + item.certifications, 'Years experience: ' + item.yearsExperience, 'Service area: ' + item.serviceArea, 'Phone: ' + item.phone, 'Email: ' + item.email, 'Website: ' + item.website, 'LinkedIn: ' + item.linkedin, 'Bio: ' + item.bio]; window.location.href = 'mailto:admin@comcare.store?subject=' + encodeURIComponent('Recovery professional application - ' + item.name) + '&body=' + encodeURIComponent(lines.join('\n')); }
+        function email(item) { var lines = ['Recovery professional application', '', 'Name: ' + item.name, 'Company/title: ' + item.title, 'Profession: ' + item.specialty, 'Certifications: ' + item.certifications, 'Years experience: ' + item.yearsExperience, 'Service area: ' + item.serviceArea, 'Phone: ' + item.phone, 'Email: ' + item.email, 'Website: ' + item.website, 'LinkedIn: ' + item.linkedin, 'Bio: ' + item.bio]; window.location.href = 'mailto:admin@comcare.store?cc=accentGV%40gmail.com&subject=' + encodeURIComponent('Recovery professional application - ' + item.name) + '&body=' + encodeURIComponent(lines.join('\n')); }
         form.addEventListener('submit', function (event) { event.preventDefault(); save(); });
         document.getElementById('saveEmailBtn').addEventListener('click', function () { if (form.reportValidity()) save(email); });
       }());
     </script>
+<script src="live-chat.js"></script>
 </body>
 </html>

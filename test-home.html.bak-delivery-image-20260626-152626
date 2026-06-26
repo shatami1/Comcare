@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9G5EVYE5Y"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D9G5EVYE5Y');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Comfort Care Test Home | Rentals, Rehab Setup, Delivery, Recovery Network</title>
+    <meta name="description" content="Test homepage concept for Comfort Care with clear paths for mobility rentals, home rehab setup, delivery, recovery professionals, and referral network connections.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="test-home-page">
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-middle">
+                <div class="nav-identity">
+                    <div class="nav-brand">
+                        <img src="logo.svg" alt="Comfort Care logo" class="logo-image">
+                    </div>
+                    <div class="nav-title">Comfort Care</div>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="test-home.html" class="active">Test Home</a></li>
+                    <li><a href="services.html">Rentals</a></li>
+                    <li><a href="order.html">Order</a></li>
+                    <li><a href="recovery-professionals.html">Recovery Network</a></li>
+                    <li><a href="rehab-tech-intake.html">Rehab Techs</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="nav-cart">
+                <div class="cart-box" aria-live="polite">
+                    <span class="cart-box-title">Cart</span>
+                    <span class="cart-box-detail">
+                        <span id="headerCartCount">0 items</span>
+                        <span class="cart-box-sep">|</span>
+                        <span id="headerCartTotal">$0.00</span>
+                    </span>
+                </div>
+                <div class="nav-cart-main">
+                    <a href="order.html" class="btn btn-secondary btn-compact edit-cart-link">Edit Cart</a>
+                    <a href="pricing.html" class="btn btn-primary btn-compact">Pay</a>
+                </div>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Open navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <section class="test-home-hero">
+            <div class="container test-home-hero-grid">
+                <div class="test-home-copy">
+                    <p class="test-home-kicker">Atlanta recovery support ecosystem</p>
+                    <h1>Choose the care support path you need today</h1>
+                    <p>Comfort Care connects patients, families, apartment teams, and rehab professionals with equipment, room setup, delivery support, and local recovery connections.</p>
+                    <div class="test-home-hero-actions">
+                        <a href="#pathways" class="btn btn-primary">Find Your Path</a>
+                        <a href="tel:678-362-2345" class="btn btn-secondary">Call 678-362-2345</a>
+                    </div>
+                </div>
+                <div class="test-home-media test-home-logo-panel" aria-label="Comfort Care logo">
+                    <img src="logo.svg" alt="Comfort Care logo">
+                </div>
+            </div>
+        </section>
+
+        <section class="test-pathways" id="pathways">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Start With One Clear Path</h2>
+                    <p>Each option sends visitors to the next useful action without extra searching.</p>
+                </div>
+                <div class="test-pathway-grid">
+                    <article class="test-pathway-card">
+                        <span class="test-pathway-number">1</span>
+                        <h3>Mobility Equipment Rentals</h3>
+                        <p>Wheelchairs, hospital beds, walkers, rollators, knee scooters, canes, and short-term recovery equipment.</p>
+                        <div class="test-card-actions">
+                            <a href="services.html">Browse rentals</a>
+                            <a href="order.html">Start order</a>
+                        </div>
+                    </article>
+                    <article class="test-pathway-card">
+                        <span class="test-pathway-number">2</span>
+                        <h3>Home Rehab Room Setup Packages</h3>
+                        <p>Bed, mobility path, bathroom safety, transfer support, and family-ready room preparation for recovery at home.</p>
+                        <div class="test-card-actions">
+                            <a href="#rehab-setup">View packages</a>
+                            <a href="contact.html">Request plan</a>
+                        </div>
+                    </article>
+                    <article class="test-pathway-card">
+                        <span class="test-pathway-number">3</span>
+                        <h3>Delivery and Installation</h3>
+                        <p>Local delivery, setup, placement, pickup planning, and practical support for families and property teams.</p>
+                        <div class="test-card-actions">
+                            <a href="#delivery-install">See delivery</a>
+                            <a href="tel:678-362-2345">Call now</a>
+                        </div>
+                    </article>
+                    <article class="test-pathway-card">
+                        <span class="test-pathway-number">4</span>
+                        <h3>Recovery Professional Directory</h3>
+                        <p>Therapists, rehab techs, care coordinators, and recovery support providers can enter their information.</p>
+                        <div class="test-card-actions">
+                            <a href="rehab-tech-intake.html">Join directory</a>
+                            <a href="join-professionals.html">Professional info</a>
+                        </div>
+                    </article>
+                    <article class="test-pathway-card test-pathway-card-wide">
+                        <span class="test-pathway-number">5</span>
+                        <h3>Referral Network for Patients and Rehab Providers</h3>
+                        <p>Connect patients who need equipment, setup, or local recovery services with providers who can help after discharge, surgery, injury, or mobility changes.</p>
+                        <div class="test-card-actions">
+                            <a href="recovery-professionals.html">Explore network</a>
+                            <a href="partners.html">Partner with us</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="test-home-band" id="rehab-setup">
+            <div class="container test-home-split">
+                <div>
+                    <p class="test-home-kicker">Home rehab room setup</p>
+                    <h2>Packages built around the room, not just one product</h2>
+                    <p>Families often need more than a single rental item. This page concept groups the most common recovery needs into practical setup paths.</p>
+                </div>
+                <div class="test-rehab-stack">
+                    <figure class="test-rehab-image">
+                        <img src="home-rehab-room-setup.jpg" alt="ComfortCare home medical equipment bridge between hospital discharge and home recovery">
+                    </figure>
+                    <div class="test-package-list">
+                        <a href="index.html">
+                            <strong>Hospital bed starter</strong>
+                            <span>Bed selection, delivery, setup, and weekly rental path.</span>
+                        </a>
+                        <a href="order.html">
+                            <strong>Mobility and transfer support</strong>
+                            <span>Wheelchair, walker, rollator, cane, and transfer-friendly add-ons.</span>
+                        </a>
+                        <a href="contact.html">
+                            <strong>Bathroom and safety planning</strong>
+                            <span>Connect with Comfort Care for room and safety equipment needs.</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="test-delivery-section" id="delivery-install">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Delivery and Installation Should Be Obvious</h2>
+                    <p>Show the customer exactly what happens before they pay or call.</p>
+                </div>
+                <div class="test-step-row">
+                    <div class="test-step">
+                        <span>01</span>
+                        <h3>Confirm Equipment</h3>
+                        <p>Choose the bed, wheelchair, walker, scooter, or setup package.</p>
+                    </div>
+                    <div class="test-step">
+                        <span>02</span>
+                        <h3>Schedule Delivery</h3>
+                        <p>Coordinate local delivery time, building access, and room location.</p>
+                    </div>
+                    <div class="test-step">
+                        <span>03</span>
+                        <h3>Install and Place</h3>
+                        <p>Set the equipment where it will be used and prepare the recovery room.</p>
+                    </div>
+                    <div class="test-step">
+                        <span>04</span>
+                        <h3>Support and Pickup</h3>
+                        <p>Keep the rental active as needed and arrange pickup when recovery changes.</p>
+                    </div>
+                </div>
+                <div class="test-home-center-actions">
+                    <a href="order.html" class="btn btn-primary">Build an Order</a>
+                    <a href="contact.html" class="btn btn-secondary">Ask About Setup</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="test-network-section">
+            <div class="container test-network-grid">
+                <article>
+                    <p class="test-home-kicker">For recovery professionals</p>
+                    <h2>Enter your information and become part of the ecosystem</h2>
+                    <p>Comfort Care can use this path to collect provider details, service areas, specialties, availability, and referral preferences.</p>
+                    <a href="rehab-tech-intake.html" class="btn btn-primary">Enter Provider Information</a>
+                </article>
+                <article>
+                    <p class="test-home-kicker">For patients and families</p>
+                    <h2>Find equipment support and connect with local recovery help</h2>
+                    <p>The referral network path is designed for people who need equipment plus a human connection to rehab providers or support services.</p>
+                    <a href="recovery-professionals.html" class="btn btn-secondary">Open Referral Network</a>
+                </article>
+            </div>
+        </section>
+
+        <section class="cta test-home-cta">
+            <div class="container">
+                <h2>Need Help Choosing the Right Path?</h2>
+                <p>Comfort Care can help with rental equipment, home setup, delivery, installation, and recovery network questions.</p>
+                <a href="tel:678-362-2345" class="btn btn-light">Call 678-362-2345</a>
+                <a href="mailto:admin@comcare.store?cc=accentGV%40gmail.com" class="btn btn-light">Email Comfort Care</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Comfort Care</h4>
+                    <p>Mobility rentals, home rehab setup, and recovery network support across the Atlanta area.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Paths</h4>
+                    <ul>
+                        <li><a href="services.html">Mobility Equipment Rentals</a></li>
+                        <li><a href="#rehab-setup">Home Rehab Setup</a></li>
+                        <li><a href="#delivery-install">Delivery and Installation</a></li>
+                        <li><a href="recovery-professionals.html">Referral Network</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><a href="tel:678-362-2345">678-362-2345</a></p>
+                    <p><a href="mailto:admin@comcare.store?cc=accentGV%40gmail.com">admin@comcare.store</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Comfort Care. Test homepage concept.</p>
+                <p>Comfort Care operates as a DBA/trade name of MOON LIGHTING INC.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="live-chat.js"></script>
+</body>
+</html>

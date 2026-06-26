@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9G5EVYE5Y"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-D9G5EVYE5Y');
-        </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9G5EVYE5Y"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D9G5EVYE5Y');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobility Equipment Rentals in Atlanta, GA | Comfort Care Home</title>
-    <meta name="description" content="Rent hospital beds, wheelchairs, walkers, rollators, knee scooters, canes, and recovery equipment in Atlanta. New customers can ask about first week free hospital bed rental.">
-    <meta name="keywords" content="mobility equipment rentals Atlanta, wheelchair rental Atlanta, knee scooter rental Atlanta, walker rental Atlanta, rollator rental Atlanta, medical equipment rental Atlanta">
+    <title>Comfort Care | Atlanta Mobility Rentals, Home Rehab Setup & Recovery Network</title>
+    <meta name="description" content="Comfort Care helps Atlanta-area families choose mobility equipment rentals, home rehab room setup packages, delivery and installation, and recovery provider connections.">
+        <meta name="keywords" content="mobility equipment rentals Atlanta, home rehab room setup Atlanta, hospital bed rental Atlanta, wheelchair rental Atlanta, recovery professional directory Atlanta, rehab referral network">
     <link rel="canonical" href="https://comcare.store/home.html">
-    <meta property="og:title" content="Mobility Equipment Rentals in Atlanta, GA | Comfort Care DBA MOON LIGHTING INC.">
-    <meta property="og:description" content="Wheelchairs, walkers, rollators, knee scooters, and canes delivered with responsive Atlanta-area support.">
+    <meta property="og:title" content="Comfort Care | Mobility Rentals, Home Rehab Setup & Recovery Network">
+    <meta property="og:description" content="Choose the right path for rentals, rehab room setup, delivery, installation, and recovery provider referrals in the Atlanta area.">
     <meta property="og:url" content="https://comcare.store/home.html">
     <meta property="og:type" content="website">
     <link rel="stylesheet" href="styles.css">
@@ -26,7 +25,7 @@
       "@context": "https://schema.org",
       "@type": "MedicalBusiness",
       "name": "MOON LIGHTING INC. DBA Comfort Care",
-      "url": "https://comcare.store/",
+      "url": "https://comcare.store/home.html",
       "telephone": "+1-678-362-2345",
       "email": "admin@comcare.store",
       "address": {
@@ -35,69 +34,34 @@
         "addressRegion": "GA",
         "addressCountry": "US"
       },
-      "areaServed": [
-        "Atlanta, GA",
-        "Norcross, GA",
-        "Sandy Springs, GA",
-        "Alpharetta, GA",
-        "Roswell, GA",
-        "Marietta, GA",
-        "Dunwoody, GA",
-        "Johns Creek, GA",
-        "Decatur, GA",
-        "Smyrna, GA",
-        "Buckhead, Atlanta, GA",
-        "Brookhaven, GA"
-      ],
+      "areaServed": ["Atlanta, GA", "Norcross, GA", "Sandy Springs, GA", "Alpharetta, GA", "Roswell, GA", "Marietta, GA", "Dunwoody, GA", "Decatur, GA"],
       "makesOffer": [
-        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Wheelchair rental in Atlanta"}},
-        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Knee scooter rental in Atlanta"}},
-        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Walker and rollator rental in Atlanta"}}
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Mobility equipment rentals"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Home rehab room setup packages"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Delivery and installation"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Recovery professional referral network"}}
       ]
     }
     </script>
 </head>
-<body>
-    <!-- Navigation -->
+<body class="test-home-page">
     <nav class="navbar">
         <div class="container">
             <div class="nav-middle">
                 <div class="nav-identity">
                     <div class="nav-brand">
-                        <img src="logo.svg" alt="Comfort Care mobility equipment rental logo" class="logo-image">
+                        <img src="logo.svg" alt="Comfort Care logo" class="logo-image">
                     </div>
                     <div class="nav-title">Comfort Care</div>
                 </div>
                 <ul class="nav-menu">
-                <li><a href="home.html" class="active" id="navHome">Home</a></li>
-                <li><a href="index.html" id="navSpecial">Special Offer</a></li>
-                <li><a href="services.html" id="navServices">Services</a></li>
-                <li><a href="order.html" id="navOrder">Order</a></li>
-                <li><a href="pricing.html" id="navCart">Cart</a></li>
-                <li><a href="payment.html" id="navPayment">Payments</a></li>
-                <li><a href="insurance-form.html" id="navInsurance">Insurance</a></li>
-                <li><a href="atlanta-sandy-springs-healthcare-resources.html" id="navResources">Resources</a></li>
-                <li><a href="recovery-professionals.html" id="navRecovery">Recovery Network</a></li>
-                <li><a href="rehab-tech-intake.html" id="navRehabTechs">Rehab Techs</a></li>
-                <li><a href="contact.html" id="navContact">Contact</a></li>
-                        <script>
-                        // Preserve agent parameter in navigation links
-                        const agentParam = new URLSearchParams(window.location.search).get('agent');
-                        if (agentParam) {
-                            ["navHome","navSpecial","navServices","navOrder","navCart","navPayment","navInsurance","navResources","navRecovery","navRehabTechs","navContact"].forEach(function(id) {
-                                const link = document.getElementById(id);
-                                if (link) {
-                                    let href = link.getAttribute('href');
-                                    if (href.indexOf('?') === -1) {
-                                        href += '?agent=' + encodeURIComponent(agentParam);
-                                    } else {
-                                        href += '&agent=' + encodeURIComponent(agentParam);
-                                    }
-                                    link.setAttribute('href', href);
-                                }
-                            });
-                        }
-                        </script>
+                    <li><a href="home.html" class="active">Home</a></li>
+                    <li><a href="index.html">Special Offer</a></li>
+                    <li><a href="services.html">Rentals</a></li>
+                    <li><a href="order.html">Order</a></li>
+                    <li><a href="recovery-professionals.html">Recovery Network</a></li>
+                    <li><a href="rehab-tech-intake.html">Rehab Techs</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </div>
             <div class="nav-cart">
@@ -112,10 +76,9 @@
                 <div class="nav-cart-main">
                     <a href="order.html" class="btn btn-secondary btn-compact edit-cart-link">Edit Cart</a>
                     <a href="pricing.html" class="btn btn-primary btn-compact">Pay</a>
-                    <a href="mailto:admin@comcare.store" class="btn btn-discount btn-mini" style="margin-top:8px;display:block;">Email Cart for Discounts</a>
                 </div>
             </div>
-            <button class="hamburger" id="hamburger">
+            <button class="hamburger" id="hamburger" aria-label="Open navigation">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -123,274 +86,204 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Mobility Equipment Rentals in Atlanta, GA</h1>
-                <p>Wheelchairs, walkers, rollators, knee scooters, canes, and recovery equipment delivered with responsive local support across Atlanta and nearby Georgia communities.</p>
-                <div class="hero-buttons">
-                    <a href="services.html" class="btn btn-primary">Browse Equipment</a>
-                    <a href="tel:678-362-2345" class="btn btn-secondary">Call 678-362-2345</a>
-                    <a href="atlanta-sandy-springs-healthcare-resources.html" class="btn btn-secondary">Healthcare Resources</a>
+    <main>
+        <section class="test-home-hero">
+            <div class="container test-home-hero-grid">
+                <div class="test-home-copy">
+                    <p class="test-home-kicker">Atlanta recovery support ecosystem</p>
+                    <h1>Choose the care support path you need today</h1>
+                    <p>Comfort Care connects patients, families, apartment teams, and rehab professionals with equipment, room setup, delivery support, and local recovery connections.</p>
+                    <div class="test-home-hero-actions">
+                        <a href="#pathways" class="btn btn-primary">Find Your Path</a>
+                        <a href="tel:678-362-2345" class="btn btn-secondary">Call 678-362-2345</a>
+                    </div>
                 </div>
-                <div class="hero-special-offer" aria-label="Limited time hospital bed rental offer">
-                    <div class="offer-kicker">Limited Time Offer</div>
-                    <h2>First Week Free Hospital Bed Rental</h2>
-                    <p>New customers can choose a semi-electric, full-electric, or bed plus mattress bundle and get the first week rental charge free. Local delivery and setup are added at checkout.</p>
-                    <div class="offer-actions">
-                        <a href="index.html" class="btn btn-light">View Special Offer</a>
-                        <a href="index.html#choose-bed-offer" class="btn btn-light">Choose a Bed</a>
+                <div class="test-home-media test-home-logo-panel" aria-label="Comfort Care logo">
+                    <img src="logo.svg" alt="Comfort Care logo">
+                </div>
+            </div>
+        </section>
+
+        <section class="test-pathways" id="pathways">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Start With One Clear Path</h2>
+                    <p>Each option sends visitors to the next useful action without extra searching.</p>
+                </div>
+                <div class="test-pathway-grid">
+                    <article class="test-pathway-card">
+                        <span class="test-pathway-number">1</span>
+                        <h3>Mobility Equipment Rentals</h3>
+                        <p>Wheelchairs, hospital beds, walkers, rollators, knee scooters, canes, and short-term recovery equipment.</p>
+                        <div class="test-card-actions">
+                            <a href="services.html">Browse rentals</a>
+                            <a href="order.html">Start order</a>
+                        </div>
+                    </article>
+                    <article class="test-pathway-card">
+                        <span class="test-pathway-number">2</span>
+                        <h3>Home Rehab Room Setup Packages</h3>
+                        <p>Bed, mobility path, bathroom safety, transfer support, and family-ready room preparation for recovery at home.</p>
+                        <div class="test-card-actions">
+                            <a href="#rehab-setup">View packages</a>
+                            <a href="contact.html">Request plan</a>
+                        </div>
+                    </article>
+                    <article class="test-pathway-card">
+                        <span class="test-pathway-number">3</span>
+                        <h3>Delivery and Installation</h3>
+                        <p>Local delivery, setup, placement, pickup planning, and practical support for families and property teams.</p>
+                        <div class="test-card-actions">
+                            <a href="#delivery-install">See delivery</a>
+                            <a href="tel:678-362-2345">Call now</a>
+                        </div>
+                    </article>
+                    <article class="test-pathway-card">
+                        <span class="test-pathway-number">4</span>
+                        <h3>Recovery Professional Directory</h3>
+                        <p>Therapists, rehab techs, care coordinators, and recovery support providers can enter their information.</p>
+                        <div class="test-card-actions">
+                            <a href="rehab-tech-intake.html">Join directory</a>
+                            <a href="join-professionals.html">Professional info</a>
+                        </div>
+                    </article>
+                    <article class="test-pathway-card test-pathway-card-wide">
+                        <span class="test-pathway-number">5</span>
+                        <h3>Referral Network for Patients and Rehab Providers</h3>
+                        <p>Connect patients who need equipment, setup, or local recovery services with providers who can help after discharge, surgery, injury, or mobility changes.</p>
+                        <div class="test-card-actions">
+                            <a href="recovery-professionals.html">Explore network</a>
+                            <a href="partners.html">Partner with us</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="test-home-band" id="rehab-setup">
+            <div class="container test-home-split">
+                <div>
+                    <p class="test-home-kicker">Home rehab room setup</p>
+                    <h2>Packages built around the room, not just one product</h2>
+                    <p>Families often need more than a single rental item. This page concept groups the most common recovery needs into practical setup paths.</p>
+                </div>
+                <div class="test-rehab-stack">
+                    <figure class="test-rehab-image">
+                        <img src="home-rehab-room-setup.jpg" alt="ComfortCare home medical equipment bridge between hospital discharge and home recovery">
+                    </figure>
+                    <div class="test-package-list">
+                        <a href="index.html">
+                            <strong>Hospital bed starter</strong>
+                            <span>Bed selection, delivery, setup, and weekly rental path.</span>
+                        </a>
+                        <a href="order.html">
+                            <strong>Mobility and transfer support</strong>
+                            <span>Wheelchair, walker, rollator, cane, and transfer-friendly add-ons.</span>
+                        </a>
+                        <a href="contact.html">
+                            <strong>Bathroom and safety planning</strong>
+                            <span>Connect with Comfort Care for room and safety equipment needs.</span>
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Special Offer Section -->
-    <section class="special-offer-section">
-        <div class="container">
-            <div class="special-offer-layout">
-                <div class="special-offer-copy">
-                    <span class="offer-pill">New customer hospital bed deal</span>
-                    <h2>Get the first week free on a hospital bed rental</h2>
-                    <p>Comfort Care is offering a first-week-free hospital bed rental promotion for new customers in the Atlanta metro delivery area. Use it for short-term recovery support, temporary home care needs, or a longer rental that starts with a lower first-week cost.</p>
-                    <ul class="offer-checklist">
-                        <li>Semi-electric beds from $103 per week after the free first week</li>
-                        <li>Full electric beds from $131 per week after the free first week</li>
-                        <li>Bed plus mattress bundle from $186 per week after the free first week</li>
-                        <li>Checkout adds $99 delivery and $149 setup</li>
-                    </ul>
-                    <div class="offer-actions">
-                        <a href="index.html" class="btn btn-primary">See Offer Details</a>
-                        <a href="tel:678-362-2345" class="btn btn-secondary">Call or Text</a>
+        <section class="test-delivery-section" id="delivery-install">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Delivery and Installation Should Be Obvious</h2>
+                    <p>Show the customer exactly what happens before they pay or call.</p>
+                </div>
+                <figure class="test-delivery-image">
+                    <img src="delivery-installation-apartment-setup.jpg" alt="Rehab-ready apartment unit setup and delivery services for property managers">
+                </figure>
+                <div class="test-step-row">
+                    <div class="test-step">
+                        <span>01</span>
+                        <h3>Confirm Equipment</h3>
+                        <p>Choose the bed, wheelchair, walker, scooter, or setup package.</p>
+                    </div>
+                    <div class="test-step">
+                        <span>02</span>
+                        <h3>Schedule Delivery</h3>
+                        <p>Coordinate local delivery time, building access, and room location.</p>
+                    </div>
+                    <div class="test-step">
+                        <span>03</span>
+                        <h3>Install and Place</h3>
+                        <p>Set the equipment where it will be used and prepare the recovery room.</p>
+                    </div>
+                    <div class="test-step">
+                        <span>04</span>
+                        <h3>Support and Pickup</h3>
+                        <p>Keep the rental active as needed and arrange pickup when recovery changes.</p>
                     </div>
                 </div>
-                <div class="special-offer-media">
-                    <img src="images/BedPictureFull.jpg" alt="Full electric hospital bed rental available from Comfort Care">
-                    <div class="offer-card-note">
-                        <strong>Mention the offer when you call or email.</strong>
-                        <span>Valid for new customers and local Atlanta-area deliveries. One per household.</span>
-                    </div>
+                <div class="test-home-center-actions">
+                    <a href="order.html" class="btn btn-primary">Build an Order</a>
+                    <a href="contact.html" class="btn btn-secondary">Ask About Setup</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <h2>Why Choose Comfort Care?</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon"></div>
-                    <h3>Atlanta-Area Delivery</h3>
-                    <p>Delivery is available in Atlanta, Norcross, Sandy Springs, Alpharetta, Roswell, Dunwoody, Marietta, and nearby communities.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"></div>
-                    <h3>Flexible Rental Terms</h3>
-                    <p>Daily, weekly, and monthly options help match your rental to a surgery recovery, travel visit, or temporary mobility need.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"></div>
-                    <h3>Responsive Local Support</h3>
-                    <p>Our team helps you choose the right wheelchair, walker, knee scooter, rollator, cane, or recovery equipment for your situation.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"></div>
-                    <h3>Cleaned Equipment</h3>
-                    <p>Mobility equipment is cleaned, checked, and prepared for safe day-to-day use before each rental.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"></div>
-                    <h3>Simple Online Booking</h3>
-                    <p>Start online, review the cart, and call or email if you need help choosing the right mobility aid.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"></div>
-                    <h3>Transparent Pricing</h3>
-                    <p>Browse equipment, compare rental ranges, and ask about bundle discounts for longer recovery periods.</p>
-                </div>
+        <section class="test-network-section">
+            <div class="container test-network-grid">
+                <article>
+                    <p class="test-home-kicker">For recovery professionals</p>
+                    <h2>Enter your information and become part of the ecosystem</h2>
+                    <p>Comfort Care can use this path to collect provider details, service areas, specialties, availability, and referral preferences.</p>
+                    <a href="rehab-tech-intake.html" class="btn btn-primary">Enter Provider Information</a>
+                </article>
+                <article>
+                    <p class="test-home-kicker">For patients and families</p>
+                    <h2>Find equipment support and connect with local recovery help</h2>
+                    <p>The referral network path is designed for people who need equipment plus a human connection to rehab providers or support services.</p>
+                    <a href="recovery-professionals.html" class="btn btn-secondary">Open Referral Network</a>
+                </article>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- SEO Service Links -->
-    <section class="services">
-        <div class="container">
-            <h2>Popular Atlanta Mobility Rentals</h2>
-            <p>Choose a dedicated rental page for details, FAQs, and booking support.</p>
-            <div class="service-grid">
-                <div class="service-item">
-                    <h3><a href="wheelchair-rental-atlanta.html">Wheelchair Rental Atlanta</a></h3>
-                    <p>Manual, transport, and power wheelchair rental options for recovery, appointments, events, and daily mobility support.</p>
-                </div>
-                <div class="service-item">
-                    <h3><a href="knee-scooter-rental-atlanta.html">Knee Scooter Rental Atlanta</a></h3>
-                    <p>A comfortable alternative to crutches for many foot, ankle, and lower-leg recovery situations.</p>
-                </div>
-                <div class="service-item">
-                    <h3><a href="walker-rental-atlanta.html">Walker Rental Atlanta</a></h3>
-                    <p>Standard and rolling walker options for balance, support, and short-term recovery needs.</p>
-                </div>
-                <div class="service-item">
-                    <h3><a href="rollator-rental-atlanta.html">Rollator Rental Atlanta</a></h3>
-                    <p>Rollators with seats and hand brakes for users who need stability while staying active.</p>
-                </div>
-                <div class="service-item">
-                    <h3><a href="cane-rental-atlanta.html">Cane Rental Atlanta</a></h3>
-                    <p>Adjustable cane rentals for light support, travel, and temporary mobility assistance.</p>
-                </div>
-                <div class="service-item">
-                    <h3><a href="medical-equipment-rental-atlanta.html">Medical Equipment Rental Atlanta</a></h3>
-                    <p>Mobility and recovery support equipment for short-term and extended rental periods.</p>
-                </div>
+        <section class="cta test-home-cta">
+            <div class="container">
+                <h2>Need Help Choosing the Right Path?</h2>
+                <p>Comfort Care can help with rental equipment, home setup, delivery, installation, and recovery network questions.</p>
+                <a href="tel:678-362-2345" class="btn btn-light">Call 678-362-2345</a>
+                <a href="mailto:admin@comcare.store?cc=accentGV%40gmail.com" class="btn btn-light">Email Comfort Care</a>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Service Area Section -->
-    <section class="featured">
-        <div class="container">
-            <h2>Atlanta Service Areas</h2>
-            <p>Comfort Care supports mobility equipment rentals in Atlanta and nearby communities.</p>
-            <div class="equipment-grid">
-                <div class="equipment-card"><h3><a href="wheelchair-rental-sandy-springs-ga.html">Sandy Springs</a></h3><p>Wheelchair, walker, rollator, knee scooter, and cane rental support.</p></div>
-                <div class="equipment-card"><h3><a href="wheelchair-rental-alpharetta-ga.html">Alpharetta</a></h3><p>Flexible mobility equipment rentals for home recovery and temporary needs.</p></div>
-                <div class="equipment-card"><h3><a href="wheelchair-rental-roswell-ga.html">Roswell</a></h3><p>Local delivery coordination and support for mobility rental customers.</p></div>
-                <div class="equipment-card"><h3><a href="wheelchair-rental-marietta-ga.html">Marietta</a></h3><p>Rental support for families, caregivers, and recovery planning.</p></div>
-                <div class="equipment-card"><h3><a href="wheelchair-rental-dunwoody-ga.html">Dunwoody</a></h3><p>Short-term mobility aid rentals with responsive local assistance.</p></div>
-                <div class="equipment-card"><h3><a href="wheelchair-rental-brookhaven-ga.html">Brookhaven</a></h3><p>Wheelchair and mobility equipment rental support near Atlanta.</p></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works Section -->
-    <section class="how-it-works">
-        <div class="container">
-            <h2>How It Works</h2>
-            <p>Four simple steps from selection to rental completion.</p>
-            <div class="steps-grid">
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <h3>Browse and Select</h3>
-                    <p>Choose the mobility equipment you need from our catalog.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <h3>Confirm Your Order</h3>
-                    <p>Review your cart and confirm your rental details.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <h3>Schedule Service</h3>
-                    <p>Arrange pickup or delivery when available. Delivery fees may apply.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">4</div>
-                    <h3>Get Support</h3>
-                    <p>We support you throughout the rental period.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Equipment Section -->
-    <section class="featured">
-        <div class="container">
-            <h2>Featured Equipment</h2>
-            <div class="equipment-grid">
-                <div class="equipment-card">
-                    <h3>Hospital Beds</h3>
-                    <p>Adjustable electric bed options for recovery, comfort, and in-home support</p>
-                    <span class="price">From $45/day</span>
-                </div>
-                <div class="equipment-card">
-                    <h3>Mobility Aids</h3>
-                    <p>Wheelchairs, walkers, and canes for independent movement</p>
-                    <span class="price">From $10/day</span>
-                </div>
-                <div class="equipment-card">
-                    <h3>Knee Scooters</h3>
-                    <p>Knee scooters, rollators, and support aids for steady recovery and movement</p>
-                    <span class="price">From $15/day</span>
-                </div>
-            </div>
-            <div style="text-align: center; margin-top: 40px;">
-                <a href="services.html" class="btn btn-primary">View All Equipment</a>
-            </div>
-        </div>
-    </section>
-    <!-- Recovery Support Network Section -->
-    <section class="services recovery-network-home">
-        <div class="container">
-            <h2>Recovery Support Network</h2>
-            <p>Need more than equipment?</p>
-            <p>Connect with trusted Atlanta recovery professionals who can help after surgery, injury, or rehabilitation.</p>
-            <div class="service-grid">
-                <div class="service-item"><h3>Rehab Technicians</h3><p>Find local support for mobility routines, equipment setup, and recovery coordination.</p></div>
-                <div class="service-item"><h3>PT &amp; OT Assistants</h3><p>Connect with recovery professionals who support therapy plans and home independence.</p></div>
-                <div class="service-item"><h3>Home Recovery Support</h3><p>Locate home health aides, caregivers, and recovery coaches serving Atlanta-area patients.</p></div>
-                <div class="service-item"><h3>Caregiver Resources</h3><p>Build a stronger recovery plan with local partner categories and support options.</p></div>
-            </div>
-            <div style="text-align:center;margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-                <a href="recovery-professionals.html" class="btn btn-primary">Find Recovery Support</a>
-                <a href="join-professionals.html" class="btn btn-secondary">Join Our Network</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <h2>Need Mobility Equipment Now?</h2>
-            <p>Contact us today to discuss the right rental for your mobility needs in the Atlanta area.</p>
-            <div class="cta-contact">
-                <a href="tel:678-362-2345" class="btn btn-light">Call: 678-362-2345</a>
-                <a href="contact.html" class="btn btn-light">Request Help</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
                     <h4>Comfort Care</h4>
-                    <p>Mobility equipment rental services for Atlanta, Norcross, and surrounding Georgia communities.</p>
+                    <p>Mobility rentals, home rehab setup, and recovery network support across the Atlanta area.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Paths</h4>
+                    <ul>
+                        <li><a href="services.html">Mobility Equipment Rentals</a></li>
+                        <li><a href="#rehab-setup">Home Rehab Setup</a></li>
+                        <li><a href="#delivery-install">Delivery and Installation</a></li>
+                        <li><a href="recovery-professionals.html">Referral Network</a></li>
+                    </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Contact</h4>
-                    <p>Phone: <a href="tel:678-362-2345">678-362-2345</a></p>
-                    <p>Email: <a href="mailto:admin@comcare.store">admin@comcare.store</a></p>
-                    <p>Location: Norcross, Georgia</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="index.html">Hospital Bed Special Offer</a></li>
-                        <li><a href="pricing.html">Pricing</a></li>
-                        <li><a href="atlanta-sandy-springs-healthcare-resources.html">Healthcare Resources</a></li>
-                        <li><a href="rehab-tech-intake.html">Rehab Techs</a></li>
-                        <li><a href="recovery-professionals.html">Recovery Network</a></li>
-                        <li><a href="join-professionals.html">Join Network</a></li>
-                        <li><a href="partners.html">Partners</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                        <li><a href="sitemap.xml">Sitemap</a></li>
-                    </ul>
+                    <p><a href="tel:678-362-2345">678-362-2345</a></p>
+                    <p><a href="mailto:admin@comcare.store?cc=accentGV%40gmail.com">admin@comcare.store</a></p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Comfort Care. All rights reserved. | Mobility equipment rentals</p>
+                <p>&copy; 2026 Comfort Care. All rights reserved.</p>
                 <p>Comfort Care operates as a DBA/trade name of MOON LIGHTING INC.</p>
-                <p>Business license, bank account, and payment records should use MOON LIGHTING INC. Checks should be payable to MOON LIGHTING INC.; a check copy will be provided when available.</p>
             </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
+    <script src="live-chat.js"></script>
 </body>
 </html>
