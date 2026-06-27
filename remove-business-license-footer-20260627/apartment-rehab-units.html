@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9G5EVYE5Y"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-D9G5EVYE5Y');
+        </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apartment Rehab-Ready Units - Comfort Care</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-middle">
+                <div class="nav-identity">
+                    <div class="nav-brand">
+                        <img src="logo.svg" alt="Comfort Care Logo" class="logo-image">
+                    </div>
+                    <div class="nav-title">Comfort Care</div>
+                </div>
+                <ul class="nav-menu">
+                <li><a href="home.html" id="navHome">Home</a></li>
+                <li><a href="services.html" class="active" id="navServices">Services</a></li>
+                <li><a href="order.html" id="navOrder">Order</a></li>
+                <li><a href="pricing.html" id="navCart">Cart</a></li>
+                <li><a href="payment.html" id="navPayment">Payments</a></li>
+                <li><a href="insurance-form.html" id="navInsurance">Insurance</a></li>
+                <li><a href="contact.html" id="navContact">Contact</a></li>
+                        <script>
+                        const agentParam = new URLSearchParams(window.location.search).get('agent');
+                        if (agentParam) {
+                            ["navHome","navServices","navOrder","navCart","navPayment","navContact"].forEach(function(id) {
+                                const link = document.getElementById(id);
+                                if (link) {
+                                    let href = link.getAttribute('href');
+                                    if (href.indexOf('?') === -1) {
+                                        href += '?agent=' + encodeURIComponent(agentParam);
+                                    } else {
+                                        href += '&agent=' + encodeURIComponent(agentParam);
+                                    }
+                                    link.setAttribute('href', href);
+                                }
+                            });
+                        }
+                        </script>
+                </ul>
+            </div>
+            <div class="nav-cart">
+                <div class="cart-box" aria-live="polite">
+                    <span class="cart-box-title">Cart</span>
+                    <span class="cart-box-detail">
+                        <span id="headerCartCount">0 items</span>
+                        <span class="cart-box-sep">|</span>
+                        <span id="headerCartTotal">$0.00</span>
+                    </span>
+                </div>
+                <div class="nav-cart-main">
+                    <a href="order.html" class="btn btn-secondary btn-compact edit-cart-link">Edit Cart</a>
+                    <a href="pricing.html" class="btn btn-primary btn-compact">Pay</a>
+                </div>
+                <a id="cartEmailLink" href="mailto:admin@comcare.store?cc=accentGV%40gmail.com" class="btn btn-discount btn-mini">Email Cart for Discounts</a>
+            </div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Rehab-Ready Apartment Unit Partnerships</h1>
+            <p>Help your community stand out with safe recovery-ready units for post-surgery and injury support.</p>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="container">
+            <div class="service-category">
+                <h3>Why Apartment Communities Partner with Comfort Care</h3>
+                <div class="service-grid">
+                    <div class="service-item">
+                        <h4>Growing Resident Need</h4>
+                        <p>More apartment communities are looking for ways to stand out, and one of the fastest-growing needs is safe recovery space for residents after surgery or injury.</p>
+                    </div>
+                    <div class="service-item">
+                        <h4>Low-Cost, High-Value Program</h4>
+                        <p>Comfort Care (comcare.store) partners with apartment management teams to create low-cost, mobility-ready units that attract new tenants and support aging-in-place residents.</p>
+                    </div>
+                    <div class="service-item">
+                        <h4>Turnkey Setup</h4>
+                        <p>We can outfit 5 to 10 units per property with no capital investment required.</p>
+                        <ul class="service-list">
+                            <li>Wheelchair</li>
+                            <li>Walker or rollator</li>
+                            <li>Knee scooter</li>
+                            <li>Cane options</li>
+                            <li>Mobility-friendly storage and staging</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-category">
+                <h3>Built for Occupancy and Retention</h3>
+                <div class="service-grid">
+                    <div class="service-item">
+                        <h4>No Capital Investment</h4>
+                        <p>Start offering rehab-ready units without large upfront spend.</p>
+                    </div>
+                    <div class="service-item">
+                        <h4>Turnkey Solution</h4>
+                        <p>Comfort Care handles the equipment package so your team can focus on residents.</p>
+                    </div>
+                    <div class="service-item">
+                        <h4>Contact Comfort Care</h4>
+                        <p>If you manage multifamily or senior-friendly housing and want rehab-ready units that boost occupancy and retention, let's connect.</p>
+                        <p><strong>Phone:</strong> <a href="tel:678-362-2345">678-362-2345</a></p>
+                        <p><strong>Website:</strong> <a href="https://comcare.store">comcare.store</a></p>
+                        <p><strong>Comfort Care</strong> - Norcross, GA</p>
+                        <a href="contact.html" class="btn btn-primary" style="margin-top:8px;">Talk to Our Team</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-light">
+        <div class="container">
+            <h2>Add Rehab-Ready Units to Your Community</h2>
+            <p>Partner with Comfort Care to create recovery-friendly units that residents value.</p>
+            <a href="contact.html" class="btn btn-primary">Get Started</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Comfort Care</h4>
+                    <p>Mobility equipment rental services for Atlanta and Norcross, Georgia</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Phone: <a href="tel:678-362-2345">678-362-2345</a></p>
+                    <p>Email: <a href="mailto:admin@comcare.store?cc=accentGV%40gmail.com">admin@comcare.store</a></p>
+                    <p>Location: Norcross, Georgia</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Comfort Care. All rights reserved. | Mobility equipment rentals</p>
+                <p>Comfort Care operates as a DBA/trade name of MOON LIGHTING INC.</p>
+                <p>Business license, bank account, and payment records should use MOON LIGHTING INC. Checks should be payable to MOON LIGHTING INC.; a check copy will be provided when available.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="site-navigation.js"></script>
+<script src="live-chat.js"></script>
+</body>
+</html>

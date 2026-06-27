@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9G5EVYE5Y"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-D9G5EVYE5Y');
+        </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - Comfort Care</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-middle">
+                <div class="nav-identity">
+                    <div class="nav-brand">
+                        <img src="logo.svg" alt="Comfort Care Logo" class="logo-image">
+                    </div>
+                    <div class="nav-title">Comfort Care</div>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="https://www.comcare.store">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="order.html">Order</a></li>
+                <li><a href="pricing.html">Cart</a></li>
+                <li><a href="payment.html">Payments</a></li>
+                <li><a href="insurance-form.html">Insurance</a></li>
+                <li><a href="recovery-professionals.html" id="navRecovery">Recovery Network</a></li>
+<li><a href="rehab-tech-intake.html">Rehab Techs</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="nav-cart">
+                <div class="cart-box" aria-live="polite">
+                    <span class="cart-box-title">Cart</span>
+                    <span class="cart-box-detail">
+                        <span id="headerCartCount">0 items</span>
+                        <span class="cart-box-sep">|</span>
+                        <span id="headerCartTotal">$0.00</span>
+                    </span>
+                </div>
+                <div class="nav-cart-main">
+                    <a href="order.html" class="btn btn-secondary btn-compact edit-cart-link">Edit Cart</a>
+                    <a href="pricing.html" class="btn btn-primary btn-compact">Pay</a>
+                </div>
+                <a id="cartEmailLink" href="mailto:admin@comcare.store?cc=accentGV%40gmail.com" class="btn btn-discount btn-mini">Email Cart for Discounts</a>
+            </div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Payment Received! ✅</h1>
+            <p>Thank you for your payment. We're preparing your order.</p>
+        </div>
+    </section>
+
+    <section class="thank-you-section">
+        <div class="container">
+            <div class="success-card">
+                <!-- Success Badge -->
+                <div class="success-badge">
+                    <div class="checkmark">✔</div>
+                </div>
+
+                <!-- Confirmation Details -->
+                <h2>Your Payment is Confirmed</h2>
+                <p class="confirmation-text">We've received your payment successfully. A confirmation email has been sent to your registered email address.</p>
+
+                <div class="confirmation-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Status:</span>
+                        <span class="detail-value success">✓ Completed</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Next Step:</span>
+                        <span class="detail-value">Our team will contact you within 2 hours to finalize your order</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Need Help?</span>
+                        <span class="detail-value"><a href="tel:678-362-2345">Call 678-362-2345</a></span>
+                    </div>
+                </div>
+
+                <!-- Return Button with Logo -->
+                <div class="return-section">
+                    <a href="home.html" class="return-button">
+                        <img src="logo.svg" alt="Comfort Care" class="return-logo">
+                        <span>Return to Comfort Care</span>
+                    </a>
+                </div>
+
+                <!-- Secondary Actions -->
+                <div class="secondary-actions">
+                    <a href="order.html" class="link-button">Browse More Equipment</a>
+                    <a href="contact.html" class="link-button">Contact Support</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hidden form for sending order confirmation email -->
+    <form id="orderConfirmationForm" action="https://formsubmit.co/admin@comcare.store" method="POST" style="display: none;">
+        <input type="hidden" name="_subject" value="New Comfort Care Order - Payment Completed">
+        <input type="hidden" name="_cc" value="accentGV@gmail.com">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_autoresponse" value="Thank you for your order! We will contact you within 2 hours to finalize delivery details.">
+        <input type="text" name="Session_ID" id="emailSessionId">
+        <input type="text" name="Customer_Name" id="emailCustomerName">
+        <input type="email" name="Customer_Email" id="emailCustomerEmail">
+        <input type="tel" name="Customer_Phone" id="emailCustomerPhone">
+        <input type="text" name="Street_Address" id="emailAddress">
+        <input type="text" name="City" id="emailCity">
+        <input type="text" name="State" id="emailState">
+        <input type="text" name="ZIP_Code" id="emailZip">
+        <input type="text" name="Start_Date" id="emailStartDate">
+        <input type="text" name="End_Date" id="emailEndDate">
+        <input type="text" name="Order_Items" id="emailOrderItems">
+        <input type="text" name="Order_Total" id="emailOrderTotal">
+        <input type="text" name="Additional_Notes" id="emailNotes">
+    </form>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Comfort Care. All rights reserved. | Mobility equipment rentals</p>
+                <p>Comfort Care operates as a DBA/trade name of MOON LIGHTING INC.</p>
+                <p>Business license, bank account, and payment records should use MOON LIGHTING INC. Checks should be payable to MOON LIGHTING INC.; a check copy will be provided when available.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <script>
+        // Detect if this is a Stripe payment success
+        const params = new URLSearchParams(window.location.search);
+        const sessionId = params.get('session_id');
+        
+        if (sessionId) {
+            console.log('Payment successful! Session ID:', sessionId);
+            
+            // Get customer information and cart from localStorage
+            const customerInfo = JSON.parse(localStorage.getItem('customerInfo') || '{}');
+            const cart = JSON.parse(localStorage.getItem('pricingCartItems') || '[]');
+            
+            // Calculate total
+            let total = 0;
+            const orderItemsText = cart.map((item, index) => {
+                const itemTotal = item.unitPrice * item.quantity;
+                total += itemTotal;
+                return `${index + 1}. ${item.name} (${item.model}) - ${item.rateType} - Qty: ${item.quantity} - $${itemTotal.toFixed(2)}`;
+            }).join(' | ');
+            
+            // Send email with order details
+            if (customerInfo.name && orderItemsText) {
+                const form = document.getElementById('orderConfirmationForm');
+                document.getElementById('emailSessionId').value = sessionId;
+                document.getElementById('emailCustomerName').value = customerInfo.name || '';
+                document.getElementById('emailCustomerEmail').value = customerInfo.email || '';
+                document.getElementById('emailCustomerPhone').value = customerInfo.phone || '';
+                document.getElementById('emailAddress').value = customerInfo.address || '';
+                document.getElementById('emailCity').value = customerInfo.city || '';
+                document.getElementById('emailState').value = customerInfo.state || '';
+                document.getElementById('emailZip').value = customerInfo.zip || '';
+                document.getElementById('emailStartDate').value = customerInfo.startDate || '';
+                document.getElementById('emailEndDate').value = customerInfo.endDate || '';
+                document.getElementById('emailOrderItems').value = orderItemsText;
+                document.getElementById('emailOrderTotal').value = `$${total.toFixed(2)}`;
+                document.getElementById('emailNotes').value = customerInfo.notes || 'None';
+                
+                // Submit form automatically
+                form.submit();
+            }
+            
+            // Clear cart and customer info after successful payment
+            localStorage.removeItem('pricingCartItems');
+            localStorage.removeItem('customerInfo');
+            
+            // Update header to show empty cart
+            if (typeof updateHeaderCart === 'function') {
+                updateHeaderCart();
+            }
+        }
+    </script>
+    <script src="site-navigation.js"></script>
+<script src="live-chat.js"></script>
+</body>
+</html>

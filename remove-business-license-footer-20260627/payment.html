@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9G5EVYE5Y"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-D9G5EVYE5Y');
+        </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Comfort Care DBA MOON LIGHTING INC.</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-middle">
+                <div class="nav-identity">
+                    <div class="nav-brand">
+                        <img src="logo.svg" alt="Comfort Care Logo" class="logo-image">
+                    </div>
+                    <div class="nav-title">Comfort Care</div>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="home.html" id="navHome">Home</a></li>
+                <li><a href="services.html" id="navServices">Services</a></li>
+                <li><a href="order.html" id="navOrder">Order</a></li>
+                <li><a href="pricing.html" id="navCart">Cart</a></li>
+                <li><a href="payment.html" class="active" id="navPayment">Payments</a></li>
+                <li><a href="insurance-form.html" id="navInsurance">Insurance</a></li>
+                <li><a href="recovery-professionals.html" id="navRecovery">Recovery Network</a></li>
+<li><a href="rehab-tech-intake.html" id="navRehabTechs">Rehab Techs</a></li>
+                <li><a href="contact.html" id="navContact">Contact</a></li>
+                        <script>
+                        // Preserve agent parameter in navigation links
+                        const agentParam = new URLSearchParams(window.location.search).get('agent');
+                        if (agentParam) {
+                            ["navHome","navServices","navOrder","navCart","navPayment","navRecovery","navRehabTechs","navContact"].forEach(function(id) {
+                                const link = document.getElementById(id);
+                                if (link) {
+                                    let href = link.getAttribute('href');
+                                    if (href.indexOf('?') === -1) {
+                                        href += '?agent=' + encodeURIComponent(agentParam);
+                                    } else {
+                                        href += '&agent=' + encodeURIComponent(agentParam);
+                                    }
+                                    link.setAttribute('href', href);
+                                }
+                            });
+                        }
+                        </script>
+                </ul>
+            </div>
+            <div class="nav-cart">
+                <div class="cart-box" aria-live="polite">
+                    <span class="cart-box-title">Cart</span>
+                    <span class="cart-box-detail">
+                        <span id="headerCartCount">0 items</span>
+                        <span class="cart-box-sep">|</span>
+                        <span id="headerCartTotal">$0.00</span>
+                    </span>
+                </div>
+                <div class="nav-cart-main">
+                    <a href="order.html" class="btn btn-secondary btn-compact edit-cart-link">Edit Cart</a>
+                    <a href="pricing.html" class="btn btn-primary btn-compact">Pay</a>
+                    <a href="mailto:admin@comcare.store?cc=accentGV%40gmail.com" class="btn btn-discount btn-mini" style="margin-top:8px;display:block;">Email Cart for Discounts</a>
+                </div>
+                <a id="cartEmailLink" href="mailto:admin@comcare.store?cc=accentGV%40gmail.com" class="btn btn-discount btn-mini">Email Cart for Discounts</a>
+            </div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Floating Cart Panel -->
+    <div class="floating-cart" id="floatingCart">
+        <div class="floating-cart-header">
+            <h3>Your Cart</h3>
+            <button class="floating-cart-close" id="closeFloatingCart">✕</button>
+        </div>
+        <div class="floating-cart-items" id="floatingCartItems">
+            <!-- Items populated by JavaScript -->
+        </div>
+        <div class="floating-cart-footer">
+            <div class="floating-cart-total">
+                <span>Total:</span>
+                <span id="floatingCartTotal" class="total-amount">$0.00</span>
+            </div>
+            <button class="btn btn-secondary" id="toggleFloatingCart" style="width: 100%; margin-top: 6px;">Hide Cart</button>
+        </div>
+    </div>
+
+    <!-- Toggle Button (appears when cart is hidden on mobile) -->
+    <button class="floating-cart-toggle" id="showFloatingCart" style="display: none;">
+        🛒 Cart
+    </button>
+
+    <!-- Floating Square Payment Panel -->
+    <div class="floating-stripe-panel" id="floatingStripePanel" style="display: none;">
+        <div class="floating-stripe-header">
+            <h3>💳 Square Checkout</h3>
+            <button class="floating-stripe-close" id="closeStripePanel">✕</button>
+        </div>
+        <div class="floating-stripe-content">
+            <iframe id="stripeIframe" src="" width="100%" height="100%" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Checkout</h1>
+            <p>Review your order and proceed to secure payment</p>
+        </div>
+    </section>
+
+    <!-- Cart Review Section -->
+    <section class="checkout-review">
+        <div class="container">
+            <div class="checkout-grid">
+                <!-- Cart Items -->
+                <div class="checkout-cart">
+                    <h2>Review Your Order</h2>
+                    <div id="checkoutCartItems" class="cart-items">
+                        <!-- Cart items will be populated here -->
+                    </div>
+                    <div class="cart-empty" id="checkoutEmptyCart" style="display: none;">
+                        <p>Your cart is empty.</p>
+                        <a href="order.html" class="btn btn-primary">Browse Equipment</a>
+                    </div>
+                    
+                    <div id="checkoutSummary" class="checkout-summary" style="display: none;">
+                        <div class="summary-row">
+                            <span>Subtotal:</span>
+                            <span id="checkoutSubtotal">$0.00</span>
+                        </div>
+                        <div class="summary-row total-row">
+                            <span>Total:</span>
+                            <span id="checkoutTotal">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="checkout-actions">
+                    <h3>Ready to Checkout?</h3>
+                    <p class="checkout-note">Review your items and proceed to secure payment</p>
+                    
+                    <!-- Customer Info Check Message -->
+                    <div id="customerInfoAlert" style="display: none; background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                        <p style="margin: 0 0 10px 0; color: #856404; font-weight: 600;">⚠️ Complete Customer Information</p>
+                        <p style="margin: 0 0 10px 0; color: #856404; font-size: 0.9rem;">Please fill out all delivery details before proceeding to payment.</p>
+                        <a href="pricing.html#customerSection" id="completeInfoBtn" class="btn btn-primary btn-compact">Complete Information</a>
+                    </div>
+                    
+                    <!-- Square Payment -->
+                    <div class="stripe-payment-section" style="margin-top: 20px;">
+                        <h4>💳 Secure Checkout</h4>
+                        <p id="stripeCartNotice" class="form-note" style="display: none;">Add items to your cart to pay</p>
+                        <button id="stripeCheckoutBtn" class="btn btn-primary btn-large" style="display: none;">
+                            💳 Proceed to Payment
+                        </button>
+                    </div>
+                    
+                    <div class="checkout-buttons">
+                        <a href="order.html" class="btn btn-secondary btn-large edit-cart-link">
+                            <span>📝</span> Edit Cart & Info
+                        </a>
+                        
+                        <a id="checkoutEmailLink" href="mailto:admin@comcare.store?cc=accentGV%40gmail.com" class="btn btn-discount btn-large">
+                            <span>✉️</span> Email Cart for Discounts
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Comfort Care</h4>
+                    <p>Mobility equipment rental services for Atlanta and Norcross, Georgia</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Phone: <a href="tel:678-362-2345">678-362-2345</a></p>
+                    <p>Email: <a href="mailto:admin@comcare.store?cc=accentGV%40gmail.com">admin@comcare.store</a></p>
+                    <p>Location: Norcross, Georgia</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+<li><a href="rehab-tech-intake.html">Rehab Techs</a></li>
+                        <li><a href="recovery-professionals.html">Recovery Network</a></li>
+                        <li><a href="join-professionals.html">Join Network</a></li>
+                        <li><a href="partners.html">Partners</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Comfort Care. All rights reserved. | Mobility equipment rentals</p>
+                <p>Comfort Care operates as a DBA/trade name of MOON LIGHTING INC.</p>
+                <p>Business license, bank account, and payment records should use MOON LIGHTING INC. Checks should be payable to MOON LIGHTING INC.; a check copy will be provided when available.</p>
+            </div>
+        </div>
+    </footer>    <script src="script.js?v=square-checkout-20260625-1"></script>
+    <script src="site-navigation.js"></script>
+<script src="live-chat.js"></script>
+</body>
+</html>

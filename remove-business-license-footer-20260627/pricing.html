@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9G5EVYE5Y"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-D9G5EVYE5Y');
+        </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - Comfort Care</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="pricing-page">
+    <!-- Page Header (matches services.html) -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Your Cart</h1>
+            <p>Review your selections and request discounts</p>
+        </div>
+    </section>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-middle">
+                <ul class="nav-menu">
+                    <li><a href="home.html" id="navHome">Home</a></li>
+                <li><a href="services.html" id="navServices">Services</a></li>
+                <li><a href="order.html" id="navOrder">Order</a></li>
+                <li><a href="pricing.html" class="active" id="navCart">Cart</a></li>
+                <li><a href="payment.html" id="navPayment">Payments</a></li>
+                <li><a href="insurance-form.html" id="navInsurance">Insurance</a></li>
+                <li><a href="recovery-professionals.html" id="navRecovery">Recovery Network</a></li>
+<li><a href="rehab-tech-intake.html" id="navRehabTechs">Rehab Techs</a></li>
+                <li><a href="contact.html" id="navContact">Contact</a></li>
+                        <script>
+                        // Preserve agent parameter in navigation links
+                        const agentParam = new URLSearchParams(window.location.search).get('agent');
+                        if (agentParam) {
+                            ["navHome","navServices","navOrder","navCart","navPayment","navRecovery","navRehabTechs","navContact"].forEach(function(id) {
+                                const link = document.getElementById(id);
+                                if (link) {
+                                    let href = link.getAttribute('href');
+                                        <!-- nav-identity removed for cart page header consistency -->
+                                    }
+                                    link.setAttribute('href', href);
+                                }
+                            });
+                        }
+                        </script>
+                </ul>
+            </div>
+            <div class="nav-cart">
+                <!-- Cart box with Edit Cart, Pay, and Email Cart for Discounts removed as requested -->
+            </div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Floating Cart Panel (Draggable) -->
+        <!-- Cart Discount and Customer Info Section (moved from order.html) -->
+                <div id="customerInfoAlert" style="background: #fff8e1; border: 2px solid #ffe082; border-radius: 10px; padding: 24px 24px 18px 24px; margin-bottom: 28px; max-width: 600px; box-shadow: 0 2px 8px #0001;">
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-size: 1.6em; margin-right: 10px; color: #ff9800;">&#9888;</span>
+                        <span style="font-weight: bold; color: #a67c00; font-size: 1.15em;">Customer Information Required</span>
+                    </div>
+                    <div style="color: #444; margin-bottom: 18px;">Please complete your customer information and delivery details before proceeding to payment.</div>
+                    <button id="completeInfoBtn" style="background: #1976d2; color: #fff; border: none; border-radius: 6px; padding: 10px 24px; font-size: 1em; font-weight: 600; cursor: pointer;">Complete Information</button>
+                </div>
+        <!-- cart-email-box removed, now in nav-cart -->
+        <form id="cartCheckoutForm" class="cart-form">
+            <div id="customerSection" style="display:none;">
+                <h3 style="margin-bottom: 15px; font-size: 1.1rem;">Customer Information</h3>
+                <label for="cartName">Full Name *</label>
+                <input id="cartName" name="name" type="text" required>
+                <div id="emailSection" style="display:none;">
+                    <label for="cartEmail">Email *</label>
+                    <input id="cartEmail" name="email" type="email">
+                </div>
+                <label for="cartPhone">Phone *</label>
+                <input id="cartPhone" name="phone" type="tel" required>
+                <h3 style="margin: 20px 0 15px 0; font-size: 1.1rem;">Delivery Address</h3>
+                <label for="cartAddress">Street Address *</label>
+                <input id="cartAddress" name="address" type="text" placeholder="123 Main Street" required>
+                <label for="cartCity">City *</label>
+                <input id="cartCity" name="city" type="text" placeholder="Atlanta" required>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <div>
+                        <label for="cartState">State *</label>
+                        <input id="cartState" name="state" type="text" placeholder="GA" required>
+                    </div>
+                    <div>
+                        <label for="cartZip">ZIP Code *</label>
+                        <input id="cartZip" name="zip" type="text" placeholder="30301" required>
+                    </div>
+                </div>
+                <h3 style="margin: 20px 0 15px 0; font-size: 1.1rem;">Rental Period</h3>
+                <label for="cartStartDate">Start Date of Service *</label>
+                <input id="cartStartDate" name="startDate" type="date" required>
+                <label for="cartEndDate">End Date of Service *</label>
+                <input id="cartEndDate" name="endDate" type="date" required>
+                <label for="cartNotes">Additional Notes</label>
+                <textarea id="cartNotes" name="notes" rows="4" placeholder="Special delivery instructions, accessibility requirements, or any other notes..."></textarea>
+            </div>
+            <button type="button" id="showEmailBtn" class="btn btn-primary btn-large" style="margin-top: 10px;">Proceed to Pay</button>
+            <button type="submit" id="checkoutBtn" class="btn btn-primary btn-large" style="margin-top: 10px; display:none;">Checkout</button>
+            <p id="cartMessage" class="form-message" aria-live="polite"></p>
+        </form>
+        <p class="form-note">You will be redirected to Square to complete payment.</p>
+    <div class="floating-cart" id="floatingCart" style="cursor: move;">
+        <div class="floating-cart-header">
+            <h3>Your Cart</h3>
+            <button class="floating-cart-close" id="closeFloatingCart">✕</button>
+        </div>
+        <div class="floating-cart-items" id="floatingCartItems">
+            <!-- Items populated by JavaScript -->
+        </div>
+        <div class="floating-cart-footer">
+            <div class="floating-cart-total">
+                <span>Total:</span>
+                <span id="floatingCartTotal" class="total-amount">$0.00</span>
+            </div>
+            <button class="btn btn-secondary" id="toggleFloatingCart" style="width: 100%; margin-top: 6px;">Hide Cart</button>
+        </div>
+    </div>
+
+    <!-- Toggle Button (appears when cart is hidden on mobile) -->
+    <button class="floating-cart-toggle" id="showFloatingCart" style="display: none;">
+        🛒 Cart
+    </button>
+
+    <!-- Floating Square Payment Panel -->
+    <div class="floating-stripe-panel" id="floatingStripePanel" style="display: none;">
+        <div class="floating-stripe-header">
+            <h3>💳 Square Checkout</h3>
+            <button class="floating-stripe-close" id="closeStripePanel">✕</button>
+        </div>
+        <div class="floating-stripe-content">
+            <iframe id="stripeIframe" src="" width="100%" height="100%" frameborder="0"></iframe>
+        </div>
+    </div>
+
+
+    <!-- Pricing Hero Image -->
+    <section class="pricing-hero">
+        <div class="container">
+            <img src="images/operator-headset.jpg" alt="Customer support operator with headset" class="pricing-hero-img">
+        </div>
+    </section>
+
+    <!-- Pricing Overview -->
+    <section class="pricing-section">
+        <div class="container">
+            <h2>Cart Summary</h2>
+            <p class="pricing-subtitle">Items selected on the Order page appear here</p>
+            <div class="pricing-actions">
+                <!-- <a href="order.html" class="btn btn-primary">Go to Order Page</a> -->
+                <p id="cartAddMessage" class="form-message" aria-live="polite"></p>
+            </div>
+            <aside class="pricing-cart" aria-label="Cart summary">
+                <h3>Items in your chart</h3>
+                <div id="cartItems" class="cart-items">
+                    <p class="cart-empty">No items added yet.</p>
+                </div>
+                <div class="cart-summary">
+                    <span>Total</span>
+                    <strong id="cartTotal">$0.00</strong>
+                </div>
+                <a href="order.html" class="btn btn-secondary btn-compact edit-cart-link">Edit Cart</a>
+                
+                <!-- Square Payment -->
+                <div class="stripe-payment-section" style="margin-top: 20px;">
+                    <h4>💳 Secure Checkout</h4>
+                    <p id="stripeCartNotice" class="form-note" style="display: none;">Add items to your cart to pay</p>
+                    <button id="stripeCheckoutBtn" class="btn btn-primary btn-large" style="display: none;">
+                        💳 Proceed to Payment
+                    </button>
+                </div>
+                
+                <div class="cart-email-box">
+                    <p>Or send your chart to us for our discounts.</p>
+                    <a id="cartEmailLink" class="btn btn-primary btn-compact" href="mailto:admin@comcare.store?cc=accentGV%40gmail.com">Email Cart</a>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <!-- Discount Information -->
+    <section class="discounts">
+        <div class="container">
+            <h2>Special Discounts & Offers</h2>
+            <div class="discount-grid">
+                <div class="discount-card">
+                    <h4>Long-Term Rentals</h4>
+                    <p><strong>10% discount</strong> on monthly rentals</p>
+                    <p>Perfect for extended recovery periods or extended facility use</p>
+                </div>
+                <div class="discount-card">
+                    <h4>Multiple Equipment</h4>
+                    <p><strong>15% discount</strong> when renting 3+ items</p>
+                    <p>Great for coordinated mobility support at home or on the go</p>
+                </div>
+                <div class="discount-card">
+                    <h4>Community Partners</h4>
+                    <p><strong>Special rates</strong> for property groups and care teams</p>
+                    <p>Contact us for bulk mobility rental pricing and contracts</p>
+                </div>
+                <div class="discount-card">
+                    <h4>Returning Customers</h4>
+                    <p><strong>5% loyalty discount</strong> on repeat rentals</p>
+                    <p>We appreciate your business and partnerships</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Details -->
+    <section class="pricing-details">
+        <div class="container">
+            <h2>What's Included in Our Rental Prices?</h2>
+            <div class="details-content">
+                <div class="details-column">
+                    <h4>Included Services</h4>
+                    <ul class="included-list">
+                        <li>Professional delivery to Atlanta, GA</li>
+                        <li>Basic setup for mobility equipment</li>
+                        <li>Usage guidance and fit checks</li>
+                        <li>Pre-delivery equipment cleaning</li>
+                        <li>Basic mobility equipment maintenance</li>
+                        <li>Free pickup at end of rental</li>
+                        <li>24/7 customer support</li>
+                        <li>Equipment replacement if needed</li>
+                    </ul>
+                </div>
+                <div class="details-column">
+                    <h4>Not Included (Optional)</h4>
+                    <ul class="excluded-list">
+                        <li>Insurance claim filing</li>
+                        <li>Personal medical consumables</li>
+                        <li>Expedited same-day delivery</li>
+                        <li>Equipment modification</li>
+                        <li>Transportation outside service area</li>
+                        <li>Non-mobility medical products</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Methods -->
+    <section class="payment-methods">
+        <div class="container">
+            <h2>Payment & Billing</h2>
+            <div class="payment-grid">
+                <div class="payment-card">
+                    <h4>Payment Methods</h4>
+                    <ul>
+                        <li>Credit Card (Visa, Mastercard, Amex)</li>
+                        <li>Debit Card</li>
+                        <li>ACH Bank Transfer</li>
+                        <li>Invoice or card-on-file billing</li>
+                    </ul>
+                </div>
+                <div class="payment-card">
+                    <h4>Billing & Invoicing</h4>
+                    <ul>
+                        <li>Flexible payment schedules available</li>
+                        <li>Daily, weekly, or monthly billing</li>
+                        <li>Digital invoices sent via email</li>
+                        <li>Automatic recurring billing accepted</li>
+                    </ul>
+                </div>
+                <div class="payment-card">
+                    <h4>Receipts & Reimbursement</h4>
+                    <ul>
+                        <li>Receipts available for reimbursement requests</li>
+                        <li>Order details available on request</li>
+                        <li>Flexible payment for self-pay customers</li>
+                        <li>Contact us before checkout with billing questions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Get a Personalized Quote</h2>
+            <p>Contact us for custom pricing on your specific equipment needs</p>
+            <div class="cta-contact">
+                <a href="tel:678-362-2345" class="btn btn-light">Call: 678-362-2345</a>
+                <a href="contact.html" class="btn btn-light">Request Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Comfort Care</h4>
+                    <p>Mobility equipment rental services for Atlanta and Norcross, Georgia</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Phone: <a href="tel:678-362-2345">678-362-2345</a></p>
+                    <p>Email: <a href="mailto:admin@comcare.store?cc=accentGV%40gmail.com">admin@comcare.store</a></p>
+                    <p>Location: Norcross, Georgia</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+<li><a href="rehab-tech-intake.html">Rehab Techs</a></li>
+                        <li><a href="recovery-professionals.html">Recovery Network</a></li>
+                        <li><a href="join-professionals.html">Join Network</a></li>
+                        <li><a href="partners.html">Partners</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Comfort Care. All rights reserved. | Mobility equipment rentals</p>
+                <p>Comfort Care operates as a DBA/trade name of MOON LIGHTING INC.</p>
+                <p>Business license, bank account, and payment records should use MOON LIGHTING INC. Checks should be payable to MOON LIGHTING INC.; a check copy will be provided when available.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js?v=square-checkout-20260625-1"></script>
+    <script src="site-navigation.js"></script>
+<script src="live-chat.js"></script>
+</body>
+</html>

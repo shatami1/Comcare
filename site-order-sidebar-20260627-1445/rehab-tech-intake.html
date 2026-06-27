@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rehab Tech Intake - Comfort Care</title>
+    <meta name="description" content="Internal rehab tech intake form for Comfort Care mobility equipment rental requests in the Atlanta area.">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .tech-layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 24px; align-items: start; }
+        .tech-panel { background: #fff; border: 1px solid var(--border-color); border-radius: 10px; padding: 24px; box-shadow: var(--shadow-sm); }
+        .tech-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+        .tech-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+        .tech-note { background: #eef7ff; border-left: 4px solid var(--primary-blue); padding: 14px 16px; border-radius: 6px; color: var(--dark-text); font-size: 0.95rem; }
+        .checkbox-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 8px; }
+        .checkbox-grid label { display: flex; gap: 8px; align-items: center; font-weight: 500; }
+        .saved-banner { display: none; margin-top: 16px; padding: 12px 14px; border-radius: 6px; background: #eaf7ef; color: #1f7a43; font-weight: 700; }
+        @media (max-width: 850px) { .tech-layout, .tech-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-middle">
+                <div class="nav-identity">
+                    <div class="nav-brand"><img src="logo.svg" alt="Comfort Care Logo" class="logo-image"></div>
+                    <div class="nav-title">Comfort Care</div>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="home.html" id="navHome">Home</a></li>
+                    <li><a href="services.html" id="navServices">Services</a></li>
+                    <li><a href="order.html" id="navOrder">Order</a></li>
+                    <li><a href="pricing.html" id="navCart">Cart</a></li>
+                    <li><a href="payment.html" id="navPayment">Payments</a></li>
+                    <li><a href="insurance-form.html" id="navInsurance">Insurance</a></li>
+                <li><a href="recovery-professionals.html" id="navRecovery">Recovery Network</a></li>
+<li><a href="rehab-tech-intake.html" class="active" id="navRehabTechs">Rehab Techs</a></li>
+                    <li><a href="contact.html" id="navContact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Rehab Tech Intake</h1>
+            <p>Save equipment requests, delivery details, and rehab facility follow-up notes for Comfort Care.</p>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="container tech-layout">
+            <form class="tech-panel" id="rehabTechForm">
+                <div class="tech-grid">
+                    <div class="form-group"><label for="techName">Rehab tech name</label><input id="techName" name="techName" required></div>
+                    <div class="form-group"><label for="techRole">Role / department</label><input id="techRole" name="techRole" placeholder="PT, OT, discharge planner"></div>
+                    <div class="form-group"><label for="techPhone">Tech phone</label><input id="techPhone" name="techPhone" type="tel"></div>
+                    <div class="form-group"><label for="techEmail">Tech email</label><input id="techEmail" name="techEmail" type="email"></div>
+                    <div class="form-group"><label for="facilityName">Facility / rehab center</label><input id="facilityName" name="facilityName" required></div>
+                    <div class="form-group"><label for="facilityPhone">Facility phone</label><input id="facilityPhone" name="facilityPhone" type="tel"></div>
+                    <div class="form-group"><label for="patientInitials">Patient initials only</label><input id="patientInitials" name="patientInitials" maxlength="12" placeholder="Example: J.S."></div>
+                    <div class="form-group"><label for="roomUnit">Room / unit</label><input id="roomUnit" name="roomUnit" placeholder="Room 204, Rehab Unit"></div>
+                    <div class="form-group"><label for="requestDate">Request date</label><input id="requestDate" name="requestDate" type="date"></div>
+                    <div class="form-group"><label for="neededDate">Needed date</label><input id="neededDate" name="neededDate" type="date"></div>
+                    <div class="form-group"><label for="fulfillment">Delivery or pickup</label><select id="fulfillment" name="fulfillment"><option>Delivery request</option><option>Pickup request</option><option>Not sure yet</option></select></div>
+                    <div class="form-group"><label for="priority">Priority</label><select id="priority" name="priority"><option>Standard</option><option>Same day if available</option><option>Urgent discharge</option></select></div>
+                    <div class="form-group"><label for="duration">Expected rental period</label><select id="duration" name="duration"><option>Daily</option><option>Weekly</option><option>Monthly</option><option>Not sure yet</option></select></div>
+                    <div class="form-group"><label for="paymentPlan">Payment / billing</label><select id="paymentPlan" name="paymentPlan"><option>Patient/family pays</option><option>Facility contact requested</option><option>Insurance reimbursement paperwork</option><option>Not sure yet</option></select></div>
+                    <div class="form-group full-width"><label for="deliveryAddress">Delivery address</label><input id="deliveryAddress" name="deliveryAddress" placeholder="Facility, home, or pickup notes"></div>
+                    <div class="form-group full-width">
+                        <label>Equipment requested</label>
+                        <div class="checkbox-grid">
+                            <label><input type="checkbox" name="equipment" value="Wheelchair"> Wheelchair</label>
+                            <label><input type="checkbox" name="equipment" value="Transport chair"> Transport chair</label>
+                            <label><input type="checkbox" name="equipment" value="Walker"> Walker</label>
+                            <label><input type="checkbox" name="equipment" value="Rollator"> Rollator</label>
+                            <label><input type="checkbox" name="equipment" value="Knee scooter"> Knee scooter</label>
+                            <label><input type="checkbox" name="equipment" value="Cane"> Cane</label>
+                            <label><input type="checkbox" name="equipment" value="Hospital bed"> Hospital bed</label>
+                            <label><input type="checkbox" name="equipment" value="Accessories"> Accessories</label>
+                        </div>
+                    </div>
+                    <div class="form-group"><label for="sizeNotes">Size / fit notes</label><input id="sizeNotes" name="sizeNotes" placeholder="Height, width, bariatric, left/right"></div>
+                    <div class="form-group"><label for="followUpDate">Follow-up date</label><input id="followUpDate" name="followUpDate" type="date"></div>
+                    <div class="form-group full-width"><label for="notes">Notes</label><textarea id="notes" name="notes" rows="5" placeholder="Do not enter diagnosis, SSN, or sensitive medical details."></textarea></div>
+                </div>
+                <div class="tech-actions">
+                    <button class="btn btn-primary" type="submit">Save Request</button>
+                    <button class="btn btn-secondary" id="saveEmailBtn" type="button">Save & Email Summary</button>
+                    <a class="btn btn-discount" href="rehab-tech-records.html">View Saved Records</a>
+                </div>
+                <div class="saved-banner" id="savedBanner">Request saved in this browser.</div>
+            </form>
+
+            <aside class="tech-panel">
+                <h2>Quick Guide</h2>
+                <p class="tech-note">Use patient initials only. This browser save is for operational notes and is not a medical record system.</p>
+                <h3>Common use</h3>
+                <p>Enter request details while speaking with a rehab tech, then email the summary to Comfort Care for scheduling.</p>
+                <h3>Contact</h3>
+                <p><strong>Phone:</strong> <a href="tel:678-362-2345">678-362-2345</a></p>
+                <p><strong>Email:</strong> <a href="mailto:admin@comcare.store?cc=accentGV%40gmail.com">admin@comcare.store</a></p>
+            </aside>
+        </div>
+    </section>
+
+    <footer class="footer"><div class="container"><div class="footer-bottom"><p>&copy; 2026 Comfort Care. All rights reserved. | Mobility equipment rentals</p><p>Comfort Care operates as a DBA/trade name of MOON LIGHTING INC.</p></div></div></footer>
+
+    <script>
+      (function () {
+        var storageKey = 'comcareRehabTechEntries';
+        var form = document.getElementById('rehabTechForm');
+        var banner = document.getElementById('savedBanner');
+        document.getElementById('requestDate').valueAsDate = new Date();
+        function entries() { try { return JSON.parse(localStorage.getItem(storageKey) || '[]'); } catch (e) { return []; } }
+        function values() {
+          var data = new FormData(form);
+          var equipment = Array.from(form.querySelectorAll('input[name="equipment"]:checked')).map(function (item) { return item.value; });
+          return {
+            id: Date.now().toString(), createdAt: new Date().toISOString(),
+            techName: data.get('techName') || '', techRole: data.get('techRole') || '', techPhone: data.get('techPhone') || '', techEmail: data.get('techEmail') || '',
+            facilityName: data.get('facilityName') || '', facilityPhone: data.get('facilityPhone') || '', patientInitials: data.get('patientInitials') || '', roomUnit: data.get('roomUnit') || '',
+            requestDate: data.get('requestDate') || '', neededDate: data.get('neededDate') || '', fulfillment: data.get('fulfillment') || '', priority: data.get('priority') || '',
+            duration: data.get('duration') || '', paymentPlan: data.get('paymentPlan') || '', deliveryAddress: data.get('deliveryAddress') || '', equipment: equipment.join(', '),
+            sizeNotes: data.get('sizeNotes') || '', followUpDate: data.get('followUpDate') || '', notes: data.get('notes') || '', status: 'New'
+          };
+        }
+        function save() {
+          var item = values();
+          var list = entries();
+          list.unshift(item);
+          localStorage.setItem(storageKey, JSON.stringify(list));
+          banner.style.display = 'block';
+          return item;
+        }
+        function email(item) {
+          var lines = ['Rehab tech equipment request', '', 'Facility: ' + item.facilityName, 'Tech: ' + item.techName, 'Phone: ' + item.techPhone, 'Email: ' + item.techEmail, 'Patient initials: ' + item.patientInitials, 'Room/unit: ' + item.roomUnit, 'Needed date: ' + item.neededDate, 'Priority: ' + item.priority, 'Fulfillment: ' + item.fulfillment, 'Equipment: ' + item.equipment, 'Size/fit notes: ' + item.sizeNotes, 'Delivery address: ' + item.deliveryAddress, 'Payment/billing: ' + item.paymentPlan, 'Notes: ' + item.notes];
+          window.location.href = 'mailto:admin@comcare.store?cc=accentGV%40gmail.com&subject=' + encodeURIComponent('Rehab tech equipment request - ' + item.facilityName) + '&body=' + encodeURIComponent(lines.join('\n'));
+        }
+        form.addEventListener('submit', function (event) { event.preventDefault(); save(); form.reset(); document.getElementById('requestDate').valueAsDate = new Date(); });
+        document.getElementById('saveEmailBtn').addEventListener('click', function () { if (form.reportValidity()) email(save()); });
+      }());
+    </script>
+<script src="live-chat.js"></script>
+</body>
+</html>
