@@ -16,17 +16,16 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="pricing-page">
-    <!-- Page Header (matches services.html) -->
-    <section class="page-header">
-        <div class="container">
-            <h1>Your Cart</h1>
-            <p>Review your selections and request discounts</p>
-        </div>
-    </section>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
             <div class="nav-middle">
+                <div class="nav-identity">
+                    <div class="nav-brand">
+                        <img src="logo.svg" alt="Comfort Care Logo" class="logo-image">
+                    </div>
+                    <div class="nav-title">Comfort Care</div>
+                </div>
                 <ul class="nav-menu">
                     <li><a href="home.html" id="navHome">Home</a></li>
                 <li><a href="services.html" id="navServices">Services</a></li>
@@ -37,21 +36,6 @@
                 <li><a href="recovery-professionals.html" id="navRecovery">Recovery Network</a></li>
 <li><a href="rehab-tech-intake.html" id="navRehabTechs">Rehab Techs</a></li>
                 <li><a href="contact.html" id="navContact">Contact</a></li>
-                        <script>
-                        // Preserve agent parameter in navigation links
-                        const agentParam = new URLSearchParams(window.location.search).get('agent');
-                        if (agentParam) {
-                            ["navHome","navServices","navOrder","navCart","navPayment","navRecovery","navRehabTechs","navContact"].forEach(function(id) {
-                                const link = document.getElementById(id);
-                                if (link) {
-                                    let href = link.getAttribute('href');
-                                        <!-- nav-identity removed for cart page header consistency -->
-                                    }
-                                    link.setAttribute('href', href);
-                                }
-                            });
-                        }
-                        </script>
                 </ul>
             </div>
             <div class="nav-cart">
@@ -64,6 +48,14 @@
             </button>
         </div>
     </nav>
+
+    <!-- Page Header (matches services.html) -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Your Cart</h1>
+            <p>Review your selections and request discounts</p>
+        </div>
+    </section>
 
     <!-- Floating Cart Panel (Draggable) -->
         <!-- Cart Discount and Customer Info Section (moved from order.html) -->
@@ -333,12 +325,12 @@
             <div class="footer-bottom">
                 <p>&copy; 2026 Comfort Care. All rights reserved. | Mobility equipment rentals</p>
                 <p>Comfort Care operates as a DBA/trade name of MOON LIGHTING INC.</p>
-                <p>Business license, bank account, and payment records should use MOON LIGHTING INC. Checks should be payable to MOON LIGHTING INC.; a check copy will be provided when available.</p>
-            </div>
+</div>
         </div>
     </footer>
 
     <script src="script.js?v=square-checkout-20260625-1"></script>
+    <script src="site-navigation.js"></script>
 <script src="live-chat.js"></script>
 </body>
 </html>

@@ -11,8 +11,17 @@
     <style>
         .network-layout { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 24px; align-items: start; }
         .network-panel, .profile-card, .map-panel { background: #fff; border: 1px solid var(--border-color); border-radius: 10px; padding: 20px; box-shadow: var(--shadow-sm); }
+        .network-panel h2 { margin-bottom: 12px; color: var(--primary-blue); font-size: 1.8rem; line-height: 1.12; text-align: left; }
         .network-panel label { font-weight: 700; display: block; margin: 14px 0 6px; }
         .network-panel input, .network-panel select, .network-panel textarea { width: 100%; padding: 0.75rem; border: 2px solid var(--border-color); border-radius: 6px; }
+        .network-panel p { color: var(--light-text); line-height: 1.65; }
+        .network-panel > .btn { width: 100%; margin-top: 4px; text-align: center; }
+        .tech-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+        .tech-actions .btn { flex: 1 1 130px; min-width: 0; }
+        .resource-link-list { display: grid; gap: 8px; margin: 14px 0; }
+        .resource-link-list a { display: block; padding: 10px 12px; border: 1px solid var(--border-color); border-radius: 8px; background: #f8fafc; color: #12355f; font-size: 0.95rem; font-weight: 800; line-height: 1.25; text-decoration: none; }
+        .resource-link-list a:hover, .resource-link-list a:focus { border-color: var(--primary-blue); background: #e0f2fe; outline: none; }
+        .resource-note { margin-top: 14px; padding: 12px 14px; border-left: 4px solid var(--accent-green); background: #f0fdf4; border-radius: 8px; color: #065f46; font-size: 0.93rem; font-weight: 700; line-height: 1.4; }
         .profile-list { display: grid; gap: 16px; }
         .profile-card { display: grid; grid-template-columns: 86px minmax(0, 1fr); gap: 16px; }
         .profile-photo { width: 86px; height: 86px; border-radius: 8px; background: #eaf1f7; object-fit: cover; display: grid; place-items: center; color: var(--primary-blue); font-weight: 800; }
@@ -33,7 +42,23 @@
 </head>
 <body>
     <nav class="navbar"><div class="container"><div class="nav-middle"><div class="nav-identity"><div class="nav-brand"><img src="logo.svg" alt="Comfort Care Logo" class="logo-image"></div><div class="nav-title">Comfort Care</div></div><ul class="nav-menu"><li><a href="home.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="order.html">Order</a></li><li><a href="pricing.html">Cart</a></li><li><a href="atlanta-sandy-springs-healthcare-resources.html">Resources</a></li><li><a href="recovery-professionals.html" class="active">Recovery Network</a></li><li><a href="contact.html">Contact</a></li></ul></div></div></nav>
-    <section class="page-header"><div class="container"><h1>Recovery Professionals Atlanta</h1><p>Search Atlanta rehab support professionals by ZIP code, specialty, and service area.</p></div></section>
+    <section class="page-header"><div class="container"><h1>Recovery Professionals Atlanta</h1><p>Connect with the recovery support network, or open hospital and rehab planning resources for families and discharge support.</p></div></section>
+    <section class="contact-section"><div class="container network-layout">
+        <aside class="network-panel">
+            <h2>Hospitals & Rehab Resources</h2>
+            <p>For hospital links, patient information, rehab planning, Medicare DME guidance, and community support, use the Comfort Care healthcare resources page.</p>
+            <a class="btn btn-primary" href="atlanta-sandy-springs-healthcare-resources.html">Open Resources Page</a>
+            <div class="resource-link-list" aria-label="Hospital resource shortcuts">
+                <a href="atlanta-sandy-springs-healthcare-resources.html">Hospitals, Rehab & Recovery Links</a>
+                <a href="atlanta-sandy-springs-healthcare-resources.html">Northside, Emory, Piedmont & Grady</a>
+                <a href="atlanta-sandy-springs-healthcare-resources.html">Medicare DME & 211 Support</a>
+                <a href="services.html">Home Recovery Equipment Rentals</a>
+            </div>
+            <p class="resource-note">For emergencies, call 911. Comfort Care provides equipment and resource guidance, not medical advice.</p>
+            <div class="tech-actions"><a class="btn btn-primary" href="join-professionals.html">Join Network</a><a class="btn btn-secondary" href="partners.html">Partners</a></div>
+        </aside>
+        <main><p id="profileStatus" style="margin:0 0 12px;color:var(--light-text);"></p><div id="profileList" class="profile-list"></div></main>
+    </div></section>
     <section class="network-promo" aria-label="Join Atlanta recovery support network">
         <div class="container network-promo-card">
             <div class="network-promo-copy">
@@ -46,17 +71,6 @@
             </a>
         </div>
     </section>
-    <section class="contact-section"><div class="container network-layout">
-        <aside class="network-panel">
-            <h2>Find Support</h2>
-            <label for="zipSearch">ZIP code</label><input id="zipSearch" inputmode="numeric" placeholder="30328, 30071, 30305">
-            <label for="specialtyFilter">Specialty</label><select id="specialtyFilter"><option value="">All specialties</option><option>Rehab Technician</option><option>Physical Therapy Assistant (PTA)</option><option>Occupational Therapy Assistant (OTA)</option><option>Home Health Aide</option><option>Caregiver</option><option>Recovery Coach</option></select>
-            <label for="keywordSearch">Keyword</label><input id="keywordSearch" placeholder="knee replacement, home recovery">
-            <div class="tech-actions"><a class="btn btn-primary" href="join-professionals.html">Join Network</a><a class="btn btn-secondary" href="partners.html">Partners</a></div>
-            <div class="map-panel" style="margin-top:18px;"><h3>Service Area Map</h3><p>Atlanta recovery support coverage includes metro communities served by Comfort Care.</p><div class="map-grid"><span>Atlanta</span><span>Sandy Springs</span><span>Norcross</span><span>Decatur</span><span>Marietta</span><span>Roswell</span></div></div>
-        </aside>
-        <main><div id="profileList" class="profile-list"></div></main>
-    </div></section>
     <footer class="footer"><div class="container"><div class="footer-bottom"><p>&copy; 2026 Comfort Care. All rights reserved. | Recovery equipment rental Atlanta</p><p>Comfort Care operates as a DBA/trade name of MOON LIGHTING INC.</p></div></div></footer>
     <script>
       (function () {
@@ -65,20 +79,22 @@
           {id:'sample-1', name:'Atlanta Recovery Support', title:'Rehab Technician', specialty:'Rehab Technician', serviceArea:'Atlanta, Sandy Springs, Norcross, 30328, 30305', certifications:'Mobility support, discharge support', yearsExperience:'5+', phone:'678-362-2345', email:'admin@comcare.store', website:'https://comcare.store', linkedin:'', bio:'Comfort Care is building a trusted Atlanta recovery support network for patients who need more than equipment after surgery, injury, or rehabilitation.', featured:true, verified:true, photoUrl:''}
         ];
         var remoteProfiles = [];
-        var statusNote = document.createElement('p');
-        statusNote.style.marginTop = '12px';
-        statusNote.style.color = 'var(--light-text)';
-        document.querySelector('.network-panel').appendChild(statusNote);
+        var statusNote = document.getElementById('profileStatus') || document.createElement('p');
         function mapRemote(item) { return { id:item.id, name:item.name, title:item.title, specialty:item.specialty, certifications:item.certifications, yearsExperience:item.years_experience, phone:item.phone, email:item.email, website:item.website, linkedin:item.linkedin, serviceArea:item.service_area, bio:item.bio, photoUrl:item.photo_url, featured:item.featured, verified:item.verified, createdAt:item.created_at }; }
         function local() { try { return JSON.parse(localStorage.getItem(storageKey) || '[]'); } catch (e) { return []; } }
         function all() { return remoteProfiles.length ? remoteProfiles : defaults.concat(local()); }
         function esc(value) { return String(value || '').replace(/[&<>"']/g, function (m) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; }); }
         function initials(name) { return String(name || 'CC').split(/\s+/).map(function (part) { return part.charAt(0); }).join('').slice(0,2).toUpperCase(); }
         function profilePhoto(item) { return item.photoUrl ? '<img class="profile-photo" src="' + esc(item.photoUrl) + '" alt="' + esc(item.name) + '">' : '<div class="profile-photo">' + initials(item.name) + '</div>'; }
+        function inputValue(id) {
+          var element = document.getElementById(id);
+          return element ? element.value.trim().toLowerCase() : '';
+        }
         function matches(item) {
-          var zip = document.getElementById('zipSearch').value.trim().toLowerCase();
-          var specialty = document.getElementById('specialtyFilter').value;
-          var keyword = document.getElementById('keywordSearch').value.trim().toLowerCase();
+          var zip = inputValue('zipSearch');
+          var specialtyElement = document.getElementById('specialtyFilter');
+          var specialty = specialtyElement ? specialtyElement.value : '';
+          var keyword = inputValue('keywordSearch');
           var text = [item.name,item.title,item.specialty,item.certifications,item.serviceArea,item.bio].join(' ').toLowerCase();
           return (!zip || text.indexOf(zip) !== -1) && (!specialty || item.specialty === specialty) && (!keyword || text.indexOf(keyword) !== -1);
         }
@@ -86,7 +102,7 @@
         function render() {
           var list = all().filter(matches);
           var target = document.getElementById('profileList');
-          if (!list.length) { target.innerHTML = '<div class="empty-state"><h2>No matching professionals yet</h2><p>Try a different ZIP code or invite a local provider to join the network.</p><a class="btn btn-primary" href="join-professionals.html">Join Atlanta\'s Recovery Support Network</a></div>'; return; }
+          if (!list.length) { target.innerHTML = '<div class="empty-state"><h2>No approved professionals yet</h2><p>Invite a local provider to join the network, or use the healthcare resources page for hospitals and recovery planning links.</p><a class="btn btn-primary" href="join-professionals.html">Join Atlanta\'s Recovery Support Network</a></div>'; return; }
           target.innerHTML = list.map(function (item) { return '<article class="profile-card">' + profilePhoto(item) + '<div><h2>' + esc(item.name) + '</h2><p><strong>' + esc(item.title || item.specialty) + '</strong></p><div class="profile-meta"><span>' + esc(item.specialty) + '</span><span>' + esc(item.yearsExperience) + ' years</span>' + (item.verified ? '<span>Verified</span>' : '') + (item.featured ? '<span>Featured</span>' : '') + '</div><p>' + esc(item.bio) + '</p><p><strong>Service area:</strong> ' + esc(item.serviceArea) + '</p><p><strong>Certifications:</strong> ' + esc(item.certifications) + '</p><div class="profile-actions"><a class="btn btn-primary btn-compact" href="' + contactLink(item) + '">Contact</a>' + (item.website ? '<a class="btn btn-secondary btn-compact" href="' + esc(item.website) + '">Website</a>' : '') + (item.linkedin ? '<a class="btn btn-secondary btn-compact" href="' + esc(item.linkedin) + '">LinkedIn</a>' : '') + '</div></div></article>'; }).join('');
         }
         function loadRemote() {
@@ -101,11 +117,18 @@
             }
           }).catch(function () { statusNote.textContent = 'Database is not connected yet; showing browser-saved sample records.'; });
         }
-        ['zipSearch','specialtyFilter','keywordSearch'].forEach(function (id) { document.getElementById(id).addEventListener('input', render); document.getElementById(id).addEventListener('change', render); });
+        ['zipSearch','specialtyFilter','keywordSearch'].forEach(function (id) {
+          var element = document.getElementById(id);
+          if (element) {
+            element.addEventListener('input', render);
+            element.addEventListener('change', render);
+          }
+        });
         render();
         loadRemote();
       }());
     </script>
+    <script src="site-navigation.js"></script>
 <script src="live-chat.js"></script>
 </body>
 </html>

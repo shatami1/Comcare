@@ -6,6 +6,12 @@
     { "source": "/create-checkout-session", "destination": "/api/create-checkout-session" },
     { "source": "/checkout-health", "destination": "/api/checkout-health" }
   ],
+  "redirects": [
+    { "source": "/test-home", "destination": "/home", "permanent": true },
+    { "source": "/test-home.html", "destination": "/home", "permanent": true },
+    { "source": "/test-care-guide", "destination": "/care-guide", "permanent": true },
+    { "source": "/test-care-guide.html", "destination": "/care-guide", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/(.*)",

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Atlanta's Recovery Support Network | Comfort Care</title>
+    <meta name="description" content="Rehab technicians, PTAs, OTAs, home health aides, caregivers, and recovery coaches can join Comfort Care's Atlanta Recovery Support Network.">
+    <meta name="keywords" content="Rehab Technician Atlanta, Physical Therapy Support Atlanta, Recovery Professionals Atlanta, Post Surgery Support Atlanta, Home Recovery Assistance Atlanta">
+    <link rel="canonical" href="https://comcare.store/join-professionals">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .join-layout { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 24px; align-items: start; }
+        .join-panel, .listing-card { background:#fff; border:1px solid var(--border-color); border-radius:10px; padding:22px; box-shadow:var(--shadow-sm); }
+        .join-grid { display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap:16px; }
+        .join-panel input, .join-panel select, .join-panel textarea { width:100%; padding:.75rem; border:2px solid var(--border-color); border-radius:6px; }
+        .join-panel label { font-weight:700; display:block; margin-bottom:6px; }
+        .full-span { grid-column:1 / -1; }
+        .plans { display:grid; gap:14px; }
+        .plan-price { color:var(--primary-blue); font-size:1.5rem; font-weight:800; }
+        .saved-banner { display:none; margin-top:16px; padding:12px 14px; border-radius:6px; background:#eaf7ef; color:#1f7a43; font-weight:700; }
+        @media (max-width:850px){ .join-layout, .join-grid { grid-template-columns:1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar"><div class="container"><div class="nav-middle"><div class="nav-identity"><div class="nav-brand"><img src="logo.svg" alt="Comfort Care Logo" class="logo-image"></div><div class="nav-title">Comfort Care</div></div><ul class="nav-menu"><li><a href="home.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="recovery-professionals.html">Recovery Network</a></li><li><a href="partners.html">Partners</a></li><li><a href="contact.html">Contact</a></li></ul></div></div></nav>
+    <section class="page-header"><div class="container"><h1>Join Atlanta's Recovery Support Network</h1><p>We are inviting local recovery professionals to register and be considered for client connections and future support opportunities.</p><p>Apply to be listed as a rehab tech, PTA, OTA, home health aide, caregiver, or recovery coach.</p></div></section>
+    <section class="contact-section"><div class="container join-layout">
+        <form class="join-panel" id="professionalForm">
+            <div class="join-grid">
+                <div class="form-group"><label for="name">Full Name</label><input id="name" name="name" required></div>
+                <div class="form-group"><label for="company">Company (Optional)</label><input id="company" name="company"></div>
+                <div class="form-group"><label for="specialty">Profession</label><select id="specialty" name="specialty" required><option value="">Select profession</option><option>Rehab Technician</option><option>Physical Therapy Assistant (PTA)</option><option>Occupational Therapy Assistant (OTA)</option><option>Home Health Aide</option><option>Caregiver</option><option>Recovery Coach</option></select></div>
+                <div class="form-group"><label for="yearsExperience">Years Experience</label><input id="yearsExperience" name="yearsExperience" type="number" min="0" max="60"></div>
+                <div class="form-group full-span"><label for="certifications">Certifications</label><input id="certifications" name="certifications" placeholder="CPR, CNA, PTA license, OTA license, other credentials"></div>
+                <div class="form-group full-span"><label for="serviceArea">Service Area</label><input id="serviceArea" name="serviceArea" required placeholder="Atlanta, Norcross, Sandy Springs, ZIP codes served"></div>
+                <div class="form-group"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" required></div>
+                <div class="form-group"><label for="email">Email</label><input id="email" name="email" type="email" required></div>
+                <div class="form-group"><label for="website">Website</label><input id="website" name="website" type="url"></div>
+                <div class="form-group"><label for="linkedin">LinkedIn Profile</label><input id="linkedin" name="linkedin" type="url"></div>
+                <div class="form-group full-span"><label for="bio">Bio</label><textarea id="bio" name="bio" rows="5" required placeholder="Describe recovery support services, specialties, and patient populations served."></textarea></div>
+                <div class="form-group full-span"><label for="headshot">Upload Headshot</label><input id="headshot" name="headshot" type="file" accept="image/*"></div>
+                <div class="form-group full-span"><label><input id="terms" name="terms" type="checkbox" required> I accept the terms and confirm this information is accurate for review.</label></div>
+            </div>
+            <div class="tech-actions"><button class="btn btn-primary" type="submit">Save Application</button><button class="btn btn-discount" id="saveEmailBtn" type="button">Save & Email Application</button><a class="btn btn-secondary" href="recovery-professionals.html">View Directory</a></div>
+            <div id="savedBanner" class="saved-banner">Application saved in this browser.</div>
+        </form>
+        <aside class="plans">
+            <div class="listing-card"><h2>Listing Options</h2><p><strong>Free Listing</strong><br>Basic profile in the Recovery Support Network.</p><p><strong>Referral Partner</strong><br>Revenue sharing on referred equipment rentals.</p></div>
+            <div class="listing-card"><h3>Featured Listing</h3><div class="plan-price">$19/month</div><p>Priority profile placement for Atlanta recovery searches.</p></div>
+            <div class="listing-card"><h3>Premium Partner</h3><div class="plan-price">$49/month</div><p>Featured placement, lead form, website link, and social promotion.</p></div>
+        </aside>
+    </div></section>
+    <footer class="footer"><div class="container"><div class="footer-bottom"><p>&copy; 2026 Comfort Care. All rights reserved.</p><p>Comfort Care operates as a DBA/trade name of MOON LIGHTING INC.</p></div></div></footer>
+    <script>
+      (function () {
+        var key = 'comcareRecoveryProfessionals';
+        var form = document.getElementById('professionalForm');
+        var banner = document.getElementById('savedBanner');
+        function saved() { try { return JSON.parse(localStorage.getItem(key) || '[]'); } catch (e) { return []; } }
+        function readPhoto(callback) { var file = document.getElementById('headshot').files[0]; if (!file) { callback(''); return; } var reader = new FileReader(); reader.onload = function () { callback(reader.result); }; reader.readAsDataURL(file); }
+        function collect(photoUrl) { var data = new FormData(form); return { id: Date.now().toString(), name:data.get('name') || '', title:data.get('company') || data.get('specialty') || '', specialty:data.get('specialty') || '', certifications:data.get('certifications') || '', yearsExperience:data.get('yearsExperience') || '', phone:data.get('phone') || '', email:data.get('email') || '', website:data.get('website') || '', linkedin:data.get('linkedin') || '', serviceArea:data.get('serviceArea') || '', bio:data.get('bio') || '', photoUrl:photoUrl || '', featured:false, verified:false, createdAt:new Date().toISOString() }; }
+        function saveLocal(item) { var list = saved(); list.unshift(item); localStorage.setItem(key, JSON.stringify(list)); }
+        function show(message) { banner.textContent = message; banner.style.display = 'block'; }
+        function submitLive(item, callback) {
+          fetch('/api/recovery-professionals', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(item) })
+            .then(function (response) { return response.json().then(function (data) { return { ok: response.ok, data: data }; }); })
+            .then(function (result) {
+              if (result.ok && result.data.status === 'ok') {
+                show('Application sent to the live database for admin review.');
+                if (callback) callback(item);
+                form.reset();
+              } else {
+                saveLocal(item);
+                show((result.data && result.data.message ? result.data.message : 'Database is not connected yet.') + ' Saved in this browser as backup.');
+                if (callback) callback(item);
+              }
+            })
+            .catch(function () { saveLocal(item); show('Database is not connected yet. Saved in this browser as backup.'); if (callback) callback(item); });
+        }
+        function save(callback) { readPhoto(function (photoUrl) { var item = collect(photoUrl); submitLive(item, callback); }); }
+        function email(item) { var lines = ['Recovery professional application', '', 'Name: ' + item.name, 'Company/title: ' + item.title, 'Profession: ' + item.specialty, 'Certifications: ' + item.certifications, 'Years experience: ' + item.yearsExperience, 'Service area: ' + item.serviceArea, 'Phone: ' + item.phone, 'Email: ' + item.email, 'Website: ' + item.website, 'LinkedIn: ' + item.linkedin, 'Bio: ' + item.bio]; window.location.href = 'mailto:admin@comcare.store?cc=accentGV%40gmail.com&subject=' + encodeURIComponent('Recovery professional application - ' + item.name) + '&body=' + encodeURIComponent(lines.join('\n')); }
+        form.addEventListener('submit', function (event) { event.preventDefault(); save(); });
+        document.getElementById('saveEmailBtn').addEventListener('click', function () { if (form.reportValidity()) save(email); });
+      }());
+    </script>
+    <script src="site-navigation.js"></script>
+<script src="live-chat.js"></script>
+</body>
+</html>
