@@ -29,7 +29,7 @@
   <!-- Curved text around top -->
   <text font-size="15" fill="#ffffff" font-family="Arial, sans-serif" letter-spacing="0.5" font-weight="400">
     <textPath href="#topArc" startOffset="50%" text-anchor="middle">
-      MEDICAL EQUIPMENT RENTAL
+      HOME RECOVERY SUPPORT
     </textPath>
   </text>
 </svg>

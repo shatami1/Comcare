@@ -449,7 +449,7 @@ function bindDynamicStripeCheckout(button) {
     });
 }
 
-const RECOVERY_PACKAGE_CART_ITEMS = {
+const RECOVERY_PACKAGE_SUBSCRIPTIONS = {
     essential: {
         name: 'Essential Recovery',
         price: 49
@@ -482,19 +482,6 @@ function setRecoveryPackageCheckoutMessage(message, state = 'info') {
     }
 }
 
-function createRecoveryPackageCartItem(packageCode, packageInfo) {
-    return {
-        name: `${packageInfo.name} Support Package`,
-        model: 'Recovery support package - first month charge',
-        rateType: 'One-time package charge',
-        unitPrice: packageInfo.price,
-        quantity: 1,
-        offerCode: 'RECOVERY_SUPPORT_PACKAGE',
-        packageCode,
-        manualRenewal: true
-    };
-}
-
 function bindRecoveryPackageCheckoutButtons() {
     const packageButtons = document.querySelectorAll('.recovery-package-checkout[data-package-code]');
     if (!packageButtons.length) {
@@ -502,46 +489,71 @@ function bindRecoveryPackageCheckoutButtons() {
     }
 
     packageButtons.forEach(button => {
-        if (button.dataset.packageCartBound === 'true') {
+        if (button.dataset.subscriptionBound === 'true') {
             return;
         }
 
-        button.dataset.packageCartBound = 'true';
-        button.addEventListener('click', function(event) {
+        button.dataset.subscriptionBound = 'true';
+        button.addEventListener('click', async function(event) {
             event.preventDefault();
 
             const packageCode = String(this.dataset.packageCode || '').trim().toLowerCase();
-            const packageInfo = RECOVERY_PACKAGE_CART_ITEMS[packageCode];
+            const packageInfo = RECOVERY_PACKAGE_SUBSCRIPTIONS[packageCode];
 
             if (!packageInfo) {
                 window.location.href = this.href;
                 return;
             }
 
-            const currentCart = getStoredCart();
-            const cartWithoutRecoveryPackages = currentCart.filter(item => item.offerCode !== 'RECOVERY_SUPPORT_PACKAGE');
-            const nextCart = [
-                ...cartWithoutRecoveryPackages,
-                createRecoveryPackageCartItem(packageCode, packageInfo)
-            ];
+            const originalText = this.textContent;
+            this.classList.add('is-processing');
+            this.setAttribute('aria-busy', 'true');
+            this.textContent = 'Opening Square...';
+            setRecoveryPackageCheckoutMessage(`Preparing secure monthly checkout for ${packageInfo.name}...`, 'info');
 
-            localStorage.setItem('pricingCartItems', JSON.stringify(nextCart));
-            saveCheckoutSnapshot(nextCart);
             localStorage.setItem('comfortCareRecoveryPackage', JSON.stringify({
                 packageCode,
                 name: packageInfo.name,
                 price: packageInfo.price,
-                cadence: 'monthly',
-                billingMode: 'manual-renewal'
+                cadence: 'monthly'
             }));
 
-            updateHeaderCart();
-            updateCartEmailLink();
-            this.textContent = 'Added - opening cart...';
-            setRecoveryPackageCheckoutMessage(`${packageInfo.name} was added to the cart as a first-month package charge. Future monthly renewals can be handled manually by Comfort Care.`, 'info');
-            window.setTimeout(() => {
-                window.location.href = 'pricing.html';
-            }, 450);
+            try {
+                const response = await fetch(getCheckoutSessionEndpoint({ preferLocalServer: true }), {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        subscription: {
+                            packageCode,
+                            sourcePage: 'recovery-support'
+                        }
+                    })
+                });
+
+                const data = await response.json().catch(() => ({}));
+
+                if (!response.ok || !data?.url) {
+                    throw new Error(data?.error || 'Unable to create monthly Square checkout.');
+                }
+
+                window.location.href = data.url;
+            } catch (error) {
+                console.error('Square subscription checkout failed:', error);
+                this.classList.remove('is-processing');
+                this.removeAttribute('aria-busy');
+                this.textContent = originalText;
+
+                let message = error?.message || 'Unable to start monthly Square checkout.';
+                if (window.location.protocol === 'file:' && message.toLowerCase().includes('failed to fetch')) {
+                    message = 'Local file preview cannot reach the updated checkout server. To test monthly Square checkout locally, run npm start in this website folder and open http://localhost:3000/recovery-support.html. For the live site, publish these updated files to Vercel and add the four Square recovery package plan variation IDs.';
+                } else if (message.toLowerCase().includes('no valid items in cart')) {
+                    message = 'This page reached an older checkout API that does not support recovery package subscriptions yet. Publish the updated api/create-checkout-session.js file to Vercel, then add the Square recovery package plan variation IDs.';
+                }
+
+                setRecoveryPackageCheckoutMessage(`${message} You can also call 678-362-2345 or email admin@comcare.store to start this package manually.`, 'error');
+            }
         });
     });
 }
@@ -949,8 +961,7 @@ function initPricingCart() {
 
             const meta = document.createElement('div');
             meta.className = 'cart-item-meta';
-            const displayRate = rateLabels[item.rateType] || item.rateType || 'Item';
-            meta.textContent = `${item.model} | ${displayRate} | Qty ${item.quantity}`;
+            meta.textContent = `${item.model} | ${rateLabels[item.rateType]} | Qty ${item.quantity}`;
 
             const actions = document.createElement('div');
             actions.className = 'cart-item-actions';

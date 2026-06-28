@@ -1,0 +1,59 @@
+# Square Recovery Package Subscription Setup
+
+The recovery-support package buttons are wired to Square hosted checkout for monthly recurring billing.
+
+## What the site expects
+
+Create four monthly Square subscription plan variations, then add their variation IDs to Vercel environment variables:
+
+| ComCare package | Monthly price | Vercel environment variable |
+| --- | ---: | --- |
+| Essential Recovery | $49/month | `SQUARE_RECOVERY_ESSENTIAL_PLAN_VARIATION_ID` |
+| Comfort Recovery | $149/month | `SQUARE_RECOVERY_COMFORT_PLAN_VARIATION_ID` |
+| Comfort Extend | $249/month | `SQUARE_RECOVERY_EXTEND_PLAN_VARIATION_ID` |
+| Comfort Plus | $399/month | `SQUARE_RECOVERY_PLUS_PLAN_VARIATION_ID` |
+
+Keep these existing Square variables too:
+
+```env
+SQUARE_ACCESS_TOKEN=your_square_access_token_here
+SQUARE_APPLICATION_ID=your_square_application_id_here
+SQUARE_LOCATION_ID=your_square_location_id_here
+```
+
+## How the checkout works
+
+1. Customer clicks a package button on `recovery-support.html`.
+2. `script.js` posts the selected package code to `/create-checkout-session`.
+3. `api/create-checkout-session.js` creates a Square hosted checkout link using:
+   - the package monthly price
+   - the package Square subscription plan variation ID
+   - `subscription_plan_id`
+4. Square collects the card, creates the subscription, emails the receipt, and continues monthly billing.
+5. Square redirects the customer back to `home.html?checkout=subscription-success`.
+
+## Testing locally
+
+For monthly package checkout testing, use the local Node server instead of opening the page only as a `file://` URL:
+
+```powershell
+cd C:\Users\ushsa\Downloads\Comcare-seo-atlanta-growth-plan\Comcare-seo-atlanta-growth-plan
+npm start
+```
+
+Then open:
+
+```text
+http://localhost:3000/recovery-support.html
+```
+
+The `file://` preview cannot run the updated checkout API by itself. If the local server is not running, the package button will show an inline setup message instead of a cart error.
+
+## Important Square requirement
+
+Square's Checkout API needs the ID of the subscription plan variation, not just the parent subscription plan. In Square API field naming this is still passed as `subscription_plan_id`.
+
+Official Square docs:
+
+- https://developer.squareup.com/docs/checkout-api/subscription-plan-checkout
+- https://developer.squareup.com/docs/subscriptions-api/manage-subscriptions

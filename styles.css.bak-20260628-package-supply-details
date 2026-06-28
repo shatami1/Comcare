@@ -4925,12 +4925,12 @@ HOME CARE PATHWAY PAGE
     }
 
     .site-guide-nav-page .care-guide-side-heading::after {
-        content: "Resources";
+        content: "Guide";
         color: #7c3aed;
-        font-size: 1.15rem;
+        font-size: 1.9rem;
         font-weight: 1000;
         line-height: 1;
-        letter-spacing: 0.01em;
+        letter-spacing: 0.02em;
         text-transform: uppercase;
         text-shadow: 0 0 12px rgba(124, 58, 237, 0.38);
     }
@@ -5187,7 +5187,7 @@ HOME CARE PATHWAY PAGE
 .recovery-package-card {
     display: flex;
     flex-direction: column;
-    min-height: 560px;
+    min-height: 320px;
     padding: 26px;
 }
 
@@ -5215,48 +5215,6 @@ HOME CARE PATHWAY PAGE
     margin: 0 0 12px;
 }
 
-.recovery-shipment {
-    background: #f7fbff;
-    border: 1px solid #d9e9f3;
-    border-radius: 8px;
-    margin: 18px 0 22px;
-    padding: 16px;
-}
-
-.recovery-shipment h4 {
-    color: #0c3156;
-    font-size: 0.92rem;
-    font-weight: 900;
-    margin: 0 0 10px;
-}
-
-.recovery-shipment ul {
-    display: grid;
-    gap: 8px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.recovery-shipment li {
-    color: #52687a;
-    font-size: 0.9rem;
-    line-height: 1.42;
-    padding-left: 18px;
-    position: relative;
-}
-
-.recovery-shipment li::before {
-    background: #18b985;
-    border-radius: 50%;
-    content: "";
-    height: 7px;
-    left: 0;
-    position: absolute;
-    top: 0.52em;
-    width: 7px;
-}
-
 .recovery-card-link {
     align-items: center;
     background: #0a70c7;
@@ -5274,48 +5232,6 @@ HOME CARE PATHWAY PAGE
 .recovery-card-link:hover {
     background: #085a9f;
     color: #ffffff;
-}
-
-.recovery-card-link.is-processing {
-    opacity: 0.72;
-    pointer-events: none;
-}
-
-.recovery-package-note {
-    color: #5b6f80;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin: 18px auto 0;
-    max-width: 880px;
-    text-align: center;
-}
-
-.recovery-package-checkout-message {
-    border-radius: 8px;
-    display: none;
-    font-size: 0.95rem;
-    font-weight: 700;
-    line-height: 1.55;
-    margin: 16px auto 0;
-    max-width: 900px;
-    padding: 12px 16px;
-    text-align: center;
-}
-
-.recovery-package-checkout-message.is-visible {
-    display: block;
-}
-
-.recovery-package-checkout-message.is-info {
-    background: #eef7ff;
-    border: 1px solid #bcdcff;
-    color: #0b4d80;
-}
-
-.recovery-package-checkout-message.is-error {
-    background: #fff4ed;
-    border: 1px solid #ffc4a3;
-    color: #9a3412;
 }
 
 .recovery-box-card {

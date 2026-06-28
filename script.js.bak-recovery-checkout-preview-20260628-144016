@@ -271,13 +271,9 @@ function getStoredCheckoutTotal() {
     return 0;
 }
 
-function getCheckoutSessionEndpoint(options = {}) {
+function getCheckoutSessionEndpoint() {
     if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
         return `${window.location.origin}/create-checkout-session`;
-    }
-
-    if (options.preferLocalServer) {
-        return 'http://localhost:3000/create-checkout-session';
     }
 
     // Static file previews do not run a local API server.
@@ -449,7 +445,7 @@ function bindDynamicStripeCheckout(button) {
     });
 }
 
-const RECOVERY_PACKAGE_CART_ITEMS = {
+const RECOVERY_PACKAGE_SUBSCRIPTIONS = {
     essential: {
         name: 'Essential Recovery',
         price: 49
@@ -468,33 +464,6 @@ const RECOVERY_PACKAGE_CART_ITEMS = {
     }
 };
 
-function setRecoveryPackageCheckoutMessage(message, state = 'info') {
-    const messageEl = document.getElementById('recoveryPackageCheckoutMessage');
-    if (!messageEl) {
-        return;
-    }
-
-    messageEl.textContent = message;
-    messageEl.classList.remove('is-visible', 'is-info', 'is-error');
-
-    if (message) {
-        messageEl.classList.add('is-visible', state === 'error' ? 'is-error' : 'is-info');
-    }
-}
-
-function createRecoveryPackageCartItem(packageCode, packageInfo) {
-    return {
-        name: `${packageInfo.name} Support Package`,
-        model: 'Recovery support package - first month charge',
-        rateType: 'One-time package charge',
-        unitPrice: packageInfo.price,
-        quantity: 1,
-        offerCode: 'RECOVERY_SUPPORT_PACKAGE',
-        packageCode,
-        manualRenewal: true
-    };
-}
-
 function bindRecoveryPackageCheckoutButtons() {
     const packageButtons = document.querySelectorAll('.recovery-package-checkout[data-package-code]');
     if (!packageButtons.length) {
@@ -502,46 +471,62 @@ function bindRecoveryPackageCheckoutButtons() {
     }
 
     packageButtons.forEach(button => {
-        if (button.dataset.packageCartBound === 'true') {
+        if (button.dataset.subscriptionBound === 'true') {
             return;
         }
 
-        button.dataset.packageCartBound = 'true';
-        button.addEventListener('click', function(event) {
+        button.dataset.subscriptionBound = 'true';
+        button.addEventListener('click', async function(event) {
             event.preventDefault();
 
             const packageCode = String(this.dataset.packageCode || '').trim().toLowerCase();
-            const packageInfo = RECOVERY_PACKAGE_CART_ITEMS[packageCode];
+            const packageInfo = RECOVERY_PACKAGE_SUBSCRIPTIONS[packageCode];
 
             if (!packageInfo) {
                 window.location.href = this.href;
                 return;
             }
 
-            const currentCart = getStoredCart();
-            const cartWithoutRecoveryPackages = currentCart.filter(item => item.offerCode !== 'RECOVERY_SUPPORT_PACKAGE');
-            const nextCart = [
-                ...cartWithoutRecoveryPackages,
-                createRecoveryPackageCartItem(packageCode, packageInfo)
-            ];
+            const originalText = this.textContent;
+            this.classList.add('is-processing');
+            this.setAttribute('aria-busy', 'true');
+            this.textContent = 'Opening Square...';
 
-            localStorage.setItem('pricingCartItems', JSON.stringify(nextCart));
-            saveCheckoutSnapshot(nextCart);
             localStorage.setItem('comfortCareRecoveryPackage', JSON.stringify({
                 packageCode,
                 name: packageInfo.name,
                 price: packageInfo.price,
-                cadence: 'monthly',
-                billingMode: 'manual-renewal'
+                cadence: 'monthly'
             }));
 
-            updateHeaderCart();
-            updateCartEmailLink();
-            this.textContent = 'Added - opening cart...';
-            setRecoveryPackageCheckoutMessage(`${packageInfo.name} was added to the cart as a first-month package charge. Future monthly renewals can be handled manually by Comfort Care.`, 'info');
-            window.setTimeout(() => {
-                window.location.href = 'pricing.html';
-            }, 450);
+            try {
+                const response = await fetch(getCheckoutSessionEndpoint(), {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        subscription: {
+                            packageCode,
+                            sourcePage: 'recovery-support'
+                        }
+                    })
+                });
+
+                const data = await response.json().catch(() => ({}));
+
+                if (!response.ok || !data?.url) {
+                    throw new Error(data?.error || 'Unable to create monthly Square checkout.');
+                }
+
+                window.location.href = data.url;
+            } catch (error) {
+                console.error('Square subscription checkout failed:', error);
+                this.classList.remove('is-processing');
+                this.removeAttribute('aria-busy');
+                this.textContent = originalText;
+                alert(`${error?.message || 'Unable to start monthly Square checkout.'} Please call 678-362-2345 or email admin@comcare.store if you want us to start this package manually.`);
+            }
         });
     });
 }
@@ -949,8 +934,7 @@ function initPricingCart() {
 
             const meta = document.createElement('div');
             meta.className = 'cart-item-meta';
-            const displayRate = rateLabels[item.rateType] || item.rateType || 'Item';
-            meta.textContent = `${item.model} | ${displayRate} | Qty ${item.quantity}`;
+            meta.textContent = `${item.model} | ${rateLabels[item.rateType]} | Qty ${item.quantity}`;
 
             const actions = document.createElement('div');
             actions.className = 'cart-item-actions';

@@ -4925,12 +4925,12 @@ HOME CARE PATHWAY PAGE
     }
 
     .site-guide-nav-page .care-guide-side-heading::after {
-        content: "Resources";
+        content: "Guide";
         color: #7c3aed;
-        font-size: 1.15rem;
+        font-size: 1.9rem;
         font-weight: 1000;
         line-height: 1;
-        letter-spacing: 0.01em;
+        letter-spacing: 0.02em;
         text-transform: uppercase;
         text-shadow: 0 0 12px rgba(124, 58, 237, 0.38);
     }
@@ -5288,34 +5288,6 @@ HOME CARE PATHWAY PAGE
     margin: 18px auto 0;
     max-width: 880px;
     text-align: center;
-}
-
-.recovery-package-checkout-message {
-    border-radius: 8px;
-    display: none;
-    font-size: 0.95rem;
-    font-weight: 700;
-    line-height: 1.55;
-    margin: 16px auto 0;
-    max-width: 900px;
-    padding: 12px 16px;
-    text-align: center;
-}
-
-.recovery-package-checkout-message.is-visible {
-    display: block;
-}
-
-.recovery-package-checkout-message.is-info {
-    background: #eef7ff;
-    border: 1px solid #bcdcff;
-    color: #0b4d80;
-}
-
-.recovery-package-checkout-message.is-error {
-    background: #fff4ed;
-    border: 1px solid #ffc4a3;
-    color: #9a3412;
 }
 
 .recovery-box-card {

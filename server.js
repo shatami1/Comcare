@@ -37,6 +37,33 @@ const squareLocationId = process.env.SQUARE_LOCATION_ID;
 const squareApiVersion = '2026-05-20';
 const port = Number(process.env.PORT || 3000);
 
+const RECOVERY_PACKAGE_SUBSCRIPTIONS = {
+    essential: {
+        code: 'essential',
+        name: 'Essential Recovery',
+        amountCents: 4900,
+        planVariationEnv: 'SQUARE_RECOVERY_ESSENTIAL_PLAN_VARIATION_ID'
+    },
+    comfort: {
+        code: 'comfort',
+        name: 'Comfort Recovery',
+        amountCents: 14900,
+        planVariationEnv: 'SQUARE_RECOVERY_COMFORT_PLAN_VARIATION_ID'
+    },
+    extend: {
+        code: 'extend',
+        name: 'Comfort Extend',
+        amountCents: 24900,
+        planVariationEnv: 'SQUARE_RECOVERY_EXTEND_PLAN_VARIATION_ID'
+    },
+    plus: {
+        code: 'plus',
+        name: 'Comfort Plus',
+        amountCents: 39900,
+        planVariationEnv: 'SQUARE_RECOVERY_PLUS_PLAN_VARIATION_ID'
+    }
+};
+
 if (!squareAccessToken || !squareLocationId) {
     console.warn('SQUARE_ACCESS_TOKEN or SQUARE_LOCATION_ID is not set in environment or .env.');
 }
@@ -95,6 +122,78 @@ function getBaseUrl(requestOrigin) {
     } catch (error) {
         return `http://localhost:${port}`;
     }
+}
+
+function getRecoveryPackage(packageCode) {
+    const normalizedCode = String(packageCode || '').trim().toLowerCase();
+    return RECOVERY_PACKAGE_SUBSCRIPTIONS[normalizedCode] || null;
+}
+
+function buildSubscriptionCheckoutBody(subscription, requestOrigin) {
+    const recoveryPackage = getRecoveryPackage(subscription?.packageCode);
+    if (!recoveryPackage) {
+        throw new Error('Unknown recovery support package.');
+    }
+
+    const planVariationId = process.env[recoveryPackage.planVariationEnv];
+    if (!planVariationId) {
+        throw new Error(`Square monthly billing is not configured for ${recoveryPackage.name}. Add ${recoveryPackage.planVariationEnv} after creating the monthly Square subscription plan variation.`);
+    }
+
+    const baseUrl = getBaseUrl(requestOrigin);
+    return {
+        body: {
+            idempotency_key: crypto.randomUUID(),
+            quick_pay: {
+                name: `${recoveryPackage.name} Monthly Recovery Support`,
+                price_money: {
+                    amount: recoveryPackage.amountCents,
+                    currency: 'USD'
+                },
+                location_id: squareLocationId
+            },
+            subscription_plan_id: planVariationId,
+            checkout_options: {
+                redirect_url: `${baseUrl}/home.html?checkout=subscription-success&package=${encodeURIComponent(recoveryPackage.code)}`,
+                ask_for_shipping_address: true,
+                merchant_support_email: 'admin@comcare.store'
+            },
+            payment_note: `ComCare ${recoveryPackage.name} monthly recovery support subscription`
+        },
+        package: recoveryPackage
+    };
+}
+
+async function createRecoverySubscriptionCheckout(subscription, requestOrigin) {
+    if (!squareAccessToken || !squareLocationId) {
+        throw new Error('Missing SQUARE_ACCESS_TOKEN or SQUARE_LOCATION_ID.');
+    }
+
+    const built = buildSubscriptionCheckoutBody(subscription, requestOrigin);
+
+    const response = await fetch('https://connect.squareup.com/v2/online-checkout/payment-links', {
+        method: 'POST',
+        headers: {
+            'Square-Version': squareApiVersion,
+            Authorization: `Bearer ${squareAccessToken}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(built.body)
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+        throw new Error(sanitizeSquareErrorMessage(data, 'Unable to create Square monthly checkout link.'));
+    }
+
+    return {
+        mode: 'subscription',
+        packageCode: built.package.code,
+        packageName: built.package.name,
+        monthlyAmount: built.package.amountCents / 100,
+        sessionId: data?.payment_link?.id,
+        url: data?.payment_link?.url || data?.payment_link?.long_url
+    };
 }
 
 async function createCheckoutSession(items, requestOrigin) {
@@ -186,7 +285,9 @@ async function getCheckoutHealthStatus() {
 }
 app.post('/create-checkout-session', async (req, res) => {
     try {
-        const result = await createCheckoutSession(req.body?.items, req.headers.origin);
+        const result = req.body?.subscription
+            ? await createRecoverySubscriptionCheckout(req.body.subscription, req.headers.origin)
+            : await createCheckoutSession(req.body?.items, req.headers.origin);
         return res.status(200).json(result);
     } catch (error) {
         console.error('Checkout error:', error);

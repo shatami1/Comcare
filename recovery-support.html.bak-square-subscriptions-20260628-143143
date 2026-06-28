@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9G5EVYE5Y"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D9G5EVYE5Y');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>After Surgery & Rehab Home Recovery Support | ComCare</title>
+    <meta name="description" content="ComCare helps families prepare for after-surgery recovery, rehab at home, injury recovery, and senior mobility needs with recovery setup support, essentials, supplies, and equipment when needed.">
+    <meta name="keywords" content="after surgery recovery support, rehab at home Atlanta, home recovery support, recovery essentials box, senior mobility support, ComCare recovery packages">
+    <link rel="canonical" href="https://comcare.store/recovery-support">
+    <meta property="og:title" content="After Surgery & Rehab Home Recovery Support | ComCare">
+    <meta property="og:description" content="Prepare for recovery at home with comfort, safety, supplies, setup guidance, and selected equipment only when needed.">
+    <meta property="og:url" content="https://comcare.store/recovery-support">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="styles.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "After Surgery and Rehab Home Recovery Support",
+      "provider": {
+        "@type": "MedicalBusiness",
+        "name": "MOON LIGHTING INC. DBA Comfort Care",
+        "url": "https://comcare.store",
+        "telephone": "+1-678-362-2345",
+        "email": "admin@comcare.store"
+      },
+      "areaServed": ["Atlanta, GA", "Sandy Springs, GA", "Norcross, GA", "Marietta, GA"],
+      "serviceType": "Home recovery support, recovery supplies, room setup guidance, and mobility equipment support"
+    }
+    </script>
+</head>
+<body class="recovery-support-page">
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-middle">
+                <div class="nav-identity">
+                    <div class="nav-brand">
+                        <img src="logo.svg" alt="Comfort Care logo" class="logo-image">
+                    </div>
+                    <div class="nav-title">Comfort Care</div>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="services.html">Rentals</a></li>
+                    <li><a href="order.html">Order</a></li>
+                    <li><a href="pricing.html">Cart</a></li>
+                    <li><a href="join-professionals.html">Register</a></li>
+                </ul>
+            </div>
+            <div class="nav-cart">
+                <div class="cart-box" aria-live="polite">
+                    <span class="cart-box-title">Cart</span>
+                    <span class="cart-box-detail">
+                        <span id="headerCartCount">0 items</span>
+                        <span class="cart-box-sep">|</span>
+                        <span id="headerCartTotal">$0.00</span>
+                    </span>
+                </div>
+                <div class="nav-cart-main">
+                    <a href="order.html" class="btn btn-secondary btn-compact edit-cart-link">Edit Cart</a>
+                    <a href="pricing.html" class="btn btn-primary btn-compact">Pay</a>
+                </div>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Open navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <section class="recovery-hero">
+            <div class="container recovery-hero-grid">
+                <div class="recovery-hero-copy">
+                    <p class="recovery-kicker">After surgery and rehab home support</p>
+                    <h1>Recover at Home With Comfort, Safety, and Support</h1>
+                    <p>ComCare helps families prepare for after-surgery recovery, rehab, injury recovery, and senior mobility needs with home setup support, recovery essentials, and carefully selected equipment when needed.</p>
+                    <div class="recovery-actions">
+                        <a href="contact.html" class="btn btn-primary">Build My Recovery Plan</a>
+                        <a href="#recovery-packages" class="btn btn-secondary">View Recovery Packages</a>
+                    </div>
+                </div>
+                <div class="recovery-hero-panel" aria-label="Recovery support highlights">
+                    <img src="logo.svg" alt="ComCare logo">
+                    <div class="recovery-hero-checklist">
+                        <span>Home setup guidance</span>
+                        <span>Monthly essentials</span>
+                        <span>Safety and comfort supplies</span>
+                        <span>Equipment only when needed</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="recovery-section recovery-audience-section" id="who-this-is-for">
+            <div class="container">
+                <div class="recovery-section-header">
+                    <p class="recovery-kicker">Who this is for</p>
+                    <h2>Support for the moments when home recovery needs a plan.</h2>
+                </div>
+                <div class="recovery-audience-grid">
+                    <article><h3>After surgery recovery</h3><p>Prepare the home before the patient returns from surgery.</p></article>
+                    <article><h3>Rehab at home</h3><p>Organize comfort, safety, supplies, and practical follow-through.</p></article>
+                    <article><h3>Knee, hip, shoulder, or back recovery</h3><p>Match the recovery area to mobility limits and daily routines.</p></article>
+                    <article><h3>Senior care support</h3><p>Make the room easier, safer, and more comfortable for temporary or ongoing needs.</p></article>
+                    <article><h3>Temporary injury recovery</h3><p>Get short-term support without overbuying equipment or supplies.</p></article>
+                    <article><h3>Family caregiver support</h3><p>Give caregivers a clearer checklist and fewer last-minute errands.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="recovery-section recovery-provides-section">
+            <div class="container recovery-provides-grid">
+                <div>
+                    <p class="recovery-kicker">What ComCare provides</p>
+                    <h2>Recovery support first. Products only where they help.</h2>
+                    <p>ComCare is designed around the recovery journey: what the family needs to prepare, what supplies are likely to run out, and what setup support can reduce stress at home.</p>
+                </div>
+                <div class="recovery-provides-list">
+                    <span>Recovery room setup guidance</span>
+                    <span>Monthly recovery essentials box</span>
+                    <span>Bathroom safety support</span>
+                    <span>Comfort and hygiene supplies</span>
+                    <span>Delivery and setup options</span>
+                    <span>Mobility equipment when needed</span>
+                    <span>Ongoing support and reorder reminders</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="recovery-section recovery-package-section" id="recovery-packages">
+            <div class="container">
+                <div class="recovery-section-header">
+                    <p class="recovery-kicker">Recovery packages</p>
+                    <h2>Choose a simple monthly support level.</h2>
+                    <p>Each package includes a monthly supply shipment plus ComCare guidance and support. Equipment is added only when it fits the recovery need.</p>
+                </div>
+                <div class="recovery-package-grid">
+                    <article class="recovery-package-card">
+                        <h3>Essential Recovery</h3>
+                        <p class="recovery-price">Package price: $49/month</p>
+                        <p>A simple starter plan for families who need recovery guidance, basic supplies, and refill reminders.</p>
+                        <div class="recovery-shipment">
+                            <h4>Package includes</h4>
+                            <ul>
+                                <li>Recovery checklist and reorder reminder packet</li>
+                                <li>Disposable glove starter pack, about 25 gloves</li>
+                                <li>Disinfecting wipes, 1 canister</li>
+                                <li>Hand sanitizer, 1 pump bottle</li>
+                                <li>Surface cleaner supply</li>
+                                <li>Member discount access for added supplies or equipment</li>
+                            </ul>
+                        </div>
+                        <a href="contact.html" class="recovery-card-link">Start Essential</a>
+                    </article>
+                    <article class="recovery-package-card">
+                        <h3>Comfort Recovery</h3>
+                        <p class="recovery-price">Package price: $149/month</p>
+                        <p>A stronger monthly support box for common after-surgery and rehab-at-home needs.</p>
+                        <div class="recovery-shipment">
+                            <h4>Package includes</h4>
+                            <ul>
+                                <li>Recovery checklist and bathroom safety checklist</li>
+                                <li>Disposable gloves, about 50 gloves</li>
+                                <li>Disinfecting wipes, 1 canister</li>
+                                <li>Hand sanitizer, 1 pump bottle</li>
+                                <li>Surface cleaner, 1 bottle</li>
+                                <li>Disposable underpads, about 10 pads</li>
+                                <li>Bath wipes or personal cleansing wipes, 1 pack</li>
+                                <li>No-rinse foam cleanser, 1 bottle</li>
+                                <li>Basic mobility and setup guidance</li>
+                            </ul>
+                        </div>
+                        <a href="contact.html" class="recovery-card-link">Start Comfort</a>
+                    </article>
+                    <article class="recovery-package-card recovery-package-featured">
+                        <span class="recovery-badge">Flexible support</span>
+                        <h3>Comfort Extend</h3>
+                        <p class="recovery-price">Package price: $249/month</p>
+                        <p>Best for longer recovery periods where the family may need more supplies and mobility support.</p>
+                        <div class="recovery-shipment">
+                            <h4>Package includes</h4>
+                            <ul>
+                                <li>Recovery checklist and monthly reorder reminder</li>
+                                <li>Disposable gloves, about 100 gloves</li>
+                                <li>Disinfecting wipes, 2 canisters</li>
+                                <li>Hand sanitizer, 2 pump bottles</li>
+                                <li>Surface cleaner, 1 bottle</li>
+                                <li>Disposable underpads, about 20 pads</li>
+                                <li>Bath wipes or personal cleansing wipes, 1 pack</li>
+                                <li>No-rinse foam cleanser, 1 bottle</li>
+                                <li>Caregiver daily task checklist pad</li>
+                                <li>Exchange option for wheelchair or rollator support</li>
+                            </ul>
+                        </div>
+                        <a href="contact.html" class="recovery-card-link">Start Extend</a>
+                    </article>
+                    <article class="recovery-package-card">
+                        <h3>Comfort Plus</h3>
+                        <p class="recovery-price">Package price: $399/month</p>
+                        <p>The fuller support plan for hospital-bed recovery, larger supply needs, and higher-touch caregiver support.</p>
+                        <div class="recovery-shipment">
+                            <h4>Package includes</h4>
+                            <ul>
+                                <li>Recovery checklist, caregiver guidance, and reorder reminder</li>
+                                <li>Disposable gloves, about 150 gloves</li>
+                                <li>Disinfecting wipes, 2 canisters</li>
+                                <li>Hand sanitizer, 2 pump bottles</li>
+                                <li>Surface cleaner, 2 bottles</li>
+                                <li>Disposable underpads, about 30 pads</li>
+                                <li>Bath wipes or personal cleansing wipes, 2 packs</li>
+                                <li>No-rinse foam cleanser, 2 bottles</li>
+                                <li>Caregiver daily task checklist pad</li>
+                                <li>First-month bed protection item for hospital bed setup</li>
+                                <li>Priority support for bed, room setup, or mobility changes</li>
+                            </ul>
+                        </div>
+                        <a href="contact.html" class="recovery-card-link">Start Plus</a>
+                    </article>
+                </div>
+                <p class="recovery-package-note">Supply brands may vary based on availability. ComCare may substitute comparable recovery supplies while keeping the same support purpose for each package.</p>
+            </div>
+        </section>
+
+        <section class="recovery-section recovery-box-section" id="essentials-box">
+            <div class="container recovery-box-grid">
+                <div>
+                    <p class="recovery-kicker">Monthly essentials box</p>
+                    <h2>Recovery supplies delivered as an ongoing support habit.</h2>
+                    <p>The essentials box helps families keep common recovery supplies on hand without repeated store trips during the most stressful part of recovery.</p>
+                    <a href="contact.html" class="btn btn-primary">Add Essentials Box</a>
+                </div>
+                <div class="recovery-box-card">
+                    <h3>Included essentials</h3>
+                    <ul>
+                        <li>Gloves</li>
+                        <li>Disinfecting wipes</li>
+                        <li>Hand sanitizer</li>
+                        <li>Disposable underpads</li>
+                        <li>Bath wipes</li>
+                        <li>Surface cleaner</li>
+                        <li>Recovery checklist</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="recovery-section recovery-steps-section">
+            <div class="container">
+                <div class="recovery-section-header">
+                    <p class="recovery-kicker">How it works</p>
+                    <h2>A simple path from discharge planning to home support.</h2>
+                </div>
+                <div class="recovery-steps">
+                    <article><span>1</span><h3>Tell us about the recovery need</h3><p>Share the surgery, injury, rehab, mobility, or caregiver situation.</p></article>
+                    <article><span>2</span><h3>Choose a package or get a recommendation</h3><p>Pick a monthly support level or ask ComCare to suggest a path.</p></article>
+                    <article><span>3</span><h3>We prepare supplies and equipment</h3><p>ComCare organizes essentials, setup guidance, and equipment only when needed.</p></article>
+                    <article><span>4</span><h3>ComCare supports the recovery journey</h3><p>Use reminders, reorder support, and package changes as recovery needs shift.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="recovery-section recovery-vision-section">
+            <div class="container recovery-vision-card">
+                <p class="recovery-kicker">Nationwide vision</p>
+                <h2>Starting local in Atlanta, building a wider recovery model.</h2>
+                <p>ComCare starts with local support in Atlanta and is building a wider recovery support model for families across the U.S. Some products may be shipped directly, while local setup and delivery options depend on ZIP code.</p>
+            </div>
+        </section>
+
+        <section class="recovery-final-cta">
+            <div class="container">
+                <h2>Ready to Prepare for Recovery at Home?</h2>
+                <div class="recovery-actions">
+                    <a href="contact.html" class="btn btn-light">Start Recovery Plan</a>
+                    <a href="tel:678-362-2345" class="btn btn-light">Talk to ComCare</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Comfort Care</h4>
+                    <p>Home recovery support, comfort supplies, setup guidance, and selected medical equipment support across Greater Atlanta.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Recovery Support</h4>
+                    <ul>
+                        <li><a href="#who-this-is-for">Who This Is For</a></li>
+                        <li><a href="#recovery-packages">Recovery Packages</a></li>
+                        <li><a href="#essentials-box">Essentials Box</a></li>
+                        <li><a href="care-guide.html">Care Guide</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><a href="tel:678-362-2345">678-362-2345</a></p>
+                    <p><a href="mailto:admin@comcare.store?cc=accentGV%40gmail.com">admin@comcare.store</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Comfort Care. All rights reserved.</p>
+                <p>Comfort Care operates as a DBA/trade name of MOON LIGHTING INC.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="site-navigation.js"></script>
+    <script src="live-chat.js"></script>
+</body>
+</html>

@@ -2,18 +2,9 @@
     const ORDER_TABS = [
         { label: 'Home', href: 'home.html', key: 'home' },
         { label: 'Rentals', href: 'services.html', key: 'rentals', type: 'rentals' },
-        { label: 'Order', href: 'order.html', key: 'order', type: 'order' },
+        { label: 'Order', href: 'order.html', key: 'order' },
         { label: 'Cart', href: 'pricing.html', key: 'cart' },
         { label: 'Register', key: 'register', type: 'register' }
-    ];
-
-    const ORDER_MENU_ITEMS = [
-        { label: 'Place Equipment Order', href: 'order.html' },
-        { label: 'Recovery Packages', href: 'recovery-support.html#recovery-packages' },
-        { label: 'Essential Recovery - $49/mo', href: 'recovery-support.html#essential-recovery' },
-        { label: 'Comfort Recovery - $149/mo', href: 'recovery-support.html#comfort-recovery' },
-        { label: 'Comfort Extend - $249/mo', href: 'recovery-support.html#comfort-extend' },
-        { label: 'Comfort Plus - $399/mo', href: 'recovery-support.html#comfort-plus' }
     ];
 
     const RENTAL_MENU_ITEMS = [
@@ -92,10 +83,6 @@
             return 'order';
         }
 
-        if (file === 'recovery-support.html') {
-            return 'order';
-        }
-
         if (file === 'cart.html' || file === 'mylist.html' || file === 'pricing.html') {
             return 'cart';
         }
@@ -143,19 +130,6 @@
                     </button>
                     <div class="nav-menu-dropdown-panel" role="menu" aria-label="Rental options">
                         ${createDropdownItems(prefix, RENTAL_MENU_ITEMS)}
-                    </div>
-                </li>
-            `;
-        }
-
-        if (tab.type === 'order') {
-            return `
-                <li class="nav-menu-dropdown nav-order-menu${activeClass ? ' is-active' : ''}">
-                    <button type="button" class="nav-menu-button nav-menu-dropdown-toggle${activeClass}" aria-expanded="false" aria-haspopup="true">
-                        ${tab.label}
-                    </button>
-                    <div class="nav-menu-dropdown-panel" role="menu" aria-label="Order options">
-                        ${createDropdownItems(prefix, ORDER_MENU_ITEMS)}
                     </div>
                 </li>
             `;
@@ -260,7 +234,7 @@
         const nav = document.createElement('nav');
         nav.className = 'care-guide-side-nav';
         nav.id = 'site-guide-nav';
-        nav.setAttribute('aria-label', 'Recovery resources');
+        nav.setAttribute('aria-label', 'Care guide sections');
         nav.setAttribute('tabindex', '0');
 
         const items = GUIDE_ITEMS.map(item => `
@@ -270,7 +244,7 @@
             </a>
         `).join('');
 
-        nav.innerHTML = `<p class="care-guide-side-heading">Resources</p>${items}`;
+        nav.innerHTML = `<p class="care-guide-side-heading">Guide Sections</p>${items}`;
         return nav;
     }
 
