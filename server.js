@@ -68,6 +68,22 @@ if (!squareAccessToken || !squareLocationId) {
     console.warn('SQUARE_ACCESS_TOKEN or SQUARE_LOCATION_ID is not set in environment or .env.');
 }
 
+function getSquareConfigIssue() {
+    const tokenLooksPlaceholder = !squareAccessToken
+        || /your_|placeholder|access_token_here/i.test(squareAccessToken);
+    if (tokenLooksPlaceholder) {
+        return 'Square access token is missing or still a placeholder. Replace SQUARE_ACCESS_TOKEN with a real Square Production Access Token.';
+    }
+
+    const locationLooksPlaceholder = !squareLocationId
+        || /your_|placeholder|location_id_here/i.test(squareLocationId);
+    if (locationLooksPlaceholder) {
+        return 'Square location ID is missing or still a placeholder. Replace SQUARE_LOCATION_ID with the matching Square Production Location ID.';
+    }
+
+    return '';
+}
+
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
@@ -165,8 +181,9 @@ function buildSubscriptionCheckoutBody(subscription, requestOrigin) {
 }
 
 async function createRecoverySubscriptionCheckout(subscription, requestOrigin) {
-    if (!squareAccessToken || !squareLocationId) {
-        throw new Error('Missing SQUARE_ACCESS_TOKEN or SQUARE_LOCATION_ID.');
+    const configIssue = getSquareConfigIssue();
+    if (configIssue) {
+        throw new Error(configIssue);
     }
 
     const built = buildSubscriptionCheckoutBody(subscription, requestOrigin);
@@ -197,8 +214,9 @@ async function createRecoverySubscriptionCheckout(subscription, requestOrigin) {
 }
 
 async function createCheckoutSession(items, requestOrigin) {
-    if (!squareAccessToken || !squareLocationId) {
-        throw new Error('Missing SQUARE_ACCESS_TOKEN or SQUARE_LOCATION_ID.');
+    const configIssue = getSquareConfigIssue();
+    if (configIssue) {
+        throw new Error(configIssue);
     }
 
     const lineItems = buildSquareLineItems(items);
@@ -247,10 +265,11 @@ async function createCheckoutSession(items, requestOrigin) {
 }
 
 async function getCheckoutHealthStatus() {
-    if (!squareAccessToken || !squareLocationId) {
+    const configIssue = getSquareConfigIssue();
+    if (configIssue) {
         return {
             status: 'error',
-            message: 'Missing SQUARE_ACCESS_TOKEN or SQUARE_LOCATION_ID.'
+            message: configIssue
         };
     }
 

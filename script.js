@@ -38,37 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-// Enforce customer info before payment on cart page
-document.addEventListener('DOMContentLoaded', function() {
-    var checkoutBtn = document.getElementById('checkoutBtn');
-    var stripeCheckoutBtn = document.getElementById('stripeCheckoutBtn');
-    var cartForm = document.getElementById('cartCheckoutForm');
-    if (stripeCheckoutBtn && cartForm) {
-        stripeCheckoutBtn.addEventListener('click', function(e) {
-            // Show the form if hidden
-            var customerSection = document.getElementById('customerSection');
-            if (customerSection && customerSection.style.display === 'none') {
-                customerSection.style.display = '';
-                var emailSection = document.getElementById('emailSection');
-                if (emailSection) emailSection.style.display = '';
-                if (checkoutBtn) checkoutBtn.style.display = '';
-                this.style.display = 'none';
-                e.preventDefault();
-                return false;
-            }
-            // Validate form before proceeding
-            if (!cartForm.checkValidity()) {
-                cartForm.reportValidity();
-                e.preventDefault();
-                return false;
-            }
-            // If valid, submit the form (triggers payment logic)
-            cartForm.requestSubmit();
-            e.preventDefault();
-            return false;
-        });
-    }
-});
 // Show customer info, delivery address, and email section when user selects to pay
 document.addEventListener('DOMContentLoaded', function() {
     var showEmailBtn = document.getElementById('showEmailBtn');
@@ -271,17 +240,13 @@ function getStoredCheckoutTotal() {
     return 0;
 }
 
-function getCheckoutSessionEndpoint(options = {}) {
+function getCheckoutSessionEndpoint() {
     if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
         return `${window.location.origin}/create-checkout-session`;
     }
 
-    if (options.preferLocalServer) {
-        return 'http://localhost:3000/create-checkout-session';
-    }
-
-    // Static file previews do not run a local API server.
-    return 'https://comcare-de78.vercel.app/create-checkout-session';
+    // Local file previews need the Node checkout server running.
+    return 'http://localhost:3000/create-checkout-session';
 }
 
 function getCheckoutHealthEndpoint() {
@@ -289,8 +254,8 @@ function getCheckoutHealthEndpoint() {
         return `${window.location.origin}/checkout-health`;
     }
 
-    // Static file previews do not run a local API server.
-    return 'https://comcare-de78.vercel.app/checkout-health';
+    // Local file previews need the Node checkout server running.
+    return 'http://localhost:3000/checkout-health';
 }
 
 function setCheckoutStatusBadge(message, state) {
@@ -416,14 +381,15 @@ function bindDynamicStripeCheckout(button) {
             });
 
             if (!response.ok) {
-                let serverMessage = 'Checkout server not available.';
+                let serverMessage = `Checkout server returned ${response.status}.`;
+                const responseText = await response.text();
                 try {
-                    const errorPayload = await response.json();
-                    if (errorPayload?.error) {
-                        serverMessage = errorPayload.error;
-                    }
+                    const errorPayload = JSON.parse(responseText);
+                    serverMessage = errorPayload?.error || errorPayload?.message || serverMessage;
                 } catch (parseError) {
-                    // Ignore parse failures and keep default message
+                    if (responseText.trim()) {
+                        serverMessage = responseText.trim().slice(0, 240);
+                    }
                 }
                 throw new Error(serverMessage);
             }
@@ -440,7 +406,11 @@ function bindDynamicStripeCheckout(button) {
             const liveChargeBlocked = message.toLowerCase().includes('square checkout is not active') || message.toLowerCase().includes('cannot currently make live charges');
             button.disabled = false;
             button.textContent = originalText;
-            if (liveChargeBlocked) {
+            if (window.location.protocol === 'file:' && message.toLowerCase().includes('failed to fetch')) {
+                alert('Local checkout server is not running. Open PowerShell in the website folder, run npm start, then open http://localhost:3000/pricing.html to test payment.');
+            } else if (message.toLowerCase().includes('could not be authorized') || message.toLowerCase().includes('unauthorized')) {
+                alert('Square checkout is connected, but Square rejected the access token. Update SQUARE_ACCESS_TOKEN and SQUARE_LOCATION_ID in Vercel, or in the local .env file for testing.');
+            } else if (liveChargeBlocked) {
                 alert('Payment is not ready yet. Please email admin@comcare.store or call 678-362-2345 to complete this order while Square checkout is being configured.');
             } else {
                 alert(`Unable to start secure checkout: ${message}`);
