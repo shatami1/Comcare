@@ -884,107 +884,6 @@ a:hover {
     line-height: 1;
 }
 
-.live-chat-fallback {
-    position: fixed;
-    left: 18px;
-    bottom: 18px;
-    z-index: 1000;
-    display: grid;
-    gap: 0.6rem;
-    max-width: min(320px, calc(100vw - 36px));
-}
-
-.live-chat-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    width: fit-content;
-    max-width: 100%;
-    padding: 0.72rem 1rem;
-    border: 0;
-    border-radius: 999px;
-    background: #12355f;
-    color: #fff;
-    box-shadow: var(--shadow-lg);
-    cursor: pointer;
-}
-
-.live-chat-toggle span {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 1.45rem;
-    height: 1.45rem;
-    border-radius: 50%;
-    background: #10b981;
-    color: #fff;
-    font-weight: 800;
-}
-
-.live-chat-toggle strong {
-    font-size: 0.95rem;
-    line-height: 1;
-}
-
-.live-chat-panel {
-    width: min(320px, calc(100vw - 36px));
-    padding: 1rem;
-    border: 1px solid rgba(18, 53, 95, 0.14);
-    border-radius: 8px;
-    background: #fff;
-    color: #12355f;
-    box-shadow: var(--shadow-xl);
-}
-
-.live-chat-panel-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 0.65rem;
-}
-
-.live-chat-close {
-    width: 1.8rem;
-    height: 1.8rem;
-    border: 0;
-    border-radius: 50%;
-    background: #e2e8f0;
-    color: #12355f;
-    cursor: pointer;
-    font-weight: 800;
-}
-
-.live-chat-panel p {
-    margin: 0 0 0.8rem;
-    color: var(--light-text);
-    font-size: 0.92rem;
-}
-
-.live-chat-actions {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.45rem;
-}
-
-.live-chat-actions a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 38px;
-    padding: 0.5rem 0.35rem;
-    border-radius: 6px;
-    background: #e0f2fe;
-    color: #12355f;
-    font-weight: 700;
-    text-decoration: none;
-}
-
-.live-chat-actions a:hover {
-    background: #bae6fd;
-}
-
 /* ============================================
    SECTIONS
    ============================================ */
@@ -4717,7 +4616,7 @@ HOME CARE PATHWAY PAGE
     }
 
     .site-guide-nav-page:not(.care-guide-page) main .container {
-        max-width: min(1200px, calc(100vw - 300px));
+        max-width: 1200px;
     }
 }
 
@@ -4801,7 +4700,7 @@ HOME CARE PATHWAY PAGE
 
     .site-guide-nav-page .nav-menu.care-guide-order-menu {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 0.35rem;
         overflow-x: visible;
     }

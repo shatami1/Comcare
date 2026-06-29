@@ -4,7 +4,8 @@
         { label: 'Rentals', href: 'services.html', key: 'rentals', type: 'rentals' },
         { label: 'Order', href: 'order.html', key: 'order', type: 'order' },
         { label: 'Cart', href: 'pricing.html', key: 'cart' },
-        { label: 'Register', key: 'register', type: 'register' }
+        { label: 'Register', key: 'register', type: 'register' },
+        { label: 'Resources', key: 'resources', type: 'resources' }
     ];
 
     const ORDER_MENU_ITEMS = [
@@ -63,6 +64,16 @@
         { label: 'Nurse / Technician', href: 'join-professionals.html?role=nurse-technician#professionalForm' }
     ];
 
+    const RESOURCE_MENU_ITEMS = [
+        { label: 'Healthcare Resources', href: 'atlanta-sandy-springs-healthcare-resources.html' },
+        { label: 'Care Guide', href: 'care-guide.html' },
+        { label: 'Home Rehab Setup', href: 'care-guide.html#home-rehab' },
+        { label: 'Delivery & Installation', href: 'care-guide.html#delivery-installation' },
+        { label: 'Recovery Support', href: 'recovery-support.html' },
+        { label: 'Recovery Network', href: 'recovery-professionals.html' },
+        { label: 'Contact ComCare', href: 'contact.html' }
+    ];
+
     const EQUIPMENT_COLLAGE_ITEMS = [
         'images/bed-picture-full.jpg',
         'images/bed-picture-semi.jpg',
@@ -84,8 +95,17 @@
     }
 
     function getActiveKey(file) {
-        if (file === 'home.html' || file === 'care-guide.html') {
+        if (file === 'home.html') {
             return 'home';
+        }
+
+        if (
+            file === 'care-guide.html'
+            || file === 'atlanta-sandy-springs-healthcare-resources.html'
+            || file === 'recovery-professionals.html'
+            || file === 'contact.html'
+        ) {
+            return 'resources';
         }
 
         if (file === 'order.html') {
@@ -169,6 +189,19 @@
                     </button>
                     <div class="nav-menu-dropdown-panel" role="menu" aria-label="Register options">
                         ${createDropdownItems(prefix, REGISTER_ITEMS)}
+                    </div>
+                </li>
+            `;
+        }
+
+        if (tab.type === 'resources') {
+            return `
+                <li class="nav-menu-dropdown nav-resources-menu${activeClass ? ' is-active' : ''}">
+                    <button type="button" class="nav-menu-button nav-menu-dropdown-toggle${activeClass}" aria-expanded="false" aria-haspopup="true">
+                        ${tab.label}
+                    </button>
+                    <div class="nav-menu-dropdown-panel" role="menu" aria-label="Resource options">
+                        ${createDropdownItems(prefix, RESOURCE_MENU_ITEMS)}
                     </div>
                 </li>
             `;
@@ -312,15 +345,10 @@
 
         ensureEquipmentCollage(prefix);
         normalizeOrderMenu(prefix, currentFile);
-        ensureSideNav(prefix);
-        updateSideNavOffset();
 
         document.addEventListener('click', function(event) {
             closeNavDropdowns(event.target.closest('.nav-menu-dropdown'));
         });
-
-        window.addEventListener('resize', updateSideNavOffset);
-        window.addEventListener('load', updateSideNavOffset);
     }
 
     if (document.readyState === 'loading') {
