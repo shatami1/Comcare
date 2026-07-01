@@ -1,8 +1,9 @@
 (function() {
     const ORDER_TABS = [
         { label: 'Home', href: 'home.html', key: 'home' },
+        { label: 'Recovery Plans', href: 'recovery-support.html', key: 'recovery' },
         { label: 'Rentals', href: 'services.html', key: 'rentals', type: 'rentals' },
-        { label: 'Order', href: 'order.html', key: 'order', type: 'order' },
+        { label: 'Equipment Order', href: 'order.html', key: 'order', type: 'order' },
         { label: 'Cart', href: 'pricing.html', key: 'cart' },
         { label: 'Register', key: 'register', type: 'register' },
         { label: 'Resources', key: 'resources', type: 'resources' }
@@ -27,6 +28,11 @@
     ];
 
     const GUIDE_ITEMS = [
+        {
+            title: 'Recovery Plans',
+            href: 'recovery-support.html',
+            detail: 'After-surgery packages, monthly essentials, caregiver checklists, and refill support.'
+        },
         {
             title: 'Rentals',
             href: 'services.html',
@@ -65,11 +71,12 @@
     ];
 
     const RESOURCE_MENU_ITEMS = [
+        { label: 'Recovery Support', href: 'recovery-support.html' },
+        { label: 'Recovery Packages', href: 'recovery-support.html#recovery-packages' },
         { label: 'Healthcare Resources', href: 'atlanta-sandy-springs-healthcare-resources.html' },
         { label: 'Care Guide', href: 'care-guide.html' },
         { label: 'Home Rehab Setup', href: 'care-guide.html#home-rehab' },
         { label: 'Delivery & Installation', href: 'care-guide.html#delivery-installation' },
-        { label: 'Recovery Support', href: 'recovery-support.html' },
         { label: 'Recovery Network', href: 'recovery-professionals.html' },
         { label: 'Contact ComCare', href: 'contact.html' }
     ];
@@ -99,6 +106,10 @@
             return 'home';
         }
 
+        if (file === 'recovery-support.html') {
+            return 'recovery';
+        }
+
         if (
             file === 'care-guide.html'
             || file === 'atlanta-sandy-springs-healthcare-resources.html'
@@ -108,11 +119,7 @@
             return 'resources';
         }
 
-        if (file === 'order.html') {
-            return 'order';
-        }
-
-        if (file === 'recovery-support.html') {
+        if (file === 'order.html' || file === 'rehab-tech-intake.html') {
             return 'order';
         }
 
@@ -126,10 +133,6 @@
 
         if (file === 'join-professionals.html') {
             return 'register';
-        }
-
-        if (file === 'rehab-tech-intake.html') {
-            return 'order';
         }
 
         if (
@@ -287,50 +290,6 @@
         }
 
         navbarContainer.insertAdjacentElement('afterbegin', createEquipmentCollage(prefix));
-    }
-
-    function createSideNav(prefix) {
-        const nav = document.createElement('nav');
-        nav.className = 'care-guide-side-nav';
-        nav.id = 'site-guide-nav';
-        nav.setAttribute('aria-label', 'Recovery resources');
-        nav.setAttribute('tabindex', '0');
-
-        const items = GUIDE_ITEMS.map(item => `
-            <a href="${prefix}${item.href}" class="care-guide-side-item">
-                <span class="care-guide-side-title">${item.title}</span>
-                <span class="care-guide-side-detail">${item.detail}</span>
-            </a>
-        `).join('');
-
-        nav.innerHTML = `<p class="care-guide-side-heading">Resources</p>${items}`;
-        return nav;
-    }
-
-    function ensureSideNav(prefix) {
-        const navbar = document.querySelector('.navbar');
-        if (!navbar) {
-            return null;
-        }
-
-        const existing = document.querySelector('.care-guide-side-nav');
-        if (existing) {
-            return existing;
-        }
-
-        const sideNav = createSideNav(prefix);
-        navbar.insertAdjacentElement('afterend', sideNav);
-        return sideNav;
-    }
-
-    function updateSideNavOffset() {
-        const navbar = document.querySelector('.navbar');
-        if (!navbar) {
-            return;
-        }
-
-        const offset = Math.max(96, Math.round(navbar.getBoundingClientRect().bottom + 12));
-        document.documentElement.style.setProperty('--site-guide-offset', `${offset}px`);
     }
 
     function initSiteNavigation() {
