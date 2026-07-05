@@ -5363,3 +5363,49 @@ HOME CARE PATHWAY PAGE
   .pricing-table tbody tr.pricing-item td:nth-child(4),
   .pricing-table tbody tr.pricing-item td:nth-child(5) { width: 100%; margin-right: 0; }
 }
+
+
+.medline-pricing-thumb {
+    object-fit: contain;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+}
+
+
+/* Product image rental-price overlay */
+.medline-product-image-link {
+    position: relative;
+    display: block;
+    width: 100%;
+    color: inherit;
+    text-decoration: none;
+}
+
+.medline-product-image-link .medline-pricing-thumb {
+    display: block;
+    width: 100%;
+}
+
+.rental-price-overlay {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 34px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: #0069a8;
+    color: #ffffff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1.1;
+    box-shadow: 0 8px 18px rgba(0, 87, 135, 0.28);
+}
+
+.medline-product-image-link:hover .rental-price-overlay,
+.medline-product-image-link:focus .rental-price-overlay {
+    background: #005486;
+}
