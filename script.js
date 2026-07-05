@@ -775,7 +775,6 @@ function initPricingCart() {
     const pricingMessageEl = document.getElementById('cartAddMessage');
     const cart = loadCart();
     const rateLabels = {
-        daily: 'Daily',
         weekly: 'Weekly',
         monthly: 'Monthly'
     };
@@ -791,11 +790,10 @@ function initPricingCart() {
         addButton.addEventListener('click', () => {
             const rateSelect = row.querySelector('.rate-select');
             const qtyInput = row.querySelector('.qty-input');
-            const rateType = rateSelect ? rateSelect.value : 'daily';
+            const rateType = rateSelect ? rateSelect.value : 'weekly';
             const quantity = Math.max(parseInt(qtyInput?.value, 10) || 1, 1);
 
             const prices = {
-                daily: parseFloat(row.dataset.daily || '0'),
                 weekly: parseFloat(row.dataset.weekly || '0'),
                 monthly: parseFloat(row.dataset.monthly || '0')
             };

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommended Recovery Partners Atlanta | Comfort Care</title>
+    <meta name="description" content="Recommended Atlanta recovery partners including physical therapy clinics, occupational therapy providers, home health agencies, post-surgical recovery specialists, caregivers, and medical transportation.">
+    <meta name="keywords" content="Atlanta Rehab Support, Recovery Professionals Atlanta, Post Surgery Support Atlanta, Home Recovery Assistance Atlanta, Medical Transportation Atlanta, Mobility Equipment Atlanta">
+    <link rel="canonical" href="https://comcare.store/partners">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .partner-grid { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:18px; }
+        .partner-card, .partner-form { background:#fff; border:1px solid var(--border-color); border-radius:10px; padding:22px; box-shadow:var(--shadow-sm); }
+        .partner-card h3 { color:var(--primary-blue); }
+        .partner-card ul { padding-left:20px; }
+        .partner-form { margin-top:28px; }
+        .partner-form-grid { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:16px; }
+        .partner-form input, .partner-form select, .partner-form textarea { width:100%; padding:.75rem; border:2px solid var(--border-color); border-radius:6px; }
+        .full-span { grid-column:1 / -1; }
+        .saved-banner { display:none; margin-top:16px; padding:12px 14px; border-radius:6px; background:#eaf7ef; color:#1f7a43; font-weight:700; }
+        @media (max-width:850px){ .partner-grid, .partner-form-grid { grid-template-columns:1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar"><div class="container"><div class="nav-middle"><div class="nav-identity"><div class="nav-brand"><img src="logo.svg" alt="Comfort Care Logo" class="logo-image"></div><div class="nav-title">Comfort Care</div></div><ul class="nav-menu"><li><a href="home.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="recovery-professionals.html">Recovery Network</a></li><li><a href="join-professionals.html">Join Network</a></li><li><a href="partners.html" class="active">Partners</a></li><li><a href="contact.html">Contact</a></li></ul></div></div></nav>
+    <section class="page-header"><div class="container"><h1>Recommended Recovery Partners</h1><p>Build a complete Atlanta recovery ecosystem around equipment, support, therapy, transport, and caregiver resources.</p></div></section>
+    <section class="services"><div class="container">
+        <div class="partner-grid">
+            <div class="partner-card"><h3>Physical Therapy Clinics</h3><p>Local PT clinics supporting post-surgery mobility, strengthening, and return-to-activity plans.</p><ul><li>Knee replacement recovery Atlanta</li><li>Hip replacement recovery Atlanta</li><li>Physical therapy support Atlanta</li></ul></div>
+            <div class="partner-card"><h3>Occupational Therapy Providers</h3><p>OT providers helping patients adapt home routines, transfers, bathing, dressing, and daily tasks.</p><ul><li>Home safety support</li><li>ADL assistance</li><li>Recovery equipment planning</li></ul></div>
+            <div class="partner-card"><h3>Home Health Agencies</h3><p>Agencies that coordinate in-home care after discharge, injury, illness, or surgery.</p><ul><li>Home recovery assistance Atlanta</li><li>Care coordination</li><li>Patient monitoring</li></ul></div>
+            <div class="partner-card"><h3>Post-Surgical Recovery Specialists</h3><p>Specialists focused on recovery planning, mobility support, and practical home setup.</p><ul><li>Post surgery support Atlanta</li><li>Discharge readiness</li><li>Recovery check-ins</li></ul></div>
+            <div class="partner-card"><h3>Caregiver Services</h3><p>Caregiver resources for families who need help with daily support, errands, and safe movement.</p><ul><li>Caregiver resources</li><li>Meal and home support</li><li>Family respite</li></ul></div>
+            <div class="partner-card"><h3>Medical Transportation</h3><p>Transportation partners for appointments, procedures, therapy visits, and equipment-friendly travel.</p><ul><li>Appointment transportation</li><li>Wheelchair-accessible options</li><li>Local Atlanta service</li></ul></div>
+        </div>
+        <form class="partner-form" id="partnerForm"><h2>Recommend a Partner</h2><div class="partner-form-grid"><div><label for="partnerName">Organization Name</label><input id="partnerName" name="partnerName" required></div><div><label for="category">Category</label><select id="category" name="category" required><option>Physical Therapy Clinics</option><option>Occupational Therapy Providers</option><option>Home Health Agencies</option><option>Post-Surgical Recovery Specialists</option><option>Caregiver Services</option><option>Medical Transportation</option></select></div><div><label for="phone">Phone</label><input id="phone" name="phone" type="tel"></div><div><label for="email">Email</label><input id="email" name="email" type="email"></div><div><label for="website">Website</label><input id="website" name="website" type="url"></div><div><label for="serviceArea">Service Area</label><input id="serviceArea" name="serviceArea" placeholder="Atlanta, Sandy Springs, Norcross"></div><div class="full-span"><label for="notes">Notes</label><textarea id="notes" name="notes" rows="4"></textarea></div></div><div class="tech-actions"><button class="btn btn-primary" type="submit">Save Partner</button><button class="btn btn-discount" id="emailPartnerBtn" type="button">Save & Email</button><a class="btn btn-secondary" href="recovery-professionals.html">Find Recovery Support</a></div><div id="savedBanner" class="saved-banner">Partner saved in this browser.</div></form>
+    </div></section>
+    <footer class="footer"><div class="container"><div class="footer-bottom"><p>&copy; 2026 Comfort Care. All rights reserved. | Atlanta recovery partners</p><p>Comfort Care operates as a DBA/trade name of MOON LIGHTING INC.</p></div></div></footer>
+    <script>
+      (function () {
+        var key = 'comcareRecoveryPartners'; var form = document.getElementById('partnerForm'); var banner = document.getElementById('savedBanner');
+        function list() { try { return JSON.parse(localStorage.getItem(key) || '[]'); } catch (e) { return []; } }
+        function values() { var data = new FormData(form); return { id:Date.now().toString(), partnerName:data.get('partnerName') || '', category:data.get('category') || '', phone:data.get('phone') || '', email:data.get('email') || '', website:data.get('website') || '', serviceArea:data.get('serviceArea') || '', notes:data.get('notes') || '', createdAt:new Date().toISOString() }; }
+        function save(callback) { var item = values(); var rows = list(); rows.unshift(item); localStorage.setItem(key, JSON.stringify(rows)); banner.style.display = 'block'; if (callback) callback(item); }
+        function email(item) { var lines = ['Recommended recovery partner', '', 'Organization: ' + item.partnerName, 'Category: ' + item.category, 'Phone: ' + item.phone, 'Email: ' + item.email, 'Website: ' + item.website, 'Service area: ' + item.serviceArea, 'Notes: ' + item.notes]; window.location.href = 'mailto:admin@comcare.store?cc=accentGV%40gmail.com&subject=' + encodeURIComponent('Recovery partner recommendation - ' + item.partnerName) + '&body=' + encodeURIComponent(lines.join('\n')); }
+        form.addEventListener('submit', function (event) { event.preventDefault(); save(function () { form.reset(); }); });
+        document.getElementById('emailPartnerBtn').addEventListener('click', function () { if (form.reportValidity()) save(email); });
+      }());
+    </script>
+    <script src="site-navigation.js"></script>
+</body>
+</html>

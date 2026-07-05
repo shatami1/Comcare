@@ -1,23 +1,4 @@
 {
-  "version": 2,
   "cleanUrls": true,
-  "trailingSlash": false,
-  "rewrites": [
-    { "source": "/create-checkout-session", "destination": "/api/create-checkout-session" },
-    { "source": "/checkout-health", "destination": "/api/checkout-health" }
-  ],
-  "redirects": [
-    { "source": "/test-home", "destination": "/home", "permanent": true },
-    { "source": "/test-home.html", "destination": "/home", "permanent": true },
-    { "source": "/test-care-guide", "destination": "/care-guide", "permanent": true },
-    { "source": "/test-care-guide.html", "destination": "/care-guide", "permanent": true }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" }
-      ]
-    }
-  ]
+  "trailingSlash": false
 }

@@ -5345,3 +5345,21 @@ HOME CARE PATHWAY PAGE
     }
 }
 
+
+
+/* Medline weekly/monthly catalog update */
+.medline-package-grid { align-items: stretch; }
+.medline-package-card { display: flex; flex-direction: column; }
+.medline-package-card .btn { margin-top: auto; }
+.pricing-table tbody tr.pricing-item td:nth-child(4):before { content: "Weekly: "; }
+.pricing-table tbody tr.pricing-item td:nth-child(5):before { content: "Monthly: "; }
+.pricing-table tbody tr.pricing-item td:nth-child(6):before { content: ""; }
+@media (max-width: 900px) {
+  .pricing-table tbody tr.pricing-item td:nth-child(4),
+  .pricing-table tbody tr.pricing-item td:nth-child(5) { display: inline-block; width: 48%; margin-right: 2%; }
+  .pricing-table tbody tr.pricing-item td:nth-child(6) { display: block; width: 100%; margin-top: 8px; }
+}
+@media (max-width: 600px) {
+  .pricing-table tbody tr.pricing-item td:nth-child(4),
+  .pricing-table tbody tr.pricing-item td:nth-child(5) { width: 100%; margin-right: 0; }
+}
