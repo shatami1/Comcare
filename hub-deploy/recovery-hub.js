@@ -646,8 +646,8 @@
     };
   }
 
-  function fillSetupForm() {
-    const data = profile();
+  function fillSetupForm(profileOverride) {
+    const data = profileOverride || profile();
     const fields = {
       setupPatientName: data.patientName,
       setupLanguage: data.preferredLanguage,
@@ -690,6 +690,63 @@
       if (owner && owner !== document.activeElement) owner.value = item.owner || '';
       if (ack && ack !== document.activeElement) ack.checked = Boolean(item.acknowledge);
     });
+  }
+
+  async function loadDemoSetup() {
+    const status = document.getElementById('setupSaveStatus');
+    const demoProfile = {
+      ...defaultState.profile,
+      updatedAt: Date.now(),
+      patientName: 'Alex Morgan',
+      preferredLanguage: 'English',
+      dateOfBirth: '06/15/1952',
+      recoveryStart: '08/12/2026',
+      recoveryStatus: 'Recovering at Home',
+      recoveryDay: 'Day 8',
+      recoveryType: 'Post-surgery home recovery',
+      accessibility: 'Large text, high contrast, simple one-tap choices, and spoken reminders.',
+      caregiverName: 'Jamie Morgan',
+      caregiverRole: 'Adult child and primary caregiver',
+      caregiverPhone: '(555) 010-2026',
+      caregiverEmail: 'jamie.demo@example.com',
+      availability: 'Jamie is available from 7:00 AM to 9:00 PM.',
+      familyContacts: 'Taylor Morgan - spouse - calls and messages\nJordan Morgan - sibling - photos and check-ins',
+      emergencyOrder: 'Call Jamie first, then Taylor, then emergency services when appropriate.',
+      physicianInfo: 'Dr. Casey Lee - primary physician\nNorthside Home Therapy - physical therapy',
+      medicationPreference: 'Show a large reminder with Taken and Remind Me Later buttons.',
+      dailyRoutinePreference: 'Morning check-in, medication, lunch, therapy exercise, rest, and evening family call.',
+      morningPreference: 'Soft instrumental music and a brief family greeting.',
+      comfortInterests: 'Family photos, gardening, classic movies, jazz, and nature programs.',
+      helpInstructions: 'Notify Jamie first and Taylor second. Keep the emergency call option visible.',
+      medicationName: 'Demo morning medication',
+      medicationTimes: '8:00 AM and 8:00 PM',
+      medicationInstructions: 'Take with food and water. Confirm after taking.',
+      bathingSchedule: 'Tuesday, Thursday, and Saturday at 10:30 AM',
+      bathingAssistance: 'Use the shower chair and nonslip mat; caregiver remains nearby.',
+      dailyQuestion: 'Would you prefer a family call at lunch or after dinner?',
+      dailyQuestionOption1: 'Lunch',
+      dailyQuestionOption2: 'After dinner',
+      schedule: [
+        { time: '8:00 AM', title: 'Morning medication', owner: 'Jamie', acknowledge: true },
+        { time: '12:30 PM', title: 'Lunch and hydration', owner: 'Jamie', acknowledge: true },
+        { time: '2:30 PM', title: 'Physical therapy exercises', owner: 'Jamie', acknowledge: true },
+        { time: '7:00 PM', title: 'Family video call', owner: 'Taylor', acknowledge: false }
+      ]
+    };
+    state.profile = demoProfile;
+    saveCachedProfile(demoProfile);
+    addTimeline('Demo patient and caregiver information loaded.', 'important');
+    saveState();
+    renderState();
+    if (status) status.textContent = 'Demo information loaded. Creating a shareable code...';
+    await generateNewSyncCode();
+    state.profile = demoProfile;
+    saveCachedProfile(demoProfile);
+    renderState();
+    fillSetupForm(demoProfile);
+    if (status && hasRoom()) {
+      status.textContent = `Demo ready. Share code ${roomCode} with the patient and approved family members.`;
+    }
   }
 
   function showPatientScreen(screenName) {
@@ -1208,6 +1265,12 @@
   document.getElementById('setupConnectCaregiver')?.addEventListener('click', () => {
     setMode('caregiver');
     if (!hasRoom()) generateNewSyncCode();
+  });
+  document.getElementById('loadDemoSetup')?.addEventListener('click', () => {
+    loadDemoSetup().catch(error => {
+      const status = document.getElementById('setupSaveStatus');
+      if (status) status.textContent = error.message || 'Unable to load the demo. Please try again.';
+    });
   });
 
   document.getElementById('openSpotifyRelax').addEventListener('click', openSpotifyRelax);

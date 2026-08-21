@@ -134,7 +134,7 @@ function applyAction(room, body) {
     addTimeline(room, `Patient replied: ${reply}`, "important");
   }
 
-  if (action === "profile") {
+  if (action === "profile" || (action === "create" && body.profile && typeof body.profile === "object")) {
     const profile = body.profile && typeof body.profile === "object" ? body.profile : {};
     room.profile = {
       ...(room.profile || {}),
