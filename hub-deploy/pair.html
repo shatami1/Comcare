@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-appearance-preference="device"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ComCare Recovery Hub | Paired Patient and Caregiver Sites</title>
+  <meta name="description" content="ComCare Recovery Hub paired patient, caregiver, and settings interfaces.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Nunito+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="recovery-hub.css?v=caregiver-guide-20260820">
+</head>
+<body>
+  <main class="hub-shell clean-pair" data-interface="patient" data-role="setup">
+    <a class="exit-demo-link" href="/" aria-label="Return to the Recovery Hub home page">Back to Hub</a>
+    <header class="hub-topbar">
+      <a class="brand-lockup" href="/">
+        <img src="logo.svg" alt="Comfort Care logo">
+        <span>
+          <strong>ComCare Recovery Hub</strong>
+          <small>Paired recovery access</small>
+        </span>
+      </a>
+      <nav class="mode-switch" aria-label="Choose interface">
+        <button type="button" class="mode-btn active" data-mode="patient">Patient Site</button>
+        <button type="button" class="mode-btn" data-mode="caregiver">Caregiver Site</button>
+        <button type="button" class="mode-btn" data-mode="setup">Settings</button>
+      </nav>
+      <a class="home-link" href="/">Home</a>
+    </header>
+
+    <section class="prototype-note" aria-label="Safety notice">
+      This paired access page does not replace 911, clinicians, nurse-call systems, or regulated emergency-alert services.
+    </section>
+
+    <div class="patient-notice" id="patientNotice" hidden="" aria-live="polite">
+      <strong id="patientNoticeTitle">New caregiver update</strong>
+      <span id="patientNoticeText"></span>
+    </div>
+
+    <div class="patient-alert-modal" id="patientAlertModal" hidden="" role="dialog" aria-modal="true" aria-labelledby="patientAlertTitle">
+      <div class="patient-alert-box">
+        <p class="eyebrow">New Caregiver / Family Update</p>
+        <h2 id="patientAlertTitle">Sarah sent you a message.</h2>
+        <p id="patientAlertText">Open the update when you are ready.</p>
+        <div class="patient-alert-actions">
+          <button type="button" id="patientAlertOpen">Open Now</button>
+          <button type="button" id="patientAlertCall">Call Caregiver</button>
+          <button type="button" id="patientAlertLater">Not Now</button>
+          <button type="button" id="patientAlertHome">Home</button>
+        </div>
+        <div class="patient-quick-replies" aria-label="Quick replies">
+          <button type="button" data-patient-quick-reply="I got the message">I got the message</button>
+          <button type="button" data-patient-quick-reply="Thank you">Thank you</button>
+          <button type="button" data-patient-quick-reply="I will call later">I will call later</button>
+          <button type="button" data-patient-quick-reply="Please call me">Please call me</button>
+          <button type="button" data-patient-quick-reply="I am okay">I am okay</button>
+          <button type="button" data-patient-quick-reply="I need help">I need help</button>
+        </div>
+        <small id="patientAlertStatus">This update came from your paired caregiver/family room.</small>
+      </div>
+    </div>
+
+    <section class="pairing-panel" aria-label="Pair patient station and caregiver phone">
+      <div class="pairing-side pairing-patient">
+        <span>Patient Station Code</span>
+        <strong id="pairingCode">------</strong>
+        <p>Share this link or six-digit code with family members and caregivers. Multiple people can join the same care circle and follow daily communication.</p>
+        <div class="pairing-actions">
+          <button type="button" id="newPairingCode">New Code</button>
+          <button type="button" id="copyCaregiverLink">Copy Caregiver Link</button>
+        </div>
+      </div>
+      <div class="pairing-side pairing-caregiver">
+        <span>Caregiver / Family Pairing</span>
+        <label for="joinPairCode">Enter patient code</label>
+        <div class="join-code-row">
+          <input id="joinPairCode" inputmode="numeric" maxlength="6" placeholder="123456">
+          <button type="button" id="joinPairRoom">Join</button>
+          <button type="button" id="resetPairRoom">Reset</button>
+        </div>
+        <p id="pairingStatus">Not paired yet.</p>
+        <p class="pairing-warning" id="pairingWarning" hidden="">This temporary pair is not persistent. If phone and PC do not sync, refresh both pages or create a new pair link.</p>
+      </div>
+    </section>
+
+    <section class="patient-interface interface-panel active" id="patientInterface" aria-label="Patient station interface">
+      <div class="station-frame">
+        <aside class="patient-rail" aria-label="Patient navigation">
+          <button type="button" class="rail-btn" data-patient-screen="home">Home</button>
+          <button type="button" class="rail-btn" data-patient-screen="plan">Today</button>
+          <button type="button" class="rail-btn" data-patient-screen="caregiver">Caregiver</button>
+          <button type="button" class="rail-btn" data-patient-screen="relax">Relax</button>
+          <button type="button" class="rail-btn active" data-patient-screen="sync">Connect</button>
+          <button type="button" class="rail-btn" data-patient-screen="profile">Profile</button>
+          <button type="button" class="rail-btn" data-patient-screen="settings">Settings</button>
+          <button type="button" class="rail-btn help" data-patient-screen="help">Help</button>
+          <div class="rail-code" aria-label="Patient station pairing code">
+            <span>Pair Code</span>
+            <strong id="railPairingCode">------</strong>
+          </div>
+        </aside>
+
+        <div class="patient-screen patient-home-screen" data-screen="home">
+          <div class="patient-reference-home">
+            <header class="patient-tablet-header">
+              <div class="patient-brand">
+                <img src="logo.svg" alt="ComCare Recovery Hub">
+                <span><b>ComCare</b><small>Recovery Hub</small></span>
+              </div>
+              <div class="patient-greeting">
+                <h1>Robert</h1>
+                <p class="patient-summary">Good morning, Robert. We are here to support your recovery.</p>
+              </div>
+              <div class="patient-clock">
+                <span id="dashboardCaregiverStatus" class="dashboard-status-pill">0 Care Circle Members Connected</span>
+                <strong>9:41 AM</strong>
+                <small>Tue, May 21</small>
+                <button type="button" data-patient-screen="help">Help</button>
+              </div>
+            </header>
+            <div class="patient-reference-grid">
+              <button type="button" class="patient-card primary-action" data-patient-screen="start"><span class="card-mark mark-plan">Day</span><strong>Start My Day</strong><small>Begin morning check-in</small></button>
+              <button type="button" class="patient-card" data-patient-screen="plan"><span class="card-mark mark-med">Care</span><strong>Today's Care</strong><small>Medication, meals, therapy</small></button>
+              <button type="button" class="patient-card" data-preset-message="Please call me"><span class="card-mark mark-team">Call</span><strong>Call Family</strong><small>Ask Sarah to call</small></button>
+              <button type="button" class="patient-card" data-patient-ok=""><span class="card-mark mark-progress">OK</span><strong>I'm Okay</strong><small>Send a simple update</small></button>
+              <button type="button" class="patient-card urgent" data-patient-screen="help"><span class="card-mark mark-help">!</span><strong>I Need Help</strong><small>Request caregiver help</small></button>
+              <button type="button" class="patient-card" data-patient-screen="relax"><span class="card-mark mark-relax">Music</span><strong>Relax</strong><small>Music, photos, messages</small></button>
+              <button type="button" class="patient-card connect-card" data-patient-screen="sync"><span class="card-mark mark-msg">Sync</span><strong>Connect Caregiver</strong><small>Show code for pairing</small></button>
+              <button type="button" class="patient-card" data-patient-screen="profile"><span class="card-mark mark-equipment">ID</span><strong>Patient Profile</strong><small>Review care preferences</small></button>
+              <button type="button" class="patient-card" data-patient-screen="settings"><span class="card-mark mark-edu">Set</span><strong>Settings</strong><small>Appearance and reset</small></button>
+            </div>
+            <div class="daily-tip">Daily Tip: Walking a little more each day can help you recover faster.</div>
+          </div>
+          <div class="patient-hero">
+            <p class="eyebrow">Welcome Home</p>
+            <h1>Robert</h1>
+            <p class="patient-summary">Good morning, Robert. Today you have one medication reminder at 10:00 AM and physical therapy at 2:30 PM.</p>
+            <p class="care-day-label">Today’s Care Plan</p>
+          </div>
+          <div class="patient-primary-grid">
+            <button type="button" class="patient-card" data-patient-screen="caregiver">
+              <span class="card-mark">C</span>
+              <strong>My Caregiver</strong>
+              <small>Call Sarah or send a simple message.</small>
+            </button>
+            <button type="button" class="patient-card urgent" data-patient-screen="help">
+              <span class="card-mark">!</span>
+              <strong>I Need Help</strong>
+              <small>Notify your caregiver now.</small>
+            </button>
+            <button type="button" class="patient-card" data-patient-screen="plan">
+              <span class="card-mark">P</span>
+              <strong>Today’s Plan</strong>
+              <small>Medication, therapy, meals, hydration, and rest.</small>
+            </button>
+            <button type="button" class="patient-card" data-patient-screen="relax">
+              <span class="card-mark">R</span>
+              <strong>Relax / Connect</strong>
+              <small>Music, photos, messages, and approved content.</small>
+            </button>
+          </div>
+          <button type="button" class="start-day-btn" data-patient-screen="start">Start My Day</button>
+        </div>
+
+        <div class="patient-screen" data-screen="start">
+          <p class="eyebrow">Start My Day</p>
+          <h2>Are you ready to start your day?</h2>
+          <div class="soft-message">
+            Sarah left a morning message: “Dad, I hope you have a comfortable morning. I’ll call after breakfast.”
+          </div>
+          <div class="plan-preview">
+        <div><span>10:00 AM</span><strong>Morning medication reminder</strong></div>
+      
+        <div><span>12:30 PM</span><strong>Lunch and hydration</strong></div>
+      
+        <div><span>2:30 PM</span><strong>Physical therapy visit</strong></div>
+      </div>
+          <div class="large-choice-row">
+            <button type="button" data-start-choice="started">Yes, Start My Day</button>
+            <button type="button" data-start-choice="later">In a Few Minutes</button>
+            <button type="button" data-patient-screen="plan">Show Today’s Plan</button>
+            <button type="button" data-patient-screen="home">Not Now</button>
+          </div>
+        </div>
+
+        <div class="patient-screen" data-screen="plan">
+          <p class="eyebrow">Today’s Care Plan</p>
+          <h2>What matters today</h2>
+          <div class="care-plan-list">
+        <article class="plan-item">
+          <span>10:00 AM</span>
+          <div>
+            <strong>Morning medication reminder</strong>
+            <small>Entered by Sarah. Acknowledgment enabled.</small>
+          </div>
+          <button type="button" data-dynamic-ack="0">Done</button>
+        </article>
+      
+        <article class="plan-item">
+          <span>12:30 PM</span>
+          <div>
+            <strong>Lunch and hydration</strong>
+            <small>Entered by Sarah. Acknowledgment enabled.</small>
+          </div>
+          <button type="button" data-dynamic-ack="1">Done</button>
+        </article>
+      
+        <article class="plan-item">
+          <span>2:30 PM</span>
+          <div>
+            <strong>Physical therapy visit</strong>
+            <small>Entered by Sarah. View only.</small>
+          </div>
+          <button type="button" data-dynamic-ack="2">Viewed</button>
+        </article>
+      </div>
+          <div class="large-choice-row compact">
+            <button type="button" data-ack="Patient asked to be reminded later">Remind Me Later</button>
+            <button type="button" data-ack="Patient has a question">I Have a Question</button>
+            <button type="button" data-patient-screen="help">I Need Help</button>
+          </div>
+          <section class="care-routine-summary" aria-label="Medication and personal care schedule">
+            <article><span>MEDICATION</span><strong>Medication schedule</strong><p id="patientMedicationSummary">Morning medication · 10:00 AM · Take with water. Confirm after taking.</p></article>
+            <article><span>PERSONAL CARE</span><strong>Bathing schedule</strong><p id="patientBathingSummary">Tuesday, Thursday, and Saturday at 10:30 AM · Use shower chair. Caregiver remains nearby.</p></article>
+          </section>
+          <section class="daily-question-card" aria-labelledby="patientDailyQuestion">
+            <span>QUESTION FROM YOUR CAREGIVER</span>
+            <h3 id="patientDailyQuestion">Would you prefer your family call at lunch or dinner?</h3>
+            <div><button type="button" data-daily-answer="1">Lunch</button><button type="button" data-daily-answer="2">Dinner</button></div>
+            <p id="dailyQuestionStatus" aria-live="polite">Choose one answer. Your care circle will see your response.</p>
+          </section>
+        </div>
+
+        <div class="patient-screen" data-screen="caregiver">
+          <p class="eyebrow">My Caregiver</p>
+          <h2>Sarah Johnson</h2>
+          <div class="caregiver-card-large">
+            <div class="caregiver-photo">SJ</div>
+            <div>
+              <strong>Daughter and primary caregiver</strong>
+              <p>Sarah is available</p>
+            </div>
+          </div>
+          <div class="large-choice-row">
+            <button type="button" data-preset-message="Please call me">Call Sarah</button>
+            <button type="button" data-preset-message="Video call requested">Video Call</button>
+            <button type="button" data-preset-message="Voice message sent">Send Voice Message</button>
+            <button type="button" data-preset-message="I’m okay">I’m Okay</button>
+            <button type="button" data-patient-screen="help">Request Help</button>
+          </div>
+        </div>
+
+        <div class="patient-screen" data-screen="relax">
+          <p class="eyebrow">Relax / Connect</p>
+          <h2>Choose something comfortable</h2>
+          <div class="relax-grid">
+            <button type="button" id="openSpotifyRelax">Relaxing Music</button>
+            <button type="button" data-content="Family photos opened">Family Photos</button>
+            <button type="button" data-content="Voice message opened">Voice Messages</button>
+            <button type="button" data-content="Podcast suggestion saved">Suggested Podcast</button>
+            <button type="button" data-content="Inspirational program opened">Inspirational</button>
+            <button type="button" data-content="Upcoming visits opened">Upcoming Visits</button>
+          </div>
+          <div class="incoming-card" id="patientIncomingCard">
+            <strong id="patientIncomingTitle">Sarah suggested something for you.</strong>
+            <p id="patientIncomingText">Dad, I thought you might enjoy this.</p>
+            <div>
+              <button type="button" id="patientOpenIncoming">Open</button>
+              <button type="button" data-content="Message saved for later">Not Now</button>
+              <button type="button" data-preset-message="Please call me">Call Sarah</button>
+            </div>
+            <div class="patient-card-replies" aria-label="Quick replies">
+              <button type="button" data-patient-quick-reply="I got the message">I got it</button>
+              <button type="button" data-patient-quick-reply="Thank you">Thank you</button>
+              <button type="button" data-patient-quick-reply="I will call later">Call later</button>
+              <button type="button" data-patient-quick-reply="I am okay">I’m okay</button>
+            </div>
+            <small class="patient-reply-status" id="patientReplyStatus"></small>
+          </div>
+        </div>
+
+        <div class="patient-screen" data-screen="help">
+          <p class="eyebrow danger-text">I Need Help</p>
+          <h2>How can we help you?</h2>
+          <div class="help-grid">
+            <button type="button" data-help-reason="I feel very unwell">I feel very unwell</button>
+            <button type="button" data-help-reason="Pain or discomfort">Pain or discomfort</button>
+            <button type="button" data-help-reason="Bathroom help">Bathroom help</button>
+            <button type="button" data-help-reason="I feel dizzy or weak">I feel dizzy or weak</button>
+            <button type="button" data-help-reason="Medication question">Medication question</button>
+            <button type="button" data-help-reason="Equipment problem">Equipment problem</button>
+            <button type="button" data-help-reason="I feel anxious or afraid">I feel anxious or afraid</button>
+            <button type="button" data-help-reason="Something else">Something else</button>
+          </div>
+          <div class="request-status" id="patientRequestStatus">
+        <strong>No active help request.</strong>
+        <p>If this is an emergency, call 911 using your phone or emergency device.</p>
+      </div>
+          <div class="large-choice-row compact">
+            <a href="tel:911" class="emergency-link">Call 911 / Emergency</a>
+            <button type="button" data-cancel-help="">Cancel Request</button>
+            <button type="button" data-patient-screen="home">Home</button>
+          </div>
+        </div>
+
+        <div class="patient-screen sync-screen active" data-screen="sync">
+          <p class="eyebrow">Patient Pairing</p>
+          <h2>Enter Your Caregiver Code</h2>
+          <p class="screen-note">Ask your caregiver for the six-digit code they generated, enter it below, then tap Connect.</p>
+          <div class="sync-layout">
+            <section class="sync-code-card" aria-label="Enter caregiver sync code">
+              <label for="patientSyncCode">Caregiver's six-digit code</label>
+              <div class="join-code-row">
+                <input id="patientSyncCode" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="Enter code" aria-describedby="patientSyncStatus">
+                <button type="button" id="patientJoinSyncCode">Connect</button>
+              </div>
+            </section>
+          </div>
+          <p id="patientSyncStatus" class="sync-status" aria-live="polite">Waiting for your caregiver's code.</p>
+          <div class="large-choice-row compact">
+            <button type="button" data-patient-screen="home">Back</button>
+          </div>
+        </div>
+
+        <div class="patient-screen profile-screen" data-screen="profile">
+          <p class="eyebrow">Patient Profile</p>
+          <h2>Patient Profile</h2>
+          <p class="screen-note">Use sample information only. Do not enter or transmit real health information in this preview.</p>
+          <form id="patientProfileForm" class="profile-form">
+            <section class="profile-identity">
+              <div id="profileInitials" class="profile-photo">R</div>
+              <div>
+                <strong id="profileNamePreview">Robert Johnson</strong>
+                <span id="profileStatusPreview">At Home · Day 12</span>
+              </div>
+            </section>
+            <div class="profile-grid">
+              <label>Preferred name<input id="profilePreferredName" name="patientName" disabled=""></label>
+              <label>Recovery or care status<input id="profileRecoveryStatus" name="recoveryStatus" disabled=""></label>
+              <label>Recovery day<input id="profileRecoveryDay" name="recoveryDay" disabled=""></label>
+              <label>Date of birth<input id="profileDob" name="dateOfBirth" disabled=""></label>
+              <label>Preferred language<input id="profileLanguage" name="preferredLanguage" disabled=""></label>
+              <label>Accessibility preferences<textarea id="profileAccessibility" name="accessibility" rows="3" disabled=""></textarea></label>
+              <label>Caregiver contacts<textarea id="profileCaregiverContacts" name="familyContacts" rows="3" disabled=""></textarea></label>
+              <label>Emergency contact<textarea id="profileEmergencyContact" name="emergencyOrder" rows="3" disabled=""></textarea></label>
+              <label>Physician or therapist information<textarea id="profilePhysician" name="physicianInfo" rows="3" disabled=""></textarea></label>
+              <label>Medication-reminder preference<textarea id="profileMedicationPreference" name="medicationPreference" rows="3" disabled=""></textarea></label>
+              <label>Daily routine preference<textarea id="profileDailyRoutine" name="dailyRoutinePreference" rows="3" disabled=""></textarea></label>
+              <label>Interests and comfort preferences<textarea id="profileComfort" name="comfortInterests" rows="3" disabled=""></textarea></label>
+            </div>
+            <div class="profile-actions">
+              <button type="button" id="editProfile">Edit Profile</button>
+              <button type="submit" id="saveProfile" disabled="">Save Changes</button>
+              <button type="button" id="cancelProfile" disabled="">Cancel</button>
+              <button type="button" data-patient-screen="home">Back to Dashboard</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="patient-screen settings-screen" data-screen="settings">
+          <p class="eyebrow">Settings</p>
+          <h2>Appearance</h2>
+          <div class="settings-panel">
+            <fieldset class="appearance-options">
+              <legend>Choose appearance</legend>
+              <label><input type="radio" name="appearance" value="light"> Light</label>
+              <label><input type="radio" name="appearance" value="dark"> Dark</label>
+              <label><input type="radio" name="appearance" value="device"> Use Device Setting</label>
+            </fieldset>
+            <div class="settings-actions">
+              <button type="button" data-patient-screen="sync">Connect Caregiver</button>
+              <button type="button" id="restartDemo">Reset Pair</button>
+              <button type="button" data-patient-screen="home">Back to Dashboard</button>
+            </div>
+          </div>
+        </div>
+        <div class="hub-spotify-panel" id="spotifyPanel" hidden="">
+          <div class="hub-media-header">
+            <strong id="spotifyTitle">Comfort Care Spotify Relaxing Music</strong>
+            <div>
+              <button type="button" id="expandSpotify">Large</button>
+              <button type="button" id="closeSpotify" aria-label="Stop music and close player">Stop &amp; Close</button>
+            </div>
+          </div>
+          <iframe id="spotifyFrame" title="Spotify relaxing music inside Comfort Care" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" src="about:blank"></iframe>
+          <p class="spotify-note">Free Spotify playback may include Spotify limits, ads, or a sign-in prompt depending on the device.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="caregiver-interface interface-panel" id="caregiverInterface" aria-label="Caregiver family interface">
+      <div class="phone-frame">
+        <header class="phone-header caregiver-app-header">
+          <div class="patient-brand caregiver-brand">
+            <img src="logo.svg" alt="ComCare Recovery Hub">
+            <span><b>ComCare</b><small>Recovery Hub</small></span>
+          </div>
+          <div>
+            <p class="eyebrow">Caregiver / Family</p>
+            <h1>Robert’s Recovery Hub</h1>
+          </div>
+          <span class="online-pill" id="stationStatus">Online</span>
+        </header>
+
+        <section class="sync-code-card caregiver-code-card" aria-label="Generate patient sync code">
+          <div id="caregiverGenerateArea">
+            <span>Patient and family connection code</span>
+            <strong id="syncCodeDisplay">------</strong>
+            <small id="syncCountdown">Generate a code when the patient or family member is ready</small>
+            <div class="large-choice-row compact"><button type="button" id="generateSyncCode">Generate New Code</button></div>
+          </div>
+          <div id="familyJoinArea" hidden>
+            <span>Join the patient care circle</span>
+            <label for="familyPairCode">Enter the caregiver's six-digit code</label>
+            <div class="join-code-row"><input id="familyPairCode" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="Enter code"><button type="button" id="familyJoinPairCode">Connect</button></div>
+          </div>
+          <p id="syncStatus" class="sync-status" aria-live="polite">No active code.</p>
+        </section>
+
+        <section class="urgent-alert-card" id="caregiverAlertCard" hidden="">
+          <p>HELP REQUESTED</p>
+          <h2 id="caregiverAlertTitle">Robert needs help now.</h2>
+          <span id="caregiverAlertMeta"></span>
+          <div class="caregiver-actions">
+            <button type="button" data-caregiver-action="responding">Acknowledge - I’m Responding</button>
+            <button type="button" data-caregiver-action="call">Call Patient</button>
+            <button type="button" data-caregiver-action="talk">Talk Through Station</button>
+            <button type="button" data-caregiver-action="resolved">Mark Resolved</button>
+          </div>
+        </section>
+
+        <section class="caregiver-patient-monitor" aria-label="Patients monitored">
+          <div class="section-head">
+            <h2>Patients Monitored</h2>
+            <span id="monitorCount">3 Active</span>
+          </div>
+          <div class="monitor-grid" id="caregiverPatientList">
+            <button type="button" class="monitor-card active" data-monitor-patient="robert">
+              <span class="monitor-avatar">RJ</span>
+              <strong>Robert Johnson</strong>
+              <small>At Home · Next med 10:00 AM</small>
+              <b id="monitorRobertStatus">Online</b>
+            </button>
+            <button type="button" class="monitor-card" data-monitor-patient="maria">
+              <span class="monitor-avatar">MG</span>
+              <strong>Maria Gomez</strong>
+              <small>At Home · Hydration check 11:30 AM</small>
+              <b>Watching</b>
+            </button>
+            <button type="button" class="monitor-card attention" data-monitor-patient="alan">
+              <span class="monitor-avatar">AW</span>
+              <strong>Alan Walker</strong>
+              <small>Apartment · PT visit 1:00 PM</small>
+              <b>Needs review</b>
+            </button>
+          </div>
+        </section>
+
+        <section class="caregiver-profile-card">
+          <div class="caregiver-avatar">R</div>
+          <div>
+            <h1>Robert Johnson</h1>
+            <strong>At Home</strong>
+            <p>Hip Replacement Surgery<br>May 15, 2024</p>
+          </div>
+        </section>
+
+        <section class="caregiver-next-task">
+          <div>
+            <span>Next Task</span>
+            <strong>10:00 AM</strong>
+          </div>
+          <div>
+            <b>Morning medication reminder</b>
+            <small>Waiting for patient response</small>
+          </div>
+          <button type="button" data-send-content="Medication reminder opened">Open</button>
+        </section>
+
+        <section class="caregiver-status-card">
+          <div>
+            <span>Current station status</span>
+            <strong id="caregiverCurrentStatus">Connecting caregiver</strong>
+          </div>
+          <small>Based only on Recovery Hub activity. This does not prove physical condition, location, or safety.</small>
+        </section>
+
+        <section class="caregiver-quick caregiver-reference-actions">
+          <h2>Quick Actions</h2>
+          <div class="caregiver-action-grid">
+            <button type="button" id="focusCaregiverMessage"><span>Msg</span>Send Message</button>
+            <button type="button" data-send-content="Video call requested for Robert"><span>Vid</span>Video Call</button>
+            <button type="button" data-send-content="Photo sent to Robert"><span>Cam</span>Send Photo</button>
+            <button type="button" data-send-content="Voice note sent to Robert"><span>Mic</span>Voice Note</button>
+            <button type="button" data-send-content="Podcast suggested to Robert"><span>Star</span>Suggest Content</button>
+            <button type="button" data-send-content="Call request sent to Robert"><span>Call</span>Call Request</button>
+          </div>
+        </section>
+
+        <section class="caregiver-message-panel">
+          <h2>Calls and Content Suggestions</h2>
+          <input id="sharedLinkInput" type="text" placeholder="Suggest music, podcast, devotional, photo, or family message">
+          <div class="caregiver-actions">
+            <button type="button" id="sendCallRequest">Call Request</button>
+            <button type="button" id="sendVideoRequest">Video Request</button>
+            <button type="button" id="sendSharedLink">Send Suggestion</button>
+          </div>
+        </section>
+
+        <section class="caregiver-plan">
+          <h2>Today’s Plan Preview</h2>
+          <div class="mini-plan">
+        <span>10:00 AM</span><strong>Morning medication reminder</strong><small id="medStatus">Waiting for response</small>
+      
+        <span>12:30 PM</span><strong>Lunch and hydration</strong><small id="">Waiting for response</small>
+      
+        <span>2:30 PM</span><strong>Physical therapy visit</strong><small id="">Scheduled</small>
+      </div>
+        </section>
+
+        <section class="caregiver-message-panel">
+          <h2>Send a Simple Message</h2>
+          <textarea id="caregiverMessage" rows="3" placeholder="Dad, I thought you might enjoy this after lunch."></textarea>
+          <div class="caregiver-actions">
+            <button type="button" id="sendTypedMessage">Send Now</button>
+            <button type="button" data-send-content="Positive morning message scheduled">Schedule Morning Message</button>
+          </div>
+        </section>
+
+        <section class="activity-panel">
+          <div class="section-head">
+            <h2>Recent Activity</h2>
+            <button type="button" id="clearDemo">Clear Pair</button>
+          </div>
+          <div class="timeline" id="activityTimeline" aria-live="polite">
+      <article class="timeline-item info">
+        <span class="timeline-time">Now</span>
+        <span class="timeline-text">Recovery Hub opened to Robert’s home screen.</span>
+      </article>
+    
+      <article class="timeline-item info">
+        <span class="timeline-time">Now</span>
+        <span class="timeline-text">Caregiver dashboard connected.</span>
+      </article>
+    </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="setup-interface interface-panel" id="setupInterface" aria-label="Recovery Hub setup input">
+      <form class="setup-form" id="setupForm">
+        <header class="setup-header">
+          <div>
+            <p class="eyebrow">Caregiver Setup Guide</p>
+            <h1>Set up one shared Recovery Hub for everyone supporting the patient.</h1>
+          </div>
+          <button type="button" id="setupConnectCaregiver">Go to Pairing Code</button>
+          <button type="submit" id="saveSetupProfile">Save Patient Setup</button>
+        </header>
+
+        <section class="caregiver-setup-guide" aria-labelledby="caregiverSetupTitle">
+          <div class="guide-intro">
+            <span>START HERE</span>
+            <h2 id="caregiverSetupTitle">Follow these steps in order.</h2>
+            <p>The primary caregiver completes setup once. Then every approved family member or caregiver joins with the same six-digit patient code.</p>
+          </div>
+          <ol class="setup-steps">
+            <li><b>Enter the patient information</b><span>Complete Patient Basics, the daily schedule, accessibility needs, and help instructions below.</span></li>
+            <li><b>Add the primary caregiver</b><span>Enter the person who should receive the first update or help request.</span></li>
+            <li><b>Add approved family members</b><span>List everyone allowed to follow the daily plan, receive updates, and communicate with the patient.</span></li>
+            <li><b>Save before pairing</b><span>Select <strong>Save Patient Setup</strong> so every connected person receives the same information.</span></li>
+            <li><b>Create and share one code</b><span>Select <strong>Go to Pairing Code</strong>. Share that same six-digit code or caregiver link with each approved person. Do not create a different code for each person.</span></li>
+            <li><b>Test the care circle</b><span>Ask one caregiver to send a message, have the patient tap <strong>I’m Okay</strong>, and confirm every connected caregiver sees the shared activity.</span></li>
+          </ol>
+          <div class="shared-room-note"><b>What everyone shares</b><span>Daily plan · Patient status · Messages · Replies · Help alerts · Care-circle activity</span></div>
+          <p class="privacy-note"><b>Keep the code private.</b> Share it only with approved caregivers and family members. For an emergency, call 911—the Recovery Hub is not an emergency-response service.</p>
+        </section>
+
+        <div class="setup-grid">
+          <section class="setup-card">
+            <h2>Patient Basics</h2>
+            <label>Preferred name<input name="patientName" id="setupPatientName" placeholder="Robert"></label>
+            <label>Preferred language<input name="preferredLanguage" id="setupLanguage" placeholder="English"></label>
+            <label>Date of birth<input name="dateOfBirth" id="setupDob" placeholder="MM/DD/YYYY"></label>
+            <label>Recovery or care start date<input name="recoveryStart" id="setupStartDate" placeholder="MM/DD/YYYY"></label>
+            <label>Type of recovery or care<input name="recoveryType" id="setupRecoveryType" placeholder="Home recovery, chronic care, post-surgery, aging at home"></label>
+            <label>Accessibility needs<textarea name="accessibility" id="setupAccessibility" rows="3" placeholder="Large text, hearing support, simplified screen, voice guidance, high contrast"></textarea></label>
+          </section>
+
+          <section class="setup-card">
+            <h2>Primary Caregiver</h2>
+            <label>Name<input name="caregiverName" id="setupCaregiverName" placeholder="Sarah Johnson"></label>
+            <label>Relationship or role<input name="caregiverRole" id="setupCaregiverRole" placeholder="Daughter and primary caregiver"></label>
+            <label>Phone<input name="caregiverPhone" id="setupCaregiverPhone" placeholder="(678) 242-9309"></label>
+            <label>Email<input name="caregiverEmail" id="setupCaregiverEmail" placeholder="name@example.com"></label>
+            <label>Availability message<input name="availability" id="setupAvailability" placeholder="Sarah is available"></label>
+          </section>
+
+          <section class="setup-card setup-wide">
+            <h2>Today’s Schedule</h2>
+            <div class="schedule-input-grid" id="scheduleInputs">
+              <input data-schedule-time="0" placeholder="10:00 AM">
+              <input data-schedule-title="0" placeholder="Morning medication reminder">
+              <input data-schedule-owner="0" placeholder="Sarah">
+              <label class="check-label"><input type="checkbox" data-schedule-ack="0" checked=""> Ack</label>
+              <input data-schedule-time="1" placeholder="12:30 PM">
+              <input data-schedule-title="1" placeholder="Lunch and hydration">
+              <input data-schedule-owner="1" placeholder="Sarah">
+              <label class="check-label"><input type="checkbox" data-schedule-ack="1" checked=""> Ack</label>
+              <input data-schedule-time="2" placeholder="2:30 PM">
+              <input data-schedule-title="2" placeholder="Physical therapy visit">
+              <input data-schedule-owner="2" placeholder="Sarah">
+              <label class="check-label"><input type="checkbox" data-schedule-ack="2"> Ack</label>
+              <input data-schedule-time="3" placeholder="Time">
+              <input data-schedule-title="3" placeholder="Reminder, meal, appointment, rest, or call">
+              <input data-schedule-owner="3" placeholder="Owner">
+              <label class="check-label"><input type="checkbox" data-schedule-ack="3"> Ack</label>
+            </div>
+          </section>
+
+          <section class="setup-card">
+            <h2>Medication Details</h2>
+            <label>Medication name or reminder<input name="medicationName" id="setupMedicationName" placeholder="Morning medication"></label>
+            <label>Medication time or times<input name="medicationTimes" id="setupMedicationTimes" placeholder="8:00 AM and 8:00 PM"></label>
+            <label>Instructions<textarea name="medicationInstructions" id="setupMedicationInstructions" rows="4" placeholder="Take with water, with food, or other caregiver instructions"></textarea></label>
+          </section>
+
+          <section class="setup-card">
+            <h2>Bathing and Personal Care</h2>
+            <label>Bathing days and time<input name="bathingSchedule" id="setupBathingSchedule" placeholder="Tuesday, Thursday, and Saturday at 10:30 AM"></label>
+            <label>Assistance and safety notes<textarea name="bathingAssistance" id="setupBathingAssistance" rows="4" placeholder="Use shower chair; caregiver stays nearby; prepare clean clothes"></textarea></label>
+          </section>
+
+          <section class="setup-card setup-wide caregiver-question-setup">
+            <h2>Simple Question for the Patient</h2>
+            <p>Ask one easy daily question. The patient answers with one tap and every connected caregiver can see the response.</p>
+            <label>Question<input name="dailyQuestion" id="setupDailyQuestion" placeholder="Would you prefer your family call at lunch or dinner?"></label>
+            <div class="question-option-grid"><label>First answer<input name="dailyQuestionOption1" id="setupDailyOption1" placeholder="Lunch"></label><label>Second answer<input name="dailyQuestionOption2" id="setupDailyOption2" placeholder="Dinner"></label></div>
+          </section>
+
+          <section class="setup-card">
+            <h2>Family Contacts</h2>
+            <label>Allowed family and contacts<textarea name="familyContacts" id="setupFamilyContacts" rows="5" placeholder="Michael - son - may call/send photos
+Lisa - sister - may send messages"></textarea></label>
+            <label>Emergency contact order<textarea name="emergencyOrder" id="setupEmergencyOrder" rows="3" placeholder="Sarah first, then Michael, then ComCare support"></textarea></label>
+          </section>
+
+          <section class="setup-card">
+            <h2>Preferences and Help</h2>
+            <label>Morning preference<textarea name="morningPreference" id="setupMorningPreference" rows="3" placeholder="Relaxing piano, family good-morning message, ask before starting day"></textarea></label>
+            <label>Comfort interests<textarea name="comfortInterests" id="setupComfortInterests" rows="3" placeholder="Favorite music, TV, religious or inspirational preferences, hobbies"></textarea></label>
+            <label>Help routing instructions<textarea name="helpInstructions" id="setupHelpInstructions" rows="4" placeholder="What happens when patient taps I Need Help. Who receives first alert and backup order."></textarea></label>
+          </section>
+        </div>
+
+        <p class="setup-save-status" id="setupSaveStatus">Step 1: Complete the information below, then select Save Patient Setup.</p>
+      </form>
+    </section>
+  </main>
+  <button type="button" class="permanent-stop-music" id="permanentStopMusic" aria-label="Stop any playing music">■ Stop Music</button>
+  <button type="button" class="permanent-help" data-patient-screen="help">Help</button>
+  <script src="recovery-hub.js?v=care-routine-question-20260820"></script>
+
+
+</body><div id="codex-browser-sidebar-comments-root" style="position: fixed; inset: 0px; pointer-events: none; z-index: 2147483647;"></div></html>
