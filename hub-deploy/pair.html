@@ -417,6 +417,12 @@
           <p id="syncStatus" class="sync-status" aria-live="polite">No active code.</p>
         </section>
 
+        <section class="care-connection-banner" id="careConnectionBanner" aria-live="polite">
+          <span class="connection-pulse" aria-hidden="true"></span>
+          <div><strong id="connectionBannerTitle">Waiting for a patient connection</strong><small id="connectionBannerDetail">Create or enter a pairing code to start sharing updates.</small></div>
+          <b id="connectionBannerBadge">NOT PAIRED</b>
+        </section>
+
         <section class="urgent-alert-card" id="caregiverAlertCard" hidden="">
           <p>HELP REQUESTED</p>
           <h2 id="caregiverAlertTitle">Robert needs help now.</h2>
@@ -456,13 +462,15 @@
           </div>
         </section>
 
-        <section class="caregiver-profile-card">
+        <section class="caregiver-profile-card" id="activePatientWorkspace">
           <div class="caregiver-avatar">R</div>
           <div>
-            <h1>Robert Johnson</h1>
-            <strong>At Home</strong>
-            <p>Hip Replacement Surgery<br>May 15, 2024</p>
+            <p class="eyebrow">Open patient</p>
+            <h1 id="activePatientName">Robert Johnson</h1>
+            <strong id="activePatientStatus">At Home</strong>
+            <p id="activePatientDetails">Hip Replacement Surgery<br>May 15, 2024</p>
           </div>
+          <button type="button" id="messageActivePatient">Message Patient</button>
         </section>
 
         <section class="caregiver-next-task">
@@ -519,12 +527,17 @@
         </section>
 
         <section class="caregiver-message-panel">
-          <h2>Send a Simple Message</h2>
+          <h2 id="messagePanelTitle">Message Robert</h2>
           <textarea id="caregiverMessage" rows="3" placeholder="Dad, I thought you might enjoy this after lunch."></textarea>
           <div class="caregiver-actions">
             <button type="button" id="sendTypedMessage">Send Now</button>
             <button type="button" data-send-content="Positive morning message scheduled">Schedule Morning Message</button>
           </div>
+        </section>
+
+        <section class="shared-conversation" aria-labelledby="sharedConversationTitle">
+          <div class="section-head"><div><p class="eyebrow">Shared with patient and family</p><h2 id="sharedConversationTitle">Care Circle Conversation</h2></div><span id="conversationConnectionState">Waiting for connection</span></div>
+          <div id="sharedConversationMessages" class="conversation-list" aria-live="polite"></div>
         </section>
 
         <section class="activity-panel">
@@ -660,7 +673,7 @@ Lisa - sister - may send messages"></textarea></label>
   </main>
   <button type="button" class="permanent-stop-music" id="permanentStopMusic" aria-label="Stop any playing music">■ Stop Music</button>
   <button type="button" class="permanent-help" data-patient-screen="help">Help</button>
-  <script src="recovery-hub.js?v=demo-autofill-20260820"></script>
+  <script src="recovery-hub.js?v=connected-workspace-v2-20260820"></script>
 
 
 </body><div id="codex-browser-sidebar-comments-root" style="position: fixed; inset: 0px; pointer-events: none; z-index: 2147483647;"></div></html>

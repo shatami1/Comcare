@@ -71,6 +71,11 @@
   let caregiverAlertBeepTimer = null;
   let syncCountdownTimer = null;
   let profileEditing = false;
+  let selectedPatientKey = 'robert';
+  const monitoredPatients = {
+    maria: { name: 'Maria Gomez', initials: 'MG', status: 'At Home', details: 'Hydration support · Next check 11:30 AM', online: true },
+    alan: { name: 'Alan Walker', initials: 'AW', status: 'Needs Review', details: 'Apartment recovery · PT visit 1:00 PM', online: false }
+  };
   const channel = 'BroadcastChannel' in window ? new BroadcastChannel('comcare-recovery-hub-demo') : null;
   const params = new URLSearchParams(window.location.search);
   const cleanPairMode = window.location.pathname.includes('/pair');
@@ -85,6 +90,7 @@
   let roomCode = initialRole === 'patient' ? '' : (urlCode || savedCode);
   let pollTimer = null;
   let connectionFailures = 0;
+  let roomVerified = false;
   const careCircleMemberIdKey = 'comcareCareCircleMemberId';
   let careCircleMemberId = localStorage.getItem(careCircleMemberIdKey) || '';
   if (!careCircleMemberId) {
@@ -337,6 +343,7 @@
       throw new Error(data.error || 'Unable to connect to paired room.');
     }
     connectionFailures = 0;
+    roomVerified = true;
     receiveExternalState(data.room);
     updatePairingUi('Paired and connected.');
   }
@@ -358,6 +365,7 @@
       throw new Error(data.error || 'Unable to update paired room.');
     }
     connectionFailures = 0;
+    roomVerified = true;
     receiveExternalState(data.room);
     updatePairingUi('Paired and connected.');
   }
@@ -367,6 +375,15 @@
     const warning = document.getElementById('pairingWarning');
     if (warning && connectionFailures >= 2) {
       warning.hidden = false;
+    }
+  }
+
+  function handlePollingFailure() {
+    showConnectionWarning();
+    if (roomVerified) {
+      updatePairingUi(`Paired with code ${roomCode}. Syncing latest updates...`);
+    } else if (connectionFailures >= 2) {
+      updatePairingUi('Connection problem. Retrying.');
     }
   }
 
@@ -406,13 +423,11 @@
       });
     }
     fetchRoom().catch(() => {
-      showConnectionWarning();
-      updatePairingUi('Connection problem. Retrying.');
+      handlePollingFailure();
     });
     pollTimer = setInterval(() => {
       fetchRoom().catch(() => {
-        showConnectionWarning();
-        updatePairingUi('Connection problem. Retrying.');
+        handlePollingFailure();
       });
     }, 2000);
   }
@@ -592,15 +607,66 @@
   }
 
   function selectMonitorPatient(key) {
+    selectedPatientKey = key;
     document.querySelectorAll('[data-monitor-patient]').forEach(card => {
       card.classList.toggle('active', card.dataset.monitorPatient === key);
     });
-    if (key === 'robert') {
-      addTimeline('Caregiver selected Robert Johnson in multi-patient monitor.', 'info');
+    renderCaregiverWorkspace();
+    const patient = activeMonitoredPatient();
+    addTimeline(`Caregiver opened ${patient.name}'s workspace.`, key === 'alan' ? 'important' : 'info');
+    document.getElementById('activePatientWorkspace')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function activeMonitoredPatient() {
+    if (selectedPatientKey === 'robert') {
+      const data = profile();
+      return { name: data.patientName || 'Patient', initials: initials(data.patientName || 'Patient'), status: data.recoveryStatus || data.recoveryType || 'At Home', details: `${data.recoveryType || 'Home recovery'} · ${state.currentStatus || 'No recent update'}`, online: hasRoom() };
+    }
+    return monitoredPatients[selectedPatientKey] || monitoredPatients.maria;
+  }
+
+  function renderCaregiverWorkspace() {
+    const patient = activeMonitoredPatient();
+    const name = document.getElementById('activePatientName');
+    const status = document.getElementById('activePatientStatus');
+    const details = document.getElementById('activePatientDetails');
+    const avatar = document.querySelector('#activePatientWorkspace .caregiver-avatar');
+    const messageTitle = document.getElementById('messagePanelTitle');
+    if (name) name.textContent = patient.name;
+    if (status) status.textContent = patient.online ? `${patient.status} · Connected` : `${patient.status} · Offline demo`;
+    if (details) details.textContent = patient.details;
+    if (avatar) avatar.textContent = patient.initials;
+    if (messageTitle) messageTitle.textContent = `Message ${patient.name.split(' ')[0]}`;
+
+    const connected = selectedPatientKey === 'robert' && hasRoom();
+    const banner = document.getElementById('careConnectionBanner');
+    banner?.classList.toggle('connected', connected);
+    const bannerTitle = document.getElementById('connectionBannerTitle');
+    const bannerDetail = document.getElementById('connectionBannerDetail');
+    const bannerBadge = document.getElementById('connectionBannerBadge');
+    if (bannerTitle) bannerTitle.textContent = connected ? `${patient.name} is connected to this Care Circle` : `${patient.name} is not connected to this shared room`;
+    if (bannerDetail) bannerDetail.textContent = connected ? `Code ${roomCode} · Updates sync automatically across caregiver, patient, and family screens.` : 'Open the paired patient or create a code to begin sharing live updates.';
+    if (bannerBadge) bannerBadge.textContent = connected ? 'LIVE' : 'NOT CONNECTED';
+    renderConversation();
+  }
+
+  function renderConversation() {
+    const list = document.getElementById('sharedConversationMessages');
+    const connection = document.getElementById('conversationConnectionState');
+    if (!list) return;
+    const connected = selectedPatientKey === 'robert' && hasRoom();
+    connection?.classList.toggle('connected', connected);
+    if (connection) connection.textContent = connected ? 'Live sync on' : 'Local preview';
+    const patient = activeMonitoredPatient();
+    const messages = (state.incomingMessages || []).slice(0, 5);
+    if (!messages.length) {
+      list.innerHTML = `<div class="conversation-empty">No messages yet. Send a note to ${patient.name.split(' ')[0]} to start the conversation.</div>`;
       return;
     }
-    const names = { maria: 'Maria Gomez', alan: 'Alan Walker' };
-    addTimeline(`Caregiver previewed ${names[key] || 'another patient'} in multi-patient monitor.`, key === 'alan' ? 'important' : 'info');
+    list.innerHTML = messages.map(message => `
+      <article class="conversation-item caregiver"><strong>${message.from || 'Caregiver'}</strong><span>${message.text || 'Update sent'}</span><small>${message.time || 'Now'} · ${message.opened ? 'Opened' : 'Delivered'}</small></article>
+      ${message.reply ? `<article class="conversation-item patient"><strong>${patient.name}</strong><span>${message.reply}</span><small>${message.replyAt || 'Now'} · Shared reply</small></article>` : ''}
+    `).join('');
   }
 
   function collectSetupProfile() {
@@ -847,21 +913,26 @@
   }
 
   function sendContent(text) {
+    const patient = activeMonitoredPatient();
+    const sender = profile().caregiverName || 'Caregiver';
+    const messageText = text.replace(/^Sarah sent a message:\s*/i, '');
     state.currentStatus = 'New family content received';
     state.incomingMessages.unshift({
       type: text.toLowerCase().includes('photo') ? 'photo' : text.toLowerCase().includes('podcast') ? 'podcast' : 'message',
-      from: 'Sarah',
-      text: text.replace(/^Sarah sent a message:\s*/i, ''),
+      from: sender,
+      text: messageText,
       time: nowLabel(),
       opened: false
     });
     state.incomingMessages = state.incomingMessages.slice(0, 10);
     addTimeline(text, 'info');
-    postRoom('message', {
-      from: 'Sarah',
+    if (selectedPatientKey === 'robert') postRoom('message', {
+      from: sender,
       type: text.toLowerCase().includes('photo') ? 'photo' : text.toLowerCase().includes('podcast') ? 'podcast' : 'message',
-      text: text.replace(/^Sarah sent a message:\s*/i, '')
+      text: messageText
     }).catch(() => updatePairingUi('Connection problem. Retrying.'));
+    updatePairingUi(`Message delivered to ${patient.name}.`);
+    renderCaregiverWorkspace();
     showPatientScreen('relax');
   }
 
@@ -1043,6 +1114,7 @@
         }
       }
     }
+    renderCaregiverWorkspace();
   }
 
   function showPatientNotice(message) {
@@ -1342,6 +1414,11 @@
     updatePairingUi('Type your message, then tap Send Now.');
     field.focus();
   });
+  document.getElementById('messageActivePatient')?.addEventListener('click', () => {
+    const field = document.getElementById('caregiverMessage');
+    field?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    field?.focus();
+  });
 
   document.getElementById('clearDemo').addEventListener('click', resetDemoState);
 
@@ -1435,6 +1512,7 @@
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || 'Pairing code not found.');
       roomCode = inputCode;
+      roomVerified = true;
       state.syncCode = roomCode;
       localStorage.setItem(roomStorageKey, roomCode);
       updateUrlCode();
