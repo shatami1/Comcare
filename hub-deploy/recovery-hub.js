@@ -966,7 +966,7 @@
 
   function sendContent(text) {
     const patient = activeMonitoredPatient();
-    const sender = profile().caregiverName || 'Caregiver';
+    const sender = initialRole === 'family' ? 'Family member' : (profile().caregiverName || 'Caregiver');
     const messageText = text.replace(/^Sarah sent a message:\s*/i, '');
     state.currentStatus = 'New family content received';
     state.incomingMessages.unshift({
@@ -1006,7 +1006,7 @@
     ];
     patientNameEls.forEach((el, index) => {
       if (!el) return;
-      el.textContent = index === 0 ? data.patientName : `${data.patientName}’s Recovery Hub`;
+      el.textContent = index === 0 ? data.patientName : initialRole === 'family' ? `${data.patientName}’s Family Hub` : `${data.patientName}’s Recovery Hub`;
     });
 
     const caregiverHeading = document.querySelector('[data-screen="caregiver"] h2');
@@ -1690,8 +1690,16 @@
   const familyJoinArea = document.getElementById('familyJoinArea');
   if (caregiverGenerateArea) caregiverGenerateArea.hidden = initialRole === 'family';
   if (familyJoinArea) familyJoinArea.hidden = initialRole !== 'family';
-  document.querySelector('.hub-shell').dataset.role = isCareCircleRole ? 'caregiver' : initialRole === 'setup' ? 'setup' : 'patient';
+  document.querySelector('.hub-shell').dataset.role = initialRole === 'family' ? 'family' : isCareCircleRole ? 'caregiver' : initialRole === 'setup' ? 'setup' : 'patient';
   setMode(isCareCircleRole ? 'caregiver' : initialRole === 'setup' ? 'setup' : 'patient');
+  if (initialRole === 'family') {
+    const eyebrow = document.querySelector('.caregiver-app-header .eyebrow');
+    const heading = document.querySelector('.caregiver-app-header h1');
+    const pageLabel = document.querySelector('.brand-lockup small');
+    if (eyebrow) eyebrow.textContent = 'Family Care Circle';
+    if (heading) heading.textContent = `${profile().patientName || 'Patient'} Family Hub`;
+    if (pageLabel) pageLabel.textContent = 'Family access to one paired patient';
+  }
   trackDemoOpen();
   updatePairingUi(hasRoom() ? `Paired with code ${roomCode}.` : 'Not paired yet.');
   startPolling();
