@@ -121,9 +121,9 @@
 
   <script>
     (() => {
-      document.getElementById('pairCode').textContent = 'CAREGIVER CREATES CODE';
+      document.getElementById('pairCode').textContent = 'GUIDED DEMO';
       document.querySelectorAll('[data-pair-link]').forEach(link => {
-        link.href = '/pair.html?role=' + (link.dataset.pairLink === 'caregiver' ? 'setup' : 'patient');
+        link.href = '/pair.html?role=' + link.dataset.pairLink + '&demo=1&tour=1';
       });
     })();
   </script>

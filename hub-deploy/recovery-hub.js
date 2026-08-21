@@ -78,6 +78,8 @@
   };
   const channel = 'BroadcastChannel' in window ? new BroadcastChannel('comcare-recovery-hub-demo') : null;
   const params = new URLSearchParams(window.location.search);
+  const demoMode = params.get('demo') === '1';
+  const tourMode = params.get('tour') === '1';
   const cleanPairMode = window.location.pathname.includes('/pair');
   const initialRole = params.get('role') || (cleanPairMode ? 'setup' : window.location.pathname.includes('caregiver') ? 'caregiver' : 'patient');
   const roomStorageKey = 'comcareRecoveryHubPairCode';
@@ -667,6 +669,56 @@
       <article class="conversation-item caregiver"><strong>${message.from || 'Caregiver'}</strong><span>${message.text || 'Update sent'}</span><small>${message.time || 'Now'} · ${message.opened ? 'Opened' : 'Delivered'}</small></article>
       ${message.reply ? `<article class="conversation-item patient"><strong>${patient.name}</strong><span>${message.reply}</span><small>${message.replyAt || 'Now'} · Shared reply</small></article>` : ''}
     `).join('');
+  }
+
+  function startGuidedRoleDemo() {
+    const roleName = initialRole === 'caregiver' ? 'Caregiver' : 'Patient';
+    const slides = initialRole === 'caregiver' ? [
+      { icon: '1', label: 'CAREGIVER OVERVIEW', title: 'Your connected patient workspace', text: 'Open a patient card to see current status, today’s plan, alerts, and the latest Care Circle activity.', target: '#activePatientWorkspace' },
+      { icon: '2', label: 'SEND', title: 'Send a simple update', text: 'Choose the patient, write a message, or use a quick action. The update appears on the patient screen and in the shared conversation.', target: '#caregiverMessage' },
+      { icon: '3', label: 'RECEIVE', title: 'See patient replies and requests', text: 'Patient replies, I’m Okay updates, and help requests return to this dashboard with a clear time and response state.', target: '#sharedConversationMessages' },
+      { icon: '4', label: 'SHARED CARE CIRCLE', title: 'Everyone follows the same story', text: 'Approved family and caregivers use the same code and see the shared plan, messages, replies, and activity.', target: '#careConnectionBanner' }
+    ] : [
+      { icon: '1', label: 'PATIENT OVERVIEW', title: 'A calm home screen with clear choices', text: 'The patient starts with large buttons for today’s plan, family contact, comfort content, profile, and help.', target: '.patient-home-screen' },
+      { icon: '2', label: 'SEND', title: 'Send an update with one tap', text: 'The patient can say I’m Okay, request a call, answer the daily question, or ask for help without typing.', target: '[data-patient-ok]' },
+      { icon: '3', label: 'RECEIVE', title: 'Caregiver messages are easy to notice', text: 'Incoming messages open in a clear alert with the caregiver name, message, time, and large reply choices.', target: '#patientIncomingCard' },
+      { icon: '4', label: 'REPLY', title: 'The Care Circle sees the response', text: 'A one-tap reply is shared back to the caregiver and family conversation, so both sides know it was received.', target: '#patientAlertModal' }
+    ];
+    let index = 0;
+    const modal = document.createElement('section');
+    modal.className = 'demo-tour';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', `${roleName} guided demo`);
+    modal.innerHTML = `<div class="demo-tour-card"><div class="demo-tour-progress"></div><div class="demo-tour-body"><span class="demo-tour-icon"></span><div class="demo-tour-label"></div><h2></h2><p></p></div><div class="demo-tour-actions"><button type="button" class="demo-tour-skip">Explore demo</button><button type="button" class="demo-tour-next">Next</button></div></div>`;
+    document.body.appendChild(modal);
+    const launch = document.createElement('button');
+    launch.type = 'button';
+    launch.className = 'demo-tour-launch';
+    launch.textContent = `Replay ${roleName} Tour`;
+    document.body.appendChild(launch);
+    const showTarget = slide => {
+      document.querySelectorAll('.demo-highlight').forEach(el => el.classList.remove('demo-highlight'));
+      if (initialRole === 'patient' && index === 2) showPatientScreen('relax');
+      if (initialRole === 'patient' && index === 0) showPatientScreen('home');
+      const target = document.querySelector(slide.target);
+      target?.classList.add('demo-highlight');
+    };
+    const render = () => {
+      const slide = slides[index];
+      modal.querySelector('.demo-tour-progress').innerHTML = slides.map((_, i) => `<i class="${i <= index ? 'active' : ''}"></i>`).join('');
+      modal.querySelector('.demo-tour-icon').textContent = slide.icon;
+      modal.querySelector('.demo-tour-label').textContent = slide.label;
+      modal.querySelector('h2').textContent = slide.title;
+      modal.querySelector('.demo-tour-body p').textContent = slide.text;
+      modal.querySelector('.demo-tour-next').textContent = index === slides.length - 1 ? 'Start Exploring' : 'Next';
+      showTarget(slide);
+    };
+    const close = () => { modal.hidden = true; document.querySelectorAll('.demo-highlight').forEach(el => el.classList.remove('demo-highlight')); };
+    modal.querySelector('.demo-tour-skip').addEventListener('click', close);
+    modal.querySelector('.demo-tour-next').addEventListener('click', () => { if (index === slides.length - 1) close(); else { index += 1; render(); } });
+    launch.addEventListener('click', () => { index = 0; modal.hidden = false; render(); });
+    render();
   }
 
   function collectSetupProfile() {
@@ -1644,6 +1696,12 @@
   updatePairingUi(hasRoom() ? `Paired with code ${roomCode}.` : 'Not paired yet.');
   startPolling();
   renderState();
+  if (demoMode && initialRole === 'caregiver' && !hasRoom()) {
+    loadDemoSetup().catch(() => updatePairingUi('Demo loaded locally.'));
+  }
+  if (demoMode && tourMode) {
+    window.setTimeout(startGuidedRoleDemo, 250);
+  }
   if (
     initialRole === 'patient'
     && hasRoom()
