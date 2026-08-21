@@ -714,7 +714,14 @@
       modal.querySelector('.demo-tour-next').textContent = index === slides.length - 1 ? 'Start Exploring' : 'Next';
       showTarget(slide);
     };
-    const close = () => { modal.hidden = true; document.querySelectorAll('.demo-highlight').forEach(el => el.classList.remove('demo-highlight')); };
+    const close = () => {
+      modal.hidden = true;
+      document.querySelectorAll('.demo-highlight').forEach(el => el.classList.remove('demo-highlight'));
+      if (initialRole === 'patient') {
+        showPatientScreen('home');
+        document.querySelector('.patient-home-screen')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    };
     modal.querySelector('.demo-tour-skip').addEventListener('click', close);
     modal.querySelector('.demo-tour-next').addEventListener('click', () => { if (index === slides.length - 1) close(); else { index += 1; render(); } });
     launch.addEventListener('click', () => { index = 0; modal.hidden = false; render(); });
