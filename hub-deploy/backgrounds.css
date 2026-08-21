@@ -113,3 +113,5 @@ body{font-family:"Nunito Sans","Segoe UI",sans-serif;-webkit-font-smoothing:anti
   .site-header .header-cta{min-height:54px;padding:0 15px;font-size:.9rem}
 }
 .hero-actions{flex-wrap:wrap}.family-button{border-color:#f58220;color:#bd5814}
+.hero>.experience-selector{grid-column:1/-1;justify-self:center;justify-content:center;align-items:stretch;width:100%;margin:0 0 8px;padding:10px 0 4px}.hero>.experience-selector .button{min-width:210px;justify-content:center;text-align:center;border-radius:13px}.hero>.experience-selector .primary{justify-content:space-between}
+@media(max-width:700px){.hero>.experience-selector{display:grid;grid-template-columns:1fr;margin-bottom:4px}.hero>.experience-selector .button{width:100%;min-width:0}}
