@@ -911,7 +911,7 @@
     const alertMeta = document.getElementById('caregiverAlertMeta');
     const patientRequestStatus = document.getElementById('patientRequestStatus');
 
-    if (state.helpRequest) {
+    if (state.helpRequest && alertCard && alertTitle && alertMeta && patientRequestStatus) {
       alertCard.hidden = false;
       alertTitle.textContent = `${data.patientName || 'Patient'} needs help now: ${state.helpRequest.reason}`;
       alertMeta.textContent = `${state.helpRequest.status} at ${state.helpRequest.createdAt}. Station status: Online.`;
@@ -928,7 +928,7 @@
           <p>Request type: ${state.helpRequest.reason}. Sent at: ${state.helpRequest.createdAt}.</p>
         `;
       }
-    } else {
+    } else if (alertCard && patientRequestStatus) {
       alertCard.hidden = true;
       patientRequestStatus.innerHTML = `
         <strong>No active help request.</strong>
@@ -938,16 +938,21 @@
     updateCaregiverAlertBeep();
 
     const medicationStatus = document.getElementById('medStatus');
-    const medicationEvent = state.timeline.find(item => item.text.includes('Morning medication confirmed'));
-    medicationStatus.textContent = medicationEvent ? medicationEvent.text : 'Waiting for response';
+    const safeTimeline = Array.isArray(state.timeline) ? state.timeline : [];
+    const medicationEvent = safeTimeline.find(item => item.text.includes('Morning medication confirmed'));
+    if (medicationStatus) {
+      medicationStatus.textContent = medicationEvent ? medicationEvent.text : 'Waiting for response';
+    }
 
     const timeline = document.getElementById('activityTimeline');
-    timeline.innerHTML = state.timeline.map(item => `
-      <article class="timeline-item ${item.level || 'info'}">
-        <span class="timeline-time">${item.time || 'Now'}</span>
-        <span class="timeline-text">${item.text}</span>
-      </article>
-    `).join('');
+    if (timeline) {
+      timeline.innerHTML = safeTimeline.map(item => `
+        <article class="timeline-item ${item.level || 'info'}">
+          <span class="timeline-time">${item.time || 'Now'}</span>
+          <span class="timeline-text">${item.text}</span>
+        </article>
+      `).join('');
+    }
 
     const latestMessage = state.incomingMessages && state.incomingMessages[0];
     const incomingCard = document.getElementById('patientIncomingCard');
@@ -1092,6 +1097,14 @@
   }
 
   function receiveExternalState(nextState) {
+    nextState = {
+      ...defaultState,
+      ...(nextState || {}),
+      profile: { ...defaultState.profile, ...(nextState?.profile || {}) },
+      timeline: Array.isArray(nextState?.timeline) ? nextState.timeline : [],
+      incomingMessages: Array.isArray(nextState?.incomingMessages) ? nextState.incomingMessages : [],
+      careCircleMembers: Array.isArray(nextState?.careCircleMembers) ? nextState.careCircleMembers : []
+    };
     const incomingProfile = { ...defaultState.profile, ...(nextState.profile || {}) };
     const cachedProfile = loadCachedProfile();
     const cachedTime = Number(cachedProfile?.updatedAt || 0);
