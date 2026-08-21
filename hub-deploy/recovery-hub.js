@@ -871,6 +871,10 @@
     fillSetupForm(demoProfile);
     if (status && hasRoom()) {
       status.textContent = `Demo ready. Share code ${roomCode} with the patient and approved family members.`;
+      const floatingCode = document.getElementById('demoPairCodeFloat');
+      const floatingCodeValue = floatingCode?.querySelector('strong');
+      if (floatingCodeValue) floatingCodeValue.textContent = formatSyncCode(roomCode);
+      if (floatingCode) floatingCode.hidden = false;
     }
   }
 
@@ -1402,6 +1406,10 @@
       const status = document.getElementById('setupSaveStatus');
       if (status) status.textContent = error.message || 'Unable to load the demo. Please try again.';
     });
+  });
+  document.getElementById('demoPairCodeFloat')?.addEventListener('click', () => {
+    setMode('caregiver');
+    document.querySelector('.caregiver-code-card')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
 
   document.getElementById('openSpotifyRelax').addEventListener('click', openSpotifyRelax);
