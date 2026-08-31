@@ -48,7 +48,12 @@ function cloneSeed() {
 }
 
 function normalizeOpportunity(item) {
-  return { email: '', ...item };
+  return {
+    email: '',
+    emailSent: ['Contacted', 'Follow-up', 'Live'].includes(item.status),
+    emailSentAt: '',
+    ...item
+  };
 }
 
 function load() {
@@ -103,8 +108,8 @@ function render() {
   $('contactedCount').textContent = opportunities.filter((item) => ['Contacted', 'Follow-up', 'Live'].includes(item.status)).length;
   $('liveCount').textContent = opportunities.filter((item) => item.status === 'Live').length;
   $('opportunityRows').innerHTML = rows.length
-    ? rows.map((item) => `<tr><td><span class="score ${item.score < 75 ? 'mid' : ''}">${item.score}</span></td><td><a href="${esc(item.url)}" target="_blank" rel="noopener">${esc(item.name)}</a><span class="org-location">${esc(item.location)}${item.email ? ` - ${esc(item.email)}` : ''}</span></td><td>${esc(item.category)}</td><td>${esc(item.action)}</td><td><select class="status-select" data-status="${item.id}">${STATUSES.map((status) => `<option ${status === item.status ? 'selected' : ''}>${status}</option>`).join('')}</select></td><td><div class="tool-row"><button class="tool" data-message="${item.id}">Send</button><button class="tool" data-edit="${item.id}">Edit</button></div></td></tr>`).join('')
-    : '<tr><td colspan="6" class="empty">No opportunities match these filters.</td></tr>';
+    ? rows.map((item) => `<tr><td><span class="score ${item.score < 75 ? 'mid' : ''}">${item.score}</span></td><td><a href="${esc(item.url)}" target="_blank" rel="noopener">${esc(item.name)}</a><span class="org-location">${esc(item.location)}${item.email ? ` - ${esc(item.email)}` : ''}</span></td><td>${esc(item.category)}</td><td>${esc(item.action)}</td><td><select class="status-select" data-status="${item.id}">${STATUSES.map((status) => `<option ${status === item.status ? 'selected' : ''}>${status}</option>`).join('')}</select></td><td><label class="sent-check"><input type="checkbox" data-email-sent="${item.id}" ${item.emailSent ? 'checked' : ''}><span>${item.emailSent ? 'Sent' : 'Not sent'}</span></label>${item.emailSentAt ? `<small class="sent-date">${esc(item.emailSentAt.slice(0, 10))}</small>` : ''}</td><td><div class="tool-row"><button class="tool" data-message="${item.id}">Send</button><button class="tool" data-edit="${item.id}">Edit</button></div></td></tr>`).join('')
+    : '<tr><td colspan="7" class="empty">No opportunities match these filters.</td></tr>';
 }
 
 function openEdit(id) {
@@ -161,12 +166,26 @@ function updateEmailOnOpportunity(item, email) {
 function markContacted(item) {
   if (!item) return;
   item.status = 'Contacted';
+  item.emailSent = true;
+  item.emailSentAt = new Date().toISOString();
   save();
 }
 
 document.addEventListener('change', (event) => {
   if (event.target.matches('[data-status]')) {
-    opportunities.find((item) => item.id === Number(event.target.dataset.status)).status = event.target.value;
+    const item = opportunities.find((entry) => entry.id === Number(event.target.dataset.status));
+    item.status = event.target.value;
+    if (['Contacted', 'Follow-up', 'Live'].includes(item.status) && !item.emailSent) {
+      item.emailSent = true;
+      item.emailSentAt = new Date().toISOString();
+    }
+    save();
+  }
+  if (event.target.matches('[data-email-sent]')) {
+    const item = opportunities.find((entry) => entry.id === Number(event.target.dataset.emailSent));
+    item.emailSent = event.target.checked;
+    item.emailSentAt = event.target.checked ? (item.emailSentAt || new Date().toISOString()) : '';
+    if (event.target.checked && item.status === 'Approved') item.status = 'Contacted';
     save();
   }
 });
@@ -269,8 +288,8 @@ $('resetData').onclick = () => {
 };
 
 $('exportCsv').onclick = () => {
-  const headers = ['Score', 'Organization', 'Website', 'Email', 'Category', 'Location', 'Suggested Action', 'Status', 'Notes'];
-  const values = opportunities.map((item) => [item.score, item.name, item.url, item.email, item.category, item.location, item.action, item.status, item.notes]);
+  const headers = ['Score', 'Organization', 'Website', 'Email', 'Email Sent', 'Email Sent Date', 'Category', 'Location', 'Suggested Action', 'Status', 'Notes'];
+  const values = opportunities.map((item) => [item.score, item.name, item.url, item.email, item.emailSent ? 'Yes' : 'No', item.emailSentAt || '', item.category, item.location, item.action, item.status, item.notes]);
   const csv = [headers, ...values]
     .map((row) => row.map((value) => `"${String(value ?? '').replaceAll('"', '""')}"`).join(','))
     .join('\n');
