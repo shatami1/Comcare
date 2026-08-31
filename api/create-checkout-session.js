@@ -31,6 +31,28 @@ const RECOVERY_PACKAGE_SUBSCRIPTIONS = {
     }
 };
 
+function createIdempotencyKey() {
+    if (typeof crypto.randomUUID === 'function') {
+        return crypto.randomUUID();
+    }
+
+    return crypto.randomBytes(16).toString('hex');
+}
+
+function getRequestBody(req) {
+    const body = req.body || {};
+
+    if (Buffer.isBuffer(body)) {
+        return JSON.parse(body.toString('utf8') || '{}');
+    }
+
+    if (typeof body === 'string') {
+        return JSON.parse(body || '{}');
+    }
+
+    return body;
+}
+
 function getBaseUrl(req, origin) {
     const candidate = origin || req?.headers?.origin || req?.headers?.referer || 'https://comcare.store';
     try {
@@ -56,6 +78,22 @@ function getSquareConfig() {
         locationId: process.env.SQUARE_LOCATION_ID,
         applicationId: process.env.SQUARE_APPLICATION_ID
     };
+}
+
+function getSquareConfigIssue({ accessToken, locationId }) {
+    const tokenLooksPlaceholder = !accessToken
+        || /your_|placeholder|access_token_here/i.test(accessToken);
+    if (tokenLooksPlaceholder) {
+        return 'Square access token is missing or still a placeholder. Add a real Square Production Access Token as SQUARE_ACCESS_TOKEN in Vercel.';
+    }
+
+    const locationLooksPlaceholder = !locationId
+        || /your_|placeholder|location_id_here/i.test(locationId);
+    if (locationLooksPlaceholder) {
+        return 'Square location ID is missing or still a placeholder. Add the matching Square Production Location ID as SQUARE_LOCATION_ID in Vercel.';
+    }
+
+    return '';
 }
 
 function buildSquareLineItems(items) {
@@ -105,7 +143,7 @@ function buildSubscriptionCheckoutBody(subscription, req, locationId) {
     const baseUrl = getBaseUrl(req);
     return {
         body: {
-            idempotency_key: crypto.randomUUID(),
+            idempotency_key: createIdempotencyKey(),
             quick_pay: {
                 name: `${recoveryPackage.name} Monthly Recovery Support`,
                 price_money: {
@@ -128,10 +166,11 @@ function buildSubscriptionCheckoutBody(subscription, req, locationId) {
 
 async function createRecoverySubscriptionCheckout(subscription, req) {
     const { accessToken, locationId } = getSquareConfig();
+    const configIssue = getSquareConfigIssue({ accessToken, locationId });
 
-    if (!accessToken || !locationId) {
+    if (configIssue) {
         return {
-            error: 'Server configuration error. Missing Square access token or location ID.'
+            error: configIssue
         };
     }
 
@@ -177,10 +216,11 @@ async function createRecoverySubscriptionCheckout(subscription, req) {
 
 async function createCheckoutSession(items, req) {
     const { accessToken, locationId } = getSquareConfig();
+    const configIssue = getSquareConfigIssue({ accessToken, locationId });
 
-    if (!accessToken || !locationId) {
+    if (configIssue) {
         return {
-            error: 'Server configuration error. Missing Square access token or location ID.'
+            error: configIssue
         };
     }
 
@@ -193,7 +233,7 @@ async function createCheckoutSession(items, req) {
 
     const baseUrl = getBaseUrl(req);
     const body = {
-        idempotency_key: crypto.randomUUID(),
+        idempotency_key: createIdempotencyKey(),
         description: 'Comcare mobility equipment rental checkout',
         order: {
             location_id: locationId,
@@ -255,7 +295,7 @@ module.exports = async (req, res) => {
     }
 
     try {
-        const { items, subscription } = req.body || {};
+        const { items, subscription } = getRequestBody(req);
         const result = subscription
             ? await createRecoverySubscriptionCheckout(subscription, req)
             : await createCheckoutSession(items, req);
@@ -266,6 +306,6 @@ module.exports = async (req, res) => {
             res.status(200).json(result);
         }
     } catch (error) {
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({ error: error.message || 'Internal server error' });
     }
 };

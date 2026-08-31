@@ -7,14 +7,31 @@ function sanitizeSquareErrorMessage(payload, fallback = 'Square checkout validat
     return detail ? `Square checkout issue: ${detail}` : fallback;
 }
 
+function getSquareConfigIssue({ accessToken, locationId }) {
+    const tokenLooksPlaceholder = !accessToken
+        || /your_|placeholder|access_token_here/i.test(accessToken);
+    if (tokenLooksPlaceholder) {
+        return 'Square access token is missing or still a placeholder. Add a real Square Production Access Token as SQUARE_ACCESS_TOKEN in Vercel.';
+    }
+
+    const locationLooksPlaceholder = !locationId
+        || /your_|placeholder|location_id_here/i.test(locationId);
+    if (locationLooksPlaceholder) {
+        return 'Square location ID is missing or still a placeholder. Add the matching Square Production Location ID as SQUARE_LOCATION_ID in Vercel.';
+    }
+
+    return '';
+}
+
 async function getCheckoutHealthStatus() {
     const accessToken = process.env.SQUARE_ACCESS_TOKEN;
     const locationId = process.env.SQUARE_LOCATION_ID;
+    const configIssue = getSquareConfigIssue({ accessToken, locationId });
 
-    if (!accessToken || !locationId) {
+    if (configIssue) {
         return {
             status: 'error',
-            message: 'Missing SQUARE_ACCESS_TOKEN or SQUARE_LOCATION_ID environment variable.'
+            message: configIssue
         };
     }
 

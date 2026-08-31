@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order - Comfort Care</title>
-    <link rel="stylesheet" href="styles.css?v=image-sizing-20260611-double">
+    <link rel="stylesheet" href="styles.css?v=order-ai-hidden-20260830">
 </head>
 <body>
     <!-- Navigation -->
@@ -30,7 +30,6 @@
                     <li><a href="home.html" id="navHome">Home</a></li>
                 <li><a href="services.html" id="navServices">Services</a></li>
                 <li><a href="order.html" class="active" id="navOrder">Order</a></li>
-                <li><a href="home-care-packages.html" id="navPackages">Buy Packages</a></li>
                 <li><a href="pricing.html" id="navCart">Cart</a></li>
                 <li><a href="payment.html" id="navPayment">Payments</a></li>
                 <li><a href="insurance-form.html" id="navInsurance">Insurance</a></li>
@@ -59,17 +58,16 @@
             </div>
             <div class="nav-cart">
                 <div class="cart-box" aria-live="polite">
-                    <span class="cart-box-title">Cart</span>
+                    <span class="cart-box-title">Quote Request</span>
                     <span class="cart-box-detail">
-                        <span id="headerCartCount">0 items</span>
-                        <span class="cart-box-sep">|</span>
-                        <span id="headerCartTotal">$0.00</span>
+                        <span id="headerCartCount">Ask for current availability</span>
+                        <span class="cart-box-sep"></span>
+                        <span id="headerCartTotal"></span>
                     </span>
                 </div>
                 <div class="nav-cart-main">
-                    <a href="order.html" class="btn btn-secondary btn-compact edit-cart-link">Edit Cart</a>
-                    <a href="pricing.html" class="btn btn-primary btn-compact">Pay</a>
-                    <a href="mailto:admin@comcare.store?cc=accentGV%40gmail.com" class="btn btn-discount btn-mini" style="margin-top:8px;display:block;">Email Cart for Discounts</a>
+                    <a href="one-touch-solution.html" class="btn btn-primary btn-compact">One Touch Request</a>
+                    <a href="mailto:admin@comcare.store?cc=accentGV%40gmail.com" class="btn btn-discount btn-mini" style="margin-top:8px;display:block;">Email Comfort Care</a>
                 </div>
             </div>
             <button class="hamburger" id="hamburger">
@@ -84,8 +82,8 @@
     <!-- Page Header -->
     <section class="page-header">
         <div class="container">
-            <h1>Weekly and Monthly Rentals</h1>
-            <p>Medline-sourced home medical equipment rentals. Weekly rentals have been removed.</p>
+            <h1>Request Equipment Information</h1>
+            <p>Browse available equipment categories and ask Comfort Care for current availability, pricing, and delivery options.</p>
         </div>
     </section>
 
@@ -93,563 +91,305 @@
     <section class="order-page">
         <div class="container">
             <div class="order-layout">
-                <div class="order-intro" style="display: flex; align-items: center; justify-content: space-between;">
+                <div class="order-intro order-intro-stable">
                     <div>
-                        <h2 style="margin-bottom: 8px;">Add weekly or monthly rentals to your cart</h2>
-                        <p class="form-note">Minimum rental term is one week. Delivery, setup, pickup, cleaning, taxes, and damage charges may be separate.</p>
-                        <a href="pricing.html" class="btn btn-light">Back to Pricing</a>
+                        <h2 style="margin-bottom: 8px;">Choose rental items for your cart</h2>
+                        <p class="order-compliance-note">Rental rates are shown for planning. Add items to your cart, then continue to the pay page for secure Square checkout. Purchase/sell pricing is not published here.</p>
+                        <a href="one-touch-solution.html" class="btn btn-light">Open One Touch Request</a>
                     </div>
-                    <div style="margin-left: 32px; text-align: center;">
+                    <div class="order-future-card">
                         <a href="Order/future-products.html" title="View Future Products">
                             <img src="Order/noname_3.jpg" alt="Future Products" style="width:80px;height:80px;border-radius:16px;box-shadow:0 2px 8px #0002;vertical-align:middle;">
                             <div style="font-size:1.1em;color:#2a4d69;margin-top:8px;">See Future Products</div>
                         </a>
                     </div>
                 </div>
+                <aside class="pricing-cart order-page-cart" aria-label="Cart summary">
+                    <div>
+                        <h3>Your rental cart</h3>
+                        <p id="cartAddMessage" class="form-message" aria-live="polite"></p>
+                    </div>
+                    <div id="cartItems" class="cart-items">
+                        <p class="cart-empty">No items added yet.</p>
+                    </div>
+                    <div class="cart-summary">
+                        <span>Total</span>
+                        <strong id="cartTotal">$0.00</strong>
+                    </div>
+                    <div class="order-cart-actions">
+                        <a href="pricing.html#customerSection" class="btn btn-secondary btn-compact">Delivery Info</a>
+                        <a href="payment.html" class="btn btn-primary btn-compact">Go to Pay Page</a>
+                    </div>
+                    <p class="form-note">The pay page opens secure Square checkout for the items in your cart.</p>
+                </aside>
                 <div class="order-grid">
-                    <aside class="pricing-cart order-cart" aria-label="Order cart">
-                        <div id="cartItems" class="cart-items">
-                            <p class="cart-empty">No items added yet.</p>
-                        </div>
-                        <div class="cart-summary">
-                            <span>Total</span>
-                            <strong id="cartTotal">$0.00</strong>
-                        </div>
-                    </aside>
-                    <div class="pricing-table-wrapper" id="rental-price-chart">
+                    <div class="pricing-table-wrapper">
                     <table class="pricing-table">
                         <thead>
-<tr><th>Flyer Image</th><th>Equipment</th><th>Medline Item</th><th>Weekly Rental</th><th>Monthly Rental</th><th>Flyer-Matched Description</th><th>Order</th></tr>
-</thead>
-<tbody>
-<tr class="category-header"><td colspan="7">HOSPITAL BEDS</td></tr>
-<tr class="pricing-item" data-name="Standard Full-Electric Hospital Bed" data-model="MDR107003E" data-weekly="110" data-monthly="395">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Standard Full-Electric Hospital Bed from Medline flyer"><img src="images/medline-products/basic-homecare-bed.jpg" alt="Standard Full-Electric Hospital Bed from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Standard Full-Electric Hospital Bed</td>
-<td>MDR107003E</td>
-<td>$110</td>
-<td>$395</td>
-<td>Basic Homecare Full-Electric Bed; 450 lb capacity; 15 in. to 20 in. height range.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Standard Full-Electric Hospital Bed"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Standard Full-Electric Hospital Bed"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Low Full-Electric Hospital Bed" data-model="MDR107003ELO" data-weekly="125" data-monthly="450">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Low Full-Electric Hospital Bed from Medline flyer"><img src="images/medline-products/low-homecare-bed.jpg" alt="Low Full-Electric Hospital Bed from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Low Full-Electric Hospital Bed</td>
-<td>MDR107003ELO</td>
-<td>$125</td>
-<td>$450</td>
-<td>Basic Homecare Low Full-Electric Bed; 450 lb capacity; 9.5 in. to 22.5 in. height range.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Low Full-Electric Hospital Bed"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Low Full-Electric Hospital Bed"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Bariatric Full-Electric Hospital Bed" data-model="MDR107004L" data-weekly="175" data-monthly="625">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Bariatric Full-Electric Hospital Bed from Medline flyer"><img src="images/medline-products/bariatric-bed.jpg" alt="Bariatric Full-Electric Hospital Bed from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Bariatric Full-Electric Hospital Bed</td>
-<td>MDR107004L</td>
-<td>$175</td>
-<td>$625</td>
-<td>Lightweight bariatric full-electric homecare bed; 600 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Bariatric Full-Electric Hospital Bed"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Bariatric Full-Electric Hospital Bed"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="MedLite Low Full-Electric Homecare Bed" data-model="MDR107003LO" data-weekly="135" data-monthly="475">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for MedLite Low Full-Electric Homecare Bed from Medline flyer"><img src="images/medline-products/medlite-bed.jpg" alt="MedLite Low Full-Electric Homecare Bed from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>MedLite Low Full-Electric Homecare Bed</td>
-<td>MDR107003LO</td>
-<td>$135</td>
-<td>$475</td>
-<td>MedLite low full-electric bed; 450 lb capacity; mattress sold separately.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for MedLite Low Full-Electric Homecare Bed"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for MedLite Low Full-Electric Homecare Bed"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="category-header"><td colspan="7">BED ACCESSORIES</td></tr>
-<tr class="pricing-item" data-name="Full Side Rails for Homecare Beds" data-model="MDS89694N" data-weekly="15" data-monthly="45">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Full Side Rails for Homecare Beds from Medline flyer"><img src="images/medline-products/bed-rails.jpg" alt="Full Side Rails for Homecare Beds from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Full Side Rails for Homecare Beds</td>
-<td>MDS89694N</td>
-<td>$15</td>
-<td>$45</td>
-<td>Spring-loaded 4-bar full side rail pair for Medline homecare beds.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Full Side Rails for Homecare Beds"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Full Side Rails for Homecare Beds"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Bariatric Half Side Rails" data-model="MDS89697BARL" data-weekly="18" data-monthly="55">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Bariatric Half Side Rails from Medline flyer"><img src="images/medline-products/bed-rails.jpg" alt="Bariatric Half Side Rails from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Bariatric Half Side Rails</td>
-<td>MDS89697BARL</td>
-<td>$18</td>
-<td>$55</td>
-<td>Bariatric half side rail pair for the Medline lightweight bariatric bed.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Bariatric Half Side Rails"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Bariatric Half Side Rails"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="category-header"><td colspan="7">MATTRESSES AND PRESSURE SUPPORT</td></tr>
-<tr class="pricing-item" data-name="Therapeutic Foam Mattress" data-model="MSCADVHC80" data-weekly="45" data-monthly="150">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Therapeutic Foam Mattress from Medline flyer"><img src="images/medline-products/foam-mattress.jpg" alt="Therapeutic Foam Mattress from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Therapeutic Foam Mattress</td>
-<td>MSCADVHC80</td>
-<td>$45</td>
-<td>$150</td>
-<td>Advantage Therapeutic Homecare Foam Mattress; 36 in. x 80 in.; 300 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Therapeutic Foam Mattress"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Therapeutic Foam Mattress"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Advantage 200 5-Zone Mattress" data-model="MSCADV0280" data-weekly="50" data-monthly="165">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Advantage 200 5-Zone Mattress from Medline flyer"><img src="images/medline-products/five-zone-mattress.jpg" alt="Advantage 200 5-Zone Mattress from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Advantage 200 5-Zone Mattress</td>
-<td>MSCADV0280</td>
-<td>$50</td>
-<td>$165</td>
-<td>Advantage 200 5-Zone Mattress; 36 in. x 80 in. x 6 in.; pressure redistribution.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Advantage 200 5-Zone Mattress"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Advantage 200 5-Zone Mattress"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Low Air Loss / Alternating Pressure Mattress System" data-model="MDT24A10" data-weekly="85" data-monthly="295">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Low Air Loss / Alternating Pressure Mattress System from Medline flyer"><img src="images/medline-products/a10-mattress.jpg" alt="Low Air Loss / Alternating Pressure Mattress System from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Low Air Loss / Alternating Pressure Mattress System</td>
-<td>MDT24A10</td>
-<td>$85</td>
-<td>$295</td>
-<td>A10 low air loss and alternating pressure mattress system; 440 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Low Air Loss / Alternating Pressure Mattress System"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Low Air Loss / Alternating Pressure Mattress System"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="AirOne Alternating Pressure Pump and Pad" data-model="MSCAIRONE" data-weekly="30" data-monthly="90">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for AirOne Alternating Pressure Pump and Pad from Medline flyer"><img src="images/medline-products/airone-overlay.jpg" alt="AirOne Alternating Pressure Pump and Pad from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>AirOne Alternating Pressure Pump and Pad</td>
-<td>MSCAIRONE</td>
-<td>$30</td>
-<td>$90</td>
-<td>Alternating-pressure pad with tubing and non-adjustable pump; 250 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for AirOne Alternating Pressure Pump and Pad"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for AirOne Alternating Pressure Pump and Pad"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Convoluted Gel Foam Overlay" data-model="MSCGELOVE" data-weekly="35" data-monthly="105">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Convoluted Gel Foam Overlay from Medline flyer"><img src="images/medline-products/gel-overlay.jpg" alt="Convoluted Gel Foam Overlay from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Convoluted Gel Foam Overlay</td>
-<td>MSCGELOVE</td>
-<td>$35</td>
-<td>$105</td>
-<td>Convoluted gel foam overlay; 34 in. x 76 in. x 3 in.; 300 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Convoluted Gel Foam Overlay"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Convoluted Gel Foam Overlay"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="category-header"><td colspan="7">ROOM EQUIPMENT</td></tr>
-<tr class="pricing-item" data-name="Composite H-Base Overbed Table" data-model="MDS107015" data-weekly="18" data-monthly="55">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Composite H-Base Overbed Table from Medline flyer"><img src="images/medline-products/overbed-table.jpg" alt="Composite H-Base Overbed Table from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Composite H-Base Overbed Table</td>
-<td>MDS107015</td>
-<td>$18</td>
-<td>$55</td>
-<td>Overbed table with 30 in. x 15 in. composite top; 50 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Composite H-Base Overbed Table"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Composite H-Base Overbed Table"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="category-header"><td colspan="7">FALL PREVENTION</td></tr>
-<tr class="pricing-item" data-name="Beveled Edge Fall Mat" data-model="MDTFALLMATB / MDTFALLMATG" data-weekly="35" data-monthly="105">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Beveled Edge Fall Mat from Medline flyer"><img src="images/medline-products/beveled-fall-mat.jpg" alt="Beveled Edge Fall Mat from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Beveled Edge Fall Mat</td>
-<td>MDTFALLMATB / MDTFALLMATG</td>
-<td>$35</td>
-<td>$105</td>
-<td>24 in. x 70 in. x 3/4 in. beveled edge fall mat; brown or gray.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Beveled Edge Fall Mat"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Beveled Edge Fall Mat"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Folding Vinyl Fall Mat" data-model="MDTFM24662BI" data-weekly="35" data-monthly="105">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Folding Vinyl Fall Mat from Medline flyer"><img src="images/medline-products/vinyl-fall-mat.jpg" alt="Folding Vinyl Fall Mat from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Folding Vinyl Fall Mat</td>
-<td>MDTFM24662BI</td>
-<td>$35</td>
-<td>$105</td>
-<td>Bi-fold vinyl fall mat; 24 in. x 66 in. x 2 in.; easy storage.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Folding Vinyl Fall Mat"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Folding Vinyl Fall Mat"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Low-Bed Fall Mat" data-model="MDTLBFM24708" data-weekly="55" data-monthly="165">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Low-Bed Fall Mat from Medline flyer"><img src="images/medline-products/low-bed-fall-mat.jpg" alt="Low-Bed Fall Mat from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Low-Bed Fall Mat</td>
-<td>MDTLBFM24708</td>
-<td>$55</td>
-<td>$165</td>
-<td>Low-bed fall mat; 24 in. x 70 in. x 8 in.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Low-Bed Fall Mat"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Low-Bed Fall Mat"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="category-header"><td colspan="7">WHEELCHAIRS AND TRANSPORT CHAIRS</td></tr>
-<tr class="pricing-item" data-name="Basic Aluminum Transport Chair, 19 in." data-model="MDS808200ABE / MDS808200ARE" data-weekly="35" data-monthly="105">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Basic Aluminum Transport Chair, 19 in. from Medline flyer"><img src="images/medline-products/transport-chair-aluminum.jpg" alt="Basic Aluminum Transport Chair, 19 in. from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Basic Aluminum Transport Chair, 19 in.</td>
-<td>MDS808200ABE / MDS808200ARE</td>
-<td>$35</td>
-<td>$105</td>
-<td>Aluminum transport chair; 19 in. wide seat; 8 in. wheels; 300 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Basic Aluminum Transport Chair, 19 in."><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Basic Aluminum Transport Chair, 19 in."><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Aluminum Transport Chair, 12 in. Wheels" data-model="MDS808210ABE / MDS808210ARE" data-weekly="40" data-monthly="120">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Aluminum Transport Chair, 12 in. Wheels from Medline flyer"><img src="images/medline-products/transport-chair-aluminum.jpg" alt="Aluminum Transport Chair, 12 in. Wheels from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Aluminum Transport Chair, 12 in. Wheels</td>
-<td>MDS808210ABE / MDS808210ARE</td>
-<td>$40</td>
-<td>$120</td>
-<td>Aluminum transport chair; 19 in. wide seat; 12 in. wheels; 300 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Aluminum Transport Chair, 12 in. Wheels"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Aluminum Transport Chair, 12 in. Wheels"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Basic Steel Transport Chair, 19 in." data-model="TCS196N13SB / TCS196N13SR" data-weekly="30" data-monthly="95">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Basic Steel Transport Chair, 19 in. from Medline flyer"><img src="images/medline-products/transport-chair-steel.jpg" alt="Basic Steel Transport Chair, 19 in. from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Basic Steel Transport Chair, 19 in.</td>
-<td>TCS196N13SB / TCS196N13SR</td>
-<td>$30</td>
-<td>$95</td>
-<td>Steel transport chair; 19 in. wide seat; 8 in. wheels; 250 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Basic Steel Transport Chair, 19 in."><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Basic Steel Transport Chair, 19 in."><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Guardian K1 Wheelchair, 20 in." data-model="K1206N22S" data-weekly="40" data-monthly="120">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Guardian K1 Wheelchair, 20 in. from Medline flyer"><img src="images/medline-products/k1-wheelchair.jpg" alt="Guardian K1 Wheelchair, 20 in. from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Guardian K1 Wheelchair, 20 in.</td>
-<td>K1206N22S</td>
-<td>$40</td>
-<td>$120</td>
-<td>20 in. wide nylon wheelchair with swing-back desk-length arms and swing-away footrests.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Guardian K1 Wheelchair, 20 in."><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Guardian K1 Wheelchair, 20 in."><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Guardian K3 Wheelchair, 18 in." data-model="K3186N34S1" data-weekly="45" data-monthly="135">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Guardian K3 Wheelchair, 18 in. from Medline flyer"><img src="images/medline-products/k3-wheelchair.jpg" alt="Guardian K3 Wheelchair, 18 in. from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Guardian K3 Wheelchair, 18 in.</td>
-<td>K3186N34S1</td>
-<td>$45</td>
-<td>$135</td>
-<td>18 in. wide nylon wheelchair with swing-back height-adjustable desk-length arms and swing-away footrests.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Guardian K3 Wheelchair, 18 in."><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Guardian K3 Wheelchair, 18 in."><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Guardian K4 Wheelchair, 18 in." data-model="K4186N24E" data-weekly="50" data-monthly="150">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Guardian K4 Wheelchair, 18 in. from Medline flyer"><img src="images/medline-products/k4-wheelchair.jpg" alt="Guardian K4 Wheelchair, 18 in. from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Guardian K4 Wheelchair, 18 in.</td>
-<td>K4186N24E</td>
-<td>$50</td>
-<td>$150</td>
-<td>18 in. wide nylon wheelchair with swing-back desk-length arms and elevating footrests.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Guardian K4 Wheelchair, 18 in."><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Guardian K4 Wheelchair, 18 in."><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="category-header"><td colspan="7">WHEELCHAIR ACCESSORIES</td></tr>
-<tr class="pricing-item" data-name="Gel Foam Wheelchair Cushion, 18 x 16" data-model="MSCPRC21816" data-weekly="10" data-monthly="30">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Gel Foam Wheelchair Cushion, 18 x 16 from Medline flyer"><img src="images/medline-products/gel-foam-cushions.jpg" alt="Gel Foam Wheelchair Cushion, 18 x 16 from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Gel Foam Wheelchair Cushion, 18 x 16</td>
-<td>MSCPRC21816</td>
-<td>$10</td>
-<td>$30</td>
-<td>18 in. x 16 in. x 2 in. gel foam cushion for pressure redistribution; 300 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Gel Foam Wheelchair Cushion, 18 x 16"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Gel Foam Wheelchair Cushion, 18 x 16"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Comfort Foam Wheelchair Cushion, 18 x 16" data-model="MSCCOMF1816" data-weekly="10" data-monthly="30">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Comfort Foam Wheelchair Cushion, 18 x 16 from Medline flyer"><img src="images/medline-products/comfort-cushions.jpg" alt="Comfort Foam Wheelchair Cushion, 18 x 16 from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Comfort Foam Wheelchair Cushion, 18 x 16</td>
-<td>MSCCOMF1816</td>
-<td>$10</td>
-<td>$30</td>
-<td>18 in. x 16 in. comfort foam wheelchair cushion; 250 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Comfort Foam Wheelchair Cushion, 18 x 16"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Comfort Foam Wheelchair Cushion, 18 x 16"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Standard Back Cushion, 18 in." data-model="MSCBC18" data-weekly="10" data-monthly="30">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Standard Back Cushion, 18 in. from Medline flyer"><img src="images/medline-products/back-cushions.jpg" alt="Standard Back Cushion, 18 in. from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Standard Back Cushion, 18 in.</td>
-<td>MSCBC18</td>
-<td>$10</td>
-<td>$30</td>
-<td>Back cushion for standard wheelchairs; 18 in. wide.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Standard Back Cushion, 18 in."><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Standard Back Cushion, 18 in."><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="category-header"><td colspan="7">WALKERS</td></tr>
-<tr class="pricing-item" data-name="Folding Walker with 5 in. Wheels" data-model="MDS86410P5H1" data-weekly="15" data-monthly="45">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Folding Walker with 5 in. Wheels from Medline flyer"><img src="images/medline-products/paddle-walker.jpg" alt="Folding Walker with 5 in. Wheels from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Folding Walker with 5 in. Wheels</td>
-<td>MDS86410P5H1</td>
-<td>$15</td>
-<td>$45</td>
-<td>Folding paddle walker with 5 in. wheels; silver; 300 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Folding Walker with 5 in. Wheels"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Folding Walker with 5 in. Wheels"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Bariatric Two-Button Folding Walker" data-model="MDS86410XWWB" data-weekly="18" data-monthly="55">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Bariatric Two-Button Folding Walker from Medline flyer"><img src="images/medline-products/bariatric-walker.jpg" alt="Bariatric Two-Button Folding Walker from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Bariatric Two-Button Folding Walker</td>
-<td>MDS86410XWWB</td>
-<td>$18</td>
-<td>$55</td>
-<td>Bariatric steel two-button folding walker with 5 in. wheels; 650 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Bariatric Two-Button Folding Walker"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Bariatric Two-Button Folding Walker"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Upright Folding Walker" data-model="MDSUPWALK" data-weekly="25" data-monthly="75">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Upright Folding Walker from Medline flyer"><img src="images/medline-products/upright-walker.jpg" alt="Upright Folding Walker from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Upright Folding Walker</td>
-<td>MDSUPWALK</td>
-<td>$25</td>
-<td>$75</td>
-<td>Adult upright folding walker with 5 in. wheels; 300 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Upright Folding Walker"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Upright Folding Walker"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Junior Upright Folding Walker" data-model="MDSUPWALKJR" data-weekly="25" data-monthly="75">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Junior Upright Folding Walker from Medline flyer"><img src="images/medline-products/upright-walker.jpg" alt="Junior Upright Folding Walker from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Junior Upright Folding Walker</td>
-<td>MDSUPWALKJR</td>
-<td>$25</td>
-<td>$75</td>
-<td>Junior upright folding walker with 5 in. wheels; 300 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Junior Upright Folding Walker"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Junior Upright Folding Walker"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Hemi Walker" data-model="G07770X1" data-weekly="15" data-monthly="45">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Hemi Walker from Medline flyer"><img src="images/medline-products/hemi-walker.jpg" alt="Hemi Walker from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Hemi Walker</td>
-<td>G07770X1</td>
-<td>$15</td>
-<td>$45</td>
-<td>Sidestepper adult hemi walker; height adjustable from 32 in. to 36 in.; 250 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Hemi Walker"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Hemi Walker"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Folding Trigger Walker" data-model="MDS86410TRIG" data-weekly="18" data-monthly="55">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Folding Trigger Walker from Medline flyer"><img src="images/medline-products/trigger-walker.jpg" alt="Folding Trigger Walker from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Folding Trigger Walker</td>
-<td>MDS86410TRIG</td>
-<td>$18</td>
-<td>$55</td>
-<td>Folding trigger walker with 5 in. wheels; 300 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Folding Trigger Walker"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Folding Trigger Walker"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="category-header"><td colspan="7">ROLLATORS</td></tr>
-<tr class="pricing-item" data-name="Basic Steel Rollator" data-model="MDS86850EBS8" data-weekly="25" data-monthly="75">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Basic Steel Rollator from Medline flyer"><img src="images/medline-products/basic-rollator.jpg" alt="Basic Steel Rollator from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Basic Steel Rollator</td>
-<td>MDS86850EBS8</td>
-<td>$25</td>
-<td>$75</td>
-<td>Basic steel rollator with 8 in. wheels; blue; 350 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Basic Steel Rollator"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Basic Steel Rollator"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Tall Steel Rollator" data-model="RLL-100S-8BT" data-weekly="28" data-monthly="85">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Tall Steel Rollator from Medline flyer"><img src="images/medline-products/basic-rollator.jpg" alt="Tall Steel Rollator from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Tall Steel Rollator</td>
-<td>RLL-100S-8BT</td>
-<td>$28</td>
-<td>$85</td>
-<td>Steel rollator for tall individuals; 8 in. wheels; height adjustable 37 in. to 43 in.; 300 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Tall Steel Rollator"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Tall Steel Rollator"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Basic Aluminum Rollator, 8 in. Wheels" data-model="RLL-230A-8B / RLL-230A-8BG" data-weekly="28" data-monthly="85">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Basic Aluminum Rollator, 8 in. Wheels from Medline flyer"><img src="images/medline-products/aluminum-rollator.jpg" alt="Basic Aluminum Rollator, 8 in. Wheels from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Basic Aluminum Rollator, 8 in. Wheels</td>
-<td>RLL-230A-8B / RLL-230A-8BG</td>
-<td>$28</td>
-<td>$85</td>
-<td>Basic aluminum rollator with 8 in. wheels; blue or burgundy; 300 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Basic Aluminum Rollator, 8 in. Wheels"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Basic Aluminum Rollator, 8 in. Wheels"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Empower Rollator" data-model="MDS86845BM / MDS86845SM" data-weekly="50" data-monthly="150">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Empower Rollator from Medline flyer"><img src="images/medline-products/empower-rollator.jpg" alt="Empower Rollator from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Empower Rollator</td>
-<td>MDS86845BM / MDS86845SM</td>
-<td>$50</td>
-<td>$150</td>
-<td>Empower rollator with 8 in. wheels; blue, silver, or black; 300 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Empower Rollator"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Empower Rollator"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="European-Style Aluminum Rollator" data-model="RLL-75A-8BR / RLL-75A-8WR" data-weekly="35" data-monthly="105">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for European-Style Aluminum Rollator from Medline flyer"><img src="images/medline-products/euro-rollator.jpg" alt="European-Style Aluminum Rollator from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>European-Style Aluminum Rollator</td>
-<td>RLL-75A-8BR / RLL-75A-8WR</td>
-<td>$35</td>
-<td>$105</td>
-<td>Paradym European-style aluminum rollator; navy blue or white; 300 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for European-Style Aluminum Rollator"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for European-Style Aluminum Rollator"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="category-header"><td colspan="7">CANES AND CRUTCHES</td></tr>
-<tr class="pricing-item" data-name="Folding T-Handle Cane" data-model="MDS86430WH1 / MDS86430BH1" data-weekly="8" data-monthly="20">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Folding T-Handle Cane from Medline flyer"><img src="images/medline-products/folding-cane.jpg" alt="Folding T-Handle Cane from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Folding T-Handle Cane</td>
-<td>MDS86430WH1 / MDS86430BH1</td>
-<td>$8</td>
-<td>$20</td>
-<td>Folding T-handle aluminum cane; black or blue; 250 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Folding T-Handle Cane"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Folding T-Handle Cane"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="TriGlide Folding Cane" data-model="TGLCANEB" data-weekly="10" data-monthly="30">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for TriGlide Folding Cane from Medline flyer"><img src="images/medline-products/triglide-cane.jpg" alt="TriGlide Folding Cane from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>TriGlide Folding Cane</td>
-<td>TGLCANEB</td>
-<td>$10</td>
-<td>$30</td>
-<td>TriGlide folding cane; blue; 350 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for TriGlide Folding Cane"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for TriGlide Folding Cane"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Offset Handle Fashion Cane" data-model="MDS86420BLH1" data-weekly="8" data-monthly="25">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Offset Handle Fashion Cane from Medline flyer"><img src="images/medline-products/offset-cane.jpg" alt="Offset Handle Fashion Cane from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Offset Handle Fashion Cane</td>
-<td>MDS86420BLH1</td>
-<td>$8</td>
-<td>$25</td>
-<td>Offset handle aluminum fashion cane; blue; 300 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Offset Handle Fashion Cane"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Offset Handle Fashion Cane"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Large-Base Quad Cane" data-model="MDS86228F1" data-weekly="12" data-monthly="35">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Large-Base Quad Cane from Medline flyer"><img src="images/medline-products/quad-cane.jpg" alt="Large-Base Quad Cane from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Large-Base Quad Cane</td>
-<td>MDS86228F1</td>
-<td>$12</td>
-<td>$35</td>
-<td>Large-base quad cane; black aluminum; 300 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Large-Base Quad Cane"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Large-Base Quad Cane"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Quick-Fit Aluminum Crutches" data-model="MDS80540H1" data-weekly="15" data-monthly="45">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Quick-Fit Aluminum Crutches from Medline flyer"><img src="images/medline-products/crutches.jpg" alt="Quick-Fit Aluminum Crutches from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Quick-Fit Aluminum Crutches</td>
-<td>MDS80540H1</td>
-<td>$15</td>
-<td>$45</td>
-<td>3-in-1 universal aluminum crutches; fits 4 ft. 7 in. to 6 ft. 7 in.; 300 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Quick-Fit Aluminum Crutches"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Quick-Fit Aluminum Crutches"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="category-header"><td colspan="7">BATH SAFETY AND COMMODES</td></tr>
-<tr class="pricing-item" data-name="Shower Chair with Arms and Back" data-model="G2-105RX1" data-weekly="18" data-monthly="55">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Shower Chair with Arms and Back from Medline flyer"><img src="images/medline-products/shower-chair.jpg" alt="Shower Chair with Arms and Back from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Shower Chair with Arms and Back</td>
-<td>G2-105RX1</td>
-<td>$18</td>
-<td>$55</td>
-<td>Shower chair with backrest, arms, adjustable legs, and white plastic seat; 350 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Shower Chair with Arms and Back"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Shower Chair with Arms and Back"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Padded Transfer Bench" data-model="G3-100KBPX1" data-weekly="25" data-monthly="75">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Padded Transfer Bench from Medline flyer"><img src="images/medline-products/padded-transfer-bench.jpg" alt="Padded Transfer Bench from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Padded Transfer Bench</td>
-<td>G3-100KBPX1</td>
-<td>$25</td>
-<td>$75</td>
-<td>Padded transfer bench; 400 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Padded Transfer Bench"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Padded Transfer Bench"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Combination Transfer Bench and Commode" data-model="G3-101KBX1" data-weekly="25" data-monthly="75">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Combination Transfer Bench and Commode from Medline flyer"><img src="images/medline-products/transfer-bench-commode.jpg" alt="Combination Transfer Bench and Commode from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Combination Transfer Bench and Commode</td>
-<td>G3-101KBX1</td>
-<td>$25</td>
-<td>$75</td>
-<td>Transfer bench with commode cutout, suction cup feet, and side arm; 400 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Combination Transfer Bench and Commode"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Combination Transfer Bench and Commode"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Raised Toilet Seat" data-model="G4-500RX1" data-weekly="10" data-monthly="30">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Raised Toilet Seat from Medline flyer"><img src="images/medline-products/raised-toilet-seat.jpg" alt="Raised Toilet Seat from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Raised Toilet Seat</td>
-<td>G4-500RX1</td>
-<td>$10</td>
-<td>$30</td>
-<td>5 in. economy toilet seat riser with no lock; 400 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Raised Toilet Seat"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Raised Toilet Seat"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Locking Raised Toilet Seat" data-model="G4-400RX1" data-weekly="12" data-monthly="35">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Locking Raised Toilet Seat from Medline flyer"><img src="images/medline-products/locking-raised-toilet-seat.jpg" alt="Locking Raised Toilet Seat from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Locking Raised Toilet Seat</td>
-<td>G4-400RX1</td>
-<td>$12</td>
-<td>$35</td>
-<td>4 in. white raised toilet seat with side locks; 250 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Locking Raised Toilet Seat"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Locking Raised Toilet Seat"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Toilet Safety Rail" data-model="G5-100RX1" data-weekly="15" data-monthly="45">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Toilet Safety Rail from Medline flyer"><img src="images/medline-products/toilet-safety-rail.jpg" alt="Toilet Safety Rail from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Toilet Safety Rail</td>
-<td>G5-100RX1</td>
-<td>$15</td>
-<td>$45</td>
-<td>Aluminum foldable toilet safety rail in retail packaging; 250 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Toilet Safety Rail"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Toilet Safety Rail"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Freestanding Toilet Safety Rail" data-model="G5-400RX1" data-weekly="20" data-monthly="60">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Freestanding Toilet Safety Rail from Medline flyer"><img src="images/medline-products/freestanding-toilet-rail.jpg" alt="Freestanding Toilet Safety Rail from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Freestanding Toilet Safety Rail</td>
-<td>G5-400RX1</td>
-<td>$20</td>
-<td>$60</td>
-<td>Freestanding toilet safety rail in retail packaging; 300 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Freestanding Toilet Safety Rail"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Freestanding Toilet Safety Rail"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Bariatric Folding Commode" data-model="G1-201LBX1" data-weekly="25" data-monthly="75">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Bariatric Folding Commode from Medline flyer"><img src="images/medline-products/bariatric-commodes.jpg" alt="Bariatric Folding Commode from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Bariatric Folding Commode</td>
-<td>G1-201LBX1</td>
-<td>$25</td>
-<td>$75</td>
-<td>Bariatric steel folding elongated commode; 650 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Bariatric Folding Commode"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Bariatric Folding Commode"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="3-in-1 Folding Elongated Commode" data-model="G1-200LX4" data-weekly="20" data-monthly="60">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for 3-in-1 Folding Elongated Commode from Medline flyer"><img src="images/medline-products/three-in-one-commode.jpg" alt="3-in-1 Folding Elongated Commode from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>3-in-1 Folding Elongated Commode</td>
-<td>G1-200LX4</td>
-<td>$20</td>
-<td>$60</td>
-<td>Steel 3-in-1 folding elongated commode with seat/lid, bucket/lid, armrests, and splashguard.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for 3-in-1 Folding Elongated Commode"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for 3-in-1 Folding Elongated Commode"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Steel Drop-Arm Commode" data-model="G1-301DX2" data-weekly="25" data-monthly="75">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Steel Drop-Arm Commode from Medline flyer"><img src="images/medline-products/drop-arm-commode.jpg" alt="Steel Drop-Arm Commode from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Steel Drop-Arm Commode</td>
-<td>G1-301DX2</td>
-<td>$25</td>
-<td>$75</td>
-<td>Steel drop-arm commode; 350 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Steel Drop-Arm Commode"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Steel Drop-Arm Commode"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="category-header"><td colspan="7">HOME SAFETY AND ADL</td></tr>
-<tr class="pricing-item" data-name="Security Pole with Handle" data-model="MDS86051P" data-weekly="40" data-monthly="120">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Security Pole with Handle from Medline flyer"><img src="images/medline-products/security-pole.jpg" alt="Security Pole with Handle from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Security Pole with Handle</td>
-<td>MDS86051P</td>
-<td>$40</td>
-<td>$120</td>
-<td>Security pole with handle; height adjustable from 7 ft. to 10 ft.; 300 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Security Pole with Handle"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Security Pole with Handle"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Reacher, 32 in." data-model="MDSAGRH" data-weekly="8" data-monthly="20">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Reacher, 32 in. from Medline flyer"><img src="images/medline-products/adl-tools.jpg" alt="Reacher, 32 in. from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Reacher, 32 in.</td>
-<td>MDSAGRH</td>
-<td>$8</td>
-<td>$20</td>
-<td>Pistol grip reacher; 32 in. length.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Reacher, 32 in."><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Reacher, 32 in."><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Hip Kit" data-model="MDSR020051" data-weekly="10" data-monthly="30">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Hip Kit from Medline flyer"><img src="images/medline-products/adl-tools.jpg" alt="Hip Kit from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Hip Kit</td>
-<td>MDSR020051</td>
-<td>$10</td>
-<td>$30</td>
-<td>Economy hip kit with 26 in. reacher.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Hip Kit"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Hip Kit"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="category-header"><td colspan="7">PATIENT LIFTS</td></tr>
-<tr class="pricing-item" data-name="Manual Hydraulic Patient Lift with Sling" data-model="MDS88200D" data-weekly="125" data-monthly="425">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Manual Hydraulic Patient Lift with Sling from Medline flyer"><img src="images/medline-products/manual-patient-lift.jpg" alt="Manual Hydraulic Patient Lift with Sling from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Manual Hydraulic Patient Lift with Sling</td>
-<td>MDS88200D</td>
-<td>$125</td>
-<td>$425</td>
-<td>Manual hydraulic patient lift with 6-point cradle and sling included; 400 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Manual Hydraulic Patient Lift with Sling"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Manual Hydraulic Patient Lift with Sling"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Powered Base Patient Lift, 450 lb" data-model="MDS450EL" data-weekly="275" data-monthly="900">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Powered Base Patient Lift, 450 lb from Medline flyer"><img src="images/medline-products/powered-patient-lift.jpg" alt="Powered Base Patient Lift, 450 lb from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Powered Base Patient Lift, 450 lb</td>
-<td>MDS450EL</td>
-<td>$275</td>
-<td>$900</td>
-<td>Battery-powered patient lift with 6-point cradle; sling not included; 450 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Powered Base Patient Lift, 450 lb"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Powered Base Patient Lift, 450 lb"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="pricing-item" data-name="Full-Body Patient Sling, Large" data-model="MDSMR115" data-weekly="25" data-monthly="75">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for Full-Body Patient Sling, Large from Medline flyer"><img src="images/medline-products/patient-slings.jpg" alt="Full-Body Patient Sling, Large from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>Full-Body Patient Sling, Large</td>
-<td>MDSMR115</td>
-<td>$25</td>
-<td>$75</td>
-<td>Reusable full-body mesh patient sling with commode opening; size large; 450 lb capacity.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for Full-Body Patient Sling, Large"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Full-Body Patient Sling, Large"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-<tr class="category-header"><td colspan="7">COLD THERAPY</td></tr>
-<tr class="pricing-item" data-name="CryoCube Cold Therapy Unit" data-model="MDSCC10" data-weekly="45" data-monthly="135">
-<td><a href="#rental-price-chart" class="medline-product-image-link" aria-label="View rental price chart for CryoCube Cold Therapy Unit from Medline flyer"><img src="images/medline-products/cold-therapy.jpg" alt="CryoCube Cold Therapy Unit from Medline flyer" class="pricing-thumb medline-pricing-thumb"><span class="rental-price-overlay">View Rental Price</span></a></td>
-<td>CryoCube Cold Therapy Unit</td>
-<td>MDSCC10</td>
-<td>$45</td>
-<td>$135</td>
-<td>CryoCube cold therapy unit for post-operative cold therapy support.</td>
-<td class="order-cell"><div class="order-controls"><select class="rate-select" aria-label="Rental term for CryoCube Cold Therapy Unit"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for CryoCube Cold Therapy Unit"><button type="button" class="btn btn-secondary add-to-cart">Add</button></div></td>
-</tr>
-</tbody>
+                            <tr>
+                                <th>Image</th>
+                                <th>Equipment Category</th>
+                                <th>Model</th>
+                                <th>Daily Rental</th>
+                                <th>Weekly Rental</th>
+                                <th>Monthly Rental</th>
+                                <th>Key Features</th>
+                                <th>Order</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="category-header" id="hospital-beds">
+                                <td colspan="8">HOSPITAL BEDS</td>
+                            </tr>
+                            <tr class="pricing-item" data-name="Medline MedLite Homecare Bed Rental" data-model="Full-electric homecare bed; mattress and rails available" data-daily="0.00" data-weekly="0.00" data-monthly="249.00">
+                                <td><img src="images/medline-medlite-homecare-bed.jpg" alt="Medline MedLite Homecare Bed" class="pricing-thumb pricing-thumb-zoom"></td>
+                                <td>Medline MedLite Homecare Bed Rental</td>
+                                <td>Full-electric homecare bed; mattress and rails available</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>$249.00</td>
+                                <td>Full-electric positioning, homecare style bed frame, rental planning rate only.</td>
+                                <td class="order-cell">
+                                    <div class="order-controls">
+                                        <select class="rate-select" aria-label="Rate for Medline MedLite Homecare Bed Rental">
+                                            <option value="monthly">Monthly</option>
+                                        </select>
+                                        <input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Medline MedLite Homecare Bed Rental">
+                                        <button type="button" class="btn btn-primary add-to-cart">Add to Cart</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="pricing-item" data-name="Medline Bariatric Homecare Bed Rental" data-model="Full-electric bariatric bed; 600 lb. class" data-daily="0.00" data-weekly="0.00" data-monthly="399.00">
+                                <td><img src="images/medline-bariatric-homecare-bed.jpg" alt="Medline Bariatric Homecare Bed" class="pricing-thumb pricing-thumb-zoom"></td>
+                                <td>Medline Bariatric Homecare Bed Rental</td>
+                                <td>Full-electric bariatric bed; 600 lb. class</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>$399.00</td>
+                                <td>Heavy-duty homecare bed option for larger support needs; availability must be confirmed.</td>
+                                <td class="order-cell">
+                                    <div class="order-controls">
+                                        <select class="rate-select" aria-label="Rate for Medline Bariatric Homecare Bed Rental">
+                                            <option value="monthly">Monthly</option>
+                                        </select>
+                                        <input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Medline Bariatric Homecare Bed Rental">
+                                        <button type="button" class="btn btn-primary add-to-cart">Add to Cart</button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr class="category-header" id="mobility-equipment">
+                                <td colspan="8">MOBILITY EQUIPMENT</td>
+                            </tr>
+                            <tr class="pricing-item" data-name="Medline Translator Rollator / Transport Chair Rental" data-model="Combination rollator and caregiver transport chair" data-daily="20.00" data-weekly="65.00" data-monthly="150.00">
+                                <td><img src="images/medline-translator-rollator-transport-chair.jpg" alt="Medline Translator Rollator Transport Chair" class="pricing-thumb pricing-thumb-zoom"></td>
+                                <td>Medline Translator Rollator / Transport Chair Rental</td>
+                                <td>Combination rollator and caregiver transport chair</td>
+                                <td>$20.00</td>
+                                <td>$65.00</td>
+                                <td>$150.00</td>
+                                <td>Useful when the patient may walk short distances but also need caregiver-assisted transport.</td>
+                                <td class="order-cell">
+                                    <div class="order-controls">
+                                        <select class="rate-select" aria-label="Rate for Medline Translator Rollator Transport Chair Rental">
+                                            <option value="daily">Daily</option>
+                                            <option value="weekly">Weekly</option>
+                                            <option value="monthly">Monthly</option>
+                                        </select>
+                                        <input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Medline Translator Rollator Transport Chair Rental">
+                                        <button type="button" class="btn btn-primary add-to-cart">Add to Cart</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="pricing-item" data-name="Medline Transport Chair Rental" data-model="Lightweight caregiver-assisted transport chair" data-daily="10.00" data-weekly="30.00" data-monthly="90.00">
+                                <td><img src="images/medline-transport-chair.jpg" alt="Medline Transport Chair" class="pricing-thumb pricing-thumb-zoom"></td>
+                                <td>Medline Transport Chair Rental</td>
+                                <td>Lightweight caregiver-assisted transport chair</td>
+                                <td>$10.00</td>
+                                <td>$30.00</td>
+                                <td>$90.00</td>
+                                <td>Compact chair for family outings, appointments, and short-distance caregiver transport.</td>
+                                <td class="order-cell">
+                                    <div class="order-controls">
+                                        <select class="rate-select" aria-label="Rate for Medline Transport Chair Rental">
+                                            <option value="daily">Daily</option>
+                                            <option value="weekly">Weekly</option>
+                                            <option value="monthly">Monthly</option>
+                                        </select>
+                                        <input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Medline Transport Chair Rental">
+                                        <button type="button" class="btn btn-primary add-to-cart">Add to Cart</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="pricing-item" data-name="Medline Excel 2000 Wheelchair Rental" data-model="Standard manual wheelchair with swing-away footrests" data-daily="12.00" data-weekly="40.00" data-monthly="110.00">
+                                <td><img src="images/medline-excel-2000-wheelchair.jpg" alt="Medline Excel 2000 Wheelchair" class="pricing-thumb pricing-thumb-zoom"></td>
+                                <td>Medline Excel 2000 Wheelchair Rental</td>
+                                <td>Standard manual wheelchair with swing-away footrests</td>
+                                <td>$12.00</td>
+                                <td>$40.00</td>
+                                <td>$110.00</td>
+                                <td>Everyday manual wheelchair support for appointments, home mobility, and caregiver assistance.</td>
+                                <td class="order-cell">
+                                    <div class="order-controls">
+                                        <select class="rate-select" aria-label="Rate for Medline Excel 2000 Wheelchair Rental">
+                                            <option value="daily">Daily</option>
+                                            <option value="weekly">Weekly</option>
+                                            <option value="monthly">Monthly</option>
+                                        </select>
+                                        <input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Medline Excel 2000 Wheelchair Rental">
+                                        <button type="button" class="btn btn-primary add-to-cart">Add to Cart</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="pricing-item" data-name="Medline Excel Reclining Wheelchair Rental" data-model="Reclining wheelchair with elevating leg rests" data-daily="18.00" data-weekly="60.00" data-monthly="175.00">
+                                <td><img src="images/medline-excel-reclining-wheelchair.jpg" alt="Medline Excel Reclining Wheelchair" class="pricing-thumb pricing-thumb-zoom"></td>
+                                <td>Medline Excel Reclining Wheelchair Rental</td>
+                                <td>Reclining wheelchair with elevating leg rests</td>
+                                <td>$18.00</td>
+                                <td>$60.00</td>
+                                <td>$175.00</td>
+                                <td>Recline and leg-rest support for comfort during longer sitting or post-surgery recovery.</td>
+                                <td class="order-cell">
+                                    <div class="order-controls">
+                                        <select class="rate-select" aria-label="Rate for Medline Excel Reclining Wheelchair Rental">
+                                            <option value="daily">Daily</option>
+                                            <option value="weekly">Weekly</option>
+                                            <option value="monthly">Monthly</option>
+                                        </select>
+                                        <input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Medline Excel Reclining Wheelchair Rental">
+                                        <button type="button" class="btn btn-primary add-to-cart">Add to Cart</button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr class="category-header" id="walkers-rollators">
+                                <td colspan="8">WALKERS, ROLLATORS & SCOOTERS</td>
+                            </tr>
+                            <tr class="pricing-item" data-name="Medline Lightweight Aluminum Rollator Rental" data-model="Four-wheel rollator with seat and storage" data-daily="5.00" data-weekly="15.00" data-monthly="45.00">
+                                <td><img src="images/medline-lightweight-rollator.jpg" alt="Medline Lightweight Aluminum Rollator" class="pricing-thumb pricing-thumb-zoom"></td>
+                                <td>Medline Lightweight Aluminum Rollator Rental</td>
+                                <td>Four-wheel rollator with seat and storage</td>
+                                <td>$5.00</td>
+                                <td>$15.00</td>
+                                <td>$45.00</td>
+                                <td>Everyday mobility support with hand brakes, seat, and under-seat storage.</td>
+                                <td class="order-cell">
+                                    <div class="order-controls">
+                                        <select class="rate-select" aria-label="Rate for Medline Lightweight Aluminum Rollator Rental">
+                                            <option value="daily">Daily</option>
+                                            <option value="weekly">Weekly</option>
+                                            <option value="monthly">Monthly</option>
+                                        </select>
+                                        <input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Medline Lightweight Aluminum Rollator Rental">
+                                        <button type="button" class="btn btn-primary add-to-cart">Add to Cart</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="pricing-item" data-name="Medline 3-Wheel Rollator Rental" data-model="Compact three-wheel rollator with basket" data-daily="5.00" data-weekly="15.00" data-monthly="45.00">
+                                <td><img src="images/medline-3-wheel-rollator.jpg" alt="Medline 3 Wheel Rollator" class="pricing-thumb pricing-thumb-zoom"></td>
+                                <td>Medline 3-Wheel Rollator Rental</td>
+                                <td>Compact three-wheel rollator with basket</td>
+                                <td>$5.00</td>
+                                <td>$15.00</td>
+                                <td>$45.00</td>
+                                <td>Good for tight indoor paths, hallways, and light daily mobility support.</td>
+                                <td class="order-cell">
+                                    <div class="order-controls">
+                                        <select class="rate-select" aria-label="Rate for Medline 3-Wheel Rollator Rental">
+                                            <option value="daily">Daily</option>
+                                            <option value="weekly">Weekly</option>
+                                            <option value="monthly">Monthly</option>
+                                        </select>
+                                        <input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Medline 3-Wheel Rollator Rental">
+                                        <button type="button" class="btn btn-primary add-to-cart">Add to Cart</button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr class="category-header" id="room-bathroom-support">
+                                <td colspan="8">ROOM & BATHROOM SUPPORT</td>
+                            </tr>
+                            <tr class="pricing-item" data-name="Medline Composite H-Base Overbed Table Rental" data-model="Adjustable bedside table" data-daily="2.50" data-weekly="7.50" data-monthly="22.50">
+                                <td><img src="images/medline-composite-overbed-table.jpg" alt="Medline Composite H-Base Overbed Table" class="pricing-thumb pricing-thumb-zoom"></td>
+                                <td>Medline Composite H-Base Overbed Table Rental</td>
+                                <td>Adjustable bedside table</td>
+                                <td>$2.50</td>
+                                <td>$7.50</td>
+                                <td>$22.50</td>
+                                <td>Bedside surface for meals, reading, medications, and recovery routines.</td>
+                                <td class="order-cell">
+                                    <div class="order-controls">
+                                        <select class="rate-select" aria-label="Rate for Medline Composite H-Base Overbed Table Rental">
+                                            <option value="daily">Daily</option>
+                                            <option value="weekly">Weekly</option>
+                                            <option value="monthly">Monthly</option>
+                                        </select>
+                                        <input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Medline Composite H-Base Overbed Table Rental">
+                                        <button type="button" class="btn btn-primary add-to-cart">Add to Cart</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="pricing-item" data-name="Medline Shower Chair with Arms and Back Rental" data-model="Padded armrests and back support" data-daily="4.00" data-weekly="12.00" data-monthly="35.00">
+                                <td><img src="images/medline-shower-chair-arms-back.jpg" alt="Medline Shower Chair with Arms and Back" class="pricing-thumb pricing-thumb-zoom"></td>
+                                <td>Medline Shower Chair with Arms and Back Rental</td>
+                                <td>Padded armrests and back support</td>
+                                <td>$4.00</td>
+                                <td>$12.00</td>
+                                <td>$35.00</td>
+                                <td>Bathroom support for safer seated showering during home recovery.</td>
+                                <td class="order-cell">
+                                    <div class="order-controls">
+                                        <select class="rate-select" aria-label="Rate for Medline Shower Chair with Arms and Back Rental">
+                                            <option value="daily">Daily</option>
+                                            <option value="weekly">Weekly</option>
+                                            <option value="monthly">Monthly</option>
+                                        </select>
+                                        <input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Medline Shower Chair with Arms and Back Rental">
+                                        <button type="button" class="btn btn-primary add-to-cart">Add to Cart</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="pricing-item" data-name="Medline 3-in-1 Bedside Commode Rental" data-model="Bedside commode, raised toilet seat, and toilet safety frame" data-daily="5.00" data-weekly="15.00" data-monthly="40.00">
+                                <td><img src="images/medline-3-in-1-commode.jpg" alt="Medline 3-in-1 Bedside Commode" class="pricing-thumb pricing-thumb-zoom"></td>
+                                <td>Medline 3-in-1 Bedside Commode Rental</td>
+                                <td>Bedside commode, raised toilet seat, and toilet safety frame</td>
+                                <td>$5.00</td>
+                                <td>$15.00</td>
+                                <td>$40.00</td>
+                                <td>Flexible toilet support for bedside use, bathroom transfers, and elevated seating needs.</td>
+                                <td class="order-cell">
+                                    <div class="order-controls">
+                                        <select class="rate-select" aria-label="Rate for Medline 3-in-1 Bedside Commode Rental">
+                                            <option value="daily">Daily</option>
+                                            <option value="weekly">Weekly</option>
+                                            <option value="monthly">Monthly</option>
+                                        </select>
+                                        <input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Medline 3-in-1 Bedside Commode Rental">
+                                        <button type="button" class="btn btn-primary add-to-cart">Add to Cart</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="pricing-item" data-name="Medline Raised Toilet Seat with Arms Rental" data-model="Locking raised toilet seat with padded arms" data-daily="4.00" data-weekly="12.00" data-monthly="35.00">
+                                <td><img src="images/medline-raised-toilet-seat-arms.png" alt="Medline Raised Toilet Seat with Arms" class="pricing-thumb pricing-thumb-zoom"></td>
+                                <td>Medline Raised Toilet Seat with Arms Rental</td>
+                                <td>Locking raised toilet seat with padded arms</td>
+                                <td>$4.00</td>
+                                <td>$12.00</td>
+                                <td>$35.00</td>
+                                <td>Raises toilet height and adds arm support for safer sitting, standing, and transfers.</td>
+                                <td class="order-cell">
+                                    <div class="order-controls">
+                                        <select class="rate-select" aria-label="Rate for Medline Raised Toilet Seat with Arms Rental">
+                                            <option value="daily">Daily</option>
+                                            <option value="weekly">Weekly</option>
+                                            <option value="monthly">Monthly</option>
+                                        </select>
+                                        <input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Medline Raised Toilet Seat with Arms Rental">
+                                        <button type="button" class="btn btn-primary add-to-cart">Add to Cart</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
                     </div>
                 </div>
@@ -663,7 +403,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h4>Comfort Care</h4>
-                    <p>Mobility equipment rental services for Atlanta and Norcross, Georgia</p>
+                    <p>ComCare Home Recovery Support for Atlanta and Norcross, Georgia</p>
                 </div>
                 <div class="footer-section">
                     <h4>Contact</h4>
@@ -675,7 +415,7 @@
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="services.html">Services</a></li>
-                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="order.html">Request Equipment Info</a></li>
 <li><a href="rehab-tech-intake.html">Rehab Techs</a></li>
                         <li><a href="recovery-professionals.html">Recovery Network</a></li>
                         <li><a href="join-professionals.html">Join Network</a></li>
@@ -691,7 +431,141 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
-    <script src="site-navigation.js"></script>
+    <script src="script.js?v=order-ai-hidden-20260830"></script>
+    <script src="site-navigation.js?v=order-ai-hidden-20260830"></script>
+    <div class="image-zoom-modal" id="imageZoomModal" aria-hidden="true">
+        <button type="button" class="image-zoom-close" aria-label="Close product image preview">Close</button>
+        <img src="" alt="" id="imageZoomPreview">
+    </div>
+    <script>
+        (function() {
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+            const headerCount = document.getElementById('headerCartCount');
+            const headerTotal = document.getElementById('headerCartTotal');
+
+            function setQuoteDisplay() {
+                if (cartItems) {
+                    cartItems.innerHTML = '<p class="cart-empty">Use the Request Info buttons to contact Comfort Care about specific items.</p>';
+                }
+                if (cartTotal) {
+                    cartTotal.textContent = 'Request quote';
+                }
+                if (headerCount) {
+                    headerCount.textContent = 'Ask for current availability';
+                }
+                if (headerTotal) {
+                    headerTotal.textContent = '';
+                }
+            }
+
+            function buildQuoteLink(row) {
+                const name = row.dataset.name || 'Equipment item';
+                const model = row.dataset.model || '';
+                const rateSelect = row.querySelector('.rate-select');
+                const qtyInput = row.querySelector('.qty-input');
+                const term = rateSelect ? rateSelect.value : 'request';
+                const quantity = Math.max(parseInt(qtyInput?.value, 10) || 1, 1);
+                const subject = 'ComCare equipment information request';
+                const body = [
+                    'Hello ComCare,',
+                    '',
+                    'Please send current availability and pricing for:',
+                    `Item: ${name}`,
+                    `Model/details: ${model}`,
+                    `Term requested: ${term}`,
+                    `Quantity: ${quantity}`,
+                    '',
+                    'My ZIP code:',
+                    'My phone number:',
+                    'Notes:'
+                ].join('\n');
+
+                return 'mailto:admin@comcare.store?cc=accentGV%40gmail.com'
+                    + '&subject=' + encodeURIComponent(subject)
+                    + '&body=' + encodeURIComponent(body);
+            }
+
+            const zoomModal = document.getElementById('imageZoomModal');
+            const zoomPreview = document.getElementById('imageZoomPreview');
+            const zoomClose = zoomModal ? zoomModal.querySelector('.image-zoom-close') : null;
+
+            function closeZoom() {
+                if (!zoomModal || !zoomPreview) {
+                    return;
+                }
+                zoomModal.classList.remove('is-open');
+                zoomModal.setAttribute('aria-hidden', 'true');
+                zoomPreview.src = '';
+                zoomPreview.alt = '';
+                document.body.classList.remove('image-zoom-open');
+            }
+
+            function openZoom(image) {
+                if (!zoomModal || !zoomPreview || !image) {
+                    return;
+                }
+                zoomPreview.src = image.src;
+                zoomPreview.alt = image.alt || 'Product image preview';
+                zoomModal.classList.add('is-open');
+                zoomModal.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('image-zoom-open');
+            }
+
+            if (zoomModal) {
+                zoomModal.addEventListener('click', function(event) {
+                    if (event.target === zoomModal) {
+                        closeZoom();
+                    }
+                });
+            }
+
+            if (zoomClose) {
+                zoomClose.addEventListener('click', closeZoom);
+            }
+
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    closeZoom();
+                }
+            });
+
+            document.querySelectorAll('.pricing-item').forEach(function(row) {
+                const thumb = row.querySelector('.pricing-thumb-zoom');
+                if (thumb) {
+                    thumb.tabIndex = 0;
+                    thumb.title = 'Tap to preview larger image';
+                    thumb.addEventListener('click', function() {
+                        openZoom(thumb);
+                    });
+                    thumb.addEventListener('keydown', function(event) {
+                        if (event.key === 'Enter' || event.key === ' ') {
+                            event.preventDefault();
+                            openZoom(thumb);
+                        }
+                    });
+                }
+
+                const link = row.querySelector('.quote-request-link');
+                if (!link) {
+                    return;
+                }
+
+                function updateLink() {
+                    link.href = buildQuoteLink(row);
+                }
+
+                row.querySelectorAll('.rate-select, .qty-input').forEach(function(input) {
+                    input.addEventListener('change', updateLink);
+                    input.addEventListener('input', updateLink);
+                });
+                updateLink();
+            });
+
+            if (typeof updateHeaderCart === 'function') {
+                updateHeaderCart();
+            }
+        })();
+    </script>
 </body>
 </html>

@@ -437,7 +437,7 @@ function bindDynamicStripeCheckout(button) {
             button.disabled = false;
             button.textContent = originalText;
             if (liveChargeBlocked) {
-                alert('Payment is not ready yet. Please email admin@comcare.store or call 678-242-9309 to complete this order while Square checkout is being configured.');
+                alert('Payment is not ready yet. Please email admin@comcare.store or call 678-362-2345 to complete this order while Square checkout is being configured.');
             } else {
                 alert(`Unable to start secure checkout: ${message}`);
             }
@@ -525,7 +525,7 @@ function bindRecoveryPackageCheckoutButtons() {
                 this.classList.remove('is-processing');
                 this.removeAttribute('aria-busy');
                 this.textContent = originalText;
-                alert(`${error?.message || 'Unable to start monthly Square checkout.'} Please call 678-242-9309 or email admin@comcare.store if you want us to start this package manually.`);
+                alert(`${error?.message || 'Unable to start monthly Square checkout.'} Please call 678-362-2345 or email admin@comcare.store if you want us to start this package manually.`);
             }
         });
     });

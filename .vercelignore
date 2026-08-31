@@ -1,4 +1,7 @@
 .env
+.env.local
+*.env
+.vercel
 node_modules
 *.log
 .DS_Store
@@ -6,3 +9,10 @@ test-*.html
 *.bak*
 screenshots
 backups
+*Password*
+*Secret*
+Comcare Built Info.txt
+ComfortCare Settings How works.txt
+ComfortCare Settings.txt
+options.txt
+Visual Studio Code.txt

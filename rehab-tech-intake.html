@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rehab Tech Intake - Comfort Care</title>
     <meta name="description" content="Internal rehab tech intake form for Comfort Care mobility equipment rental requests in the Atlanta area.">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=order-ai-hidden-20260830">
     <style>
         .tech-layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 24px; align-items: start; }
         .tech-panel { background: #fff; border: 1px solid var(--border-color); border-radius: 10px; padding: 24px; box-shadow: var(--shadow-sm); }
@@ -30,7 +30,6 @@
                     <li><a href="home.html" id="navHome">Home</a></li>
                     <li><a href="services.html" id="navServices">Services</a></li>
                     <li><a href="order.html" id="navOrder">Order</a></li>
-                <li><a href="home-care-packages.html" id="navPackages">Buy Packages</a></li>
                     <li><a href="pricing.html" id="navCart">Cart</a></li>
                     <li><a href="payment.html" id="navPayment">Payments</a></li>
                     <li><a href="insurance-form.html" id="navInsurance">Insurance</a></li>
@@ -64,8 +63,8 @@
                     <div class="form-group"><label for="requestDate">Request date</label><input id="requestDate" name="requestDate" type="date"></div>
                     <div class="form-group"><label for="neededDate">Needed date</label><input id="neededDate" name="neededDate" type="date"></div>
                     <div class="form-group"><label for="fulfillment">Delivery or pickup</label><select id="fulfillment" name="fulfillment"><option>Delivery request</option><option>Pickup request</option><option>Not sure yet</option></select></div>
-                    <div class="form-group"><label for="priority">Priority</label><select id="priority" name="priority"><option>Standard</option><option>Same day if available</option><option>Urgent discharge</option></select></div>
-                    <div class="form-group"><label for="duration">Expected rental period</label><select id="duration" name="duration"><option>Weekly</option><option>Monthly</option><option>Not sure yet</option></select></div>
+                    <div class="form-group"><label for="priority">Priority</label><select id="priority" name="priority"><option>Standard</option><option>Urgent scheduling request</option><option>Urgent discharge</option></select></div>
+                    <div class="form-group"><label for="duration">Expected rental period</label><select id="duration" name="duration"><option>Daily</option><option>Weekly</option><option>Monthly</option><option>Not sure yet</option></select></div>
                     <div class="form-group"><label for="paymentPlan">Payment / billing</label><select id="paymentPlan" name="paymentPlan"><option>Patient/family pays</option><option>Facility contact requested</option><option>Insurance reimbursement paperwork</option><option>Not sure yet</option></select></div>
                     <div class="form-group full-width"><label for="deliveryAddress">Delivery address</label><input id="deliveryAddress" name="deliveryAddress" placeholder="Facility, home, or pickup notes"></div>
                     <div class="form-group full-width">
@@ -142,6 +141,6 @@
         document.getElementById('saveEmailBtn').addEventListener('click', function () { if (form.reportValidity()) email(save()); });
       }());
     </script>
-    <script src="site-navigation.js"></script>
+    <script src="site-navigation.js?v=order-ai-hidden-20260830"></script>
 </body>
 </html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9G5EVYE5Y"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D9G5EVYE5Y');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Touch Solution | ComCare Home Recovery Help</title>
+    <meta name="description" content="No-obligation ComCare request page for equipment, room setup, and caregiver support planning across the Atlanta area.">
+    <link rel="canonical" href="https://comcare.store/one-touch-solution.html">
+    <meta property="og:title" content="One Touch Solution | ComCare">
+    <meta property="og:description" content="Tell ComCare what your loved one needs. We can help think through equipment, room setup, and caregiver support options.">
+    <meta property="og:url" content="https://comcare.store/one-touch-solution.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://comcare.store/images/recovery-patient-margaret-hub-v5.png">
+    <link rel="stylesheet" href="styles.css?v=order-ai-hidden-20260830">
+</head>
+<body class="one-touch-page">
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-middle">
+                <div class="nav-identity">
+                    <div class="nav-brand">
+                        <img src="logo.svg" alt="Comfort Care logo" class="logo-image">
+                    </div>
+                    <div class="nav-title">Comfort Care</div>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="services.html">Rentals</a></li>
+                    <li><a href="order.html">Order</a></li>
+                    <li><a href="one-touch-solution.html" class="active">One Touch Solution</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="nav-cart">
+                <div class="cart-box" aria-live="polite">
+                    <span class="cart-box-title">Cart</span>
+                    <span class="cart-box-detail">
+                        <span id="headerCartCount">0 items</span>
+                        <span class="cart-box-sep">|</span>
+                        <span id="headerCartTotal">$0.00</span>
+                    </span>
+                </div>
+                <div class="nav-cart-main">
+                    <a href="order.html" class="btn btn-secondary btn-compact edit-cart-link">Edit Cart</a>
+                    <a href="pricing.html" class="btn btn-primary btn-compact">Pay</a>
+                </div>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Open navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="one-touch-main">
+        <section class="one-touch-popup-section" aria-label="One Touch Solution request">
+            <div class="container">
+                <form class="one-touch-form one-touch-popup-card" id="oneTouchForm" name="one-touch-solution" method="POST" action="https://formsubmit.co/admin@comcare.store" enctype="multipart/form-data">
+                    <input type="hidden" name="_subject" value="ComCare One Touch Solution Request">
+                    <input type="hidden" name="_cc" value="accentGV@gmail.com">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_next" value="https://comcare.store/request-received.html">
+                    <input type="hidden" name="request_source" value="One Touch Solution page">
+
+                    <div class="one-touch-form-heading">
+                        <p class="care-home-kicker">No Obligation One Touch Solution</p>
+                        <h1>We are here to help.</h1>
+                        <p>Choose your needs, add email and ZIP, then send. A room photo is optional.</p>
+                    </div>
+
+                    <fieldset class="one-touch-checks">
+                        <legend>What do you need?</legend>
+                        <label>
+                            <input type="checkbox" name="needs[]" value="Equipment">
+                            <span>Equipment</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="needs[]" value="Room setup">
+                            <span>Room setup</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="needs[]" value="Caregiver support">
+                            <span>Caregiver support</span>
+                        </label>
+                    </fieldset>
+
+                    <div class="one-touch-field-grid">
+                        <label>Email address *
+                            <input type="email" name="email" placeholder="you@example.com" required>
+                        </label>
+                        <label>ZIP code *
+                            <input type="text" name="zip_code" inputmode="numeric" autocomplete="postal-code" placeholder="30328" required>
+                        </label>
+                        <label>Phone optional
+                            <input type="tel" name="phone" placeholder="Callback number">
+                        </label>
+                        <label>Address optional
+                            <input type="text" name="address" autocomplete="street-address" placeholder="If delivery may be needed">
+                        </label>
+                    </div>
+
+                    <label class="one-touch-full">Quick note optional
+                        <textarea name="situation" rows="3" placeholder="Example: Coming home after hip surgery Tuesday. Need bed, walker, bathroom safety help."></textarea>
+                    </label>
+
+                    <details class="one-touch-optional">
+                        <summary>Add optional room photos</summary>
+                        <div class="one-touch-photo-options">
+                            <label class="one-touch-photo-action camera-action">
+                                <span>Take Photo</span>
+                                <input type="file" name="attachment" accept="image/png, image/jpeg, image/webp" capture="environment">
+                            </label>
+                            <label class="one-touch-photo-action attach-action">
+                                <span>Attach Photos</span>
+                                <input type="file" name="attachment2" accept="image/png, image/jpeg, image/webp" multiple>
+                            </label>
+                        </div>
+                        <small class="one-touch-photo-help">Add bedroom, bathroom, doorway, or walking path pictures. Keep total photos under 10MB.</small>
+                        <small class="one-touch-photo-status" data-photo-status>No photos selected yet.</small>
+                    </details>
+
+                    <label class="one-touch-consent">
+                        <input type="checkbox" name="permission_to_contact" required>
+                        <span>No obligation. ComCare may contact me about this request.</span>
+                    </label>
+
+                    <div class="one-touch-submit-row">
+                        <button type="submit" class="btn btn-primary btn-large">Send Request</button>
+                        <p class="form-note">Usually takes about 15 seconds.</p>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>ComCare One Touch Solution</h4>
+                    <p>No-obligation home recovery help for equipment, room setup, caregiver support, and family coordination.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><a href="tel:678-242-9309">678-242-9309</a></p>
+                    <p><a href="mailto:admin@comcare.store?cc=accentGV%40gmail.com">admin@comcare.store</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Helpful Links</h4>
+                    <ul>
+                        <li><a href="services.html">Equipment Rentals</a></li>
+                        <li><a href="home.html#rehab-setup">Room Setup Ideas</a></li>
+                        <li><a href="home.html#caregiver-suggestions">Caregiver Suggestions</a></li>
+                        <li><a href="https://hub.comcare.store/client-profile">Hub Client Profile</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Comfort Care. All rights reserved.</p>
+                <p>Comfort Care operates as a DBA/trade name of MOON LIGHTING INC.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js?v=order-ai-hidden-20260830"></script>
+    <script src="site-navigation.js?v=order-ai-hidden-20260830"></script>
+    <script>
+        (function() {
+            const form = document.getElementById('oneTouchForm');
+            if (!form) {
+                return;
+            }
+
+            const needInputs = Array.from(form.querySelectorAll('input[name="needs[]"]'));
+            const photoInputs = Array.from(form.querySelectorAll('input[type="file"]'));
+            const photoStatus = form.querySelector('[data-photo-status]');
+            function updateNeedValidity() {
+                const hasNeed = needInputs.some(function(input) {
+                    return input.checked;
+                });
+                needInputs[0].setCustomValidity(hasNeed ? '' : 'Please choose at least one support area.');
+            }
+
+            function updatePhotoStatus() {
+                if (!photoStatus) {
+                    return;
+                }
+
+                const files = photoInputs.flatMap(function(input) {
+                    return Array.from(input.files || []);
+                });
+
+                if (!files.length) {
+                    photoStatus.textContent = 'No photos selected yet.';
+                    return;
+                }
+
+                photoStatus.textContent = files.length === 1 ? '1 photo ready.' : files.length + ' photos ready.';
+            }
+
+            needInputs.forEach(function(input) {
+                input.addEventListener('change', updateNeedValidity);
+            });
+            photoInputs.forEach(function(input) {
+                input.addEventListener('change', updatePhotoStatus);
+            });
+
+            form.addEventListener('submit', function() {
+                updateNeedValidity();
+            });
+
+            updateNeedValidity();
+            updatePhotoStatus();
+        })();
+    </script>
+</body>
+</html>

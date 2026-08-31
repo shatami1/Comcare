@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ComCare Order Dashboard</title>
+    <link rel="stylesheet" href="styles.css?v=order-ai-hidden-20260830">
+</head>
+<body class="order-dashboard-page">
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-middle">
+                <div class="nav-identity">
+                    <div class="nav-brand">
+                        <img src="logo.svg" alt="Comfort Care Logo" class="logo-image">
+                    </div>
+                    <div class="nav-title">Comfort Care</div>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="order.html">Order</a></li>
+                    <li><a href="one-touch-solution.html">One Touch</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="dashboard-shell">
+        <section class="dashboard-hero">
+            <div>
+                <span class="section-label">Owner workflow</span>
+                <h1>ComCare order automation dashboard</h1>
+                <p>Review new customer requests, use the generated summary, approve orders, send payment links, schedule delivery, and track pickup.</p>
+            </div>
+            <a href="order.html" class="btn btn-secondary">Open Order Page</a>
+        </section>
+
+        <section class="dashboard-login" id="dashboardLogin">
+            <h2>Private access</h2>
+            <p>Enter your order admin token. This can use the same private token as your recovery admin token unless you create a separate ORDER_ADMIN_TOKEN.</p>
+            <form id="dashboardLoginForm">
+                <input type="password" id="dashboardToken" autocomplete="current-password" placeholder="Private admin token" required>
+                <button type="submit" class="btn btn-primary">Open Dashboard</button>
+            </form>
+            <p class="form-message" id="dashboardLoginMessage"></p>
+        </section>
+
+        <section class="dashboard-content" id="dashboardContent" hidden>
+            <div class="dashboard-toolbar">
+                <div>
+                    <h2>Orders needing attention</h2>
+                    <p id="dashboardCount">Loading orders...</p>
+                </div>
+                <div class="dashboard-toolbar-actions">
+                    <button type="button" class="btn btn-secondary" id="refreshOrders">Refresh</button>
+                    <button type="button" class="btn btn-light" id="clearDashboardToken">Log out</button>
+                </div>
+            </div>
+            <div class="dashboard-status-row">
+                <button type="button" class="order-filter active" data-filter="all">All</button>
+                <button type="button" class="order-filter" data-filter="new">New</button>
+                <button type="button" class="order-filter" data-filter="approved">Approved</button>
+                <button type="button" class="order-filter" data-filter="delivery_scheduled">Scheduled</button>
+                <button type="button" class="order-filter" data-filter="pickup_needed">Pickup</button>
+            </div>
+            <div id="ordersList" class="orders-list"></div>
+        </section>
+    </main>
+
+    <script src="script.js?v=order-ai-hidden-20260830"></script>
+    <script src="site-navigation.js?v=order-ai-hidden-20260830"></script>
+    <script>
+        (function() {
+            const tokenKey = 'comcareOrderAdminToken';
+            const login = document.getElementById('dashboardLogin');
+            const content = document.getElementById('dashboardContent');
+            const form = document.getElementById('dashboardLoginForm');
+            const tokenInput = document.getElementById('dashboardToken');
+            const message = document.getElementById('dashboardLoginMessage');
+            const ordersList = document.getElementById('ordersList');
+            const count = document.getElementById('dashboardCount');
+            const refresh = document.getElementById('refreshOrders');
+            const logout = document.getElementById('clearDashboardToken');
+            let orders = [];
+            let activeFilter = 'all';
+
+            function getToken() {
+                return localStorage.getItem(tokenKey) || '';
+            }
+
+            function setMessage(text, type) {
+                message.textContent = text || '';
+                message.classList.remove('success', 'error');
+                if (type) message.classList.add(type);
+            }
+
+            function money(value) {
+                return `$${Number(value || 0).toFixed(2)}`;
+            }
+
+            function prettyStatus(status) {
+                return String(status || 'new').replace(/_/g, ' ');
+            }
+
+            function openDashboard() {
+                login.hidden = true;
+                content.hidden = false;
+                loadOrders();
+            }
+
+            async function api(method, body) {
+                const response = await fetch('/api/orders', {
+                    method,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${getToken()}`
+                    },
+                    body: body ? JSON.stringify(body) : undefined
+                });
+                const data = await response.json().catch(() => ({}));
+                if (!response.ok) {
+                    throw new Error(data.message || data.error || 'Order request failed.');
+                }
+                return data;
+            }
+
+            async function loadOrders() {
+                ordersList.innerHTML = '<div class="dashboard-empty">Loading orders...</div>';
+                try {
+                    const data = await api('GET');
+                    orders = data.orders || [];
+                    renderOrders();
+                } catch (error) {
+                    ordersList.innerHTML = `<div class="dashboard-empty error">${error.message}</div>`;
+                }
+            }
+
+            function renderOrders() {
+                const shown = activeFilter === 'all'
+                    ? orders
+                    : orders.filter(order => order.status === activeFilter);
+                count.textContent = `${shown.length} shown / ${orders.length} total`;
+                if (!shown.length) {
+                    ordersList.innerHTML = '<div class="dashboard-empty">No orders in this view.</div>';
+                    return;
+                }
+
+                ordersList.innerHTML = shown.map(order => {
+                    const items = Array.isArray(order.items) ? order.items : [];
+                    const itemHtml = items.map(item => `<li>${item.quantity || 1} x ${item.name || 'Item'} <span>${item.rateType || ''} ${money(item.lineTotal || item.unitPrice)}</span></li>`).join('');
+                    const confirmationText = order.confirmation_body || 'No confirmation text saved.';
+                    return `
+                        <article class="order-admin-card" data-order-id="${order.id}">
+                            <div class="order-admin-top">
+                                <div>
+                                    <span class="order-pill ${order.priority || 'normal'}">${order.priority || 'normal'}</span>
+                                    <h3>${order.customer_name || 'Customer'}</h3>
+                                    <p>${order.customer_phone || 'No phone'} · ${order.customer_email || 'No email'}</p>
+                                </div>
+                                <div class="order-admin-meta">
+                                    <strong>${prettyStatus(order.status)}</strong>
+                                    <span>${new Date(order.created_at).toLocaleString('en-US', { timeZone: 'America/New_York' })} ET</span>
+                                    <span>${order.zip || ''} · ${order.service_area_status || ''}</span>
+                                </div>
+                            </div>
+                            <div class="order-admin-grid">
+                                <div>
+                                    <h4>AI order summary</h4>
+                                    <pre>${order.summary || ''}</pre>
+                                </div>
+                                <div>
+                                    <h4>Cart</h4>
+                                    <ul class="order-item-list">${itemHtml || '<li>No items</li>'}</ul>
+                                    <p><strong>Total:</strong> ${money(order.subtotal)}</p>
+                                    <p><strong>Delivery:</strong> ${order.delivery_window || 'Not scheduled'}</p>
+                                    <p><strong>Payment:</strong> ${order.payment_link ? `<a href="${order.payment_link}" target="_blank" rel="noopener">Open payment link</a>` : 'Not sent'}</p>
+                                </div>
+                            </div>
+                            <details class="confirmation-box">
+                                <summary>Customer confirmation text (${order.confirmation_status || 'ready'})</summary>
+                                <textarea readonly>${confirmationText}</textarea>
+                            </details>
+                            <div class="order-admin-actions">
+                                <button type="button" class="btn btn-primary" data-action="approve">Approve</button>
+                                <button type="button" class="btn btn-secondary" data-action="send_payment_link">Send payment link</button>
+                                <button type="button" class="btn btn-secondary" data-action="schedule_delivery">Schedule delivery</button>
+                                <button type="button" class="btn btn-primary" data-action="mark_delivered">Mark delivered</button>
+                                <button type="button" class="btn btn-discount" data-action="pickup_needed">Mark pickup needed</button>
+                            </div>
+                        </article>
+                    `;
+                }).join('');
+            }
+
+            async function createPaymentLink(order) {
+                const response = await fetch('/create-checkout-session', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ items: order.items || [] })
+                });
+                const data = await response.json().catch(() => ({}));
+                if (!response.ok || !data.url) {
+                    throw new Error(data.error || data.message || 'Could not create Square payment link.');
+                }
+                return data.url;
+            }
+
+            ordersList.addEventListener('click', async (event) => {
+                const button = event.target.closest('[data-action]');
+                if (!button) return;
+                const card = button.closest('[data-order-id]');
+                const order = orders.find(item => item.id === card.dataset.orderId);
+                if (!order) return;
+
+                button.disabled = true;
+                const original = button.textContent;
+                button.textContent = 'Working...';
+                try {
+                    const action = button.dataset.action;
+                    const payload = { id: order.id, action };
+                    if (action === 'schedule_delivery') {
+                        const windowText = prompt('Enter delivery date/time window:', order.delivery_window || '');
+                        if (windowText === null) return;
+                        payload.deliveryWindow = windowText;
+                    }
+                    if (action === 'send_payment_link') {
+                        const paymentLink = await createPaymentLink(order);
+                        payload.paymentLink = paymentLink;
+                        const subject = encodeURIComponent('ComCare payment link for your equipment request');
+                        const body = encodeURIComponent(`Hi ${order.customer_name || ''},\n\nComCare approved your request. Please use this secure Square link to pay:\n\n${paymentLink}\n\nAfter payment, we will confirm delivery/setup timing.\n\nComfort Care\n678-242-9309`);
+                        if (order.customer_email) {
+                            window.open(`mailto:${encodeURIComponent(order.customer_email)}?cc=${encodeURIComponent(ADMIN_EMAIL)}&subject=${subject}&body=${body}`, '_blank');
+                        }
+                    }
+                    await api('PATCH', payload);
+                    await loadOrders();
+                } catch (error) {
+                    alert(error.message);
+                } finally {
+                    button.disabled = false;
+                    button.textContent = original;
+                }
+            });
+
+            document.querySelectorAll('.order-filter').forEach(button => {
+                button.addEventListener('click', () => {
+                    document.querySelectorAll('.order-filter').forEach(item => item.classList.remove('active'));
+                    button.classList.add('active');
+                    activeFilter = button.dataset.filter;
+                    renderOrders();
+                });
+            });
+
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                localStorage.setItem(tokenKey, tokenInput.value.trim());
+                setMessage('Checking access...', 'success');
+                try {
+                    await api('GET');
+                    openDashboard();
+                } catch (error) {
+                    localStorage.removeItem(tokenKey);
+                    setMessage(error.message, 'error');
+                }
+            });
+
+            refresh.addEventListener('click', loadOrders);
+            logout.addEventListener('click', () => {
+                localStorage.removeItem(tokenKey);
+                location.reload();
+            });
+
+            if (getToken()) {
+                openDashboard();
+            }
+        })();
+    </script>
+</body>
+</html>

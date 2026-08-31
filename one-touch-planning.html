@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9G5EVYE5Y"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D9G5EVYE5Y');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Touch Planning Guide | ComCare Home Recovery Help</title>
+    <meta name="description" content="ComCare One Touch planning guide for equipment, room setup, and caregiver support across the Atlanta area.">
+    <link rel="canonical" href="https://comcare.store/one-touch-planning.html">
+    <meta property="og:title" content="One Touch Planning Guide | ComCare">
+    <meta property="og:description" content="Learn how ComCare helps families think through equipment, room setup, caregiver support, and Recovery Hub coordination.">
+    <meta property="og:url" content="https://comcare.store/one-touch-planning.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://comcare.store/images/recovery-patient-margaret-hub-v5.png">
+    <link rel="stylesheet" href="styles.css?v=order-ai-hidden-20260830">
+</head>
+<body class="one-touch-page">
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-middle">
+                <div class="nav-identity">
+                    <div class="nav-brand">
+                        <img src="logo.svg" alt="Comfort Care logo" class="logo-image">
+                    </div>
+                    <div class="nav-title">Comfort Care</div>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="services.html">Rentals</a></li>
+                    <li><a href="order.html">Order</a></li>
+                    <li><a href="one-touch-solution.html">One Touch Solution</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="nav-cart">
+                <div class="cart-box" aria-live="polite">
+                    <span class="cart-box-title">Cart</span>
+                    <span class="cart-box-detail">
+                        <span id="headerCartCount">0 items</span>
+                        <span class="cart-box-sep">|</span>
+                        <span id="headerCartTotal">$0.00</span>
+                    </span>
+                </div>
+                <div class="nav-cart-main">
+                    <a href="order.html" class="btn btn-secondary btn-compact edit-cart-link">Edit Cart</a>
+                    <a href="pricing.html" class="btn btn-primary btn-compact">Pay</a>
+                </div>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Open navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <section class="one-touch-hero">
+            <div class="container one-touch-hero-grid">
+                <div class="one-touch-copy">
+                    <p class="care-home-kicker">One Touch Planning Guide</p>
+                    <h1>No obligation. We are here to help.</h1>
+                    <p>Tell us what your loved one needs for the transition home. ComCare can help think through equipment, room setup, caregiver support options, and a simple recovery plan.</p>
+                    <div class="one-touch-paths" aria-label="ComCare support areas">
+                        <span>Equipment</span>
+                        <span>Room</span>
+                        <span>Care</span>
+                    </div>
+                </div>
+                <figure class="one-touch-photo">
+                    <img src="images/recovery-patient-margaret-hub-v5.png" alt="Patient at home using ComCare Recovery Hub for support">
+                    <figcaption>One request can help your family start with a clearer home recovery plan.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="one-touch-request-section">
+            <div class="container one-touch-request-grid">
+                <aside class="one-touch-help-card">
+                    <h2>How this helps</h2>
+                    <p>You do not need to know the exact product or service name. Share the situation, ZIP code, and what kind of help you may need.</p>
+                    <ul>
+                        <li>Equipment questions can include beds, walkers, wheelchairs, shower chairs, and bathroom support items.</li>
+                        <li>Room questions can include access, bed placement, clear walking paths, bathroom safety, and transfers.</li>
+                        <li>Care questions can include caregiver agency suggestions and family coordination through the Recovery Hub.</li>
+                    </ul>
+                    <a href="one-touch-solution.html" class="btn btn-primary">Open Quick Request</a>
+                </aside>
+
+                <form class="one-touch-form" id="oneTouchForm" name="one-touch-planning" method="POST" action="https://formsubmit.co/admin@comcare.store" enctype="multipart/form-data">
+                    <input type="hidden" name="_subject" value="ComCare One Touch Planning Request">
+                    <input type="hidden" name="_cc" value="accentGV@gmail.com">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_next" value="https://comcare.store/request-received.html">
+                    <input type="hidden" name="request_source" value="One Touch Planning Guide page">
+
+                    <div class="one-touch-form-heading">
+                        <p class="care-home-kicker">Detailed request</p>
+                        <h2>What do you need help with?</h2>
+                    </div>
+
+                    <fieldset class="one-touch-checks">
+                        <legend>Select all that apply</legend>
+                        <label><input type="checkbox" name="needs[]" value="Equipment"><span>I need equipment</span></label>
+                        <label><input type="checkbox" name="needs[]" value="Room setup"><span>I need help preparing the room</span></label>
+                        <label><input type="checkbox" name="needs[]" value="Caregiver support"><span>I need caregiver support</span></label>
+                    </fieldset>
+
+                    <div class="one-touch-field-grid">
+                        <label>Email address *<input type="email" name="email" placeholder="you@example.com" required></label>
+                        <label>ZIP code *<input type="text" name="zip_code" inputmode="numeric" autocomplete="postal-code" placeholder="30328" required></label>
+                        <label>Phone optional<input type="tel" name="phone" placeholder="Best callback number"></label>
+                        <label>Address optional<input type="text" name="address" autocomplete="street-address" placeholder="Street address if delivery may be needed"></label>
+                    </div>
+
+                    <label class="one-touch-full">Tell us what is happening
+                        <textarea name="situation" rows="5" placeholder="Example: My loved one is coming home after hip surgery Tuesday. We may need a bed, walker, and bathroom safety help."></textarea>
+                    </label>
+
+                    <div class="one-touch-file">Room pictures optional
+                        <div class="one-touch-photo-options">
+                            <label class="one-touch-photo-action camera-action">
+                                <span>Take Photo</span>
+                                <input type="file" name="attachment" accept="image/png, image/jpeg, image/webp" capture="environment">
+                            </label>
+                            <label class="one-touch-photo-action attach-action">
+                                <span>Attach Photos</span>
+                                <input type="file" name="attachment2" accept="image/png, image/jpeg, image/webp" multiple>
+                            </label>
+                        </div>
+                        <small>A clear photo of the bedroom, bathroom, doorway, or walking path can help us suggest a more specific plan. Keep total photos under 10MB.</small>
+                        <small class="one-touch-photo-status" data-photo-status>No photos selected yet.</small>
+                    </div>
+
+                    <label class="one-touch-consent">
+                        <input type="checkbox" name="permission_to_contact" required>
+                        <span>I understand this is a no-obligation request and give ComCare permission to contact me about my request.</span>
+                    </label>
+
+                    <button type="submit" class="btn btn-primary btn-large">Send My Recovery Request</button>
+                    <p class="form-note">We will review your request and get back to you with a practical recovery support plan.</p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>ComCare One Touch Planning</h4>
+                    <p>No-obligation home recovery help for equipment, room setup, caregiver support, and family coordination.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><a href="tel:678-242-9309">678-242-9309</a></p>
+                    <p><a href="mailto:admin@comcare.store?cc=accentGV%40gmail.com">admin@comcare.store</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Helpful Links</h4>
+                    <ul>
+                        <li><a href="one-touch-solution.html">Quick One Touch Request</a></li>
+                        <li><a href="services.html">Equipment Rentals</a></li>
+                        <li><a href="home.html#rehab-setup">Room Setup Ideas</a></li>
+                        <li><a href="home.html#caregiver-suggestions">Caregiver Suggestions</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Comfort Care. All rights reserved.</p>
+                <p>Comfort Care operates as a DBA/trade name of MOON LIGHTING INC.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js?v=order-ai-hidden-20260830"></script>
+    <script src="site-navigation.js?v=order-ai-hidden-20260830"></script>
+    <script>
+        (function() {
+            const form = document.getElementById('oneTouchForm');
+            if (!form) return;
+            const needInputs = Array.from(form.querySelectorAll('input[name="needs[]"]'));
+            const photoInputs = Array.from(form.querySelectorAll('input[type="file"]'));
+            const photoStatus = form.querySelector('[data-photo-status]');
+            function updateNeedValidity() {
+                const hasNeed = needInputs.some(function(input) { return input.checked; });
+                needInputs[0].setCustomValidity(hasNeed ? '' : 'Please choose at least one support area.');
+            }
+            function updatePhotoStatus() {
+                if (!photoStatus) return;
+                const files = photoInputs.flatMap(function(input) { return Array.from(input.files || []); });
+                photoStatus.textContent = files.length ? (files.length === 1 ? '1 photo ready.' : files.length + ' photos ready.') : 'No photos selected yet.';
+            }
+            needInputs.forEach(function(input) { input.addEventListener('change', updateNeedValidity); });
+            photoInputs.forEach(function(input) { input.addEventListener('change', updatePhotoStatus); });
+            form.addEventListener('submit', updateNeedValidity);
+            updateNeedValidity();
+            updatePhotoStatus();
+        })();
+    </script>
+</body>
+</html>

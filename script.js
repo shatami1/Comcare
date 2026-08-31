@@ -156,8 +156,144 @@ function getCartSummary(cartItems = getStoredCart()) {
     );
 }
 
-const FIRST_WEEK_BED_DELIVERY_FEE = 99;
-const FIRST_WEEK_BED_SETUP_FEE = 149;
+const FIRST_WEEK_BED_DELIVERY_INSTALLATION_FEE = 149;
+const ECONOMY_HOME_SETUP_PACKAGE_PRICE = 299;
+
+function createEconomyHomeSetupPackageCart() {
+    return [
+        {
+            name: 'ComCare Economy Home Setup Package',
+            model: '1 bed + 1 overbed table + 1 bathroom safety aid',
+            rateType: 'Monthly rental - delivery included',
+            unitPrice: ECONOMY_HOME_SETUP_PACKAGE_PRICE,
+            quantity: 1,
+            offerCode: 'ECONOMY_HOME_SETUP_PACKAGE',
+            includedDelivery: true
+        }
+    ];
+}
+
+function initEconomyPackageCheckout() {
+    const buttons = document.querySelectorAll('.economy-package-checkout');
+    if (!buttons.length) {
+        return;
+    }
+
+    buttons.forEach(button => {
+        if (button.dataset.economyCheckoutBound === 'true') {
+            return;
+        }
+
+        button.dataset.economyCheckoutBound = 'true';
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            const cart = createEconomyHomeSetupPackageCart();
+
+            localStorage.setItem('pricingCartItems', JSON.stringify(cart));
+            saveCheckoutSnapshot(cart);
+            localStorage.setItem('comfortCareSelectedOffer', JSON.stringify({
+                code: 'ECONOMY_HOME_SETUP_PACKAGE',
+                name: 'ComCare Economy Home Setup Package',
+                monthlyPrice: ECONOMY_HOME_SETUP_PACKAGE_PRICE,
+                includes: ['1 bed', '1 overbed table', '1 bathroom safety aid', 'Local delivery']
+            }));
+
+            updateHeaderCart();
+            updateCartEmailLink();
+            this.textContent = 'Opening payment...';
+            window.location.href = 'payment.html?offer=economy-home-setup';
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', initEconomyPackageCheckout);
+
+function initAutomatedOrderRequest() {
+    const form = document.getElementById('automatedOrderForm');
+    if (!form) {
+        return;
+    }
+
+    const message = document.getElementById('automatedOrderMessage');
+    const submitButton = form.querySelector('button[type="submit"]');
+
+    function setMessage(text, type) {
+        if (!message) {
+            return;
+        }
+        message.textContent = text || '';
+        message.classList.remove('success', 'error');
+        if (type) {
+            message.classList.add(type);
+        }
+    }
+
+    function splitAddress(address) {
+        const parts = String(address || '').split(',').map(part => part.trim()).filter(Boolean);
+        return {
+            address: parts[0] || String(address || '').trim(),
+            city: parts[1] || '',
+            state: parts[2] || 'GA'
+        };
+    }
+
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const cart = getStoredCart();
+        if (!cart.length) {
+            setMessage('Please add at least one rental item to the cart first.', 'error');
+            return;
+        }
+
+        const rawAddress = document.getElementById('autoOrderAddress')?.value.trim() || '';
+        const addressParts = splitAddress(rawAddress);
+        const customer = {
+            name: document.getElementById('autoOrderName')?.value.trim(),
+            phone: document.getElementById('autoOrderPhone')?.value.trim(),
+            email: document.getElementById('autoOrderEmail')?.value.trim(),
+            zip: document.getElementById('autoOrderZip')?.value.trim(),
+            address: addressParts.address,
+            city: addressParts.city,
+            state: addressParts.state,
+            startDate: document.getElementById('autoOrderStartDate')?.value || '',
+            endDate: document.getElementById('autoOrderEndDate')?.value || '',
+            notes: document.getElementById('autoOrderNotes')?.value.trim()
+        };
+
+        if (!customer.name || !customer.phone || !customer.zip) {
+            setMessage('Name, phone, and ZIP are required.', 'error');
+            return;
+        }
+
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending request...';
+        setMessage('Preparing your order summary...', 'success');
+
+        try {
+            const response = await fetch('/api/orders', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ customer, items: cart })
+            });
+            const data = await response.json().catch(() => ({}));
+            if (!response.ok) {
+                throw new Error(data.message || data.error || 'Order request could not be saved.');
+            }
+
+            localStorage.setItem('customerInfo', JSON.stringify(customer));
+            localStorage.setItem('lastComcareOrderId', data.order?.id || '');
+            setMessage('Order request received. ComCare will confirm availability and payment/delivery next steps.', 'success');
+            form.reset();
+        } catch (error) {
+            setMessage(error.message, 'error');
+        } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Submit Order Request';
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', initAutomatedOrderRequest);
 
 function createFirstWeekBedOfferCart(bedName, bedModel, afterWeekPrice) {
     return [
@@ -171,18 +307,10 @@ function createFirstWeekBedOfferCart(bedName, bedModel, afterWeekPrice) {
             afterWeekPrice: Number(afterWeekPrice || 0)
         },
         {
-            name: 'Local Delivery',
+            name: 'Delivery + Installation',
             model: 'Hospital bed special offer',
             rateType: 'One-time fee',
-            unitPrice: FIRST_WEEK_BED_DELIVERY_FEE,
-            quantity: 1,
-            offerCode: 'FIRST_WEEK_FREE_HOSPITAL_BED'
-        },
-        {
-            name: 'Setup',
-            model: 'Hospital bed special offer',
-            rateType: 'One-time fee',
-            unitPrice: FIRST_WEEK_BED_SETUP_FEE,
+            unitPrice: FIRST_WEEK_BED_DELIVERY_INSTALLATION_FEE,
             quantity: 1,
             offerCode: 'FIRST_WEEK_FREE_HOSPITAL_BED'
         }
@@ -209,8 +337,7 @@ function initHospitalBedOfferChooser() {
                 bedName,
                 bedModel,
                 afterWeekPrice,
-                deliveryFee: FIRST_WEEK_BED_DELIVERY_FEE,
-                setupFee: FIRST_WEEK_BED_SETUP_FEE
+                deliveryInstallationFee: FIRST_WEEK_BED_DELIVERY_INSTALLATION_FEE
             }));
 
             updateHeaderCart();
@@ -775,6 +902,7 @@ function initPricingCart() {
     const pricingMessageEl = document.getElementById('cartAddMessage');
     const cart = loadCart();
     const rateLabels = {
+        daily: 'Daily',
         weekly: 'Weekly',
         monthly: 'Monthly'
     };
@@ -790,10 +918,11 @@ function initPricingCart() {
         addButton.addEventListener('click', () => {
             const rateSelect = row.querySelector('.rate-select');
             const qtyInput = row.querySelector('.qty-input');
-            const rateType = rateSelect ? rateSelect.value : 'weekly';
+            const rateType = rateSelect ? rateSelect.value : 'daily';
             const quantity = Math.max(parseInt(qtyInput?.value, 10) || 1, 1);
 
             const prices = {
+                daily: parseFloat(row.dataset.daily || '0'),
                 weekly: parseFloat(row.dataset.weekly || '0'),
                 monthly: parseFloat(row.dataset.monthly || '0')
             };
@@ -801,15 +930,16 @@ function initPricingCart() {
             const unitPrice = prices[rateType] || 0;
             const name = row.dataset.name || 'Item';
             const model = row.dataset.model || '';
+            const rateLabel = row.dataset.rateLabel || rateType;
 
-            const existing = cart.find(item => item.name === name && item.model === model && item.rateType === rateType);
+            const existing = cart.find(item => item.name === name && item.model === model && item.rateType === rateLabel);
             if (existing) {
                 existing.quantity += quantity;
             } else {
                 cart.push({
                     name,
                     model,
-                    rateType,
+                    rateType: rateLabel,
                     unitPrice,
                     quantity
                 });
@@ -825,7 +955,7 @@ function initPricingCart() {
             if (typeof updateStripeButton === 'function') {
                 updateStripeButton();
             }
-            showPricingMessage('Item added to cart. Visit the order page when ready.', 'success');
+            showPricingMessage('Item added to cart. Use Go to Pay Page when ready.', 'success');
         });
     });
 

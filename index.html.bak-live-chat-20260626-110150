@@ -34,7 +34,7 @@
       "seller": {
         "@type": "MedicalBusiness",
         "name": "MOON LIGHTING INC. DBA Comfort Care",
-        "telephone": "+1-678-242-9309",
+        "telephone": "+1-678-362-2345",
         "email": "admin@comcare.store",
         "url": "https://comcare.store/"
       },
@@ -71,7 +71,7 @@
           "name": "How do I claim the hospital bed special offer?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Call or text 678-242-9309, email admin@comcare.store, or start an online order and mention the first week free hospital bed offer."
+            "text": "Call or text 678-362-2345, email admin@comcare.store, or start an online order and mention the first week free hospital bed offer."
           }
         },
         {
@@ -161,10 +161,10 @@
                     <h1>First Week Free Hospital Bed Rental</h1>
                     <p>Choose a hospital bed, pay the required delivery and setup fees, and get the first week of bed rental free for eligible new customers.</p>
                     <div class="offer-actions">
-                        <a href="tel:678-242-9309" class="btn btn-light">Call or Text 678-242-9309</a>
+                        <a href="tel:678-362-2345" class="btn btn-light">Call or Text 678-362-2345</a>
                         <a href="#choose-bed-offer" class="btn btn-light">Choose a Bed</a>
                         <a href="home.html" class="btn btn-light">See Other Deals</a>
-                        <a href="sms:+16782429309?&body=Customer%20ON!" class="btn btn-quote-sms" aria-label="Text Comfort Care for the best quote of the day">
+                        <a href="sms:+16783622345?&body=Customer%20ON!" class="btn btn-quote-sms" aria-label="Text Comfort Care for the best quote of the day">
                             <span class="quote-sms-icon" aria-hidden="true">$</span>
                             <span>Best Quote of the Day</span>
                         </a>
@@ -312,7 +312,7 @@
             <h2>Ready to Check Hospital Bed Availability?</h2>
             <p>Pick a bed above or call Comfort Care for help choosing.</p>
             <div class="cta-contact">
-                <a href="tel:678-242-9309" class="btn btn-light">Call: 678-242-9309</a>
+                <a href="tel:678-362-2345" class="btn btn-light">Call: 678-362-2345</a>
                 <a href="#choose-bed-offer" class="btn btn-light">Choose a Bed</a>
                 <a href="home.html" class="btn btn-light">Other Rental Deals</a>
             </div>
@@ -329,7 +329,7 @@
                 </div>
                 <div class="footer-section">
                     <h4>Contact</h4>
-                    <p>Phone: <a href="tel:678-242-9309">678-242-9309</a></p>
+                    <p>Phone: <a href="tel:678-362-2345">678-362-2345</a></p>
                     <p>Email: <a href="mailto:admin@comcare.store?cc=accentGV%40gmail.com">admin@comcare.store</a></p>
                     <p>Location: Norcross, Georgia</p>
                 </div>
