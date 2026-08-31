@@ -62,7 +62,7 @@
       (function () {
         var storageKey = 'comcareRecoveryProfessionals';
         var defaults = [
-          {id:'sample-1', name:'Atlanta Recovery Support', title:'Rehab Technician', specialty:'Rehab Technician', serviceArea:'Atlanta, Sandy Springs, Norcross, 30328, 30305', certifications:'Mobility support, discharge support', yearsExperience:'5+', phone:'678-362-2345', email:'admin@comcare.store', website:'https://comcare.store', linkedin:'', bio:'Comfort Care is building a trusted Atlanta recovery support network for patients who need more than equipment after surgery, injury, or rehabilitation.', featured:true, verified:true, photoUrl:''}
+          {id:'sample-1', name:'Atlanta Recovery Support', title:'Rehab Technician', specialty:'Rehab Technician', serviceArea:'Atlanta, Sandy Springs, Norcross, 30328, 30305', certifications:'Mobility support, discharge support', yearsExperience:'5+', phone:'678-242-9309', email:'admin@comcare.store', website:'https://comcare.store', linkedin:'', bio:'Comfort Care is building a trusted Atlanta recovery support network for patients who need more than equipment after surgery, injury, or rehabilitation.', featured:true, verified:true, photoUrl:''}
         ];
         var remoteProfiles = [];
         var statusNote = document.createElement('p');

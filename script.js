@@ -411,7 +411,7 @@ function bindDynamicStripeCheckout(button) {
             } else if (message.toLowerCase().includes('could not be authorized') || message.toLowerCase().includes('unauthorized')) {
                 alert('Square checkout is connected, but Square rejected the access token. Update SQUARE_ACCESS_TOKEN and SQUARE_LOCATION_ID in Vercel, or in the local .env file for testing.');
             } else if (liveChargeBlocked) {
-                alert('Payment is not ready yet. Please email admin@comcare.store or call 678-362-2345 to complete this order while Square checkout is being configured.');
+                alert('Payment is not ready yet. Please email admin@comcare.store or call 678-242-9309 to complete this order while Square checkout is being configured.');
             } else {
                 alert(`Unable to start secure checkout: ${message}`);
             }

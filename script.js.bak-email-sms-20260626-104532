@@ -409,7 +409,7 @@ function bindDynamicStripeCheckout(button) {
             button.disabled = false;
             button.textContent = originalText;
             if (liveChargeBlocked) {
-                alert('Payment is not ready yet. Please email admin@comcare.store or call 678-362-2345 to complete this order while Square checkout is being configured.');
+                alert('Payment is not ready yet. Please email admin@comcare.store or call 678-242-9309 to complete this order while Square checkout is being configured.');
             } else {
                 alert(`Unable to start secure checkout: ${message}`);
             }

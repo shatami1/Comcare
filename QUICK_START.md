@@ -33,7 +33,7 @@ Your site is live with a GitHub Pages URL and can use `comcare.store` as the cus
 
 **1. Update Business Information**
 Search & replace in all HTML files:
-- `678-362-2345` → Your phone number
+- `678-242-9309` → Your phone number
 - `admin@comcare.store` → Your email
 - `Atlanta, Georgia` → Your location
 

@@ -1,7 +1,7 @@
 (function () {
     const TAWKTO_EMBED_URL = 'https://embed.tawk.to/6a3e969c6ac34c1d43e2bb93/1js27okp1';
     const TAWKTO_DIRECT_CHAT = 'https://tawk.to/chat/6a3e969c6ac34c1d43e2bb93/1js27okp1';
-    const FALLBACK_SMS = 'sms:+16783622345?&body=Customer%20ON!';
+    const FALLBACK_SMS = 'sms:+16782429309?&body=Customer%20ON!';
     const FALLBACK_EMAIL = 'mailto:admin@comcare.store?cc=accentGV%40gmail.com&subject=Comfort%20Care%20Live%20Chat%20Request&body=Hello%20Comfort%20Care%2C%0A%0AI%20need%20help%20with%20a%20rental.';
     let tawkLoaded = false;
     let fallbackShown = false;
@@ -68,7 +68,7 @@
                 <p>Need help choosing a bed or mobility rental? Start chat or contact us directly.</p>
                 <div class="live-chat-actions">
                     <a href="${TAWKTO_DIRECT_CHAT}" target="_blank" rel="noopener">Chat</a>
-                    <a href="tel:678-362-2345">Call</a>
+                    <a href="tel:678-242-9309">Call</a>
                     <a href="${FALLBACK_SMS}">Text</a>
                     <a href="${FALLBACK_EMAIL}">Email</a>
                 </div>

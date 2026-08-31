@@ -27,7 +27,7 @@
       "@type": "MedicalBusiness",
       "name": "MOON LIGHTING INC. DBA Comfort Care",
       "url": "https://comcare.store/",
-      "telephone": "+1-678-362-2345",
+      "telephone": "+1-678-242-9309",
       "email": "admin@comcare.store",
       "address": {
         "@type": "PostalAddress",
@@ -131,7 +131,7 @@
                 <p>Wheelchairs, walkers, rollators, knee scooters, canes, and recovery equipment delivered with responsive local support across Atlanta and nearby Georgia communities.</p>
                 <div class="hero-buttons">
                     <a href="services.html" class="btn btn-primary">Browse Equipment</a>
-                    <a href="tel:678-362-2345" class="btn btn-secondary">Call 678-362-2345</a>
+                    <a href="tel:678-242-9309" class="btn btn-secondary">Call 678-242-9309</a>
                     <a href="atlanta-sandy-springs-healthcare-resources.html" class="btn btn-secondary">Healthcare Resources</a>
                 </div>
                 <div class="hero-special-offer" aria-label="Limited time hospital bed rental offer">
@@ -163,7 +163,7 @@
                     </ul>
                     <div class="offer-actions">
                         <a href="index.html" class="btn btn-primary">See Offer Details</a>
-                        <a href="tel:678-362-2345" class="btn btn-secondary">Call or Text</a>
+                        <a href="tel:678-242-9309" class="btn btn-secondary">Call or Text</a>
                     </div>
                 </div>
                 <div class="special-offer-media">
@@ -347,7 +347,7 @@
             <h2>Need Mobility Equipment Now?</h2>
             <p>Contact us today to discuss the right rental for your mobility needs in the Atlanta area.</p>
             <div class="cta-contact">
-                <a href="tel:678-362-2345" class="btn btn-light">Call: 678-362-2345</a>
+                <a href="tel:678-242-9309" class="btn btn-light">Call: 678-242-9309</a>
                 <a href="contact.html" class="btn btn-light">Request Help</a>
             </div>
         </div>
@@ -363,7 +363,7 @@
                 </div>
                 <div class="footer-section">
                     <h4>Contact</h4>
-                    <p>Phone: <a href="tel:678-362-2345">678-362-2345</a></p>
+                    <p>Phone: <a href="tel:678-242-9309">678-242-9309</a></p>
                     <p>Email: <a href="mailto:admin@comcare.store?cc=accentGV%40gmail.com">admin@comcare.store</a></p>
                     <p>Location: Norcross, Georgia</p>
                 </div>
