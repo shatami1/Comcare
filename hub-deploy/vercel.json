@@ -1,0 +1,64 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/recovery-hub-room",
+      "destination": "/api/recovery-hub-room"
+    },
+    {
+      "source": "/demo-stats",
+      "destination": "/api/demo-stats"
+    },
+    {
+      "source": "/pair",
+      "destination": "/recovery-hub.html"
+    },
+    {
+      "source": "/",
+      "destination": "/hub.html"
+    },
+    {
+      "source": "/patients",
+      "has": [{ "type": "host", "value": "hub.comcare.store" }],
+      "destination": "/hub.html"
+    },
+    {
+      "source": "/caregivers",
+      "has": [{ "type": "host", "value": "hub.comcare.store" }],
+      "destination": "/hub.html"
+    },
+    {
+      "source": "/professionals",
+      "has": [{ "type": "host", "value": "hub.comcare.store" }],
+      "destination": "/hub.html"
+    },
+    {
+      "source": "/request-demo",
+      "has": [{ "type": "host", "value": "hub.comcare.store" }],
+      "destination": "/hub.html"
+    },
+    {
+      "source": "/:path((?!api/|images/|logo\\.svg|hub\\.css|recovery-hub|recovery-hub-room|recovery-hub-patient|recovery-hub-caregiver|recovery-hub-setup).*)",
+      "has": [{ "type": "host", "value": "hub.comcare.store" }],
+      "destination": "/hub.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/recovery-hub-patient",
+      "destination": "/pair?role=patient",
+      "permanent": false
+    },
+    {
+      "source": "/recovery-hub-caregiver",
+      "destination": "/pair?role=caregiver",
+      "permanent": false
+    },
+    {
+      "source": "/recovery-hub-setup",
+      "destination": "/pair?role=setup",
+      "permanent": false
+    }
+  ]
+}

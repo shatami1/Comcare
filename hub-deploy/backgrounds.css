@@ -1,0 +1,118 @@
+.hero {
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-width: none;
+  min-height: 780px;
+  margin: 0;
+  align-items: center;
+  overflow: hidden;
+  padding: 80px max(30px, calc((100vw - 1260px) / 2));
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(90deg, rgba(255,255,255,.98) 0%, rgba(255,255,255,.92) 27%, rgba(255,255,255,.32) 55%, rgba(255,255,255,0) 75%);
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 3;
+  width: min(600px, 48vw);
+}
+
+.hero-visual {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  min-height: 0;
+  border-radius: 0;
+}
+
+.hero-visual > img { object-position: center center; }
+.hero-visual .corner-stripes { right: -70px; top: 12px; }
+.hero-visual .status-card { left: auto; right: max(28px, calc((100vw - 1280px) / 2)); bottom: 32px; }
+.hero-visual .sun-mark { display: none; }
+.myth-fact { min-height: 760px; }
+.myth-photo img { object-position: center center; }
+
+.recovery-stories { display: grid; }
+.story { position: relative; min-height: 680px; overflow: hidden; }
+.story > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.story > div { position: absolute; z-index: 2; top: 50%; width: min(500px, 42vw); transform: translateY(-50%); border-radius: 14px; background: rgba(255,255,255,.94); padding: 38px; box-shadow: 0 20px 60px rgba(18,52,81,.2); }
+.story-woman > div { right: max(30px, calc((100vw - 1200px) / 2)); }
+.story-man > div { left: max(30px, calc((100vw - 1200px) / 2)); }
+.story span { color: #0782bd; font-size: .72rem; font-weight: 900; letter-spacing: .13em; }
+.story h2 { margin: 14px 0 18px; color: #123451; font-size: clamp(2.5rem, 4vw, 4.2rem); line-height: .98; letter-spacing: -.04em; }
+.story p { color: #526879; font-size: 1.08rem; line-height: 1.6; }
+.story a { display: inline-block; margin-top: 10px; color: #0782bd; font-weight: 900; }
+.story-man > img { object-position: center center; }
+
+@media (max-width: 900px) {
+  .hero { min-height: 920px; align-items: flex-start; padding-top: 65px; }
+  .hero::before { background: linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(255,255,255,.92) 37%, rgba(255,255,255,.2) 63%, rgba(255,255,255,0) 100%); }
+  .hero-copy { width: 100%; max-width: 620px; }
+  .hero-visual .status-card { right: 22px; left: 22px; bottom: 22px; }
+  .hero-visual > img { object-position: 62% center; }
+  .story { min-height: 720px; }
+  .story > div { top: auto; right: 22px; bottom: 22px; left: 22px; width: auto; transform: none; }
+}
+
+@media (max-width: 600px) {
+  .hero { min-height: 900px; padding: 48px 20px; }
+  .hero-copy { max-width: none; }
+  .hero h1 { font-size: 3.15rem; }
+  .hero-visual > img { object-position: 66% center; }
+  .hero-visual .corner-stripes { display: none; }
+  .hero-visual .status-card { left: 16px; right: 16px; bottom: 16px; }
+  .myth-fact { min-height: 0; }
+  .story { min-height: 660px; }
+  .story h2 { font-size: 2.35rem; }
+  .story > div { padding: 25px; }
+}
+.connection-photo{height:220px;margin:25px -28px 0;overflow:hidden}.connection-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 38%}
+body{font-family:"Nunito Sans","Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}.hero h1,.section-heading h2,.feature-card h3,.story h2,.myth-copy h2,.step-grid h3,.demo-cta h2{font-family:"Manrope","Segoe UI",sans-serif;font-weight:800;letter-spacing:-.035em}
+
+/* Keep hero copy and the patient tablet in separate, readable panels. */
+.hero{display:grid;grid-template-columns:minmax(0,.9fr) minmax(520px,1.1fr);gap:52px;align-items:center;width:auto;max-width:1320px;min-height:0;margin:0 auto;padding:54px 30px 68px;overflow:visible}
+.hero::before{display:none}
+.hero-copy{position:relative;z-index:2;width:auto;max-width:610px}
+.hero-visual{position:relative;inset:auto;z-index:1;min-height:620px;overflow:hidden;border-radius:16px 16px 78px 16px;background:#dfecef;box-shadow:0 24px 60px rgba(18,52,81,.16)}
+.hero-visual::before{content:"";position:absolute;inset:-22px;z-index:0;background:url('/images/recovery-patient-margaret-hub-v5.png') center/cover no-repeat;filter:blur(18px);opacity:.38}
+.hero-visual>img{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:contain;object-position:center center}
+@media(max-width:1000px){.hero{grid-template-columns:1fr;gap:32px;padding:44px 24px 58px}.hero-copy{max-width:760px}.hero-visual{min-height:560px;width:100%}.hero-visual>img{object-position:center center}.hero-visual .status-card{right:22px;bottom:22px;left:auto}}
+@media(max-width:600px){.hero{min-height:0;padding:34px 18px 44px}.hero h1{font-size:clamp(2.85rem,14vw,4rem)}.hero-visual{min-height:430px;border-radius:14px 14px 48px 14px}.hero-visual>img{object-position:48% center}.hero-visual .status-card{right:14px;bottom:14px;left:14px}}
+
+/* Larger, brighter navigation that clearly draws attention to the Hub. */
+.site-header{position:relative;z-index:20;grid-template-columns:minmax(250px,auto) 1fr auto;gap:38px;max-width:none;min-height:112px;padding:20px max(30px,calc((100vw - 1360px)/2));border-bottom:1px solid #dcebf2;background:linear-gradient(100deg,#fff 0%,#f7fcff 55%,#f1fbf7 100%);box-shadow:0 8px 28px rgba(18,52,81,.08)}
+.site-header .brand{gap:14px}.site-header .brand img{width:68px;height:68px;filter:drop-shadow(0 7px 12px rgba(7,130,189,.18))}.site-header .brand b{font-family:"Manrope","Segoe UI",sans-serif;color:#0578b4;font-size:1.65rem;font-weight:800;letter-spacing:-.025em}.site-header .brand small{margin-top:3px;color:#f17419;font-size:.73rem;letter-spacing:.19em}
+.site-header nav{gap:10px}.site-header nav a{position:relative;border-radius:999px;padding:13px 17px;color:#153956;font-size:1.02rem;font-weight:800;transition:.2s ease}.site-header nav a:hover{background:#e7f5fb;color:#0578b4;transform:translateY(-1px)}.site-header nav a::after{content:"";position:absolute;right:17px;bottom:8px;left:17px;height:3px;border-radius:3px;background:#f58220;transform:scaleX(0);transition:.2s ease}.site-header nav a:hover::after{transform:scaleX(1)}
+.site-header .header-cta{min-height:58px;border-radius:12px;background:linear-gradient(135deg,#ff8a1f,#f26419);color:#fff;padding:0 24px;font-size:1.04rem;box-shadow:0 12px 28px rgba(242,100,25,.28);transition:.2s ease}.site-header .header-cta:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(242,100,25,.35)}.site-header .header-cta span{display:grid;width:28px;height:28px;place-items:center;border-radius:50%;background:rgba(255,255,255,.2);font-size:1.15rem}
+@media(max-width:900px){.site-header{grid-template-columns:1fr auto;min-height:94px;padding:14px 22px}.site-header nav{display:none}.site-header .brand img{width:58px;height:58px}.site-header .brand b{font-size:1.4rem}.site-header .header-cta{min-height:52px}}
+@media(max-width:520px){.site-header{gap:10px;padding:12px 14px}.site-header .brand{gap:8px}.site-header .brand img{width:48px;height:48px}.site-header .brand b{font-size:1.08rem}.site-header .brand small{font-size:.56rem}.site-header .header-cta{min-height:46px;padding:0 14px;font-size:.82rem;gap:10px}.site-header .header-cta span{width:24px;height:24px}}
+
+/* Extra-large modern desktop navigation. */
+@media(min-width:1101px){.site-header{grid-template-columns:minmax(310px,auto) 1fr auto;min-height:138px;gap:34px;padding-top:24px;padding-bottom:24px}.site-header .brand img{width:82px;height:82px}.site-header .brand b{font-size:2rem}.site-header .brand small{font-size:.84rem}.site-header nav{gap:8px}.site-header nav a{padding:16px 18px;font-family:"Manrope","Segoe UI",sans-serif;font-size:1.48rem;font-weight:800;letter-spacing:-.025em}.site-header .header-cta{min-height:70px;border-radius:15px;padding:0 29px;font-family:"Manrope","Segoe UI",sans-serif;font-size:1.28rem;font-weight:800}.site-header .header-cta span{width:34px;height:34px}}
+@media(min-width:901px) and (max-width:1100px){.site-header{grid-template-columns:minmax(245px,auto) 1fr auto;gap:16px}.site-header nav{gap:2px}.site-header nav a{padding:12px 9px;font-size:1rem}.site-header .header-cta{padding:0 18px}}
+
+/* Aligned rounded-rectangle landing navigation. */
+@media(min-width:901px){
+  .site-header{grid-template-columns:minmax(270px,1fr) minmax(500px,1.65fr) minmax(210px,1fr);gap:24px}
+  .site-header nav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:stretch;gap:8px;width:100%;padding:7px;border:1px solid #d4e4ed;border-radius:22px;background:rgba(255,255,255,.8);box-shadow:0 7px 20px rgba(22,66,98,.07)}
+  .site-header nav a{display:flex;align-items:center;justify-content:center;min-height:52px;border:1px solid #dbe8ef;border-radius:15px;background:#fff;padding:10px 12px;text-align:center;white-space:nowrap;font-family:"Manrope","Segoe UI",sans-serif;font-size:clamp(.88rem,1.05vw,1.05rem);font-weight:800;letter-spacing:-.01em;box-shadow:0 3px 9px rgba(20,64,94,.05)}
+  .site-header nav a::after{display:none}
+  .site-header nav a:hover{border-color:#9ed4ec;background:#eaf7fc;color:#0578b4;box-shadow:0 7px 16px rgba(7,120,180,.12)}
+  .site-header .header-cta{justify-self:end;white-space:nowrap}
+}
+@media(min-width:901px) and (max-width:1100px){
+  .site-header{grid-template-columns:minmax(220px,.9fr) minmax(430px,1.7fr) auto;gap:12px;padding-right:18px;padding-left:18px}
+  .site-header nav{gap:6px;padding:6px;border-radius:18px}
+  .site-header nav a{min-height:46px;border-radius:12px;padding:8px 6px;font-size:.78rem}
+  .site-header .header-cta{min-height:54px;padding:0 15px;font-size:.9rem}
+}
+.hero-actions{flex-wrap:wrap}.family-button{border-color:#f58220;color:#bd5814}
+.hero>.experience-selector{grid-column:1/-1;justify-self:center;justify-content:center;align-items:stretch;width:100%;margin:0 0 8px;padding:10px 0 4px}.hero>.experience-selector .button{min-width:210px;justify-content:center;text-align:center;border-radius:13px}.hero>.experience-selector .primary{justify-content:space-between}
+@media(max-width:700px){.hero>.experience-selector{display:grid;grid-template-columns:1fr;margin-bottom:4px}.hero>.experience-selector .button{width:100%;min-width:0}}
