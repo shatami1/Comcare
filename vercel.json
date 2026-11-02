@@ -7,6 +7,8 @@
     { "source": "/checkout-health", "destination": "/api/checkout-health" }
   ],
   "redirects": [
+    { "source": "/economy-home-setup-package", "destination": "/one-touch-solution", "permanent": false },
+    { "source": "/economy-home-setup-package.html", "destination": "/one-touch-solution", "permanent": false },
     { "source": "/", "destination": "/home", "permanent": false },
     { "source": "/index", "destination": "/home", "permanent": false },
     { "source": "/index.html", "destination": "/home", "permanent": false },

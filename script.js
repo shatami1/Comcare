@@ -157,56 +157,26 @@ function getCartSummary(cartItems = getStoredCart()) {
 }
 
 const FIRST_WEEK_BED_DELIVERY_INSTALLATION_FEE = 149;
-const ECONOMY_HOME_SETUP_PACKAGE_PRICE = 299;
-
-function createEconomyHomeSetupPackageCart() {
-    return [
-        {
-            name: 'ComCare Economy Home Setup Package',
-            model: '1 bed + 1 overbed table + 1 bathroom safety aid',
-            rateType: 'Monthly rental - delivery included',
-            unitPrice: ECONOMY_HOME_SETUP_PACKAGE_PRICE,
-            quantity: 1,
-            offerCode: 'ECONOMY_HOME_SETUP_PACKAGE',
-            includedDelivery: true
-        }
-    ];
-}
-
-function initEconomyPackageCheckout() {
-    const buttons = document.querySelectorAll('.economy-package-checkout');
-    if (!buttons.length) {
-        return;
+// Old package links must never open a payable or empty Economy cart.
+function retireEconomyHomeSetupOffer() {
+    const isRetiredItem = item => item.offerCode === 'ECONOMY_HOME_SETUP_PACKAGE'
+        || item.name === 'ComCare Economy Home Setup Package';
+    const cart = getStoredCart();
+    const remaining = cart.filter(item => !isRetiredItem(item));
+    if (remaining.length !== cart.length) {
+        localStorage.setItem('pricingCartItems', JSON.stringify(remaining));
+        localStorage.removeItem('checkoutSnapshotTotal');
+        localStorage.removeItem('comfortCareSelectedOffer');
     }
-
-    buttons.forEach(button => {
-        if (button.dataset.economyCheckoutBound === 'true') {
-            return;
-        }
-
-        button.dataset.economyCheckoutBound = 'true';
-        button.addEventListener('click', function(event) {
-            event.preventDefault();
-            const cart = createEconomyHomeSetupPackageCart();
-
-            localStorage.setItem('pricingCartItems', JSON.stringify(cart));
-            saveCheckoutSnapshot(cart);
-            localStorage.setItem('comfortCareSelectedOffer', JSON.stringify({
-                code: 'ECONOMY_HOME_SETUP_PACKAGE',
-                name: 'ComCare Economy Home Setup Package',
-                monthlyPrice: ECONOMY_HOME_SETUP_PACKAGE_PRICE,
-                includes: ['1 bed', '1 overbed table', '1 bathroom safety aid', 'Local delivery']
-            }));
-
-            updateHeaderCart();
-            updateCartEmailLink();
-            this.textContent = 'Opening payment...';
-            window.location.href = 'payment.html?offer=economy-home-setup';
-        });
-    });
+    if (new URLSearchParams(window.location.search).get('offer') === 'economy-home-setup') {
+        window.location.replace('one-touch-solution.html');
+        return true;
+    }
+    return false;
 }
 
-document.addEventListener('DOMContentLoaded', initEconomyPackageCheckout);
+// Run before cart rendering and checkout listeners.
+retireEconomyHomeSetupOffer();
 
 function initAutomatedOrderRequest() {
     const form = document.getElementById('automatedOrderForm');
